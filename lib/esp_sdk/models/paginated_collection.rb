@@ -24,48 +24,31 @@ limitations under the License.
 require 'date'
 
 module ESP
-  # An Organization object.
-  class Organization
-    # Organization Id
-    attr_accessor :id
+  # A Paginated Collection of Objects
+  class PaginatedCollection
+    attr_accessor :data
 
-    # Name
-    attr_accessor :name
+    attr_accessor :included
 
-    # Created At
-    attr_accessor :created_at
-
-    # Updated At
-    attr_accessor :updated_at
-
-    # Links to Associated Objects
-    attr_accessor :relationships
-
-    # Associated External Accounts
-    attr_accessor :external_accounts
+    # Links
+    attr_accessor :links
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'name' => :'name',
-        :'created_at' => :'created_at',
-        :'updated_at' => :'updated_at',
-        :'relationships' => :'relationships',
-        :'external_accounts' => :'external_accounts'
+        :'data' => :'data',
+        :'included' => :'included',
+        :'links' => :'links'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'id' => :'Integer',
-        :'name' => :'String',
-        :'created_at' => :'DateTime',
-        :'updated_at' => :'DateTime',
-        :'relationships' => :'Object',
-        :'external_accounts' => :'Array<ExternalAccount>'
+        :'data' => :'Array<Object>',
+        :'included' => :'Array<Object>',
+        :'links' => :'Object'
       }
     end
 
@@ -77,30 +60,20 @@ module ESP
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
 
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
-      end
-
-      if attributes.has_key?(:'name')
-        self.name = attributes[:'name']
-      end
-
-      if attributes.has_key?(:'created_at')
-        self.created_at = attributes[:'created_at']
-      end
-
-      if attributes.has_key?(:'updated_at')
-        self.updated_at = attributes[:'updated_at']
-      end
-
-      if attributes.has_key?(:'relationships')
-        self.relationships = attributes[:'relationships']
-      end
-
-      if attributes.has_key?(:'external_accounts')
-        if (value = attributes[:'external_accounts']).is_a?(Array)
-          self.external_accounts = value
+      if attributes.has_key?(:'data')
+        if (value = attributes[:'data']).is_a?(Array)
+          self.data = value
         end
+      end
+
+      if attributes.has_key?(:'included')
+        if (value = attributes[:'included']).is_a?(Array)
+          self.included = value
+        end
+      end
+
+      if attributes.has_key?(:'links')
+        self.links = attributes[:'links']
       end
 
     end
@@ -115,7 +88,7 @@ module ESP
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
+      return false if @data.nil?
       return true
     end
 
@@ -124,12 +97,9 @@ module ESP
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          name == o.name &&
-          created_at == o.created_at &&
-          updated_at == o.updated_at &&
-          relationships == o.relationships &&
-          external_accounts == o.external_accounts
+          data == o.data &&
+          included == o.included &&
+          links == o.links
     end
 
     # @see the `==` method
@@ -141,7 +111,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, created_at, updated_at, relationships, external_accounts].hash
+      [data, included, links].hash
     end
 
     # Builds the object from hash

@@ -1,6 +1,24 @@
 require_relative '../api_error'
+
+module HandleJsonAPI
+  # Convert data to the given return type.
+  # @param [Object] data Data to be converted
+  # @param [String] return_type Return type
+  # @return [Mixed] Data in a particular type
+  def convert_to_type(data, return_type)
+    case return_type
+    when /PaginatedCollection|String|Integer|Float|BOOLEAN|DateTime|Date|Object|Array|Hash/
+      super
+    else
+      super JsonApi.new(data).convert[:data], data[:data][:type].classify
+    end
+  end
+end
+
 module ESP
   class ApiClient
+    prepend HandleJsonAPI
+
     # Call an API with given options.
     #
     # @return [Array<(Object, Fixnum, Hash)>] an array of 3 elements:
@@ -21,7 +39,6 @@ module ESP
 
       response = request.run
 
-      puts "@@@@@@@@@ #{__FILE__}:#{__LINE__} \n********** response.body = " + response.body.inspect
       if @config.debugging
         @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
       end
@@ -35,6 +52,11 @@ module ESP
 
       if opts[:return_type]
         data = deserialize(response, opts[:return_type])
+        if data.is_a? ESP::PaginatedCollection
+          # Need to set original_params so paginated collection can use it for page calls.
+          data.original_params = opts
+          data.path            = path
+        end
       else
         data = nil
       end

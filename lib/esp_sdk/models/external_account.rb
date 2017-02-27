@@ -24,9 +24,9 @@ limitations under the License.
 require 'date'
 
 module ESP
-  # An Organization object.
-  class Organization
-    # Organization Id
+  # An External Account object.
+  class ExternalAccount
+    # External Account Id
     attr_accessor :id
 
     # Name
@@ -38,11 +38,13 @@ module ESP
     # Updated At
     attr_accessor :updated_at
 
-    # Links to Associated Objects
-    attr_accessor :relationships
+    attr_accessor :arn
 
-    # Associated External Accounts
-    attr_accessor :external_accounts
+    attr_accessor :account
+
+    attr_accessor :external_id
+
+    attr_accessor :cloudtrail_name
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -52,8 +54,10 @@ module ESP
         :'name' => :'name',
         :'created_at' => :'created_at',
         :'updated_at' => :'updated_at',
-        :'relationships' => :'relationships',
-        :'external_accounts' => :'external_accounts'
+        :'arn' => :'arn',
+        :'account' => :'account',
+        :'external_id' => :'external_id',
+        :'cloudtrail_name' => :'cloudtrail_name'
       }
     end
 
@@ -64,8 +68,10 @@ module ESP
         :'name' => :'String',
         :'created_at' => :'DateTime',
         :'updated_at' => :'DateTime',
-        :'relationships' => :'Object',
-        :'external_accounts' => :'Array<ExternalAccount>'
+        :'arn' => :'String',
+        :'account' => :'String',
+        :'external_id' => :'String',
+        :'cloudtrail_name' => :'String'
       }
     end
 
@@ -93,14 +99,20 @@ module ESP
         self.updated_at = attributes[:'updated_at']
       end
 
-      if attributes.has_key?(:'relationships')
-        self.relationships = attributes[:'relationships']
+      if attributes.has_key?(:'arn')
+        self.arn = attributes[:'arn']
       end
 
-      if attributes.has_key?(:'external_accounts')
-        if (value = attributes[:'external_accounts']).is_a?(Array)
-          self.external_accounts = value
-        end
+      if attributes.has_key?(:'account')
+        self.account = attributes[:'account']
+      end
+
+      if attributes.has_key?(:'external_id')
+        self.external_id = attributes[:'external_id']
+      end
+
+      if attributes.has_key?(:'cloudtrail_name')
+        self.cloudtrail_name = attributes[:'cloudtrail_name']
       end
 
     end
@@ -128,8 +140,10 @@ module ESP
           name == o.name &&
           created_at == o.created_at &&
           updated_at == o.updated_at &&
-          relationships == o.relationships &&
-          external_accounts == o.external_accounts
+          arn == o.arn &&
+          account == o.account &&
+          external_id == o.external_id &&
+          cloudtrail_name == o.cloudtrail_name
     end
 
     # @see the `==` method
@@ -141,7 +155,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, created_at, updated_at, relationships, external_accounts].hash
+      [id, name, created_at, updated_at, arn, account, external_id, cloudtrail_name].hash
     end
 
     # Builds the object from hash

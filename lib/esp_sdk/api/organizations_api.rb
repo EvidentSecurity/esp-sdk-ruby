@@ -35,7 +35,7 @@ module ESP
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :name Name
-    # @return [Object]
+    # @return [Organization]
     def create(opts = {})
       data, _status_code, _headers = create_with_http_info(opts)
       return data
@@ -45,7 +45,7 @@ module ESP
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :name Name
-    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    # @return [Array<(Organization, Fixnum, Hash)>] Organization data, response status code and response headers
     def create_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrganizationsApi.create ..."
@@ -80,7 +80,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Object')
+        :return_type => 'Organization')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: OrganizationsApi#create\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -91,7 +91,7 @@ module ESP
     # 
     # @param id Organization Id
     # @param [Hash] opts the optional parameters
-    # @return [Object]
+    # @return [Organization]
     def destroy(id, opts = {})
       data, _status_code, _headers = destroy_with_http_info(id, opts)
       return data
@@ -101,7 +101,7 @@ module ESP
     # 
     # @param id Organization Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    # @return [Array<(Organization, Fixnum, Hash)>] Organization data, response status code and response headers
     def destroy_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrganizationsApi.destroy ..."
@@ -137,7 +137,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Object')
+        :return_type => 'Organization')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: OrganizationsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -149,7 +149,8 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [Hash<String, String>] :page Page Number
     # @option opts [Hash<String, String>] :filter Filter Params for Searching
-    # @return [Object]
+    # @option opts [String] :include Included Objects
+    # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
       return data
@@ -160,7 +161,8 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [Hash<String, String>] :page Page Number
     # @option opts [Hash<String, String>] :filter Filter Params for Searching
-    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    # @option opts [String] :include Included Objects
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrganizationsApi.list ..."
@@ -171,6 +173,7 @@ module ESP
       # query parameters
       query_params = {}
       query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -196,7 +199,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Object')
+        :return_type => 'PaginatedCollection')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: OrganizationsApi#list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -207,7 +210,8 @@ module ESP
     # 
     # @param id Organization Id
     # @param [Hash] opts the optional parameters
-    # @return [Object]
+    # @option opts [String] :include Included Objects
+    # @return [Organization]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
@@ -217,7 +221,8 @@ module ESP
     # 
     # @param id Organization Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    # @option opts [String] :include Included Objects
+    # @return [Array<(Organization, Fixnum, Hash)>] Organization data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrganizationsApi.show ..."
@@ -229,6 +234,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -253,7 +259,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Object')
+        :return_type => 'Organization')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: OrganizationsApi#show\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -265,7 +271,7 @@ module ESP
     # @param id Organization Id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :name Name
-    # @return [Object]
+    # @return [Organization]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
       return data
@@ -276,7 +282,7 @@ module ESP
     # @param id Organization Id
     # @param [Hash] opts the optional parameters
     # @option opts [String] :name Name
-    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
+    # @return [Array<(Organization, Fixnum, Hash)>] Organization data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrganizationsApi.update ..."
@@ -313,7 +319,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Object')
+        :return_type => 'Organization')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: OrganizationsApi#update\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

@@ -28,7 +28,9 @@ require 'esp_sdk/version'
 require 'esp_sdk/configuration'
 
 # Models
+require 'esp_sdk/models/external_account'
 require 'esp_sdk/models/organization'
+require 'esp_sdk/models/paginated_collection'
 
 # APIs
 require 'esp_sdk/api/externalaccounts_api'
@@ -52,6 +54,4 @@ module ESP
   end
 end
 # Extensions and Overrides
-require 'esp_sdk/extensions/api_client'
-require 'esp_sdk/extensions/configuration'
-require 'esp_sdk/api_authentication'
+`find #{File.dirname(__FILE__)}/esp_sdk/extensions/*`.split("\n").each{ |file| require file }

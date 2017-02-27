@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> Object create(opts)
+> Organization create(opts)
 
 Create an Organization
 
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**Organization**](Organization.md)
 
 ### Authorization
 
@@ -58,7 +58,7 @@ No authorization required
 
 
 # **destroy**
-> Object destroy(id)
+> Organization destroy(id)
 
 Remove an Organization
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**Organization**](Organization.md)
 
 ### Authorization
 
@@ -103,7 +103,7 @@ No authorization required
 
 
 # **list**
-> Object list(opts)
+> PaginatedCollection list(opts)
 
 Get a list of Organizations
 
@@ -118,7 +118,8 @@ api_instance = ESP::OrganizationsApi.new
 
 opts = { 
   page: {'key' => "page_example"}, # Hash<String, String> | Page Number
-  filter: {'key' => "filter_example"} # Hash<String, String> | Filter Params for Searching
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
+  include: "include_example" # String | Included Objects
 }
 
 begin
@@ -136,10 +137,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
  **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
+ **include** | **String**| Included Objects | [optional] 
 
 ### Return type
 
-**Object**
+[**PaginatedCollection**](PaginatedCollection.md)
 
 ### Authorization
 
@@ -153,7 +155,7 @@ No authorization required
 
 
 # **show**
-> Object show(id)
+> Organization show(id, opts)
 
 Show a single Organization
 
@@ -166,10 +168,13 @@ api_instance = ESP::OrganizationsApi.new
 
 id = 56 # Integer | Organization Id
 
+opts = { 
+  include: "include_example" # String | Included Objects
+}
 
 begin
   #Show a single Organization
-  result = api_instance.show(id)
+  result = api_instance.show(id, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling OrganizationsApi->show: #{e}"
@@ -181,10 +186,11 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Organization Id | 
+ **include** | **String**| Included Objects | [optional] 
 
 ### Return type
 
-**Object**
+[**Organization**](Organization.md)
 
 ### Authorization
 
@@ -198,7 +204,7 @@ No authorization required
 
 
 # **update**
-> Object update(id, opts)
+> Organization update(id, opts)
 
 Update an Organization
 
@@ -233,7 +239,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**Organization**](Organization.md)
 
 ### Authorization
 
