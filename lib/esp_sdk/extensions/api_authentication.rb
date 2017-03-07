@@ -1,3 +1,5 @@
+require 'base64'
+
 module ESP
   class ApiAuthentication
     def self.sign_request(request, public_key, secret_key)

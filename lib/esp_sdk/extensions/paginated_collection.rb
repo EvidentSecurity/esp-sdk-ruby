@@ -149,7 +149,7 @@ module ESP
     #   alerts.current_page_number # => 5
     #   page.current_page_number # => 2
     def page(page_number = nil)
-      fail ArgumentError, "You must supply a page number." unless page_number.present?
+      fail ArgumentError, "You must supply a page number." if page_number.nil?
       fail ArgumentError, "Page number cannot be less than 1." if page_number.to_i < 1
       fail ArgumentError, "Page number cannot be greater than the last page number." if page_number.to_i > last_page_number.to_i
       page_number.to_i != current_page_number.to_i ? updated_collection(page: { number: page_number, size: (next_page_params || previous_page_params)['page']['size'] }) : self
@@ -223,7 +223,8 @@ module ESP
     # @param params [Hash]
     # @return [PaginatedCollection]
     def updated_collection(params)
-      original_params[:query_params] = params
+      original_params[:form_params] ||= {}
+      original_params[:form_params].merge! params
       data, _status_code, _headers   = api_client.call_api(:PUT, path, original_params)
       data
     end

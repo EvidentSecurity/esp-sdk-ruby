@@ -7,8 +7,10 @@ module HandleJsonAPI
   # @return [Mixed] Data in a particular type
   def convert_to_type(data, return_type)
     case return_type
-    when /PaginatedCollection|String|Integer|Float|BOOLEAN|DateTime|Date|Object|Array|Hash/
+    when /String|Integer|Float|BOOLEAN|DateTime|Date|Object|Array|Hash/
       super
+    when 'PaginatedCollection'
+      super JsonApi.new(data).convert, return_type
     else
       super JsonApi.new(data).convert[:data], data[:data][:type].classify
     end
@@ -24,17 +26,15 @@ module ESP
     # @return [Array<(Object, Fixnum, Hash)>] an array of 3 elements:
     #   the data deserialized from response body (could be nil), response status code and response headers.
     def call_api(http_method, path, opts = {})
-      puts "@@@@@@@@@ #{__FILE__}:#{__LINE__} \n********** path = " + path.inspect
-      puts "@@@@@@@@@ #{__FILE__}:#{__LINE__} \n********** opts = " + opts.inspect
-      if Hash(opts[:form_params])['filter']
+      form_params = Hash(opts[:form_params])
+      if form_params['filter'] || form_params['page'] || form_params[:filter] || form_params[:page]
         opts[:body] = opts[:form_params]
-      elsif opts[:form_params].present?
+      elsif !form_params.empty?
         opts[:body] ||= { data: { attributes: opts[:form_params] } }
       end
 
       request = build_request(http_method, path, opts)
 
-      puts "@@@@@@@@@ #{__FILE__}:#{__LINE__} \n********** request = " + request.inspect
       ApiAuthentication.sign_request(request, ENV['ESP_ACCESS_KEY_ID'], ENV['ESP_SECRET_ACCESS_KEY'])
 
       response = request.run

@@ -172,7 +172,6 @@ module ESP
 
       # query parameters
       query_params = {}
-      query_params[:'page'] = opts[:'page'] if !opts[:'page'].nil?
       query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
@@ -188,6 +187,7 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
       form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
 
       # http body (model)

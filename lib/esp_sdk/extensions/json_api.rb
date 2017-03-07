@@ -7,20 +7,26 @@ class JsonApi
     @json_api_hash = json_api_hash
   end
 
-  def encode(hash, options = nil)
-    ActiveSupport::JSON.encode(hash, options)
-  end
-
   def convert
     included = json_api_hash.delete(:included)
     json_api_hash.tap do |e|
-      Array.wrap(e.fetch(:data, {})).each do |object|
+      wrap(e.fetch(:data, {})).each do |object|
         parse_object!(object, included)
       end
     end
   end
 
   private
+
+  def wrap(object)
+    if object.nil?
+      []
+    elsif object.respond_to?(:to_ary)
+      object.to_ary || [object]
+    else
+      [object]
+    end
+  end
 
   def parse_object!(object, included = nil)
     return object unless object.respond_to?(:each)
@@ -49,15 +55,15 @@ class JsonApi
 
   def merge_attributes!(object)
     return unless object.is_a? Hash
-    object.merge! object.delete(:attributes) unless object[:attributes].blank?
+    object.merge! object.delete(:attributes) unless object[:attributes].nil?
   end
 
   def extract_foreign_keys!(object, assoc, assoc_details)
     data         = assoc_details[:data]
     related_link = assoc_details.fetch(:links, {}).fetch(:related, {})
-    if data.present?
+    if !data.nil?
       parse_data(object, assoc, data)
-    elsif related_link.present?
+    elsif !related_link.nil?
       parse_related_link(object, assoc, related_link)
     end
   end
@@ -75,13 +81,13 @@ class JsonApi
     related_link.scan(%r{/(\d+)\.json$}) do |id|
       object[:"#{assoc}_id"] = id.first
     end
-    return if object[:"#{assoc}_id"].present?
-    uri                                = URI.parse(related_link)
-    object[:"#{assoc.to_s.singularize}_ids"] = Rack::Utils.parse_nested_query(CGI.unescape(uri.query)).fetch(:filter, {}).fetch(:id_in, []) if uri.query.present?
+    return unless object[:"#{assoc}_id"].nil?
+    uri                                      = URI.parse(related_link)
+    object[:"#{assoc.to_s.singularize}_ids"] = Rack::Utils.parse_nested_query(CGI.unescape(uri.query)).fetch(:filter, {}).fetch(:id_in, []) unless uri.query.nil?
   end
 
   def merge_included_objects!(object, assoc, data, included)
-    return if included.blank?
+    return if included.nil?
     object[assoc] = case data
                     when Array
                       merge_nested_included_objects(object, data, included)
