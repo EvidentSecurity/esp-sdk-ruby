@@ -1,10 +1,10 @@
-require File.expand_path(File.dirname(__FILE__) + '../../spec_helper')
+require 'spec_helper'
 
 describe ESP::PaginatedCollection do
   context "with ESP::OrganizationsApi" do
     context '#parse_pagination_links' do
       it 'should not set the previous page or next page or last page when there is only 1 page' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 2, page: { number: 1, size: 20 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response], page: { number: 1, size: 20 }))
 
         orgs = ESP::OrganizationsApi.new.list
 
@@ -18,7 +18,7 @@ describe ESP::PaginatedCollection do
       end
 
       it 'should not set the previous page when on the first page' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 2, page: { number: 1, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response], page: { number: 1, size: 1 }))
 
         orgs = ESP::OrganizationsApi.new.list
 
@@ -32,7 +32,7 @@ describe ESP::PaginatedCollection do
       end
 
       it 'should not set the next or last page page when on the last page' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 2, page: { number: 2, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response], page: { number: 2, size: 1 }))
 
         orgs = ESP::OrganizationsApi.new.list
 
@@ -46,7 +46,7 @@ describe ESP::PaginatedCollection do
       end
 
       it 'should set the next, last and previous page page when not on the first or last page' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 }))
 
         orgs = ESP::OrganizationsApi.new.list
 
@@ -60,7 +60,7 @@ describe ESP::PaginatedCollection do
       end
 
       it 'should set page size on each link' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 }))
 
         orgs = ESP::OrganizationsApi.new.list
 
@@ -72,7 +72,7 @@ describe ESP::PaginatedCollection do
       it 'should not set page size on previous link if on the last page' do
         # The last page may not contain the full per page number of records, and will therefore come back with an incorrect size since the
         # size is based on the collection size.  This will mess up further calls to previous_page or first page so remove the size so it will bring back the default size.
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 2 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 2 }))
 
         orgs = ESP::OrganizationsApi.new.list
 
@@ -82,7 +82,7 @@ describe ESP::PaginatedCollection do
 
     context '#first_page' do
       it 'should call the api with the original url and params and the page number 1 param' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 1, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 1, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list(filter: { name_eq: 'name' })
 
         page = orgs.first_page
@@ -99,7 +99,7 @@ describe ESP::PaginatedCollection do
       end
 
       it 'should not call the api and return self if already on the first page' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 1, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 1, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         page = orgs.first_page
@@ -111,8 +111,8 @@ describe ESP::PaginatedCollection do
       end
 
       it 'should not error if no initial params were supplied' do
-        stub_request(:get, /organizations.json*/).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 1, size: 2 }))
-        stub_request(:put, /organizations.json*/).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 2 }))
+        stub_request(:get, /organizations.json*/).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 1, size: 2 }))
+        stub_request(:put, /organizations.json*/).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 2 }))
         orgs = ESP::OrganizationsApi.new.list
         orgs.next_page
       end
@@ -120,7 +120,7 @@ describe ESP::PaginatedCollection do
 
     context '#first_page!' do
       it 'should call the api with the original url and the page number 1 param and update itself' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 1, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 1, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         orgs.first_page!
@@ -137,7 +137,7 @@ describe ESP::PaginatedCollection do
 
     context '#previous_page' do
       it 'should call the api with the original url and original params and the previous page number param' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 1, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 1, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list(filter: { name_eq: 'name' })
 
         page = orgs.previous_page
@@ -155,7 +155,7 @@ describe ESP::PaginatedCollection do
       end
 
       it 'should not call the api and return self if already on the first page' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 1, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 1, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         page = orgs.previous_page
@@ -169,7 +169,7 @@ describe ESP::PaginatedCollection do
 
     context '#previous_page!' do
       it 'should call the api with the original url and the previous page number param and update itself' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 1, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 1, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         orgs.previous_page!
@@ -187,7 +187,7 @@ describe ESP::PaginatedCollection do
 
     context '#next_page' do
       it 'should call the api with the original url and original params and the next page number param' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 3, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 3, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list(filter: { name_eq: 'name' })
 
         page = orgs.next_page
@@ -205,7 +205,7 @@ describe ESP::PaginatedCollection do
       end
 
       it 'should not call the api and return self if already on the last page' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 3, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 3, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         page = orgs.next_page
@@ -219,7 +219,7 @@ describe ESP::PaginatedCollection do
 
     context '#next_page!' do
       it 'should call the api with the original url and the next page number param and update itself' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 3, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 3, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         orgs.next_page!
@@ -237,7 +237,7 @@ describe ESP::PaginatedCollection do
 
     context '#last_page' do
       it 'should call the api with the original url and original params and the last page number param' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 3, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 3, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list(filter: { name_eq: 'name' })
 
         page = orgs.last_page
@@ -255,7 +255,7 @@ describe ESP::PaginatedCollection do
       end
 
       it 'should not call the api and return self if already on the last page' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 3, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 3, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         page = orgs.last_page
@@ -269,7 +269,7 @@ describe ESP::PaginatedCollection do
 
     context '#last_page!' do
       it 'should call the api with the original url and the last page number param and update itself' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 3, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 3, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         orgs.last_page!
@@ -287,28 +287,28 @@ describe ESP::PaginatedCollection do
 
     context '#page' do
       it 'should raise an error if the page number is not given' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 3, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 3, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         expect { orgs.page }.to raise_error(ArgumentError, 'You must supply a page number.')
       end
 
       it 'should raise an error if the page number is not a positive number' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 3, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 3, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         expect { orgs.page(0) }.to raise_error(ArgumentError, 'Page number cannot be less than 1.')
       end
 
       it 'should raise an error if the page number is greater than the last page number' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 3, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 3, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         expect { orgs.page(4) }.to raise_error(ArgumentError, 'Page number cannot be greater than the last page number.')
       end
 
       it 'should call the api with the original url and original params and the page number param' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 3, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 3, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list(filter: { name_eq: 'name' })
 
         page = orgs.page(3)
@@ -326,7 +326,7 @@ describe ESP::PaginatedCollection do
       end
 
       it 'should not call the api and return self if already on that page' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         page = orgs.page(2)
@@ -340,7 +340,7 @@ describe ESP::PaginatedCollection do
 
     context '#page!' do
       it 'should call the api with the original url and the page number 1 param and update itself' do
-        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list(:organization, 3, page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list(:organization, 3, page: { number: 3, size: 1 }))
+        stub_request(:put, %r{organizations.json*}).to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 2, size: 1 })).then.to_return(headers: {}, body: json_list([organization_response, organization_response, organization_response], page: { number: 3, size: 1 }))
         orgs = ESP::OrganizationsApi.new.list
 
         orgs.page!(3)

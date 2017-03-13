@@ -1,4 +1,5 @@
 require_relative '../api_error'
+require_relative 'utils'
 
 module HandleJsonAPI
   # Convert data to the given return type.
@@ -10,9 +11,10 @@ module HandleJsonAPI
     when /String|Integer|Float|BOOLEAN|DateTime|Date|Object|Array|Hash/
       super
     when 'PaginatedCollection'
-      super JsonApi.new(data).convert, return_type
+      super ESP::JsonApi.new(data).convert, return_type
     else
-      super JsonApi.new(data).convert[:data], data[:data][:type].classify
+      type = data.fetch(:data, {})[:type] ||= return_type
+      super ESP::JsonApi.new(data).convert[:data], Utils.singularize(Utils.underscore_to_titlecase(type))
     end
   end
 end
@@ -43,7 +45,12 @@ module ESP
         @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
       end
 
-      unless response.success?
+      begin
+        parsed_body = JSON.parse(response.body)
+      rescue
+        parsed_body = {}
+      end
+      unless response.success? || parsed_body['errors'] || parsed_body[:errors]
         fail ESP::ApiError.new(:code             => response.code,
                                :response_headers => response.headers,
                                :response_body    => response.body),

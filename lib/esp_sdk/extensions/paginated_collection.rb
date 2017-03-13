@@ -6,7 +6,11 @@ module AddPaginationMethods
   end
 
   def build_from_hash(attributes)
-    super(attributes.except(:data))
+    attrs = {}
+    attributes.each do |k, v|
+      attrs[k] = v unless k == :data
+    end
+    super(attrs)
     self.data = attributes[:data].map { |item| api_client.convert_to_type({ data: item }, item[:type]) }
     parse_pagination_links(attributes[:links])
   end

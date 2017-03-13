@@ -4,17 +4,17 @@ All URIs are relative to *http://localhost/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](OrganizationsApi.md#create) | **POST** /v2/organizations.json | Create an Organization
-[**destroy**](OrganizationsApi.md#destroy) | **DELETE** /v2/organizations/{id}.json | Remove an Organization
+[**create**](OrganizationsApi.md#create) | **POST** /v2/organizations.json | Create a(n) Organization
+[**destroy**](OrganizationsApi.md#destroy) | **DELETE** /v2/organizations/{id}.json | Remove a(n) Organization
 [**list**](OrganizationsApi.md#list) | **PUT** /v2/organizations.json | Get a list of Organizations
 [**show**](OrganizationsApi.md#show) | **GET** /v2/organizations/{id}.json | Show a single Organization
-[**update**](OrganizationsApi.md#update) | **PATCH** /v2/organizations/{id}.json | Update an Organization
+[**update**](OrganizationsApi.md#update) | **PATCH** /v2/organizations/{id}.json | Update a(n) Organization
 
 
 # **create**
-> Organization create(opts)
+> Organization create(name)
 
-Create an Organization
+Create a(n) Organization
 
 ### Example
 ```ruby
@@ -23,13 +23,12 @@ require 'esp_sdk'
 
 api_instance = ESP::OrganizationsApi.new
 
-opts = { 
-  name: "name_example" # String | Name
-}
+name = "name_example" # String | Name
+
 
 begin
-  #Create an Organization
-  result = api_instance.create(opts)
+  #Create a(n) Organization
+  result = api_instance.create(name)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling OrganizationsApi->create: #{e}"
@@ -40,7 +39,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name | [optional] 
+ **name** | **String**| Name | 
 
 ### Return type
 
@@ -60,7 +59,7 @@ No authorization required
 # **destroy**
 > Organization destroy(id)
 
-Remove an Organization
+Remove a(n) Organization
 
 ### Example
 ```ruby
@@ -73,7 +72,7 @@ id = 56 # Integer | Organization Id
 
 
 begin
-  #Remove an Organization
+  #Remove a(n) Organization
   result = api_instance.destroy(id)
   p result
 rescue ESP::ApiError => e
@@ -106,8 +105,6 @@ No authorization required
 > PaginatedCollection list(opts)
 
 Get a list of Organizations
-
-A successful call to this API returns a paginated list of organizations.
 
 ### Example
 ```ruby
@@ -204,9 +201,9 @@ No authorization required
 
 
 # **update**
-> Organization update(id, opts)
+> Organization update(id, name)
 
-Update an Organization
+Update a(n) Organization
 
 ### Example
 ```ruby
@@ -217,13 +214,12 @@ api_instance = ESP::OrganizationsApi.new
 
 id = 56 # Integer | Organization Id
 
-opts = { 
-  name: "name_example" # String | Name
-}
+name = "name_example" # String | Name
+
 
 begin
-  #Update an Organization
-  result = api_instance.update(id, opts)
+  #Update a(n) Organization
+  result = api_instance.update(id, name)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling OrganizationsApi->update: #{e}"
@@ -235,7 +231,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Organization Id | 
- **name** | **String**| Name | [optional] 
+ **name** | **String**| Name | 
 
 ### Return type
 
