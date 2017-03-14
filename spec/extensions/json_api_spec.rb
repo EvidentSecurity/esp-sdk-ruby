@@ -62,33 +62,18 @@ describe ESP::JsonApi do
         expect(alert.cloud_trail_event_ids).not_to be_nil
         expect(alert.external_account.organization_id).not_to be_nil
       end
+
+      it 'should parse the response and return a descriptive error message' do
+        error_response = active_record_error_response
+
+        stub_request(:get, %r{alerts/1.json*}).to_return(headers: {}, body: error_response, status: [401, 'nope'])
+
+        alert = ESP::AlertsApi.new.show(1)
+
+        expect(alert.errors).to include("Name can't be blank")
+        expect(alert.errors).to include("Name is invalid")
+        expect(alert.errors).to include("Description can't be blank")
+      end
     end
   end
 end
-
-# context ActiveResource::ConnectionError do
-context "with ESP::Team" do
-  context '.initialize' do
-    it 'should parse the response and return a descriptive error message' do
-      error_response = active_record_error_response
-
-      stub_request(:get, %r{alerts/1.json*}).to_return(headers: {}, body: error_response, status: [401, 'nope'])
-
-      alert = ESP::AlertsApi.new.show(1)
-
-      expect(alert.errors).to include("Name can't be blank")
-      expect(alert.errors).to include("Name is invalid")
-      expect(alert.errors).to include("Description can't be blank")
-    end
-
-    it 'should have the generic message if there is no response body' do
-      stub_request(:get, %r{alerts/1.json*}).to_return(headers: {}, status: [401, 'nope'])
-
-      alert = ESP::AlertsApi.new.show(1)
-
-      puts "@@@@@@@@@ #{__FILE__}:#{__LINE__} \n********** alert.errors = " + alert.errors.inspect
-      assert_equal "Failed.", error.message
-    end
-  end
-end
-# end
