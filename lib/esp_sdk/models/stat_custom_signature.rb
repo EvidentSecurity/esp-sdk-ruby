@@ -132,7 +132,7 @@ module ESP
         :'new_1w_info' => :'Integer',
         :'old_info' => :'Integer',
         :'suppressed_info' => :'Integer',
-        # :'custom_signature' => :'CustomSignature',
+        :'custom_signature' => :'CustomSignature',
         :'custom_signature_id' => :'Integer'
       }
     end
