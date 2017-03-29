@@ -52,11 +52,11 @@ module ESP
       elsif !form_params.empty?
         opts[:body] ||= { data: { attributes: opts[:form_params] } }
       end
-
+      
       request = build_request(http_method, path, opts)
 
       ApiAuthentication.sign_request(request, ENV['ESP_ACCESS_KEY_ID'], ENV['ESP_SECRET_ACCESS_KEY'])
-
+      
       response = request.run
 
       if @config.debugging
