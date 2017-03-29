@@ -1,4 +1,4 @@
-require 'spec_helper'
+require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe ESP::JsonApi do
   context '# decode' do
@@ -63,10 +63,10 @@ describe ESP::JsonApi do
         expect(alert.external_account.organization_id).not_to be_nil
       end
 
-      it 'should parse the response and return a descriptive error message' do
+      it 'should parse the response when there is an error' do
         error_response = active_record_error_response
 
-        stub_request(:get, %r{alerts/1.json*}).to_return(headers: {}, body: error_response, status: [401, 'nope'])
+        stub_request(:get, %r{alerts/1.json*}).to_return(headers: {}, body: error_response, status: [422, 'nope'])
 
         alert = ESP::AlertsApi.new.show(1)
 

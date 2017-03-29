@@ -33,5 +33,12 @@ module ESP
         super arg
       end
     end
+
+    def to_s
+      body = JSON.parse(response_body) rescue {}
+      message = Array((body['errors'] || body[:errors])).map { |e| e['title'] || e[:title] }.join(" ")
+      message = 'NA' if message.empty?
+      "Failed.  Response code = #{code}.  Response message = #{message}"
+    end
   end
 end

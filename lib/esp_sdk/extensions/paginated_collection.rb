@@ -1,9 +1,5 @@
 module AddPaginationMethods
   # @private
-  def initialize(attributes = {})
-    @api_client = ESP::ApiClient.default
-    super(attributes)
-  end
 
   def build_from_hash(attributes)
     attrs = {}
@@ -11,8 +7,8 @@ module AddPaginationMethods
       attrs[k] = v unless k == :data
     end
     super(attrs)
-    self.data = attributes[:data].map { |item| api_client.convert_to_type({ data: item }, item[:type]) }
-    parse_pagination_links(attributes[:links])
+    api_client = ESP::ApiClient.default
+    self.data = attributes[:data].map { |item| api_client.convert_to_type({ data: item }, (item[:type] || item['type'])) }
   end
 end
 
@@ -22,15 +18,16 @@ module ESP
     prepend AddPaginationMethods
     include Enumerable
 
-    # Internal variable used to construct queries.
+    # Internal variable used to call the ESP api.
     # @return [Hash]
     # @private
-    attr_reader :api_client, :next_page_params, :previous_page_params, :last_page_params
-    # Internal variable used to construct queries.
+    attr_accessor :api_client
+    # Internal variables used to construct queries.
     # @return [Integer]
     # @private
     attr_accessor :path, :original_params
 
+    # Iterator to loop over the entire paginated collection in data.
     def each(&block)
       if block_given?
         data.each { |item| yield item }
@@ -220,6 +217,24 @@ module ESP
       last_page_number.nil?
     end
 
+    def next_page_params
+      @next_page_params ||= links[:next] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:next]).query)) : {}
+    end
+
+    def previous_page_params
+      @previous_page_params ||= begin
+        previous = links[:prev] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:prev]).query)) : {}
+        # The last page may not contain the full per page number of records, and will therefore come back with an incorrect size since the
+        # size is based on the collection size.  This will mess up further calls to previous_page or first page so remove the size so it will bring back the default size.
+        previous['page'].delete('size') if last_page? && previous['page']
+        previous
+      end
+    end
+
+    def last_page_params
+      @last_page_params ||= links[:last] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:last]).query)) : {}
+    end
+
     private
 
     # Start a new collection.
@@ -229,7 +244,7 @@ module ESP
     def updated_collection(params)
       original_params[:form_params] ||= {}
       original_params[:form_params].merge! params
-      data, _status_code, _headers   = api_client.call_api(:PUT, path, original_params)
+      data, _status_code, _headers = api_client.call_api(:PUT, path, original_params)
       data
     end
 
@@ -240,15 +255,6 @@ module ESP
       @next_page_params     = page.next_page_params
       @previous_page_params = page.previous_page_params
       @last_page_params     = page.last_page_params
-    end
-
-    def parse_pagination_links(links)
-      @next_page_params     = links[:next] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:next]).query)) : {}
-      @previous_page_params = links[:prev] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:prev]).query)) : {}
-      @last_page_params     = links[:last] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:last]).query)) : {}
-      # The last page may not contain the full per page number of records, and will therefore come back with an incorrect size since the
-      # size is based on the collection size.  This will mess up further calls to previous_page or first page so remove the size so it will bring back the default size.
-      previous_page_params['page'].delete('size') if last_page? && previous_page_params['page']
     end
   end
 end

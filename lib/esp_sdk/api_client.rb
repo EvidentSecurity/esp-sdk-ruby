@@ -52,34 +52,36 @@ module ESP
       elsif !form_params.empty?
         opts[:body] ||= { data: { attributes: opts[:form_params] } }
       end
-      
+
       request = build_request(http_method, path, opts)
 
       ApiAuthentication.sign_request(request, ENV['ESP_ACCESS_KEY_ID'], ENV['ESP_SECRET_ACCESS_KEY'])
-      
+
       response = request.run
 
       if @config.debugging
         @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
       end
 
-      begin
-        parsed_body = JSON.parse(response.body)
-      rescue
-        parsed_body = {}
-      end
-      unless response.success? || parsed_body['errors'] || parsed_body[:errors]
+      unless response.success?
         if response.timed_out?
           fail ApiError.new('Connection timed out')
         elsif response.code == 0
           # Errors from libcurl will be made visible here
-          fail ApiError.new(:code => 0,
+          fail ApiError.new(:code    => 0,
                             :message => response.return_message)
         else
-          fail ApiError.new(:code => response.code,
-                            :response_headers => response.headers,
-                            :response_body => response.body),
-               response.status_message
+          error = ApiError.new(:code             => response.code,
+                               :response_headers => response.headers,
+                               :response_body    => response.body)
+          if response.code == 422
+            body = JSON.parse(error.response_body) rescue {}
+            if (body['errors'] || body[:errors]).nil?
+              fail error
+            end
+          else
+            fail error
+          end
         end
       end
 
@@ -87,6 +89,7 @@ module ESP
         data = deserialize(response, opts[:return_type])
         if data.is_a? ESP::PaginatedCollection
           # Need to set original_params so paginated collection can use it for page calls.
+          data.api_client = self
           data.original_params = opts
           data.path            = path
         end
@@ -215,12 +218,12 @@ module ESP
       when /\AArray<(.+)>\z/
         # e.g. Array<Pet>
         sub_type = $1
-        data.map {|item| convert_to_type(item, sub_type) }
+        data.map { |item| convert_to_type(item, sub_type) }
       when /\AHash\<String, (.+)\>\z/
         # e.g. Hash<String, Integer>
         sub_type = $1
         {}.tap do |hash|
-          data.each {|k, v| hash[k] = convert_to_type(v, sub_type) }
+          data.each { |k, v| hash[k] = convert_to_type(v, sub_type) }
         end
       else
         data = ESP::JsonApi.new(data).convert

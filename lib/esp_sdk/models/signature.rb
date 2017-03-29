@@ -82,7 +82,7 @@ module ESP
         :'resolution' => :'String',
         :'risk_level' => :'String',
         :'updated_at' => :'DateTime',
-        :'service' => :'Service',
+        # :'service' => :'Service',
         :'service_id' => :'Integer'
       }
     end
