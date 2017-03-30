@@ -138,7 +138,7 @@ module ESP
         :'status' => :'String',
         :'risk_level' => :'String',
         :'updated_at' => :'DateTime',
-        # :'custom_signature' => :'CustomSignature',
+        :'custom_signature' => :'CustomSignature',
         :'custom_signature_id' => :'Integer',
         :'external_account' => :'ExternalAccount',
         :'external_account_id' => :'Integer',
@@ -146,13 +146,13 @@ module ESP
         :'region_id' => :'Integer',
         :'signature' => :'Signature',
         :'signature_id' => :'Integer',
-        # :'supression' => :'Suppression',
+        :'supression' => :'Suppression',
         :'supression_id' => :'Integer',
-        # :'metadata' => :'Metadata',
+        :'metadata' => :'Metadata',
         :'metadata_id' => :'Integer',
         :'cloud_trail_events' => :'Array<CloudTrailEvent>',
         :'cloud_trail_event_ids' => :'Array<Integer>',
-        # :'tags' => :'Array<Tag>',
+        :'tags' => :'Array<Tag>',
         :'tag_ids' => :'Array<Integer>'
       }
     end
