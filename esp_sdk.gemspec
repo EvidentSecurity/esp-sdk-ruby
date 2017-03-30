@@ -31,8 +31,8 @@ Gem::Specification.new do |s|
   s.executables   = []
   s.require_paths = ["lib"]
 
-  s.add_development_dependency 'rspec', '~> 3.4', '>= 3.4.0'
-  s.add_development_dependency 'webmock', '~> 1.24', '>= 1.24.3'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'webmock'
   s.add_development_dependency 'factory_girl'
 
   s.add_runtime_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
