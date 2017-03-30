@@ -10,10 +10,3 @@ rvm:
 
 script:
   - bundle exec rspec
-
-notifications:
-  email:
-    on_success: change
-    on_failure: always
-  slack:
-    secure: hLFYvBxZelAunpALVqYadsb3JEMF9txdKpo5C2pY1ZSwrhLc0Gnqv19a+ToAvLlDrV1kS0YKT15ayiSS63sIJEbMnMEFb6WDAg2fw3TYxVd/aQsiAWrDCSPVGcHH71iXjJH2+BCZ4D1FmqzjNZU5MKIQ8IG9vxvylIxY5zzV6lo=

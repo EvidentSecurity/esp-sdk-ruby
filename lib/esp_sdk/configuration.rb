@@ -145,7 +145,6 @@ module ESP
       URI.encode(url)
     end
 
-
     # Manually set the access_key_id you created from https://esp.evident.io/settings/api_keys.
     #
     # You can optionally set the +ESP_ACCESS_KEY_ID+ environment variable.
@@ -155,7 +154,7 @@ module ESP
     def access_key_id=(access_key_id)
       @access_key_id = access_key_id
     end
-
+    
     # Reads the +ESP_ACCESS_KEY_ID+ environment variable if {.access_key_id=} was not set manually.
     #
     # Returns nil if no key or environment variable has been set.
@@ -164,7 +163,7 @@ module ESP
     def access_key_id
       @access_key_id || ENV['ESP_ACCESS_KEY_ID']
     end
-
+    
     # Manually set the secret_access_key you created from https://esp.evident.io/settings/api_keys.
     #
     # You can optionally set the +ESP_SECRET_ACCESS_KEY+ environment variable.
@@ -174,7 +173,7 @@ module ESP
     def secret_access_key=(secret_access_key)
       @secret_access_key = secret_access_key
     end
-
+    
     # Reads the +ESP_SECRET_ACCESS_KEY+ environment variable if {.secret_access_key=} was not set manually.
     #
     # Returns nil if no key or environment variable has been set.
