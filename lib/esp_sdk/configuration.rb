@@ -22,35 +22,6 @@ module ESP
     # Defines url base path
     attr_accessor :base_path
 
-    # Defines API keys used with API Key authentications.
-    #
-    # @return [Hash] key: parameter name, value: parameter value (API key)
-    #
-    # @example parameter name is "api_key", API key is "xxx" (e.g. "api_key=xxx" in query string)
-    #   config.api_key['api_key'] = 'xxx'
-    attr_accessor :api_key
-
-    # Defines API key prefixes used with API Key authentications.
-    #
-    # @return [Hash] key: parameter name, value: API key prefix
-    #
-    # @example parameter name is "Authorization", API key prefix is "Token" (e.g. "Authorization: Token xxx" in headers)
-    #   config.api_key_prefix['api_key'] = 'Token'
-    attr_accessor :api_key_prefix
-
-    # Defines the username used with HTTP basic authentication.
-    #
-    # @return [String]
-    attr_accessor :username
-
-    # Defines the password used with HTTP basic authentication.
-    #
-    # @return [String]
-    attr_accessor :password
-
-    # Defines the access token (Bearer) used with OAuth2.
-    attr_accessor :access_token
-
     # Set this to enable/disable debugging. When enabled (set to true), HTTP request/response
     # details will be logged with `logger.debug` (see the `logger` attribute).
     # Default to false.
@@ -130,8 +101,6 @@ module ESP
         @host   = 'api.evident.io'
       end
       @base_path = '/api'
-      @api_key = {}
-      @api_key_prefix = {}
       @timeout = 0
       @verify_ssl = true
       @verify_ssl_host = true
@@ -176,25 +145,43 @@ module ESP
       URI.encode(url)
     end
 
-    # Gets API key (with prefix if set).
-    # @param [String] param_name the parameter name of API key auth
-    def api_key_with_prefix(param_name)
-      if @api_key_prefix[param_name]
-        "#{@api_key_prefix[param_name]} #{@api_key[param_name]}"
-      else
-        @api_key[param_name]
-      end
+
+    # Manually set the access_key_id you created from https://esp.evident.io/settings/api_keys.
+    #
+    # You can optionally set the +ESP_ACCESS_KEY_ID+ environment variable.
+    #
+    # @param access_key_id [String] Your access key ID.
+    # @return [void]
+    def access_key_id=(access_key_id)
+      @access_key_id = access_key_id
     end
 
-    # Gets Basic Auth token string
-    def basic_auth_token
-      'Basic ' + ["#{username}:#{password}"].pack('m').delete("\r\n")
+    # Reads the +ESP_ACCESS_KEY_ID+ environment variable if {.access_key_id=} was not set manually.
+    #
+    # Returns nil if no key or environment variable has been set.
+    #
+    # @return [String, nil]
+    def access_key_id
+      @access_key_id || ENV['ESP_ACCESS_KEY_ID']
     end
 
-    # Returns Auth Settings hash for api client.
-    def auth_settings
-      {
-      }
+    # Manually set the secret_access_key you created from https://esp.evident.io/settings/api_keys.
+    #
+    # You can optionally set the +ESP_SECRET_ACCESS_KEY+ environment variable.
+    #
+    # @param secret_access_key [String] Your secret access key.
+    # @return [void]
+    def secret_access_key=(secret_access_key)
+      @secret_access_key = secret_access_key
+    end
+
+    # Reads the +ESP_SECRET_ACCESS_KEY+ environment variable if {.secret_access_key=} was not set manually.
+    #
+    # Returns nil if no key or environment variable has been set.
+    #
+    # @return [String, nil]
+    def secret_access_key
+      @secret_access_key || ENV['ESP_SECRET_ACCESS_KEY']
     end
   end
 end

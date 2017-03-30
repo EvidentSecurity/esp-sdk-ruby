@@ -51,8 +51,8 @@ module ESP
   class << self
     # Customize default settings for the SDK using block.
     #   ESP.configure do |config|
-    #     config.username = "xxx"
-    #     config.password = "xxx"
+    #     config.access_key_id = "xxx"
+    #     config.secret_access_key = "xxx"
     #   end
     # If no block given, return the default Configuration object.
     def configure

@@ -55,7 +55,7 @@ module ESP
       
       request = build_request(http_method, path, opts)
 
-      ApiAuthentication.sign_request(request, ENV['ESP_ACCESS_KEY_ID'], ENV['ESP_SECRET_ACCESS_KEY'])
+      ApiAuthentication.sign_request(request, config.access_key_id, config.secret_access_key)
       
       response = request.run
 

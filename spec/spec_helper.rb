@@ -30,6 +30,9 @@ require 'esp_sdk'
 # require 'factory_girl'
 require 'webmock/rspec'
 
+ENV['ESP_ACCESS_KEY_ID'] = 'abc'
+ENV['ESP_SECRET_ACCESS_KEY'] = '123'
+
 if defined? FactoryGirl
   require_relative 'json_strategy'
 

@@ -26,15 +26,15 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
   s.required_ruby_version = ">= 1.9"
 
-  s.files         = `find *`.split("\n").uniq.sort.select{|f| !f.empty? }
-  s.test_files    = `find spec/*`.split("\n")
-  s.executables   = []
-  s.require_paths = ["lib"]
+  s.add_runtime_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
+  s.add_runtime_dependency 'json', '~> 1.8', '>= 1.8.3'
 
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'webmock'
   s.add_development_dependency 'factory_girl'
 
-  s.add_runtime_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
-  s.add_runtime_dependency 'json', '~> 1.8', '>= 1.8.3'
+  s.files         = `find *`.split("\n").uniq.sort.select{|f| !f.empty? }
+  s.test_files    = `find spec/*`.split("\n")
+  s.executables   = []
+  s.require_paths = ["lib"]
 end
