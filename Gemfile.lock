@@ -59,8 +59,8 @@ PLATFORMS
 DEPENDENCIES
   esp_sdk!
   factory_girl
-  rspec (~> 3.4, >= 3.4.0)
-  webmock (~> 1.24, >= 1.24.3)
+  rspec
+  webmock
 
 BUNDLED WITH
    1.11.2
