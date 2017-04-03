@@ -45,7 +45,7 @@ module ESP
       # verify the required parameter 'name' is set
       fail ArgumentError, "Missing the required parameter 'name' when calling TeamsApi.create" if name.nil?
       # resource path
-      local_var_path = "/v2/teams.json".sub('{format}','json')
+      local_var_path = "/api/v2/teams.json_api".sub('{format}','json')
 
       # query parameters
       query_params = {}
@@ -78,7 +78,7 @@ module ESP
     # 
     # @param id Team Id
     # @param [Hash] opts the optional parameters
-    # @return [Team]
+    # @return [Object]
     def destroy(id, opts = {})
       data, _status_code, _headers = destroy_with_http_info(id, opts)
       return data
@@ -88,7 +88,7 @@ module ESP
     # 
     # @param id Team Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Team, Fixnum, Hash)>] Team data, response status code and response headers
+    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
     def destroy_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: TeamsApi.destroy ..."
@@ -96,7 +96,7 @@ module ESP
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling TeamsApi.destroy" if id.nil?
       # resource path
-      local_var_path = "/v2/teams/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/teams/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -116,7 +116,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Team')
+        :return_type => 'Object')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: TeamsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -147,7 +147,7 @@ module ESP
         @api_client.config.logger.debug "Calling API: TeamsApi.list ..."
       end
       # resource path
-      local_var_path = "/v2/teams.json".sub('{format}','json')
+      local_var_path = "/api/v2/teams.json_api".sub('{format}','json')
 
       # query parameters
       query_params = {}
@@ -201,7 +201,7 @@ module ESP
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling TeamsApi.show" if id.nil?
       # resource path
-      local_var_path = "/v2/teams/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/teams/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -255,7 +255,7 @@ module ESP
       # verify the required parameter 'name' is set
       fail ArgumentError, "Missing the required parameter 'name' when calling TeamsApi.update" if name.nil?
       # resource path
-      local_var_path = "/v2/teams/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/teams/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}

@@ -1,14 +1,14 @@
 # ESP::TeamsApi
 
-All URIs are relative to *http://localhost/api*
+All URIs are relative to *http://localhost/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](TeamsApi.md#create) | **POST** /v2/teams.json | Create a(n) Team
-[**destroy**](TeamsApi.md#destroy) | **DELETE** /v2/teams/{id}.json | Remove a(n) Team
-[**list**](TeamsApi.md#list) | **PUT** /v2/teams.json | Get a list of Teams
-[**show**](TeamsApi.md#show) | **GET** /v2/teams/{id}.json | Show a single Team
-[**update**](TeamsApi.md#update) | **PATCH** /v2/teams/{id}.json | Update a(n) Team
+[**create**](TeamsApi.md#create) | **POST** /api/v2/teams.json_api | Create a(n) Team
+[**destroy**](TeamsApi.md#destroy) | **DELETE** /api/v2/teams/{id}.json_api | Remove a(n) Team
+[**list**](TeamsApi.md#list) | **PUT** /api/v2/teams.json_api | Get a list of Teams
+[**show**](TeamsApi.md#show) | **GET** /api/v2/teams/{id}.json_api | Show a single Team
+[**update**](TeamsApi.md#update) | **PATCH** /api/v2/teams/{id}.json_api | Update a(n) Team
 
 
 # **create**
@@ -60,7 +60,7 @@ No authorization required
 
 
 # **destroy**
-> Team destroy(id)
+> Object destroy(id)
 
 Remove a(n) Team
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Team**](Team.md)
+**Object**
 
 ### Authorization
 

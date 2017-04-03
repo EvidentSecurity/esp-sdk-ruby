@@ -41,7 +41,7 @@ module ESP
       # verify the required parameter 'name' is set
       fail ArgumentError, "Missing the required parameter 'name' when calling OrganizationsApi.create" if name.nil?
       # resource path
-      local_var_path = "/v2/organizations.json".sub('{format}','json')
+      local_var_path = "/api/v2/organizations.json_api".sub('{format}','json')
 
       # query parameters
       query_params = {}
@@ -73,7 +73,7 @@ module ESP
     # 
     # @param id Organization Id
     # @param [Hash] opts the optional parameters
-    # @return [Organization]
+    # @return [Object]
     def destroy(id, opts = {})
       data, _status_code, _headers = destroy_with_http_info(id, opts)
       return data
@@ -83,7 +83,7 @@ module ESP
     # 
     # @param id Organization Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Organization, Fixnum, Hash)>] Organization data, response status code and response headers
+    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
     def destroy_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: OrganizationsApi.destroy ..."
@@ -91,7 +91,7 @@ module ESP
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling OrganizationsApi.destroy" if id.nil?
       # resource path
-      local_var_path = "/v2/organizations/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/organizations/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -111,7 +111,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Organization')
+        :return_type => 'Object')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: OrganizationsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -142,7 +142,7 @@ module ESP
         @api_client.config.logger.debug "Calling API: OrganizationsApi.list ..."
       end
       # resource path
-      local_var_path = "/v2/organizations.json".sub('{format}','json')
+      local_var_path = "/api/v2/organizations.json_api".sub('{format}','json')
 
       # query parameters
       query_params = {}
@@ -196,7 +196,7 @@ module ESP
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling OrganizationsApi.show" if id.nil?
       # resource path
-      local_var_path = "/v2/organizations/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/organizations/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -250,7 +250,7 @@ module ESP
       # verify the required parameter 'name' is set
       fail ArgumentError, "Missing the required parameter 'name' when calling OrganizationsApi.update" if name.nil?
       # resource path
-      local_var_path = "/v2/organizations/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/organizations/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}

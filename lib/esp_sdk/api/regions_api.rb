@@ -41,7 +41,7 @@ module ESP
         @api_client.config.logger.debug "Calling API: RegionsApi.list ..."
       end
       # resource path
-      local_var_path = "/v2/regions.json".sub('{format}','json')
+      local_var_path = "/api/v2/regions.json_api".sub('{format}','json')
 
       # query parameters
       query_params = {}
@@ -94,7 +94,7 @@ module ESP
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling RegionsApi.show" if id.nil?
       # resource path
-      local_var_path = "/v2/regions/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/regions/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}

@@ -41,7 +41,7 @@ module ESP
       # verify the required parameter 'report_id' is set
       fail ArgumentError, "Missing the required parameter 'report_id' when calling StatsApi.for_report" if report_id.nil?
       # resource path
-      local_var_path = "/v2/reports/{report_id}/stats.json".sub('{format}','json').sub('{' + 'report_id' + '}', report_id.to_s)
+      local_var_path = "/api/v2/reports/{report_id}/stats.json_api".sub('{format}','json').sub('{' + 'report_id' + '}', report_id.to_s)
 
       # query parameters
       query_params = {}
@@ -86,7 +86,7 @@ module ESP
         @api_client.config.logger.debug "Calling API: StatsApi.latest_for_teams ..."
       end
       # resource path
-      local_var_path = "/v2/stats/latest_for_teams.json".sub('{format}','json')
+      local_var_path = "/api/v2/stats/latest_for_teams.json_api".sub('{format}','json')
 
       # query parameters
       query_params = {}

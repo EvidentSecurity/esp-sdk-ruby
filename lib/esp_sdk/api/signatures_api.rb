@@ -43,7 +43,7 @@ module ESP
         @api_client.config.logger.debug "Calling API: SignaturesApi.list ..."
       end
       # resource path
-      local_var_path = "/v2/signatures.json".sub('{format}','json')
+      local_var_path = "/api/v2/signatures.json_api".sub('{format}','json')
 
       # query parameters
       query_params = {}
@@ -101,7 +101,7 @@ module ESP
       # verify the required parameter 'external_account_id' is set
       fail ArgumentError, "Missing the required parameter 'external_account_id' when calling SignaturesApi.run" if external_account_id.nil?
       # resource path
-      local_var_path = "/v2/signatures/{id}/run.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/signatures/{id}/run.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -154,7 +154,7 @@ module ESP
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling SignaturesApi.show" if id.nil?
       # resource path
-      local_var_path = "/v2/signatures/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/signatures/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}

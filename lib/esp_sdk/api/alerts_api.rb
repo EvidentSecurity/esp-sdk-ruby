@@ -47,7 +47,7 @@ module ESP
       # verify the required parameter 'report_id' is set
       fail ArgumentError, "Missing the required parameter 'report_id' when calling AlertsApi.list" if report_id.nil?
       # resource path
-      local_var_path = "/v2/reports/{report_id}/alerts.json".sub('{format}','json').sub('{' + 'report_id' + '}', report_id.to_s)
+      local_var_path = "/api/v2/reports/{report_id}/alerts.json_api".sub('{format}','json').sub('{' + 'report_id' + '}', report_id.to_s)
 
       # query parameters
       query_params = {}
@@ -101,7 +101,7 @@ module ESP
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling AlertsApi.show" if id.nil?
       # resource path
-      local_var_path = "/v2/alerts/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/alerts/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}

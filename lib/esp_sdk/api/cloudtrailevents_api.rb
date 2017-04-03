@@ -45,7 +45,7 @@ module ESP
       # verify the required parameter 'alert_id' is set
       fail ArgumentError, "Missing the required parameter 'alert_id' when calling CloudtraileventsApi.list" if alert_id.nil?
       # resource path
-      local_var_path = "/v2/alerts/{alert_id}/cloud_trail_events.json".sub('{format}','json').sub('{' + 'alert_id' + '}', alert_id.to_s)
+      local_var_path = "/api/v2/alerts/{alert_id}/cloud_trail_events.json_api".sub('{format}','json').sub('{' + 'alert_id' + '}', alert_id.to_s)
 
       # query parameters
       query_params = {}
@@ -98,7 +98,7 @@ module ESP
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling CloudtraileventsApi.show" if id.nil?
       # resource path
-      local_var_path = "/v2/cloud_trail_events/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/cloud_trail_events/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}

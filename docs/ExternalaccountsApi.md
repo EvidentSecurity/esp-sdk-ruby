@@ -1,16 +1,98 @@
 # ESP::ExternalaccountsApi
 
-All URIs are relative to *http://localhost/api*
+All URIs are relative to *http://localhost/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](ExternalaccountsApi.md#create) | **POST** /v2/external_accounts.json | Create a(n) External Account
-[**destroy**](ExternalaccountsApi.md#destroy) | **DELETE** /v2/external_accounts/{id}.json | Remove a(n) External Account
-[**list**](ExternalaccountsApi.md#list) | **PUT** /v2/external_accounts.json | Get a list of External Accounts
-[**show**](ExternalaccountsApi.md#show) | **GET** /v2/external_accounts/{id}.json | Show a single External Account
-[**update**](ExternalaccountsApi.md#update) | **PATCH** /v2/external_accounts/{id}.json | Update a(n) External Account
-[**v2_external_accounts_id_complete_json_patch**](ExternalaccountsApi.md#v2_external_accounts_id_complete_json_patch) | **PATCH** /v2/external_accounts/{id}/complete.json | Show the latest completed report for an External Account
-[**v2_external_accounts_subscribed_accounts_json_get**](ExternalaccountsApi.md#v2_external_accounts_subscribed_accounts_json_get) | **GET** /v2/external_accounts/subscribed_accounts.json | Show a list of Subscribed Accounts
+[**api_v2_external_accounts_id_complete_json_api_patch**](ExternalaccountsApi.md#api_v2_external_accounts_id_complete_json_api_patch) | **PATCH** /api/v2/external_accounts/{id}/complete.json_api | Show the latest completed report for an External Account
+[**api_v2_external_accounts_subscribed_accounts_json_api_get**](ExternalaccountsApi.md#api_v2_external_accounts_subscribed_accounts_json_api_get) | **GET** /api/v2/external_accounts/subscribed_accounts.json_api | Show a list of Subscribed Accounts
+[**create**](ExternalaccountsApi.md#create) | **POST** /api/v2/external_accounts.json_api | Create a(n) External Account
+[**destroy**](ExternalaccountsApi.md#destroy) | **DELETE** /api/v2/external_accounts/{id}.json_api | Remove a(n) External Account
+[**list**](ExternalaccountsApi.md#list) | **PUT** /api/v2/external_accounts.json_api | Get a list of External Accounts
+[**show**](ExternalaccountsApi.md#show) | **GET** /api/v2/external_accounts/{id}.json_api | Show a single External Account
+[**update**](ExternalaccountsApi.md#update) | **PATCH** /api/v2/external_accounts/{id}.json_api | Update a(n) External Account
+
+
+# **api_v2_external_accounts_id_complete_json_api_patch**
+> api_v2_external_accounts_id_complete_json_api_patch(id)
+
+Show the latest completed report for an External Account
+
+### Example
+```ruby
+# load the gem
+require 'esp_sdk'
+
+api_instance = ESP::ExternalaccountsApi.new
+
+id = 56 # Integer | External Account Id
+
+
+begin
+  #Show the latest completed report for an External Account
+  api_instance.api_v2_external_accounts_id_complete_json_api_patch(id)
+rescue ESP::ApiError => e
+  puts "Exception when calling ExternalaccountsApi->api_v2_external_accounts_id_complete_json_api_patch: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Integer**| External Account Id | 
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+
+# **api_v2_external_accounts_subscribed_accounts_json_api_get**
+> api_v2_external_accounts_subscribed_accounts_json_api_get
+
+Show a list of Subscribed Accounts
+
+### Example
+```ruby
+# load the gem
+require 'esp_sdk'
+
+api_instance = ESP::ExternalaccountsApi.new
+
+begin
+  #Show a list of Subscribed Accounts
+  api_instance.api_v2_external_accounts_subscribed_accounts_json_api_get
+rescue ESP::ApiError => e
+  puts "Exception when calling ExternalaccountsApi->api_v2_external_accounts_subscribed_accounts_json_api_get: #{e}"
+end
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+nil (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
 
 
 # **create**
@@ -74,7 +156,7 @@ No authorization required
 
 
 # **destroy**
-> ExternalAccount destroy(id)
+> Object destroy(id)
 
 Remove a(n) External Account
 
@@ -105,7 +187,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAccount**](ExternalAccount.md)
+**Object**
 
 ### Authorization
 
@@ -258,88 +340,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ExternalAccount**](ExternalAccount.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-
-# **v2_external_accounts_id_complete_json_patch**
-> v2_external_accounts_id_complete_json_patch(id)
-
-Show the latest completed report for an External Account
-
-### Example
-```ruby
-# load the gem
-require 'esp_sdk'
-
-api_instance = ESP::ExternalaccountsApi.new
-
-id = 56 # Integer | External Account Id
-
-
-begin
-  #Show the latest completed report for an External Account
-  api_instance.v2_external_accounts_id_complete_json_patch(id)
-rescue ESP::ApiError => e
-  puts "Exception when calling ExternalaccountsApi->v2_external_accounts_id_complete_json_patch: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Integer**| External Account Id | 
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-
-# **v2_external_accounts_subscribed_accounts_json_get**
-> v2_external_accounts_subscribed_accounts_json_get
-
-Show a list of Subscribed Accounts
-
-### Example
-```ruby
-# load the gem
-require 'esp_sdk'
-
-api_instance = ESP::ExternalaccountsApi.new
-
-begin
-  #Show a list of Subscribed Accounts
-  api_instance.v2_external_accounts_subscribed_accounts_json_get
-rescue ESP::ApiError => e
-  puts "Exception when calling ExternalaccountsApi->v2_external_accounts_subscribed_accounts_json_get: #{e}"
-end
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-nil (empty response body)
 
 ### Authorization
 

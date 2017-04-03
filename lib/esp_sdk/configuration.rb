@@ -100,7 +100,7 @@ module ESP
         @scheme = 'https'
         @host   = 'api.evident.io'
       end
-      @base_path = '/api'
+      @base_path = '/'
       @timeout = 0
       @verify_ssl = true
       @verify_ssl_host = true

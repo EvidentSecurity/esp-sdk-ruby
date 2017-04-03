@@ -19,6 +19,98 @@ module ESP
       @api_client = api_client
     end
 
+    # Show the latest completed report for an External Account
+    # 
+    # @param id External Account Id
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def api_v2_external_accounts_id_complete_json_api_patch(id, opts = {})
+      api_v2_external_accounts_id_complete_json_api_patch_with_http_info(id, opts)
+      return nil
+    end
+
+    # Show the latest completed report for an External Account
+    # 
+    # @param id External Account Id
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def api_v2_external_accounts_id_complete_json_api_patch_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ExternalaccountsApi.api_v2_external_accounts_id_complete_json_api_patch ..."
+      end
+      # verify the required parameter 'id' is set
+      fail ArgumentError, "Missing the required parameter 'id' when calling ExternalaccountsApi.api_v2_external_accounts_id_complete_json_api_patch" if id.nil?
+      # resource path
+      local_var_path = "/api/v2/external_accounts/{id}/complete.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ExternalaccountsApi#api_v2_external_accounts_id_complete_json_api_patch\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Show a list of Subscribed Accounts
+    # 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def api_v2_external_accounts_subscribed_accounts_json_api_get(opts = {})
+      api_v2_external_accounts_subscribed_accounts_json_api_get_with_http_info(opts)
+      return nil
+    end
+
+    # Show a list of Subscribed Accounts
+    # 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    def api_v2_external_accounts_subscribed_accounts_json_api_get_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ExternalaccountsApi.api_v2_external_accounts_subscribed_accounts_json_api_get ..."
+      end
+      # resource path
+      local_var_path = "/api/v2/external_accounts/subscribed_accounts.json_api".sub('{format}','json')
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ExternalaccountsApi#api_v2_external_accounts_subscribed_accounts_json_api_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Create a(n) External Account
     # 
     # @param [Hash] opts the optional parameters
@@ -53,7 +145,7 @@ module ESP
         @api_client.config.logger.debug "Calling API: ExternalaccountsApi.create ..."
       end
       # resource path
-      local_var_path = "/v2/external_accounts.json".sub('{format}','json')
+      local_var_path = "/api/v2/external_accounts.json_api".sub('{format}','json')
 
       # query parameters
       query_params = {}
@@ -92,7 +184,7 @@ module ESP
     # 
     # @param id External Account Id
     # @param [Hash] opts the optional parameters
-    # @return [ExternalAccount]
+    # @return [Object]
     def destroy(id, opts = {})
       data, _status_code, _headers = destroy_with_http_info(id, opts)
       return data
@@ -102,7 +194,7 @@ module ESP
     # 
     # @param id External Account Id
     # @param [Hash] opts the optional parameters
-    # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
+    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
     def destroy_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalaccountsApi.destroy ..."
@@ -110,7 +202,7 @@ module ESP
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling ExternalaccountsApi.destroy" if id.nil?
       # resource path
-      local_var_path = "/v2/external_accounts/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/external_accounts/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -130,7 +222,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ExternalAccount')
+        :return_type => 'Object')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ExternalaccountsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -161,7 +253,7 @@ module ESP
         @api_client.config.logger.debug "Calling API: ExternalaccountsApi.list ..."
       end
       # resource path
-      local_var_path = "/v2/external_accounts.json".sub('{format}','json')
+      local_var_path = "/api/v2/external_accounts.json_api".sub('{format}','json')
 
       # query parameters
       query_params = {}
@@ -215,7 +307,7 @@ module ESP
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling ExternalaccountsApi.show" if id.nil?
       # resource path
-      local_var_path = "/v2/external_accounts/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/external_accounts/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -271,7 +363,7 @@ module ESP
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling ExternalaccountsApi.update" if id.nil?
       # resource path
-      local_var_path = "/v2/external_accounts/{id}.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/external_accounts/{id}.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -297,98 +389,6 @@ module ESP
         :return_type => 'ExternalAccount')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ExternalaccountsApi#update\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Show the latest completed report for an External Account
-    # 
-    # @param id External Account Id
-    # @param [Hash] opts the optional parameters
-    # @return [nil]
-    def v2_external_accounts_id_complete_json_patch(id, opts = {})
-      v2_external_accounts_id_complete_json_patch_with_http_info(id, opts)
-      return nil
-    end
-
-    # Show the latest completed report for an External Account
-    # 
-    # @param id External Account Id
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def v2_external_accounts_id_complete_json_patch_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ExternalaccountsApi.v2_external_accounts_id_complete_json_patch ..."
-      end
-      # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling ExternalaccountsApi.v2_external_accounts_id_complete_json_patch" if id.nil?
-      # resource path
-      local_var_path = "/v2/external_accounts/{id}/complete.json".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ExternalaccountsApi#v2_external_accounts_id_complete_json_patch\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Show a list of Subscribed Accounts
-    # 
-    # @param [Hash] opts the optional parameters
-    # @return [nil]
-    def v2_external_accounts_subscribed_accounts_json_get(opts = {})
-      v2_external_accounts_subscribed_accounts_json_get_with_http_info(opts)
-      return nil
-    end
-
-    # Show a list of Subscribed Accounts
-    # 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
-    def v2_external_accounts_subscribed_accounts_json_get_with_http_info(opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ExternalaccountsApi.v2_external_accounts_subscribed_accounts_json_get ..."
-      end
-      # resource path
-      local_var_path = "/v2/external_accounts/subscribed_accounts.json".sub('{format}','json')
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ExternalaccountsApi#v2_external_accounts_subscribed_accounts_json_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

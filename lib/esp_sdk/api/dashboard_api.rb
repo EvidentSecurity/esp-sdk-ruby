@@ -39,7 +39,7 @@ module ESP
         @api_client.config.logger.debug "Calling API: DashboardApi.recent ..."
       end
       # resource path
-      local_var_path = "/v2/dashboard/recent.json".sub('{format}','json')
+      local_var_path = "/api/v2/dashboard/recent.json_api".sub('{format}','json')
 
       # query parameters
       query_params = {}
