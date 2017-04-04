@@ -16,7 +16,11 @@ module ESP
   # A Paginated Collection of Objects
   class PaginatedCollection
     prepend AddPaginationMethods
+    extend Forwardable
     include Enumerable
+
+    def_delegators :data, :[], :length, :size
+
 
     # Internal variable used to call the ESP api.
     # @return [Hash]

@@ -93,7 +93,7 @@ module ESP
     attr_accessor :force_ending_format
 
     def initialize
-      if ENV['ESP_ENV'] || ENV['RAILS_ENV'] == 'development'
+      if ENV['ESP_ENV'] || ENV['RAILS_ENV'] =~ /development|test/
         @scheme = 'http'
         @host   = 'localhost:3000'
       else
