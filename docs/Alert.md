@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **created_at** | **DateTime** | ISO 8601 timestamp when the resource was created | [optional] 
 **ended_at** | **DateTime** | ISO 8601 timestamp when the alert stopped being active | [optional] 
 **resource** | **String** | Resource identifier in Amazon | [optional] 
-**stated_at** | **DateTime** | ISO 8601 timestamp when the alert started being active | [optional] 
+**started_at** | **DateTime** | ISO 8601 timestamp when the alert started being active | [optional] 
 **status** | **String** | Status of the alert | [optional] 
 **risk_level** | **String** | Risk Level of the alert | [optional] 
 **updated_at** | **DateTime** | ISO 8601 timestamp when the resource was last updated | [optional] 

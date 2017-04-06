@@ -14,6 +14,12 @@ require 'date'
 module ESP
   # A(n) Region object
   class Region < BaseObject
+    # Links to Associated Objects
+    attr_accessor :relationships
+
+    # Array of error messages if the request failed
+    attr_accessor :errors
+
     # Unique Id
     attr_accessor :id
 
@@ -24,6 +30,8 @@ module ESP
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'relationships' => :'relationships',
+        :'errors' => :'errors',
         :'id' => :'id',
         :'code' => :'code'
       }
@@ -32,6 +40,8 @@ module ESP
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'relationships' => :'Object',
+        :'errors' => :'Array<String>',
         :'id' => :'Integer',
         :'code' => :'String'
       }
@@ -44,6 +54,16 @@ module ESP
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
+
+      if attributes.has_key?(:'relationships')
+        self.relationships = attributes[:'relationships']
+      end
+
+      if attributes.has_key?(:'errors')
+        if (value = attributes[:'errors']).is_a?(Array)
+          self.errors = value
+        end
+      end
 
       if attributes.has_key?(:'id')
         self.id = attributes[:'id']
@@ -83,6 +103,8 @@ module ESP
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          relationships == o.relationships &&
+          errors == o.errors &&
           id == o.id &&
           code == o.code
     end
@@ -96,7 +118,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, code].hash
+      [relationships, errors, id, code].hash
     end
 
     # Builds the object from hash

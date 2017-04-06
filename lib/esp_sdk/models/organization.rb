@@ -23,7 +23,7 @@ module ESP
     # Unique Id
     attr_accessor :id
 
-    # Name
+    # Name of the organization
     attr_accessor :name
 
     # ISO 8601 timestamp when the resource was created

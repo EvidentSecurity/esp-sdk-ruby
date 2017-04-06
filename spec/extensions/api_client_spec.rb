@@ -28,43 +28,43 @@ describe ESP::ApiClient do
     it 'should put filter params in the body' do
       api_client = ESP::ApiClient.new
 
-      allow(api_client).to receive(:build_request).and_return(Typhoeus::Request.new('/api/v2/organizations.json_api', method: 'put'))
-      stub_request(:put, %r{organizations})
+      allow(api_client).to receive(:build_request).and_return(Typhoeus::Request.new('/api/v2/sub_organizations.json_api', method: 'put'))
+      stub_request(:put, %r{sub_organizations})
 
-      ESP::OrganizationsApi.new(api_client).list(filter: { name_cont: 'Evid' })
+      ESP::SubOrganizationsApi.new(api_client).list(filter: { name_cont: 'Evid' })
 
-      expect(api_client).to have_received(:build_request).with(:PUT, "/api/v2/organizations.json_api", hash_including(:body => { 'filter' => { name_cont: 'Evid' } }))
+      expect(api_client).to have_received(:build_request).with(:PUT, "/api/v2/sub_organizations.json_api", hash_including(:body => { 'filter' => { name_cont: 'Evid' } }))
     end
 
     it 'should put page params in the body' do
       api_client = ESP::ApiClient.new
 
-      allow(api_client).to receive(:build_request).and_return(Typhoeus::Request.new('/api/v2/organizations.json_api', method: 'put'))
-      stub_request(:put, %r{organizations})
+      allow(api_client).to receive(:build_request).and_return(Typhoeus::Request.new('/api/v2/sub_organizations.json_api', method: 'put'))
+      stub_request(:put, %r{sub_organizations})
 
-      ESP::OrganizationsApi.new(api_client).list(page: { number: 3 })
+      ESP::SubOrganizationsApi.new(api_client).list(page: { number: 3 })
 
-      expect(api_client).to have_received(:build_request).with(:PUT, "/api/v2/organizations.json_api", hash_including(:body => { 'page' => { number: 3 } }))
+      expect(api_client).to have_received(:build_request).with(:PUT, "/api/v2/sub_organizations.json_api", hash_including(:body => { 'page' => { number: 3 } }))
     end
 
     it 'should put form params in json api format' do
       api_client = ESP::ApiClient.new
 
-      allow(api_client).to receive(:build_request).and_return(Typhoeus::Request.new('/api/v2/organizations.json', method: 'put'))
-      stub_request(:put, %r{organizations})
+      allow(api_client).to receive(:build_request).and_return(Typhoeus::Request.new('/api/v2/sub_organizations.json', method: 'put'))
+      stub_request(:put, %r{sub_organizations})
 
-      ESP::OrganizationsApi.new(api_client).create('Evident')
+      ESP::SubOrganizationsApi.new(api_client).create('Evident')
 
-      expect(api_client).to have_received(:build_request).with(:POST, "/api/v2/organizations.json_api", hash_including(:body => { data: { attributes: { 'name' => 'Evident' } } }))
+      expect(api_client).to have_received(:build_request).with(:POST, "/api/v2/sub_organizations.json_api", hash_including(:body => { data: { attributes: { 'name' => 'Evident' } } }))
     end
 
     it 'should set the Authorization headers' do
       api_client = ESP::ApiClient.new
 
       allow(ESP::ApiAuthentication).to receive(:sign_request)
-      stub_request(:put, %r{organizations})
+      stub_request(:put, %r{sub_organizations})
 
-      ESP::OrganizationsApi.new(api_client).list
+      ESP::SubOrganizationsApi.new(api_client).list
 
       expect(ESP::ApiAuthentication).to have_received(:sign_request)
     end
@@ -103,7 +103,7 @@ describe ESP::ApiClient do
 
       expect(alert.api_client).to eq(api.api_client)
       expect(alert.original_params).to include(form_params: { 'filter' => { name: 'Evid' } })
-      expect(alert.path).to eq('/v2/reports/1/alerts.json')
+      expect(alert.path).to eq('/api/v2/reports/1/alerts.json_api')
     end
   end
 end

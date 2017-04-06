@@ -71,7 +71,7 @@ module ESP
     # A successful call to this API returns all the stats for the most recent report of each team accessible by the given API key
     # 
     # @param [Hash] opts the optional parameters
-    # @return [Array<Stat>]
+    # @return [PaginatedCollection]
     def latest_for_teams(opts = {})
       data, _status_code, _headers = latest_for_teams_with_http_info(opts)
       return data
@@ -80,7 +80,7 @@ module ESP
     # A successful call to this API returns all the stats for the most recent report of each team accessible by the given API key
     # 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Array<Stat>, Fixnum, Hash)>] Array<Stat> data, response status code and response headers
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def latest_for_teams_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: StatsApi.latest_for_teams ..."
@@ -106,7 +106,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<Stat>')
+        :return_type => 'PaginatedCollection')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: StatsApi#latest_for_teams\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

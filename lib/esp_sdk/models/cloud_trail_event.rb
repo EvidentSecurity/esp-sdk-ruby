@@ -38,6 +38,9 @@ module ESP
     # The agent through which the request was made, such as the AWS Management Console or an AWS SDK
     attr_accessor :user_agent
 
+    # The user name associated with the cloud trail event
+    attr_accessor :username
+
     # Associated Alert
     attr_accessor :alert
 
@@ -56,6 +59,7 @@ module ESP
         :'event_time' => :'event_time',
         :'ip_address' => :'ip_address',
         :'user_agent' => :'user_agent',
+        :'username' => :'username',
         :'alert' => :'alert',
         :'alert_id' => :'alert_id'
       }
@@ -72,6 +76,7 @@ module ESP
         :'event_time' => :'DateTime',
         :'ip_address' => :'String',
         :'user_agent' => :'String',
+        :'username' => :'String',
         :'alert' => :'Alert',
         :'alert_id' => :'Integer'
       }
@@ -117,6 +122,10 @@ module ESP
 
       if attributes.has_key?(:'user_agent')
         self.user_agent = attributes[:'user_agent']
+      end
+
+      if attributes.has_key?(:'username')
+        self.username = attributes[:'username']
       end
 
       if attributes.has_key?(:'alert')
@@ -165,6 +174,7 @@ module ESP
           event_time == o.event_time &&
           ip_address == o.ip_address &&
           user_agent == o.user_agent &&
+          username == o.username &&
           alert == o.alert &&
           alert_id == o.alert_id
     end
@@ -178,7 +188,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [relationships, errors, id, event_id, event_name, event_time, ip_address, user_agent, alert, alert_id].hash
+      [relationships, errors, id, event_id, event_name, event_time, ip_address, user_agent, username, alert, alert_id].hash
     end
 
     # Builds the object from hash

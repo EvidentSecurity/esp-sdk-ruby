@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **relationships** | **Object** | Links to Associated Objects | [optional] 
 **errors** | **Array&lt;String&gt;** | Array of error messages if the request failed | [optional] 
 **id** | **Integer** | Unique Id | 
-**name** | **String** | Name | [optional] 
+**name** | **String** | Name of the organization | [optional] 
 **created_at** | **DateTime** | ISO 8601 timestamp when the resource was created | [optional] 
 **updated_at** | **DateTime** | ISO 8601 timestamp when the resource was last updated | [optional] 
 **custom_signatures** | [**Array&lt;CustomSignature&gt;**](CustomSignature.md) | Associated Custom Signatures | [optional] 

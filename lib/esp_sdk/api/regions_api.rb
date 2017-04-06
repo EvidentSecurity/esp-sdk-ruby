@@ -24,6 +24,7 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [Hash<String, String>] :page Page Number
     # @option opts [Hash<String, String>] :filter Filter Params for Searching
+    # @option opts [String] :include Included Objects
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -35,6 +36,7 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [Hash<String, String>] :page Page Number
     # @option opts [Hash<String, String>] :filter Filter Params for Searching
+    # @option opts [String] :include Included Objects
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -45,6 +47,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}

@@ -26,6 +26,17 @@ module ESP
     # @option opts [Hash<String, String>] :page Page Number
     # @option opts [Hash<String, String>] :filter Filter Params for Searching
     # @option opts [String] :include Included Objects
+    # @option opts [Integer] :region_id Return only alerts for this region.
+    # @option opts [String] :status Return only alerts for the give status(es). Valid values are fail, warn, error, pass, info
+    # @option opts [Integer] :first_seen Return only alerts that have started within a number of hours of the report. For example, first_seen of 3 will return alerts that started showing up within the last 3 hours of the report.
+    # @option opts [BOOLEAN] :suppressed Return only suppressed alerts
+    # @option opts [Integer] :team_id Return only alerts for the given team.
+    # @option opts [Integer] :external_account_id Return only alerts for the given external id.
+    # @option opts [Integer] :service_id Return only alerts on signatures with the given service.
+    # @option opts [String] :signature_severity Return only alerts for signatures with the given risk_level. Valid values are Low, Medium, High
+    # @option opts [String] :signature_name Return only alerts for signatures with the given name.
+    # @option opts [String] :resource Return only alerts for the given resource or tag.
+    # @option opts [String] :signature_identifier Return only alerts for signatures with the given identifier.
     # @return [PaginatedCollection]
     def list(report_id, opts = {})
       data, _status_code, _headers = list_with_http_info(report_id, opts)
@@ -39,6 +50,17 @@ module ESP
     # @option opts [Hash<String, String>] :page Page Number
     # @option opts [Hash<String, String>] :filter Filter Params for Searching
     # @option opts [String] :include Included Objects
+    # @option opts [Integer] :region_id Return only alerts for this region.
+    # @option opts [String] :status Return only alerts for the give status(es). Valid values are fail, warn, error, pass, info
+    # @option opts [Integer] :first_seen Return only alerts that have started within a number of hours of the report. For example, first_seen of 3 will return alerts that started showing up within the last 3 hours of the report.
+    # @option opts [BOOLEAN] :suppressed Return only suppressed alerts
+    # @option opts [Integer] :team_id Return only alerts for the given team.
+    # @option opts [Integer] :external_account_id Return only alerts for the given external id.
+    # @option opts [Integer] :service_id Return only alerts on signatures with the given service.
+    # @option opts [String] :signature_severity Return only alerts for signatures with the given risk_level. Valid values are Low, Medium, High
+    # @option opts [String] :signature_name Return only alerts for signatures with the given name.
+    # @option opts [String] :resource Return only alerts for the given resource or tag.
+    # @option opts [String] :signature_identifier Return only alerts for signatures with the given identifier.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(report_id, opts = {})
       if @api_client.config.debugging
@@ -60,6 +82,17 @@ module ESP
       form_params = {}
       form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
       form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
+      form_params["region_id"] = opts[:'region_id'] if !opts[:'region_id'].nil?
+      form_params["status"] = opts[:'status'] if !opts[:'status'].nil?
+      form_params["first_seen"] = opts[:'first_seen'] if !opts[:'first_seen'].nil?
+      form_params["suppressed"] = opts[:'suppressed'] if !opts[:'suppressed'].nil?
+      form_params["team_id"] = opts[:'team_id'] if !opts[:'team_id'].nil?
+      form_params["external_account_id"] = opts[:'external_account_id'] if !opts[:'external_account_id'].nil?
+      form_params["service_id"] = opts[:'service_id'] if !opts[:'service_id'].nil?
+      form_params["signature_severity"] = opts[:'signature_severity'] if !opts[:'signature_severity'].nil?
+      form_params["signature_name"] = opts[:'signature_name'] if !opts[:'signature_name'].nil?
+      form_params["resource"] = opts[:'resource'] if !opts[:'resource'].nil?
+      form_params["signature_identifier"] = opts[:'signature_identifier'] if !opts[:'signature_identifier'].nil?
 
       # http body (model)
       post_body = nil

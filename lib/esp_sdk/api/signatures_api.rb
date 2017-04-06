@@ -73,26 +73,26 @@ module ESP
       return data, status_code, headers
     end
 
-    # A successful call to this API returns a list of alerts for the specific signature identified by the id parameter. The body of the request must contain a json api compliant hash of attributes with type signatures
+    # Run a Signature
     # 
     # @param id The ID of the signature to run
-    # @param external_account_id The ID of the external account to run this signature against
+    # @param external_account_id The ID of the external account to run the signature against
+    # @param region A single region name to run this signature against
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :region A single region name to run this signature against
-    # @return [Array<Alert>]
-    def run(id, external_account_id, opts = {})
-      data, _status_code, _headers = run_with_http_info(id, external_account_id, opts)
+    # @return [PaginatedCollection]
+    def run(id, external_account_id, region, opts = {})
+      data, _status_code, _headers = run_with_http_info(id, external_account_id, region, opts)
       return data
     end
 
-    # A successful call to this API returns a list of alerts for the specific signature identified by the id parameter. The body of the request must contain a json api compliant hash of attributes with type signatures
+    # Run a Signature
     # 
     # @param id The ID of the signature to run
-    # @param external_account_id The ID of the external account to run this signature against
+    # @param external_account_id The ID of the external account to run the signature against
+    # @param region A single region name to run this signature against
     # @param [Hash] opts the optional parameters
-    # @option opts [Object] :region A single region name to run this signature against
-    # @return [Array<(Array<Alert>, Fixnum, Hash)>] Array<Alert> data, response status code and response headers
-    def run_with_http_info(id, external_account_id, opts = {})
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def run_with_http_info(id, external_account_id, region, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: SignaturesApi.run ..."
       end
@@ -100,6 +100,8 @@ module ESP
       fail ArgumentError, "Missing the required parameter 'id' when calling SignaturesApi.run" if id.nil?
       # verify the required parameter 'external_account_id' is set
       fail ArgumentError, "Missing the required parameter 'external_account_id' when calling SignaturesApi.run" if external_account_id.nil?
+      # verify the required parameter 'region' is set
+      fail ArgumentError, "Missing the required parameter 'region' when calling SignaturesApi.run" if region.nil?
       # resource path
       local_var_path = "/api/v2/signatures/{id}/run.json_api".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
@@ -112,7 +114,7 @@ module ESP
       # form parameters
       form_params = {}
       form_params["external_account_id"] = external_account_id
-      form_params["region"] = opts[:'region'] if !opts[:'region'].nil?
+      form_params["region"] = region
 
       # http body (model)
       post_body = nil
@@ -123,7 +125,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Array<Alert>')
+        :return_type => 'PaginatedCollection')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: SignaturesApi#run\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

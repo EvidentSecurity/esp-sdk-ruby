@@ -1,16 +1,16 @@
-# ESP::ExternalaccountsApi
+# ESP::ExternalAccountsApi
 
 All URIs are relative to *http://localhost/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_v2_external_accounts_id_complete_json_api_patch**](ExternalaccountsApi.md#api_v2_external_accounts_id_complete_json_api_patch) | **PATCH** /api/v2/external_accounts/{id}/complete.json_api | Show the latest completed report for an External Account
-[**api_v2_external_accounts_subscribed_accounts_json_api_get**](ExternalaccountsApi.md#api_v2_external_accounts_subscribed_accounts_json_api_get) | **GET** /api/v2/external_accounts/subscribed_accounts.json_api | Show a list of Subscribed Accounts
-[**create**](ExternalaccountsApi.md#create) | **POST** /api/v2/external_accounts.json_api | Create a(n) External Account
-[**destroy**](ExternalaccountsApi.md#destroy) | **DELETE** /api/v2/external_accounts/{id}.json_api | Remove a(n) External Account
-[**list**](ExternalaccountsApi.md#list) | **PUT** /api/v2/external_accounts.json_api | Get a list of External Accounts
-[**show**](ExternalaccountsApi.md#show) | **GET** /api/v2/external_accounts/{id}.json_api | Show a single External Account
-[**update**](ExternalaccountsApi.md#update) | **PATCH** /api/v2/external_accounts/{id}.json_api | Update a(n) External Account
+[**api_v2_external_accounts_id_complete_json_api_patch**](ExternalAccountsApi.md#api_v2_external_accounts_id_complete_json_api_patch) | **PATCH** /api/v2/external_accounts/{id}/complete.json_api | Show the latest completed report for an External Account
+[**api_v2_external_accounts_subscribed_accounts_json_api_get**](ExternalAccountsApi.md#api_v2_external_accounts_subscribed_accounts_json_api_get) | **GET** /api/v2/external_accounts/subscribed_accounts.json_api | Show a list of Subscribed Accounts
+[**create**](ExternalAccountsApi.md#create) | **POST** /api/v2/external_accounts.json_api | Create a(n) External Account
+[**destroy**](ExternalAccountsApi.md#destroy) | **DELETE** /api/v2/external_accounts/{id}.json_api | Remove a(n) External Account
+[**list**](ExternalAccountsApi.md#list) | **PUT** /api/v2/external_accounts.json_api | Get a list of External Accounts
+[**show**](ExternalAccountsApi.md#show) | **GET** /api/v2/external_accounts/{id}.json_api | Show a single External Account
+[**update**](ExternalAccountsApi.md#update) | **PATCH** /api/v2/external_accounts/{id}.json_api | Update a(n) External Account
 
 
 # **api_v2_external_accounts_id_complete_json_api_patch**
@@ -23,7 +23,7 @@ Show the latest completed report for an External Account
 # load the gem
 require 'esp_sdk'
 
-api_instance = ESP::ExternalaccountsApi.new
+api_instance = ESP::ExternalAccountsApi.new
 
 id = 56 # Integer | External Account Id
 
@@ -32,7 +32,7 @@ begin
   #Show the latest completed report for an External Account
   api_instance.api_v2_external_accounts_id_complete_json_api_patch(id)
 rescue ESP::ApiError => e
-  puts "Exception when calling ExternalaccountsApi->api_v2_external_accounts_id_complete_json_api_patch: #{e}"
+  puts "Exception when calling ExternalAccountsApi->api_v2_external_accounts_id_complete_json_api_patch: #{e}"
 end
 ```
 
@@ -67,13 +67,13 @@ Show a list of Subscribed Accounts
 # load the gem
 require 'esp_sdk'
 
-api_instance = ESP::ExternalaccountsApi.new
+api_instance = ESP::ExternalAccountsApi.new
 
 begin
   #Show a list of Subscribed Accounts
   api_instance.api_v2_external_accounts_subscribed_accounts_json_api_get
 rescue ESP::ApiError => e
-  puts "Exception when calling ExternalaccountsApi->api_v2_external_accounts_subscribed_accounts_json_api_get: #{e}"
+  puts "Exception when calling ExternalAccountsApi->api_v2_external_accounts_subscribed_accounts_json_api_get: #{e}"
 end
 ```
 
@@ -96,7 +96,7 @@ No authorization required
 
 
 # **create**
-> ExternalAccount create(opts)
+> ExternalAccount create(team_id, arn, external_id, opts)
 
 Create a(n) External Account
 
@@ -105,25 +105,24 @@ Create a(n) External Account
 # load the gem
 require 'esp_sdk'
 
-api_instance = ESP::ExternalaccountsApi.new
+api_instance = ESP::ExternalAccountsApi.new
+
+team_id = 56 # Integer | Team Id
+
+arn = "arn_example" # String | ARN
+
+external_id = "external_id_example" # String | External Id
 
 opts = { 
-  name: "name_example", # String | Name
-  nickname: "nickname_example", # String | Nickname
-  team_id: 56, # Integer | Team Id
-  arn: "arn_example", # String | ARN
-  external_id: "external_id_example", # String | External Id
-  agency: "agency_example", # String | Agency
-  mission: "mission_example", # String | Mission
-  role: "role_example" # String | Role
+  name: "name_example" # String | Name
 }
 
 begin
   #Create a(n) External Account
-  result = api_instance.create(opts)
+  result = api_instance.create(team_id, arn, external_id, opts)
   p result
 rescue ESP::ApiError => e
-  puts "Exception when calling ExternalaccountsApi->create: #{e}"
+  puts "Exception when calling ExternalAccountsApi->create: #{e}"
 end
 ```
 
@@ -131,14 +130,10 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **team_id** | **Integer**| Team Id | 
+ **arn** | **String**| ARN | 
+ **external_id** | **String**| External Id | 
  **name** | **String**| Name | [optional] 
- **nickname** | **String**| Nickname | [optional] 
- **team_id** | **Integer**| Team Id | [optional] 
- **arn** | **String**| ARN | [optional] 
- **external_id** | **String**| External Id | [optional] 
- **agency** | **String**| Agency | [optional] 
- **mission** | **String**| Mission | [optional] 
- **role** | **String**| Role | [optional] 
 
 ### Return type
 
@@ -165,7 +160,7 @@ Remove a(n) External Account
 # load the gem
 require 'esp_sdk'
 
-api_instance = ESP::ExternalaccountsApi.new
+api_instance = ESP::ExternalAccountsApi.new
 
 id = 56 # Integer | External Account Id
 
@@ -175,7 +170,7 @@ begin
   result = api_instance.destroy(id)
   p result
 rescue ESP::ApiError => e
-  puts "Exception when calling ExternalaccountsApi->destroy: #{e}"
+  puts "Exception when calling ExternalAccountsApi->destroy: #{e}"
 end
 ```
 
@@ -210,7 +205,7 @@ Get a list of External Accounts
 # load the gem
 require 'esp_sdk'
 
-api_instance = ESP::ExternalaccountsApi.new
+api_instance = ESP::ExternalAccountsApi.new
 
 opts = { 
   page: {'key' => "page_example"}, # Hash<String, String> | Page Number
@@ -223,7 +218,7 @@ begin
   result = api_instance.list(opts)
   p result
 rescue ESP::ApiError => e
-  puts "Exception when calling ExternalaccountsApi->list: #{e}"
+  puts "Exception when calling ExternalAccountsApi->list: #{e}"
 end
 ```
 
@@ -260,7 +255,7 @@ Show a single External Account
 # load the gem
 require 'esp_sdk'
 
-api_instance = ESP::ExternalaccountsApi.new
+api_instance = ESP::ExternalAccountsApi.new
 
 id = 56 # Integer | External Account Id
 
@@ -273,7 +268,7 @@ begin
   result = api_instance.show(id, opts)
   p result
 rescue ESP::ApiError => e
-  puts "Exception when calling ExternalaccountsApi->show: #{e}"
+  puts "Exception when calling ExternalAccountsApi->show: #{e}"
 end
 ```
 
@@ -300,7 +295,7 @@ No authorization required
 
 
 # **update**
-> ExternalAccount update(id, opts)
+> ExternalAccount update(id, arn, external_id, sub_organization_id, team_id, opts)
 
 Update a(n) External Account
 
@@ -309,22 +304,28 @@ Update a(n) External Account
 # load the gem
 require 'esp_sdk'
 
-api_instance = ESP::ExternalaccountsApi.new
+api_instance = ESP::ExternalAccountsApi.new
 
 id = 56 # Integer | External Account Id
 
+arn = "arn_example" # String | ARN
+
+external_id = 56 # Integer | External Id
+
+sub_organization_id = 56 # Integer | Sub Organization Id
+
+team_id = 56 # Integer | Team Id
+
 opts = { 
-  name: "name_example", # String | Name
-  nickname: "nickname_example", # String | Nickname
-  team_id: 56 # Integer | Team Id
+  name: "name_example" # String | Name
 }
 
 begin
   #Update a(n) External Account
-  result = api_instance.update(id, opts)
+  result = api_instance.update(id, arn, external_id, sub_organization_id, team_id, opts)
   p result
 rescue ESP::ApiError => e
-  puts "Exception when calling ExternalaccountsApi->update: #{e}"
+  puts "Exception when calling ExternalAccountsApi->update: #{e}"
 end
 ```
 
@@ -333,9 +334,11 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| External Account Id | 
+ **arn** | **String**| ARN | 
+ **external_id** | **Integer**| External Id | 
+ **sub_organization_id** | **Integer**| Sub Organization Id | 
+ **team_id** | **Integer**| Team Id | 
  **name** | **String**| Name | [optional] 
- **nickname** | **String**| Nickname | [optional] 
- **team_id** | **Integer**| Team Id | [optional] 
 
 ### Return type
 

@@ -23,13 +23,16 @@ module ESP
     # Unique Id
     attr_accessor :id
 
+    # The name of the account created
     attr_accessor :account
 
+    # Amazon Resource Name for the IAM role
     attr_accessor :arn
 
     # Created At
     attr_accessor :created_at
 
+    # External Identifier set on the role
     attr_accessor :external_id
 
     # Name
@@ -38,6 +41,7 @@ module ESP
     # Updated At
     attr_accessor :updated_at
 
+    # Cloudtrail Name
     attr_accessor :cloudtrail_name
 
     # Associated Organization

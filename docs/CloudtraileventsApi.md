@@ -1,11 +1,11 @@
-# ESP::CloudtraileventsApi
+# ESP::CloudTrailEventsApi
 
 All URIs are relative to *http://localhost/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list**](CloudtraileventsApi.md#list) | **GET** /api/v2/alerts/{alert_id}/cloud_trail_events.json_api | Get a list of Cloud Trail Events
-[**show**](CloudtraileventsApi.md#show) | **GET** /api/v2/cloud_trail_events/{id}.json_api | Show a single Cloud Trail Event
+[**list**](CloudTrailEventsApi.md#list) | **GET** /api/v2/alerts/{alert_id}/cloud_trail_events.json_api | Get a list of Cloud Trail Events
+[**show**](CloudTrailEventsApi.md#show) | **GET** /api/v2/cloud_trail_events/{id}.json_api | Show a single Cloud Trail Event
 
 
 # **list**
@@ -18,12 +18,13 @@ Get a list of Cloud Trail Events
 # load the gem
 require 'esp_sdk'
 
-api_instance = ESP::CloudtraileventsApi.new
+api_instance = ESP::CloudTrailEventsApi.new
 
 alert_id = 56 # Integer | The ID of the alert to retrieve cloud trail events for
 
 opts = { 
   page: {'key' => "page_example"}, # Hash<String, String> | Page Number
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
   include: "include_example" # String | Included Objects
 }
 
@@ -32,7 +33,7 @@ begin
   result = api_instance.list(alert_id, opts)
   p result
 rescue ESP::ApiError => e
-  puts "Exception when calling CloudtraileventsApi->list: #{e}"
+  puts "Exception when calling CloudTrailEventsApi->list: #{e}"
 end
 ```
 
@@ -42,6 +43,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **alert_id** | **Integer**| The ID of the alert to retrieve cloud trail events for | 
  **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
  **include** | **String**| Included Objects | [optional] 
 
 ### Return type
@@ -69,7 +71,7 @@ Show a single Cloud Trail Event
 # load the gem
 require 'esp_sdk'
 
-api_instance = ESP::CloudtraileventsApi.new
+api_instance = ESP::CloudTrailEventsApi.new
 
 id = 56 # Integer | Cloud Trail Event Id
 
@@ -82,7 +84,7 @@ begin
   result = api_instance.show(id, opts)
   p result
 rescue ESP::ApiError => e
-  puts "Exception when calling CloudtraileventsApi->show: #{e}"
+  puts "Exception when calling CloudTrailEventsApi->show: #{e}"
 end
 ```
 

@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost/*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**list**](SignaturesApi.md#list) | **PUT** /api/v2/signatures.json_api | Get a list of Signatures
-[**run**](SignaturesApi.md#run) | **POST** /api/v2/signatures/{id}/run.json_api | A successful call to this API returns a list of alerts for the specific signature identified by the id parameter. The body of the request must contain a json api compliant hash of attributes with type signatures
+[**run**](SignaturesApi.md#run) | **POST** /api/v2/signatures/{id}/run.json_api | Run a Signature
 [**show**](SignaturesApi.md#show) | **GET** /api/v2/signatures/{id}.json_api | Show a single Signature
 
 
@@ -60,9 +60,9 @@ No authorization required
 
 
 # **run**
-> Array&lt;Alert&gt; run(id, external_account_id, opts)
+> PaginatedCollection run(id, external_account_id, region)
 
-A successful call to this API returns a list of alerts for the specific signature identified by the id parameter. The body of the request must contain a json api compliant hash of attributes with type signatures
+Run a Signature
 
 ### Example
 ```ruby
@@ -73,15 +73,14 @@ api_instance = ESP::SignaturesApi.new
 
 id = 56 # Integer | The ID of the signature to run
 
-external_account_id = 56 # Integer | The ID of the external account to run this signature against
+external_account_id = 56 # Integer | The ID of the external account to run the signature against
 
-opts = { 
-  region: nil # Object | A single region name to run this signature against
-}
+region = "region_example" # String | A single region name to run this signature against
+
 
 begin
-  #A successful call to this API returns a list of alerts for the specific signature identified by the id parameter. The body of the request must contain a json api compliant hash of attributes with type signatures
-  result = api_instance.run(id, external_account_id, opts)
+  #Run a Signature
+  result = api_instance.run(id, external_account_id, region)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling SignaturesApi->run: #{e}"
@@ -93,12 +92,12 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| The ID of the signature to run | 
- **external_account_id** | **Integer**| The ID of the external account to run this signature against | 
- **region** | [**Object**](.md)| A single region name to run this signature against | [optional] 
+ **external_account_id** | **Integer**| The ID of the external account to run the signature against | 
+ **region** | **String**| A single region name to run this signature against | 
 
 ### Return type
 
-[**Array&lt;Alert&gt;**](Alert.md)
+[**PaginatedCollection**](PaginatedCollection.md)
 
 ### Authorization
 

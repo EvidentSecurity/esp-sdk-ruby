@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **event_time** | **DateTime** | ISO 8601 timestamp when the cloud trail event occurred | [optional] 
 **ip_address** | **String** | The apparent IP address that the request was made from for the given event | [optional] 
 **user_agent** | **String** | The agent through which the request was made, such as the AWS Management Console or an AWS SDK | [optional] 
+**username** | **String** | The user name associated with the cloud trail event | [optional] 
 **alert** | [**Alert**](Alert.md) | Associated Alert | [optional] 
 **alert_id** | **Integer** | Associated Alert Id | [optional] 
 

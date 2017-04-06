@@ -87,12 +87,11 @@ module ESP
 
     def parse_related_link(object, assoc, related_link)
       # parse the url to get the id if the data node is not returned
-      match = /(?<id>\d+)\.json$/.match(related_link)
-      return unless match
-      object[:"#{assoc}_id"] = match[:id][0]
+      match                  = /(?<id>\d+)\.json$/.match(related_link)
+      object[:"#{assoc}_id"] = match[:id][0] if match
       return unless object[:"#{assoc}_id"].nil?
-      uri                                      = URI.parse(related_link)
-      object[:"#{assoc.to_s.singularize}_ids"] = Rack::Utils.parse_nested_query(CGI.unescape(uri.query)).fetch(:filter, {}).fetch(:id_in, []) unless uri.query.nil?
+      uri = URI.parse(related_link)
+      object[:"#{Utils.singularize(assoc.to_s)}_ids"] = Rack::Utils.parse_nested_query(CGI.unescape(uri.query)).fetch('filter', {}).fetch('id_in', []) unless uri.query.nil?
     end
 
     def merge_included_objects!(object, assoc, data, included)

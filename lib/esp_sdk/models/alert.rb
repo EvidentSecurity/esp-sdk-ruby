@@ -33,7 +33,7 @@ module ESP
     attr_accessor :resource
 
     # ISO 8601 timestamp when the alert started being active
-    attr_accessor :stated_at
+    attr_accessor :started_at
 
     # Status of the alert
     attr_accessor :status
@@ -102,7 +102,7 @@ module ESP
         :'created_at' => :'created_at',
         :'ended_at' => :'ended_at',
         :'resource' => :'resource',
-        :'stated_at' => :'stated_at',
+        :'started_at' => :'started_at',
         :'status' => :'status',
         :'risk_level' => :'risk_level',
         :'updated_at' => :'updated_at',
@@ -134,7 +134,7 @@ module ESP
         :'created_at' => :'DateTime',
         :'ended_at' => :'DateTime',
         :'resource' => :'String',
-        :'stated_at' => :'DateTime',
+        :'started_at' => :'DateTime',
         :'status' => :'String',
         :'risk_level' => :'String',
         :'updated_at' => :'DateTime',
@@ -191,8 +191,8 @@ module ESP
         self.resource = attributes[:'resource']
       end
 
-      if attributes.has_key?(:'stated_at')
-        self.stated_at = attributes[:'stated_at']
+      if attributes.has_key?(:'started_at')
+        self.started_at = attributes[:'started_at']
       end
 
       if attributes.has_key?(:'status')
@@ -310,7 +310,7 @@ module ESP
           created_at == o.created_at &&
           ended_at == o.ended_at &&
           resource == o.resource &&
-          stated_at == o.stated_at &&
+          started_at == o.started_at &&
           status == o.status &&
           risk_level == o.risk_level &&
           updated_at == o.updated_at &&
@@ -341,7 +341,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [relationships, errors, id, created_at, ended_at, resource, stated_at, status, risk_level, updated_at, custom_signature, custom_signature_id, external_account, external_account_id, region, region_id, signature, signature_id, supression, supression_id, metadata, metadata_id, cloud_trail_events, cloud_trail_event_ids, tags, tag_ids].hash
+      [relationships, errors, id, created_at, ended_at, resource, started_at, status, risk_level, updated_at, custom_signature, custom_signature_id, external_account, external_account_id, region, region_id, signature, signature_id, supression, supression_id, metadata, metadata_id, cloud_trail_events, cloud_trail_event_ids, tags, tag_ids].hash
     end
 
     # Builds the object from hash

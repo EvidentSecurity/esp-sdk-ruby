@@ -22,7 +22,8 @@ api_instance = ESP::RegionsApi.new
 
 opts = { 
   page: {'key' => "page_example"}, # Hash<String, String> | Page Number
-  filter: {'key' => "filter_example"} # Hash<String, String> | Filter Params for Searching
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
+  include: "include_example" # String | Included Objects
 }
 
 begin
@@ -40,6 +41,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
  **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
+ **include** | **String**| Included Objects | [optional] 
 
 ### Return type
 

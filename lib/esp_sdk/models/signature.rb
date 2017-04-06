@@ -20,13 +20,13 @@ module ESP
     # Array of error messages if the request failed
     attr_accessor :errors
 
-    # Unique Id
+    # Unique ID
     attr_accessor :id
 
     # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
-    # The description of the signature
+    # The description of the user
     attr_accessor :description
 
     # The identifier of the signature
@@ -155,6 +155,38 @@ module ESP
         invalid_properties.push("invalid value for 'id', id cannot be nil.")
       end
 
+      if @created_at.nil?
+        invalid_properties.push("invalid value for 'created_at', created_at cannot be nil.")
+      end
+
+      if @description.nil?
+        invalid_properties.push("invalid value for 'description', description cannot be nil.")
+      end
+
+      if @identifier.nil?
+        invalid_properties.push("invalid value for 'identifier', identifier cannot be nil.")
+      end
+
+      if @name.nil?
+        invalid_properties.push("invalid value for 'name', name cannot be nil.")
+      end
+
+      if @resolution.nil?
+        invalid_properties.push("invalid value for 'resolution', resolution cannot be nil.")
+      end
+
+      if @risk_level.nil?
+        invalid_properties.push("invalid value for 'risk_level', risk_level cannot be nil.")
+      end
+
+      if @updated_at.nil?
+        invalid_properties.push("invalid value for 'updated_at', updated_at cannot be nil.")
+      end
+
+      if @service.nil?
+        invalid_properties.push("invalid value for 'service', service cannot be nil.")
+      end
+
       return invalid_properties
     end
 
@@ -162,6 +194,14 @@ module ESP
     # @return true if the model is valid
     def valid?
       return false if @id.nil?
+      return false if @created_at.nil?
+      return false if @description.nil?
+      return false if @identifier.nil?
+      return false if @name.nil?
+      return false if @resolution.nil?
+      return false if @risk_level.nil?
+      return false if @updated_at.nil?
+      return false if @service.nil?
       return true
     end
 
