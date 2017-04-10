@@ -250,102 +250,12 @@ module ESP
     # @return Array for valid properies with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push("invalid value for 'id', id cannot be nil.")
-      end
-
-      if @created_at.nil?
-        invalid_properties.push("invalid value for 'created_at', created_at cannot be nil.")
-      end
-
-      if @reason.nil?
-        invalid_properties.push("invalid value for 'reason', reason cannot be nil.")
-      end
-
-      if @resource.nil?
-        invalid_properties.push("invalid value for 'resource', resource cannot be nil.")
-      end
-
-      if @status.nil?
-        invalid_properties.push("invalid value for 'status', status cannot be nil.")
-      end
-
-      if @suppression_type.nil?
-        invalid_properties.push("invalid value for 'suppression_type', suppression_type cannot be nil.")
-      end
-
-      if @updated_at.nil?
-        invalid_properties.push("invalid value for 'updated_at', updated_at cannot be nil.")
-      end
-
-      if @organization.nil?
-        invalid_properties.push("invalid value for 'organization', organization cannot be nil.")
-      end
-
-      if @organization_id.nil?
-        invalid_properties.push("invalid value for 'organization_id', organization_id cannot be nil.")
-      end
-
-      if @created_by_id.nil?
-        invalid_properties.push("invalid value for 'created_by_id', created_by_id cannot be nil.")
-      end
-
-      if @external_accounts.nil?
-        invalid_properties.push("invalid value for 'external_accounts', external_accounts cannot be nil.")
-      end
-
-      if @external_account_ids.nil?
-        invalid_properties.push("invalid value for 'external_account_ids', external_account_ids cannot be nil.")
-      end
-
-      if @regions.nil?
-        invalid_properties.push("invalid value for 'regions', regions cannot be nil.")
-      end
-
-      if @region_ids.nil?
-        invalid_properties.push("invalid value for 'region_ids', region_ids cannot be nil.")
-      end
-
-      if @signatures.nil?
-        invalid_properties.push("invalid value for 'signatures', signatures cannot be nil.")
-      end
-
-      if @signature_ids.nil?
-        invalid_properties.push("invalid value for 'signature_ids', signature_ids cannot be nil.")
-      end
-
-      if @custom_signatures.nil?
-        invalid_properties.push("invalid value for 'custom_signatures', custom_signatures cannot be nil.")
-      end
-
-      if @custom_signature_ids.nil?
-        invalid_properties.push("invalid value for 'custom_signature_ids', custom_signature_ids cannot be nil.")
-      end
-
       return invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @created_at.nil?
-      return false if @reason.nil?
-      return false if @resource.nil?
-      return false if @status.nil?
-      return false if @suppression_type.nil?
-      return false if @updated_at.nil?
-      return false if @organization.nil?
-      return false if @organization_id.nil?
-      return false if @created_by_id.nil?
-      return false if @external_accounts.nil?
-      return false if @external_account_ids.nil?
-      return false if @regions.nil?
-      return false if @region_ids.nil?
-      return false if @signatures.nil?
-      return false if @signature_ids.nil?
-      return false if @custom_signatures.nil?
-      return false if @custom_signature_ids.nil?
       return true
     end
 

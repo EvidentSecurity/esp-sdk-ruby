@@ -97,32 +97,12 @@ module ESP
     # @return Array for valid properies with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push("invalid value for 'id', id cannot be nil.")
-      end
-
-      if @title.nil?
-        invalid_properties.push("invalid value for 'title', title cannot be nil.")
-      end
-
-      if @description.nil?
-        invalid_properties.push("invalid value for 'description', description cannot be nil.")
-      end
-
-      if @request_type.nil?
-        invalid_properties.push("invalid value for 'request_type', request_type cannot be nil.")
-      end
-
       return invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @title.nil?
-      return false if @description.nil?
-      return false if @request_type.nil?
       return true
     end
 

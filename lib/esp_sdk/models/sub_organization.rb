@@ -159,62 +159,12 @@ module ESP
     # @return Array for valid properies with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push("invalid value for 'id', id cannot be nil.")
-      end
-
-      if @name.nil?
-        invalid_properties.push("invalid value for 'name', name cannot be nil.")
-      end
-
-      if @created_at.nil?
-        invalid_properties.push("invalid value for 'created_at', created_at cannot be nil.")
-      end
-
-      if @updated_at.nil?
-        invalid_properties.push("invalid value for 'updated_at', updated_at cannot be nil.")
-      end
-
-      if @external_accounts.nil?
-        invalid_properties.push("invalid value for 'external_accounts', external_accounts cannot be nil.")
-      end
-
-      if @external_account_ids.nil?
-        invalid_properties.push("invalid value for 'external_account_ids', external_account_ids cannot be nil.")
-      end
-
-      if @organization.nil?
-        invalid_properties.push("invalid value for 'organization', organization cannot be nil.")
-      end
-
-      if @organization_id.nil?
-        invalid_properties.push("invalid value for 'organization_id', organization_id cannot be nil.")
-      end
-
-      if @teams.nil?
-        invalid_properties.push("invalid value for 'teams', teams cannot be nil.")
-      end
-
-      if @team_ids.nil?
-        invalid_properties.push("invalid value for 'team_ids', team_ids cannot be nil.")
-      end
-
       return invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @name.nil?
-      return false if @created_at.nil?
-      return false if @updated_at.nil?
-      return false if @external_accounts.nil?
-      return false if @external_account_ids.nil?
-      return false if @organization.nil?
-      return false if @organization_id.nil?
-      return false if @teams.nil?
-      return false if @team_ids.nil?
       return true
     end
 

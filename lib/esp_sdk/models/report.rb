@@ -199,82 +199,12 @@ module ESP
     # @return Array for valid properies with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push("invalid value for 'id', id cannot be nil.")
-      end
-
-      if @created_at.nil?
-        invalid_properties.push("invalid value for 'created_at', created_at cannot be nil.")
-      end
-
-      if @status.nil?
-        invalid_properties.push("invalid value for 'status', status cannot be nil.")
-      end
-
-      if @updated_at.nil?
-        invalid_properties.push("invalid value for 'updated_at', updated_at cannot be nil.")
-      end
-
-      if @alerts.nil?
-        invalid_properties.push("invalid value for 'alerts', alerts cannot be nil.")
-      end
-
-      if @alert_ids.nil?
-        invalid_properties.push("invalid value for 'alert_ids', alert_ids cannot be nil.")
-      end
-
-      if @organization.nil?
-        invalid_properties.push("invalid value for 'organization', organization cannot be nil.")
-      end
-
-      if @organization_id.nil?
-        invalid_properties.push("invalid value for 'organization_id', organization_id cannot be nil.")
-      end
-
-      if @sub_organization.nil?
-        invalid_properties.push("invalid value for 'sub_organization', sub_organization cannot be nil.")
-      end
-
-      if @sub_organization_id.nil?
-        invalid_properties.push("invalid value for 'sub_organization_id', sub_organization_id cannot be nil.")
-      end
-
-      if @team.nil?
-        invalid_properties.push("invalid value for 'team', team cannot be nil.")
-      end
-
-      if @team_id.nil?
-        invalid_properties.push("invalid value for 'team_id', team_id cannot be nil.")
-      end
-
-      if @external_account.nil?
-        invalid_properties.push("invalid value for 'external_account', external_account cannot be nil.")
-      end
-
-      if @external_account_id.nil?
-        invalid_properties.push("invalid value for 'external_account_id', external_account_id cannot be nil.")
-      end
-
       return invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @created_at.nil?
-      return false if @status.nil?
-      return false if @updated_at.nil?
-      return false if @alerts.nil?
-      return false if @alert_ids.nil?
-      return false if @organization.nil?
-      return false if @organization_id.nil?
-      return false if @sub_organization.nil?
-      return false if @sub_organization_id.nil?
-      return false if @team.nil?
-      return false if @team_id.nil?
-      return false if @external_account.nil?
-      return false if @external_account_id.nil?
       return true
     end
 

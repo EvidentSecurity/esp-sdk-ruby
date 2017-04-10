@@ -133,52 +133,12 @@ module ESP
     # @return Array for valid properies with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push("invalid value for 'id', id cannot be nil.")
-      end
-
-      if @code.nil?
-        invalid_properties.push("invalid value for 'code', code cannot be nil.")
-      end
-
-      if @created_at.nil?
-        invalid_properties.push("invalid value for 'created_at', created_at cannot be nil.")
-      end
-
-      if @default_interval.nil?
-        invalid_properties.push("invalid value for 'default_interval', default_interval cannot be nil.")
-      end
-
-      if @minimum_interval.nil?
-        invalid_properties.push("invalid value for 'minimum_interval', minimum_interval cannot be nil.")
-      end
-
-      if @name.nil?
-        invalid_properties.push("invalid value for 'name', name cannot be nil.")
-      end
-
-      if @policy_name.nil?
-        invalid_properties.push("invalid value for 'policy_name', policy_name cannot be nil.")
-      end
-
-      if @updated_at.nil?
-        invalid_properties.push("invalid value for 'updated_at', updated_at cannot be nil.")
-      end
-
       return invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @code.nil?
-      return false if @created_at.nil?
-      return false if @default_interval.nil?
-      return false if @minimum_interval.nil?
-      return false if @name.nil?
-      return false if @policy_name.nil?
-      return false if @updated_at.nil?
       return true
     end
 

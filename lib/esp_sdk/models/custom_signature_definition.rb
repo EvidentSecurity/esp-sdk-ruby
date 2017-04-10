@@ -182,87 +182,12 @@ module ESP
     # @return Array for valid properies with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push("invalid value for 'id', id cannot be nil.")
-      end
-
-      if @code.nil?
-        invalid_properties.push("invalid value for 'code', code cannot be nil.")
-      end
-
-      if @created_at.nil?
-        invalid_properties.push("invalid value for 'created_at', created_at cannot be nil.")
-      end
-
-      if @error_messages.nil?
-        invalid_properties.push("invalid value for 'error_messages', error_messages cannot be nil.")
-      end
-
-      if @language.nil?
-        invalid_properties.push("invalid value for 'language', language cannot be nil.")
-      end
-
-      if @status.nil?
-        invalid_properties.push("invalid value for 'status', status cannot be nil.")
-      end
-
-      if @updated_at.nil?
-        invalid_properties.push("invalid value for 'updated_at', updated_at cannot be nil.")
-      end
-
-      if @definition.nil?
-        invalid_properties.push("invalid value for 'definition', definition cannot be nil.")
-      end
-
-      if @definition_id.nil?
-        invalid_properties.push("invalid value for 'definition_id', definition_id cannot be nil.")
-      end
-
-      if @region.nil?
-        invalid_properties.push("invalid value for 'region', region cannot be nil.")
-      end
-
-      if @region_id.nil?
-        invalid_properties.push("invalid value for 'region_id', region_id cannot be nil.")
-      end
-
-      if @external_account.nil?
-        invalid_properties.push("invalid value for 'external_account', external_account cannot be nil.")
-      end
-
-      if @external_account_id.nil?
-        invalid_properties.push("invalid value for 'external_account_id', external_account_id cannot be nil.")
-      end
-
-      if @alerts.nil?
-        invalid_properties.push("invalid value for 'alerts', alerts cannot be nil.")
-      end
-
-      if @alert_ids.nil?
-        invalid_properties.push("invalid value for 'alert_ids', alert_ids cannot be nil.")
-      end
-
       return invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @code.nil?
-      return false if @created_at.nil?
-      return false if @error_messages.nil?
-      return false if @language.nil?
-      return false if @status.nil?
-      return false if @updated_at.nil?
-      return false if @definition.nil?
-      return false if @definition_id.nil?
-      return false if @region.nil?
-      return false if @region_id.nil?
-      return false if @external_account.nil?
-      return false if @external_account_id.nil?
-      return false if @alerts.nil?
-      return false if @alert_ids.nil?
       return true
     end
 

@@ -246,112 +246,12 @@ module ESP
     # @return Array for valid properies with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push("invalid value for 'id', id cannot be nil.")
-      end
-
-      if @created_at.nil?
-        invalid_properties.push("invalid value for 'created_at', created_at cannot be nil.")
-      end
-
-      if @email.nil?
-        invalid_properties.push("invalid value for 'email', email cannot be nil.")
-      end
-
-      if @time_zone.nil?
-        invalid_properties.push("invalid value for 'time_zone', time_zone cannot be nil.")
-      end
-
-      if @first_name.nil?
-        invalid_properties.push("invalid value for 'first_name', first_name cannot be nil.")
-      end
-
-      if @last_name.nil?
-        invalid_properties.push("invalid value for 'last_name', last_name cannot be nil.")
-      end
-
-      if @phone.nil?
-        invalid_properties.push("invalid value for 'phone', phone cannot be nil.")
-      end
-
-      if @mfa_enabled.nil?
-        invalid_properties.push("invalid value for 'mfa_enabled', mfa_enabled cannot be nil.")
-      end
-
-      if @disable_daily_emails.nil?
-        invalid_properties.push("invalid value for 'disable_daily_emails', disable_daily_emails cannot be nil.")
-      end
-
-      if @locked.nil?
-        invalid_properties.push("invalid value for 'locked', locked cannot be nil.")
-      end
-
-      if @locked_at.nil?
-        invalid_properties.push("invalid value for 'locked_at', locked_at cannot be nil.")
-      end
-
-      if @updated_at.nil?
-        invalid_properties.push("invalid value for 'updated_at', updated_at cannot be nil.")
-      end
-
-      if @organization.nil?
-        invalid_properties.push("invalid value for 'organization', organization cannot be nil.")
-      end
-
-      if @organization_id.nil?
-        invalid_properties.push("invalid value for 'organization_id', organization_id cannot be nil.")
-      end
-
-      if @sub_organizations.nil?
-        invalid_properties.push("invalid value for 'sub_organizations', sub_organizations cannot be nil.")
-      end
-
-      if @sub_organization_ids.nil?
-        invalid_properties.push("invalid value for 'sub_organization_ids', sub_organization_ids cannot be nil.")
-      end
-
-      if @teams.nil?
-        invalid_properties.push("invalid value for 'teams', teams cannot be nil.")
-      end
-
-      if @team_ids.nil?
-        invalid_properties.push("invalid value for 'team_ids', team_ids cannot be nil.")
-      end
-
-      if @role.nil?
-        invalid_properties.push("invalid value for 'role', role cannot be nil.")
-      end
-
-      if @role_id.nil?
-        invalid_properties.push("invalid value for 'role_id', role_id cannot be nil.")
-      end
-
       return invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @created_at.nil?
-      return false if @email.nil?
-      return false if @time_zone.nil?
-      return false if @first_name.nil?
-      return false if @last_name.nil?
-      return false if @phone.nil?
-      return false if @mfa_enabled.nil?
-      return false if @disable_daily_emails.nil?
-      return false if @locked.nil?
-      return false if @locked_at.nil?
-      return false if @updated_at.nil?
-      return false if @organization.nil?
-      return false if @organization_id.nil?
-      return false if @sub_organizations.nil?
-      return false if @sub_organization_ids.nil?
-      return false if @teams.nil?
-      return false if @team_ids.nil?
-      return false if @role.nil?
-      return false if @role_id.nil?
       return true
     end
 

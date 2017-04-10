@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **relationships** | **Object** | Links to Associated Objects | [optional] 
 **errors** | **Array&lt;String&gt;** | Array of error messages if the request failed | [optional] 
-**id** | **Integer** | Unique Id | 
+**id** | **Integer** | Unique Id | [optional] 
 **created_at** | **DateTime** | ISO 8601 timestamp when the resource was created | [optional] 
 **ended_at** | **DateTime** | ISO 8601 timestamp when the alert stopped being active | [optional] 
 **resource** | **String** | Resource identifier in Amazon | [optional] 

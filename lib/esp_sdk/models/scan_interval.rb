@@ -133,52 +133,12 @@ module ESP
     # @return Array for valid properies with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push("invalid value for 'id', id cannot be nil.")
-      end
-
-      if @created_at.nil?
-        invalid_properties.push("invalid value for 'created_at', created_at cannot be nil.")
-      end
-
-      if @interval.nil?
-        invalid_properties.push("invalid value for 'interval', interval cannot be nil.")
-      end
-
-      if @updated_at.nil?
-        invalid_properties.push("invalid value for 'updated_at', updated_at cannot be nil.")
-      end
-
-      if @external_account.nil?
-        invalid_properties.push("invalid value for 'external_account', external_account cannot be nil.")
-      end
-
-      if @external_account_id.nil?
-        invalid_properties.push("invalid value for 'external_account_id', external_account_id cannot be nil.")
-      end
-
-      if @service.nil?
-        invalid_properties.push("invalid value for 'service', service cannot be nil.")
-      end
-
-      if @service_id.nil?
-        invalid_properties.push("invalid value for 'service_id', service_id cannot be nil.")
-      end
-
       return invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @created_at.nil?
-      return false if @interval.nil?
-      return false if @updated_at.nil?
-      return false if @external_account.nil?
-      return false if @external_account_id.nil?
-      return false if @service.nil?
-      return false if @service_id.nil?
       return true
     end
 

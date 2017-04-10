@@ -164,67 +164,12 @@ module ESP
     # @return Array for valid properies with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push("invalid value for 'id', id cannot be nil.")
-      end
-
-      if @code.nil?
-        invalid_properties.push("invalid value for 'code', code cannot be nil.")
-      end
-
-      if @created_at.nil?
-        invalid_properties.push("invalid value for 'created_at', created_at cannot be nil.")
-      end
-
-      if @language.nil?
-        invalid_properties.push("invalid value for 'language', language cannot be nil.")
-      end
-
-      if @version_number.nil?
-        invalid_properties.push("invalid value for 'version_number', version_number cannot be nil.")
-      end
-
-      if @status.nil?
-        invalid_properties.push("invalid value for 'status', status cannot be nil.")
-      end
-
-      if @updated_at.nil?
-        invalid_properties.push("invalid value for 'updated_at', updated_at cannot be nil.")
-      end
-
-      if @custom_signature.nil?
-        invalid_properties.push("invalid value for 'custom_signature', custom_signature cannot be nil.")
-      end
-
-      if @custom_signature_id.nil?
-        invalid_properties.push("invalid value for 'custom_signature_id', custom_signature_id cannot be nil.")
-      end
-
-      if @results.nil?
-        invalid_properties.push("invalid value for 'results', results cannot be nil.")
-      end
-
-      if @result_ids.nil?
-        invalid_properties.push("invalid value for 'result_ids', result_ids cannot be nil.")
-      end
-
       return invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
-      return false if @code.nil?
-      return false if @created_at.nil?
-      return false if @language.nil?
-      return false if @version_number.nil?
-      return false if @status.nil?
-      return false if @updated_at.nil?
-      return false if @custom_signature.nil?
-      return false if @custom_signature_id.nil?
-      return false if @results.nil?
-      return false if @result_ids.nil?
       return true
     end
 
