@@ -1,6 +1,9 @@
 [![Build Status](https://travis-ci.org/EvidentSecurity/esp-sdk-ruby.svg?branch=master)](https://travis-ci.org/EvidentSecurity/esp-sdk-ruby)
 [![Gem Version](https://badge.fury.io/rb/esp-sdk-ruby.svg)](http://badge.fury.io/rb/esp-sdk-ruby)
 
+
+# This gem is still a work in progress.  Once it is ready for Beta testing, a beta release will be published to RubyGems.
+
 # esp_sdk
 
 ESP - the Ruby gem for the ESP Documentation
