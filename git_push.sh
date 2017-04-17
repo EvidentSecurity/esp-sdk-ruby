@@ -8,7 +8,8 @@
 
 git_user_id=$1
 git_repo_id=$2
-release_note=$3
+branch=$3
+release_note=$4
 
 if [ "$git_user_id" = "" ]; then
     git_user_id="GIT_USER_ID"
@@ -35,21 +36,21 @@ git add .
 git commit -m "$release_note"
 
 # Sets the new remote
-git_remote=`git remote`
-if [ "$git_remote" = "" ]; then # git remote not defined
+#git_remote=`git remote`
+#if [ "$git_remote" = "" ]; then # git remote not defined
+#
+#    if [ "$GIT_TOKEN" = "" ]; then
+#        echo "[INFO] \$GIT_TOKEN (environment variable) is not set. Using the git crediential in your environment."
+#        git remote add origin https://github.com/${git_user_id}/${git_repo_id}.git
+#    else
+#        git remote add origin https://${git_user_id}:${GIT_TOKEN}@github.com/${git_user_id}/${git_repo_id}.git
+#    fi
+#
+#fi
 
-    if [ "$GIT_TOKEN" = "" ]; then
-        echo "[INFO] \$GIT_TOKEN (environment variable) is not set. Using the git crediential in your environment."
-        git remote add origin https://github.com/${git_user_id}/${git_repo_id}.git
-    else
-        git remote add origin https://${git_user_id}:${GIT_TOKEN}@github.com/${git_user_id}/${git_repo_id}.git
-    fi
-
-fi
-
-git pull origin master
+#git pull origin master
 
 # Pushes (Forces) the changes in the local repository up to the remote repository
 echo "Git pushing to https://github.com/${git_user_id}/${git_repo_id}.git"
-git push origin master 2>&1 | grep -v 'To https'
+git push origin $branch 2>&1 | grep -v 'To https'
 
