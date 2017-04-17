@@ -222,12 +222,12 @@ module ESP
     end
 
     def next_page_params
-      @next_page_params ||= links[:next] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:next]).query)) : {}
+      @next_page_params ||= links[:next] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:next]).query, 'UTF-8')) : {}
     end
 
     def previous_page_params
       @previous_page_params ||= begin
-        previous = links[:prev] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:prev]).query)) : {}
+        previous = links[:prev] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:prev]).query, 'UTF-8')) : {}
         # The last page may not contain the full per page number of records, and will therefore come back with an incorrect size since the
         # size is based on the collection size.  This will mess up further calls to previous_page or first page so remove the size so it will bring back the default size.
         previous['page'].delete('size') if last_page? && previous['page']
@@ -236,7 +236,7 @@ module ESP
     end
 
     def last_page_params
-      @last_page_params ||= links[:last] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:last]).query)) : {}
+      @last_page_params ||= links[:last] ? ESP::Rack::Utils.parse_nested_query(CGI.unescape(URI.parse(links[:last]).query, 'UTF-8')) : {}
     end
 
     private
