@@ -33,6 +33,6 @@ git add .
 git commit -m "$release_note"
 
 # Pushes (Forces) the changes in the local repository up to the remote repository
-echo "Git pushing to https://github.com/${git_user_id}/${git_repo_id}.git"
+echo "Git pushing to https://github.com/EvidentSecurity/${git_repo_id}.git"
 git push origin $branch 2>&1 | grep -v 'To https'
 
