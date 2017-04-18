@@ -34,6 +34,5 @@ git commit -m "$release_note"
 
 # Pushes (Forces) the changes in the local repository up to the remote repository
 echo "Git pushing to git@github.com:EvidentSecurity/${git_repo_id}.git"
-git branch --set-upstream-to=origin/$branch
-git push -f origin $branch
+git push -u -f origin $branch
 
