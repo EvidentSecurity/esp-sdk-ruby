@@ -10,6 +10,7 @@ git_user_id=$1
 git_repo_id=$2
 branch=$3
 release_note=$4
+author=$5
 
 if [ "$git_user_id" = "" ]; then
     git_user_id="GIT_USER_ID"
@@ -30,14 +31,13 @@ fi
 git add .
 
 # Commits the tracked changes and prepares them to be pushed to a remote repository.
-git commit -m "$release_note"
+git commit -m "$release_note" --author "$author"
 
 # Sets the new remote
 git_remote=`git remote`
 if [ "$git_remote" = "" ]; then # git remote not defined
     git remote add origin ssh://git@${git_repo_id}.github.com/${git_user_id}/${git_repo_id}.git
 fi
-
 
 # Pushes (Forces) the changes in the local repository up to the remote repository
 echo "Git pushing to git@github.com:${git_user_id}/${git_repo_id}.git"

@@ -119,7 +119,7 @@ module ESP
         :'updated_at' => :'DateTime',
         :'organization' => :'Organization',
         :'organization_id' => :'Integer',
-        :'created_by' => :'Array<Object>',
+        :'created_by' => :'User',
         :'created_by_id' => :'Integer',
         :'external_accounts' => :'Array<ExternalAccount>',
         :'external_account_ids' => :'Array<Integer>',
@@ -187,9 +187,7 @@ module ESP
       end
 
       if attributes.has_key?(:'created_by')
-        if (value = attributes[:'created_by']).is_a?(Array)
-          self.created_by = value
-        end
+        self.created_by = attributes[:'created_by']
       end
 
       if attributes.has_key?(:'created_by_id')
