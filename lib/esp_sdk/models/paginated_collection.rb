@@ -14,11 +14,13 @@ require 'date'
 module ESP
   # A Paginated Collection of Objects
   class PaginatedCollection < BaseObject
+    # Array of objects
     attr_accessor :data
 
+    # Array of related objects returned using the 'included' parameter.
     attr_accessor :included
 
-    # Links
+    # Pagination Links
     attr_accessor :links
 
 
