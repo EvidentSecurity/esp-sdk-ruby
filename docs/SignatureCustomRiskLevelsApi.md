@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost/*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create**](SignatureCustomRiskLevelsApi.md#create) | **POST** /api/v2/signature_custom_risk_levels.json_api | Create a(n) Signature Custom Risk Level
-[**destroy**](SignatureCustomRiskLevelsApi.md#destroy) | **DELETE** /api/v2/signature_custom_risk_levels/{id}.json_api | Remove a(n) Signature Custom Risk Level
+[**destroy**](SignatureCustomRiskLevelsApi.md#destroy) | **DELETE** /api/v2/signature_custom_risk_levels/{id}.json_api | Remove a(n) SignatureCustomRiskLevel
 [**list**](SignatureCustomRiskLevelsApi.md#list) | **GET** /api/v2/external_accounts/{external_account_id}/signature_custom_risk_levels.json_api | Get a list of Signature Custom Risk Levels
 [**show**](SignatureCustomRiskLevelsApi.md#show) | **GET** /api/v2/signature_custom_risk_levels/{id}.json_api | Show a single Signature Custom Risk Level
 [**update**](SignatureCustomRiskLevelsApi.md#update) | **PATCH** /api/v2/signature_custom_risk_levels/{id}.json_api | Update a(n) Signature Custom Risk Level
@@ -58,14 +58,14 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
 # **destroy**
-> Object destroy(id)
+> SignatureCustomRiskLevel destroy(id)
 
-Remove a(n) Signature Custom Risk Level
+Remove a(n) SignatureCustomRiskLevel
 
 ### Example
 ```ruby
@@ -74,11 +74,11 @@ require 'esp_sdk'
 
 api_instance = ESP::SignatureCustomRiskLevelsApi.new
 
-id = 56 # Integer | Signature Custom Risk Level Id
+id = 56 # Integer | SignatureCustomRiskLevel Id
 
 
 begin
-  #Remove a(n) Signature Custom Risk Level
+  #Remove a(n) SignatureCustomRiskLevel
   result = api_instance.destroy(id)
   p result
 rescue ESP::ApiError => e
@@ -90,11 +90,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Signature Custom Risk Level Id | 
+ **id** | **Integer**| SignatureCustomRiskLevel Id | 
 
 ### Return type
 
-**Object**
+[**SignatureCustomRiskLevel**](SignatureCustomRiskLevel.md)
 
 ### Authorization
 
@@ -103,7 +103,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -122,9 +122,8 @@ api_instance = ESP::SignatureCustomRiskLevelsApi.new
 external_account_id = 56 # Integer | The ID of the external account to retrieve
 
 opts = { 
-  page: {'key' => "page_example"}, # Hash<String, String> | Page Number
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
-  include: "include_example" # String | Included Objects
+  include: "include_example", # String | Objects that can be included in the response:  external_account,signature  See Including Objects for more information.
+  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
 }
 
 begin
@@ -141,9 +140,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account to retrieve | 
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
- **include** | **String**| Included Objects | [optional] 
+ **include** | **String**| Objects that can be included in the response:  external_account,signature  See Including Objects for more information. | [optional] 
+ **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
 
 ### Return type
 
@@ -156,7 +154,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -175,7 +173,7 @@ api_instance = ESP::SignatureCustomRiskLevelsApi.new
 id = 56 # Integer | Signature Custom Risk Level Id
 
 opts = { 
-  include: "include_example" # String | Included Objects
+  include: "include_example" # String | Objects that can be included in the response:  external_account,signature  See Including Objects for more information.
 }
 
 begin
@@ -192,7 +190,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Signature Custom Risk Level Id | 
- **include** | **String**| Included Objects | [optional] 
+ **include** | **String**| Objects that can be included in the response:  external_account,signature  See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -205,7 +203,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -259,7 +257,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 

@@ -3,11 +3,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**relationships** | **Object** | Links to Associated Objects | [optional] 
-**errors** | **Array&lt;String&gt;** | Array of error messages if the request failed | [optional] 
-**id** | **Integer** | Unique Id | [optional] 
+**id** | **Integer** | Unique ID | [optional] 
 **title** | **String** | Subject of your message | [optional] 
 **description** | **String** | Body of your message | [optional] 
 **request_type** | **String** | Type of contact request | [optional] 
+**user** | [**User**](User.md) | Associated User | [optional] 
+**user_id** | **Integer** | Associated User Id | [optional] 
+**errors** | **Array&lt;String&gt;** | Array of error messages if the request failed | [optional] 
 
 

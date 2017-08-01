@@ -3,9 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**relationships** | **Object** | Links to Associated Objects | [optional] 
-**errors** | **Array&lt;String&gt;** | Array of error messages if the request failed | [optional] 
-**id** | **Integer** | Unique Id | [optional] 
+**id** | **Integer** | Unique ID | [optional] 
 **code** | **String** | AWS region code. This code is underscored | [optional] 
+**errors** | **Array&lt;String&gt;** | Array of error messages if the request failed | [optional] 
 
 

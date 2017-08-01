@@ -1,3 +1,5 @@
+require 'forwardable'
+
 module AddPaginationMethods
   # @private
 
@@ -20,7 +22,6 @@ module ESP
     include Enumerable
 
     def_delegators :data, :[], :length, :size
-
 
     # Internal variable used to call the ESP api.
     # @return [Hash]

@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list**](ServicesApi.md#list) | **GET** /api/v2/services.json_api | Get a list of Services
+[**list**](ServicesApi.md#list) | **PUT** /api/v2/services.json_api | Get a list of Services
 [**show**](ServicesApi.md#show) | **GET** /api/v2/services/{id}.json_api | Show a single Service
 
 
@@ -21,9 +21,8 @@ require 'esp_sdk'
 api_instance = ESP::ServicesApi.new
 
 opts = { 
-  page: {'key' => "page_example"}, # Hash<String, String> | Page Number
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
-  include: "include_example" # String | Included Objects
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, name, policy_name] Matching Searchable Attributes: [name, policy_name] Limited Searchable Attribute: [provider_eq]   Example: filter: {name_eq: 'Bob'}
+  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
 }
 
 begin
@@ -39,9 +38,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
- **include** | **String**| Included Objects | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, name, policy_name] Matching Searchable Attributes: [name, policy_name] Limited Searchable Attribute: [provider_eq]   Example: filter: {name_eq: &#39;Bob&#39;} | [optional] 
+ **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
 
 ### Return type
 
@@ -54,12 +52,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
 # **show**
-> Service show(id, opts)
+> Service show(id)
 
 Show a single Service
 
@@ -72,13 +70,10 @@ api_instance = ESP::ServicesApi.new
 
 id = 56 # Integer | Service Id
 
-opts = { 
-  include: "include_example" # String | Included Objects
-}
 
 begin
   #Show a single Service
-  result = api_instance.show(id, opts)
+  result = api_instance.show(id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling ServicesApi->show: #{e}"
@@ -90,7 +85,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Service Id | 
- **include** | **String**| Included Objects | [optional] 
 
 ### Return type
 
@@ -103,7 +97,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 

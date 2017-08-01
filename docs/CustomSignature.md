@@ -3,8 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**relationships** | **Object** | Links to Associated Objects | [optional] 
-**errors** | **Array&lt;String&gt;** | Array of error messages if the request failed | [optional] 
 **id** | **Integer** | Unique ID | [optional] 
 **created_at** | **DateTime** | ISO 8601 timestamp when the resource was created | [optional] 
 **description** | **String** | The description of the custom signature | [optional] 
@@ -16,8 +14,9 @@ Name | Type | Description | Notes
 **organization** | [**Organization**](Organization.md) | Associated Organization | [optional] 
 **organization_id** | **Integer** | Associated Organization Id | [optional] 
 **teams** | [**Array&lt;Team&gt;**](Team.md) | Associated Teams | [optional] 
-**team_ids** | **Array&lt;Integer&gt;** | Associated Team Ids | [optional] 
-**definitions** | [**Array&lt;CustomSignatureDefinition&gt;**](CustomSignatureDefinition.md) | Associated Custom Signature Definitions | [optional] 
-**definition_ids** | **Array&lt;Integer&gt;** | Associated Custom Signature Definition Ids | [optional] 
+**team_ids** | **Array&lt;Integer&gt;** | Associated Teams Ids | [optional] 
+**definitions** | [**Array&lt;CustomSignatureDefinition&gt;**](CustomSignatureDefinition.md) | Associated Definitions | [optional] 
+**definition_ids** | **Array&lt;Integer&gt;** | Associated Definitions Ids | [optional] 
+**errors** | **Array&lt;String&gt;** | Array of error messages if the request failed | [optional] 
 
 

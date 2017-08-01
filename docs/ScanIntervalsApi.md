@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost/*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create**](ScanIntervalsApi.md#create) | **POST** /api/v2/scan_intervals.json_api | Create a(n) Scan Interval
-[**destroy**](ScanIntervalsApi.md#destroy) | **DELETE** /api/v2/scan_intervals/{id}.json_api | Remove a(n) Scan Interval
+[**destroy**](ScanIntervalsApi.md#destroy) | **DELETE** /api/v2/scan_intervals/{id}.json_api | Remove a(n) ScanInterval
 [**list**](ScanIntervalsApi.md#list) | **GET** /api/v2/external_accounts/{external_account_id}/scan_intervals.json_api | Get a list of Scan Intervals
 [**show**](ScanIntervalsApi.md#show) | **GET** /api/v2/scan_intervals/{id}.json_api | Show a single Scan Interval
 [**update**](ScanIntervalsApi.md#update) | **PATCH** /api/v2/scan_intervals/{id}.json_api | Update a(n) Scan Interval
@@ -58,14 +58,14 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
 # **destroy**
-> Object destroy(id)
+> ScanInterval destroy(id)
 
-Remove a(n) Scan Interval
+Remove a(n) ScanInterval
 
 ### Example
 ```ruby
@@ -74,11 +74,11 @@ require 'esp_sdk'
 
 api_instance = ESP::ScanIntervalsApi.new
 
-id = 56 # Integer | Scan Interval Id
+id = 56 # Integer | ScanInterval Id
 
 
 begin
-  #Remove a(n) Scan Interval
+  #Remove a(n) ScanInterval
   result = api_instance.destroy(id)
   p result
 rescue ESP::ApiError => e
@@ -90,11 +90,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Scan Interval Id | 
+ **id** | **Integer**| ScanInterval Id | 
 
 ### Return type
 
-**Object**
+[**ScanInterval**](ScanInterval.md)
 
 ### Authorization
 
@@ -103,7 +103,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -122,9 +122,8 @@ api_instance = ESP::ScanIntervalsApi.new
 external_account_id = 56 # Integer | 
 
 opts = { 
-  page: {'key' => "page_example"}, # Hash<String, String> | Page Number
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
-  include: "include_example" # String | Included Objects
+  include: "include_example", # String | Objects that can be included in the response:  external_account,service  See Including Objects for more information.
+  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
 }
 
 begin
@@ -141,9 +140,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**|  | 
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
- **include** | **String**| Included Objects | [optional] 
+ **include** | **String**| Objects that can be included in the response:  external_account,service  See Including Objects for more information. | [optional] 
+ **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
 
 ### Return type
 
@@ -156,7 +154,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -175,7 +173,7 @@ api_instance = ESP::ScanIntervalsApi.new
 id = 56 # Integer | Scan Interval Id
 
 opts = { 
-  include: "include_example" # String | Included Objects
+  include: "include_example" # String | Objects that can be included in the response:  external_account,service  See Including Objects for more information.
 }
 
 begin
@@ -192,7 +190,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Scan Interval Id | 
- **include** | **String**| Included Objects | [optional] 
+ **include** | **String**| Objects that can be included in the response:  external_account,service  See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -205,7 +203,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -259,7 +257,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 

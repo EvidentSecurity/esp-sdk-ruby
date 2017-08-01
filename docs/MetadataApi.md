@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **for_alert**
-> for_alert(alert_id)
+> Metadata for_alert(alert_id)
 
 Show the metadata for an alert
 
@@ -25,7 +25,8 @@ alert_id = 56 # Integer | Alert Id
 
 begin
   #Show the metadata for an alert
-  api_instance.for_alert(alert_id)
+  result = api_instance.for_alert(alert_id)
+  p result
 rescue ESP::ApiError => e
   puts "Exception when calling MetadataApi->for_alert: #{e}"
 end
@@ -39,7 +40,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+[**Metadata**](Metadata.md)
 
 ### Authorization
 
@@ -48,12 +49,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
 # **show**
-> Metadata show(id, opts)
+> Metadata show(id)
 
 Show a single Metadata
 
@@ -66,13 +67,10 @@ api_instance = ESP::MetadataApi.new
 
 id = 56 # Integer | Metadata Id
 
-opts = { 
-  include: "include_example" # String | Included Objects
-}
 
 begin
   #Show a single Metadata
-  result = api_instance.show(id, opts)
+  result = api_instance.show(id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling MetadataApi->show: #{e}"
@@ -84,7 +82,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Metadata Id | 
- **include** | **String**| Included Objects | [optional] 
 
 ### Return type
 
@@ -97,7 +94,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 

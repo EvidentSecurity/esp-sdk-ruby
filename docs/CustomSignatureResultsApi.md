@@ -4,15 +4,67 @@ All URIs are relative to *http://localhost/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](CustomSignatureResultsApi.md#create) | **POST** /api/v2/custom_signature_results.json_api | Create a(n) Result
-[**list**](CustomSignatureResultsApi.md#list) | **PUT** /api/v2/custom_signature_results.json_api | Get a list of Results
-[**show**](CustomSignatureResultsApi.md#show) | **GET** /api/v2/custom_signature_results/{id}.json_api | Show a single Result
+[**alerts**](CustomSignatureResultsApi.md#alerts) | **GET** /api/v2/custom_signature_results/{custom_signature_result_id}/alerts.json_api | Returns the alerts for a given result. Note that this format is slightly different than the standard alert format. A successful call to this API returns a list of alerts for the custom signature result identified by the id parameter.
+[**create**](CustomSignatureResultsApi.md#create) | **POST** /api/v2/custom_signature_results.json_api | Create a(n) Custom Signature/Result
+[**list**](CustomSignatureResultsApi.md#list) | **PUT** /api/v2/custom_signature_results.json_api | Get a list of Custom Signature/Results
+[**show**](CustomSignatureResultsApi.md#show) | **GET** /api/v2/custom_signature_results/{id}.json_api | Show a single Custom Signature/Result
+
+
+# **alerts**
+> PaginatedCollection alerts(custom_signature_result_id, opts)
+
+Returns the alerts for a given result. Note that this format is slightly different than the standard alert format. A successful call to this API returns a list of alerts for the custom signature result identified by the id parameter.
+
+### Example
+```ruby
+# load the gem
+require 'esp_sdk'
+
+api_instance = ESP::CustomSignatureResultsApi.new
+
+custom_signature_result_id = 56 # Integer | Custom Signature Result Id
+
+opts = { 
+  include: "include_example", # String | Objects that can be included in the response:  external_account,region,custom_signature  See Including Objects for more information.
+  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
+}
+
+begin
+  #Returns the alerts for a given result. Note that this format is slightly different than the standard alert format. A successful call to this API returns a list of alerts for the custom signature result identified by the id parameter.
+  result = api_instance.alerts(custom_signature_result_id, opts)
+  p result
+rescue ESP::ApiError => e
+  puts "Exception when calling CustomSignatureResultsApi->alerts: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **custom_signature_result_id** | **Integer**| Custom Signature Result Id | 
+ **include** | **String**| Objects that can be included in the response:  external_account,region,custom_signature  See Including Objects for more information. | [optional] 
+ **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
+
+### Return type
+
+[**PaginatedCollection**](PaginatedCollection.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/vnd.api+json
+
 
 
 # **create**
-> Result create(code, custom_signature_definition_id, external_account_id, language, region_id, opts)
+> CustomSignatureResult create(code, custom_signature_definition_id, external_account_id, language, region_id, opts)
 
-Create a(n) Result
+Create a(n) Custom Signature/Result
 
 ### Example
 ```ruby
@@ -36,7 +88,7 @@ opts = {
 }
 
 begin
-  #Create a(n) Result
+  #Create a(n) Custom Signature/Result
   result = api_instance.create(code, custom_signature_definition_id, external_account_id, language, region_id, opts)
   p result
 rescue ESP::ApiError => e
@@ -57,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Result**](Result.md)
+[**CustomSignatureResult**](CustomSignatureResult.md)
 
 ### Authorization
 
@@ -66,14 +118,14 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
 # **list**
 > PaginatedCollection list(opts)
 
-Get a list of Results
+Get a list of Custom Signature/Results
 
 ### Example
 ```ruby
@@ -83,13 +135,13 @@ require 'esp_sdk'
 api_instance = ESP::CustomSignatureResultsApi.new
 
 opts = { 
-  page: {'key' => "page_example"}, # Hash<String, String> | Page Number
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
-  include: "include_example" # String | Included Objects
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, language, status]    Searchable Associations: [definition, region, external_account] See the filter parameter of the association's list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: 'Bob'}
+  include: "include_example", # String | Objects that can be included in the response:  external_account,region,definition,alerts  See Including Objects for more information.
+  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
 }
 
 begin
-  #Get a list of Results
+  #Get a list of Custom Signature/Results
   result = api_instance.list(opts)
   p result
 rescue ESP::ApiError => e
@@ -101,9 +153,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
- **include** | **String**| Included Objects | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, language, status]    Searchable Associations: [definition, region, external_account] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;} | [optional] 
+ **include** | **String**| Objects that can be included in the response:  external_account,region,definition,alerts  See Including Objects for more information. | [optional] 
+ **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
 
 ### Return type
 
@@ -116,14 +168,14 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
 # **show**
-> Result show(id, opts)
+> CustomSignatureResult show(id, opts)
 
-Show a single Result
+Show a single Custom Signature/Result
 
 ### Example
 ```ruby
@@ -132,14 +184,14 @@ require 'esp_sdk'
 
 api_instance = ESP::CustomSignatureResultsApi.new
 
-id = 56 # Integer | Result Id
+id = 56 # Integer | Custom Signature/Result Id
 
 opts = { 
-  include: "include_example" # String | Included Objects
+  include: "include_example" # String | Objects that can be included in the response:  external_account,region,definition,alerts  See Including Objects for more information.
 }
 
 begin
-  #Show a single Result
+  #Show a single Custom Signature/Result
   result = api_instance.show(id, opts)
   p result
 rescue ESP::ApiError => e
@@ -151,12 +203,12 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Result Id | 
- **include** | **String**| Included Objects | [optional] 
+ **id** | **Integer**| Custom Signature/Result Id | 
+ **include** | **String**| Objects that can be included in the response:  external_account,region,definition,alerts  See Including Objects for more information. | [optional] 
 
 ### Return type
 
-[**Result**](Result.md)
+[**CustomSignatureResult**](CustomSignatureResult.md)
 
 ### Authorization
 
@@ -165,7 +217,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 

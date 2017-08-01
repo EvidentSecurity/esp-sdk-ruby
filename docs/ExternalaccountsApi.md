@@ -4,95 +4,11 @@ All URIs are relative to *http://localhost/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_v2_external_accounts_id_complete_json_api_patch**](ExternalAccountsApi.md#api_v2_external_accounts_id_complete_json_api_patch) | **PATCH** /api/v2/external_accounts/{id}/complete.json_api | Show the latest completed report for an External Account
-[**api_v2_external_accounts_subscribed_accounts_json_api_get**](ExternalAccountsApi.md#api_v2_external_accounts_subscribed_accounts_json_api_get) | **GET** /api/v2/external_accounts/subscribed_accounts.json_api | Show a list of Subscribed Accounts
 [**create**](ExternalAccountsApi.md#create) | **POST** /api/v2/external_accounts.json_api | Create a(n) External Account
-[**destroy**](ExternalAccountsApi.md#destroy) | **DELETE** /api/v2/external_accounts/{id}.json_api | Remove a(n) External Account
+[**destroy**](ExternalAccountsApi.md#destroy) | **DELETE** /api/v2/external_accounts/{id}.json_api | Remove a(n) ExternalAccount
 [**list**](ExternalAccountsApi.md#list) | **PUT** /api/v2/external_accounts.json_api | Get a list of External Accounts
 [**show**](ExternalAccountsApi.md#show) | **GET** /api/v2/external_accounts/{id}.json_api | Show a single External Account
 [**update**](ExternalAccountsApi.md#update) | **PATCH** /api/v2/external_accounts/{id}.json_api | Update a(n) External Account
-
-
-# **api_v2_external_accounts_id_complete_json_api_patch**
-> api_v2_external_accounts_id_complete_json_api_patch(id)
-
-Show the latest completed report for an External Account
-
-### Example
-```ruby
-# load the gem
-require 'esp_sdk'
-
-api_instance = ESP::ExternalAccountsApi.new
-
-id = 56 # Integer | External Account Id
-
-
-begin
-  #Show the latest completed report for an External Account
-  api_instance.api_v2_external_accounts_id_complete_json_api_patch(id)
-rescue ESP::ApiError => e
-  puts "Exception when calling ExternalAccountsApi->api_v2_external_accounts_id_complete_json_api_patch: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Integer**| External Account Id | 
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-
-# **api_v2_external_accounts_subscribed_accounts_json_api_get**
-> api_v2_external_accounts_subscribed_accounts_json_api_get
-
-Show a list of Subscribed Accounts
-
-### Example
-```ruby
-# load the gem
-require 'esp_sdk'
-
-api_instance = ESP::ExternalAccountsApi.new
-
-begin
-  #Show a list of Subscribed Accounts
-  api_instance.api_v2_external_accounts_subscribed_accounts_json_api_get
-rescue ESP::ApiError => e
-  puts "Exception when calling ExternalAccountsApi->api_v2_external_accounts_subscribed_accounts_json_api_get: #{e}"
-end
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
 
 
 # **create**
@@ -107,14 +23,14 @@ require 'esp_sdk'
 
 api_instance = ESP::ExternalAccountsApi.new
 
-team_id = 56 # Integer | Team Id
+team_id = 56 # Integer | The ID of the team the external account will belong to
 
-arn = "arn_example" # String | ARN
+arn = "arn_example" # String | Amazon Resource Name for the IAM role
 
-external_id = "external_id_example" # String | External Id
+external_id = "external_id_example" # String | External identifier set on the role
 
 opts = { 
-  name: "name_example" # String | Name
+  name: "name_example" # String | The name for this external account
 }
 
 begin
@@ -130,10 +46,10 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **team_id** | **Integer**| Team Id | 
- **arn** | **String**| ARN | 
- **external_id** | **String**| External Id | 
- **name** | **String**| Name | [optional] 
+ **team_id** | **Integer**| The ID of the team the external account will belong to | 
+ **arn** | **String**| Amazon Resource Name for the IAM role | 
+ **external_id** | **String**| External identifier set on the role | 
+ **name** | **String**| The name for this external account | [optional] 
 
 ### Return type
 
@@ -146,14 +62,14 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
 # **destroy**
-> Object destroy(id)
+> ExternalAccount destroy(id)
 
-Remove a(n) External Account
+Remove a(n) ExternalAccount
 
 ### Example
 ```ruby
@@ -162,11 +78,11 @@ require 'esp_sdk'
 
 api_instance = ESP::ExternalAccountsApi.new
 
-id = 56 # Integer | External Account Id
+id = 56 # Integer | ExternalAccount Id
 
 
 begin
-  #Remove a(n) External Account
+  #Remove a(n) ExternalAccount
   result = api_instance.destroy(id)
   p result
 rescue ESP::ApiError => e
@@ -178,11 +94,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| External Account Id | 
+ **id** | **Integer**| ExternalAccount Id | 
 
 ### Return type
 
-**Object**
+[**ExternalAccount**](ExternalAccount.md)
 
 ### Authorization
 
@@ -191,7 +107,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -208,9 +124,9 @@ require 'esp_sdk'
 api_instance = ESP::ExternalAccountsApi.new
 
 opts = { 
-  page: {'key' => "page_example"}, # Hash<String, String> | Page Number
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
-  include: "include_example" # String | Included Objects
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, disabled_signatures] See the filter parameter of the association's list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: 'Bob'}
+  include: "include_example", # String | Objects that can be included in the response:  organization,sub_organization,team,scan_intervals,disabled_signatures,credentials  See Including Objects for more information.
+  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
 }
 
 begin
@@ -226,9 +142,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
- **include** | **String**| Included Objects | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, disabled_signatures] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;} | [optional] 
+ **include** | **String**| Objects that can be included in the response:  organization,sub_organization,team,scan_intervals,disabled_signatures,credentials  See Including Objects for more information. | [optional] 
+ **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
 
 ### Return type
 
@@ -241,7 +157,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -260,7 +176,7 @@ api_instance = ESP::ExternalAccountsApi.new
 id = 56 # Integer | External Account Id
 
 opts = { 
-  include: "include_example" # String | Included Objects
+  include: "include_example" # String | Objects that can be included in the response:  organization,sub_organization,team,scan_intervals,disabled_signatures,credentials  See Including Objects for more information.
 }
 
 begin
@@ -277,7 +193,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| External Account Id | 
- **include** | **String**| Included Objects | [optional] 
+ **include** | **String**| Objects that can be included in the response:  organization,sub_organization,team,scan_intervals,disabled_signatures,credentials  See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -290,7 +206,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -308,16 +224,16 @@ api_instance = ESP::ExternalAccountsApi.new
 
 id = 56 # Integer | External Account Id
 
-arn = "arn_example" # String | ARN
+arn = "arn_example" # String | Amazon Resource Name for the IAM role
 
-external_id = 56 # Integer | External Id
+external_id = 56 # Integer | External identifier set on the role
 
-sub_organization_id = 56 # Integer | Sub Organization Id
+sub_organization_id = 56 # Integer | The ID of the sub organization the external account will belong to
 
-team_id = 56 # Integer | Team Id
+team_id = 56 # Integer | The ID of the team the external account will belong to
 
 opts = { 
-  name: "name_example" # String | Name
+  name: "name_example" # String | The name for this external account
 }
 
 begin
@@ -334,11 +250,11 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| External Account Id | 
- **arn** | **String**| ARN | 
- **external_id** | **Integer**| External Id | 
- **sub_organization_id** | **Integer**| Sub Organization Id | 
- **team_id** | **Integer**| Team Id | 
- **name** | **String**| Name | [optional] 
+ **arn** | **String**| Amazon Resource Name for the IAM role | 
+ **external_id** | **Integer**| External identifier set on the role | 
+ **sub_organization_id** | **Integer**| The ID of the sub organization the external account will belong to | 
+ **team_id** | **Integer**| The ID of the team the external account will belong to | 
+ **name** | **String**| The name for this external account | [optional] 
 
 ### Return type
 
@@ -351,7 +267,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
