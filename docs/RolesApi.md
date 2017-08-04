@@ -21,9 +21,8 @@ require 'esp_sdk'
 api_instance = ESP::RolesApi.new
 
 opts = { 
-  page: {'key' => "page_example"}, # Hash<String, String> | Page Number
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
-  include: "include_example" # String | Included Objects
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, name, role_name]   Sortable Attributes: [name, role_name, updated_at]  Example: filter: {name_eq: 'Bob'}
+  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
 }
 
 begin
@@ -39,9 +38,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
- **include** | **String**| Included Objects | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, name, role_name]   Sortable Attributes: [name, role_name, updated_at]  Example: filter: {name_eq: &#39;Bob&#39;} | [optional] 
+ **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
 
 ### Return type
 
@@ -54,12 +52,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
 # **show**
-> Role show(id, opts)
+> Role show(id)
 
 Show a single Role
 
@@ -72,13 +70,10 @@ api_instance = ESP::RolesApi.new
 
 id = 56 # Integer | Role Id
 
-opts = { 
-  include: "include_example" # String | Included Objects
-}
 
 begin
   #Show a single Role
-  result = api_instance.show(id, opts)
+  result = api_instance.show(id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling RolesApi->show: #{e}"
@@ -90,7 +85,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Role Id | 
- **include** | **String**| Included Objects | [optional] 
 
 ### Return type
 
@@ -103,7 +97,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 

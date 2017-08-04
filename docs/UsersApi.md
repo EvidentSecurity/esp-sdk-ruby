@@ -33,7 +33,7 @@ opts = {
   role_id: "role_id_example", # String | The role of the user
   sub_organization_ids: [56], # Array<Integer> | A list of sub organization IDs that the user should have access to
   team_ids: [56], # Array<Integer> | A list of team IDs that the user should have access to
-  disable_daily_emails: "disable_daily_emails_example", # String | Whether the daily emails should be turned off or not. Valid values are true/false
+  disable_daily_emails: true, # BOOLEAN | Whether the daily emails should be turned off or not.
   phone: "phone_example", # String | The phone number of the user
   time_zone: "time_zone_example" # String | The time zone of the user. See Time Zones for a list of valid time zones
 }
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
  **role_id** | **String**| The role of the user | [optional] 
  **sub_organization_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of sub organization IDs that the user should have access to | [optional] 
  **team_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of team IDs that the user should have access to | [optional] 
- **disable_daily_emails** | **String**| Whether the daily emails should be turned off or not. Valid values are true/false | [optional] 
+ **disable_daily_emails** | **BOOLEAN**| Whether the daily emails should be turned off or not. | [optional] 
  **phone** | **String**| The phone number of the user | [optional] 
  **time_zone** | **String**| The time zone of the user. See Time Zones for a list of valid time zones | [optional] 
 
@@ -72,12 +72,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
 # **destroy**
-> Object destroy(id)
+> User destroy(id)
 
 Remove a(n) User
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**Object**
+[**User**](User.md)
 
 ### Authorization
 
@@ -117,7 +117,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -134,9 +134,9 @@ require 'esp_sdk'
 api_instance = ESP::UsersApi.new
 
 opts = { 
-  page: {'key' => "page_example"}, # Hash<String, String> | Page Number
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
-  include: "include_example" # String | Included Objects
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See the filter parameter of the association's list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: 'Bob'}
+  include: "include_example", # String | Objects that can be included in the response:  organization,sub_organizations,teams,role  See Including Objects for more information.
+  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
 }
 
 begin
@@ -152,9 +152,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
- **include** | **String**| Included Objects | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;} | [optional] 
+ **include** | **String**| Objects that can be included in the response:  organization,sub_organizations,teams,role  See Including Objects for more information. | [optional] 
+ **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
 
 ### Return type
 
@@ -167,7 +167,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -186,7 +186,7 @@ api_instance = ESP::UsersApi.new
 id = 56 # Integer | User Id
 
 opts = { 
-  include: "include_example" # String | Included Objects
+  include: "include_example" # String | Objects that can be included in the response:  organization,sub_organizations,teams,role  See Including Objects for more information.
 }
 
 begin
@@ -203,7 +203,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| User Id | 
- **include** | **String**| Included Objects | [optional] 
+ **include** | **String**| Objects that can be included in the response:  organization,sub_organizations,teams,role  See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -216,7 +216,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -244,7 +244,7 @@ opts = {
   role_id: "role_id_example", # String | The role of the user
   sub_organization_ids: [56], # Array<Integer> | A list of sub organization IDs that the user should have access to
   team_ids: [56], # Array<Integer> | A list of team IDs that the user should have access to
-  disable_daily_emails: "disable_daily_emails_example", # String | Whether the daily emails should be turned off or not. Valid values are true/false
+  disable_daily_emails: true, # BOOLEAN | Whether the daily emails should be turned off or not.
   phone: "phone_example", # String | The phone number of the user
   time_zone: "time_zone_example" # String | The time zone of the user. See Time Zones for a list of valid time zones
 }
@@ -269,7 +269,7 @@ Name | Type | Description  | Notes
  **role_id** | **String**| The role of the user | [optional] 
  **sub_organization_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of sub organization IDs that the user should have access to | [optional] 
  **team_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of team IDs that the user should have access to | [optional] 
- **disable_daily_emails** | **String**| Whether the daily emails should be turned off or not. Valid values are true/false | [optional] 
+ **disable_daily_emails** | **BOOLEAN**| Whether the daily emails should be turned off or not. | [optional] 
  **phone** | **String**| The phone number of the user | [optional] 
  **time_zone** | **String**| The time zone of the user. See Time Zones for a list of valid time zones | [optional] 
 
@@ -284,7 +284,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 

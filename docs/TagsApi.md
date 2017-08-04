@@ -23,9 +23,7 @@ api_instance = ESP::TagsApi.new
 alert_id = 56 # Integer | The ID of the alert to list tags for
 
 opts = { 
-  page: {'key' => "page_example"}, # Hash<String, String> | Page Number
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
-  include: "include_example" # String | Included Objects
+  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
 }
 
 begin
@@ -42,9 +40,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **alert_id** | **Integer**| The ID of the alert to list tags for | 
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
- **include** | **String**| Included Objects | [optional] 
+ **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
 
 ### Return type
 
@@ -57,12 +53,12 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
 # **show**
-> Tag show(id, opts)
+> Tag show(id)
 
 Show a single Tag
 
@@ -75,13 +71,10 @@ api_instance = ESP::TagsApi.new
 
 id = 56 # Integer | Tag Id
 
-opts = { 
-  include: "include_example" # String | Included Objects
-}
 
 begin
   #Show a single Tag
-  result = api_instance.show(id, opts)
+  result = api_instance.show(id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling TagsApi->show: #{e}"
@@ -93,7 +86,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Tag Id | 
- **include** | **String**| Included Objects | [optional] 
 
 ### Return type
 
@@ -106,7 +98,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 

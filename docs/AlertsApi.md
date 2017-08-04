@@ -23,20 +23,9 @@ api_instance = ESP::AlertsApi.new
 report_id = 56 # Integer | Id of the Report to Return Alerts For
 
 opts = { 
-  page: {'key' => "page_example"}, # Hash<String, String> | Page Number
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching
-  include: "include_example", # String | Included Objects
-  region_id: 56, # Integer | Return only alerts for this region.
-  status: "status_example", # String | Return only alerts for the give status(es). Valid values are fail, warn, error, pass, info
-  first_seen: 56, # Integer | Return only alerts that have started within a number of hours of the report. For example, first_seen of 3 will return alerts that started showing up within the last 3 hours of the report.
-  suppressed: true, # BOOLEAN | Return only suppressed alerts
-  team_id: 56, # Integer | Return only alerts for the given team.
-  external_account_id: 56, # Integer | Return only alerts for the given external id.
-  service_id: 56, # Integer | Return only alerts on signatures with the given service.
-  signature_severity: "signature_severity_example", # String | Return only alerts for signatures with the given risk_level. Valid values are Low, Medium, High
-  signature_name: "signature_name_example", # String | Return only alerts for signatures with the given name.
-  resource: "resource_example", # String | Return only alerts for the given resource or tag.
-  signature_identifier: "signature_identifier_example" # String | Return only alerts for signatures with the given identifier.
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attribute: [id]  Limited Searchable Attributes: [signature_service_id_in, signature_risk_level_in, risk_level_in, risk_level_eq, resource_or_tag_cont, suppressed, not_suppressed, signature_name_cont, signature_identifier_cont, external_account_id_in, external_account_id_eq, external_account_team_id_in, external_account_team_id_eq, region_id_in, region_id_eq, status_in, status_eq, cloud_trail_events_present, open_as_of, signature_id_in, signature_id_eq]   Example: filter: {name_eq: 'Bob'}
+  include: "include_example", # String | Objects that can be included in the response:  external_account,region,signature,custom_signature,suppression,metadata,cloud_trail_events,tags,compliance_controls  See Including Objects for more information.
+  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
 }
 
 begin
@@ -53,20 +42,9 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **report_id** | **Integer**| Id of the Report to Return Alerts For | 
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching | [optional] 
- **include** | **String**| Included Objects | [optional] 
- **region_id** | **Integer**| Return only alerts for this region. | [optional] 
- **status** | **String**| Return only alerts for the give status(es). Valid values are fail, warn, error, pass, info | [optional] 
- **first_seen** | **Integer**| Return only alerts that have started within a number of hours of the report. For example, first_seen of 3 will return alerts that started showing up within the last 3 hours of the report. | [optional] 
- **suppressed** | **BOOLEAN**| Return only suppressed alerts | [optional] 
- **team_id** | **Integer**| Return only alerts for the given team. | [optional] 
- **external_account_id** | **Integer**| Return only alerts for the given external id. | [optional] 
- **service_id** | **Integer**| Return only alerts on signatures with the given service. | [optional] 
- **signature_severity** | **String**| Return only alerts for signatures with the given risk_level. Valid values are Low, Medium, High | [optional] 
- **signature_name** | **String**| Return only alerts for signatures with the given name. | [optional] 
- **resource** | **String**| Return only alerts for the given resource or tag. | [optional] 
- **signature_identifier** | **String**| Return only alerts for signatures with the given identifier. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attribute: [id]  Limited Searchable Attributes: [signature_service_id_in, signature_risk_level_in, risk_level_in, risk_level_eq, resource_or_tag_cont, suppressed, not_suppressed, signature_name_cont, signature_identifier_cont, external_account_id_in, external_account_id_eq, external_account_team_id_in, external_account_team_id_eq, region_id_in, region_id_eq, status_in, status_eq, cloud_trail_events_present, open_as_of, signature_id_in, signature_id_eq]   Example: filter: {name_eq: &#39;Bob&#39;} | [optional] 
+ **include** | **String**| Objects that can be included in the response:  external_account,region,signature,custom_signature,suppression,metadata,cloud_trail_events,tags,compliance_controls  See Including Objects for more information. | [optional] 
+ **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
 
 ### Return type
 
@@ -79,7 +57,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
@@ -98,7 +76,7 @@ api_instance = ESP::AlertsApi.new
 id = 56 # Integer | Alert Id
 
 opts = { 
-  include: "include_example" # String | Included Objects
+  include: "include_example" # String | Objects that can be included in the response:  external_account,region,signature,custom_signature,suppression,metadata,cloud_trail_events,tags,compliance_controls  See Including Objects for more information.
 }
 
 begin
@@ -115,7 +93,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Alert Id | 
- **include** | **String**| Included Objects | [optional] 
+ **include** | **String**| Objects that can be included in the response:  external_account,region,signature,custom_signature,suppression,metadata,cloud_trail_events,tags,compliance_controls  See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -128,7 +106,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/vnd.api+json
 
 
 
