@@ -470,7 +470,6 @@ Class | Method | HTTP request | Description
 *ESP::OrganizationsApi* | [**list**](docs/OrganizationsApi.md#list) | **PUT** /api/v2/organizations.json_api | Get a list of Organizations
 *ESP::OrganizationsApi* | [**show**](docs/OrganizationsApi.md#show) | **GET** /api/v2/organizations/{id}.json_api | Show a single Organization
 *ESP::OrganizationsApi* | [**update**](docs/OrganizationsApi.md#update) | **PATCH** /api/v2/organizations/{id}.json_api | Update a(n) Organization
-*ESP::PermissionsApi* | [**list**](docs/PermissionsApi.md#list) | **GET** /api/v2/permissions.json_api | This API provides a list of all the permissions that the current user has
 *ESP::RegionsApi* | [**list**](docs/RegionsApi.md#list) | **PUT** /api/v2/regions.json_api | Get a list of Regions
 *ESP::RegionsApi* | [**show**](docs/RegionsApi.md#show) | **GET** /api/v2/regions/{id}.json_api | Show a single Region
 *ESP::ReportIntegrationsApi* | [**create**](docs/ReportIntegrationsApi.md#create) | **POST** /api/v2/reports/export/integrations.json_api | Export all alerts on reports to an integration
@@ -570,7 +569,6 @@ Class | Method | HTTP request | Description
  - [ESP::Team](docs/Team.md)
  - [ESP::TimeZone](docs/TimeZone.md)
  - [ESP::User](docs/User.md)
- - [ESP::UserPermission](docs/UserPermission.md)
 
 
 ## Contributing
