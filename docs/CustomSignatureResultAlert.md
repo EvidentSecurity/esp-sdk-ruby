@@ -4,18 +4,17 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Integer** | Unique ID | [optional] 
-**code** | **String** | The code used for this result | [optional] 
 **created_at** | **DateTime** | ISO 8601 timestamp when the resource was created | [optional] 
-**error_messages** | **Array&lt;String&gt;** | Error messages that occurred while running the code | [optional] 
-**language** | **String** | The language of the code | [optional] 
-**status** | **String** | Status of the result | [optional] 
-**updated_at** | **DateTime** | ISO 8601 timestamp when the resource was last updated | [optional] 
+**status** | **String** | Status of the alert. Valid values are fail, warn, error, pass, info | [optional] 
+**resource** | **String** | Resource identifier in Amazon | [optional] 
+**metadata** | **Object** | Metadata associated with the result | [optional] 
+**tags** | **Array&lt;Object&gt;** | Tags associated with the result | [optional] 
+**updated_at** | **DateTime** | ISO 8601 timestamp when the resource was updated | [optional] 
 **external_account** | [**ExternalAccount**](ExternalAccount.md) | Associated External Account | [optional] 
-**external_account_id** | **Integer** | Associated External Account Id | [optional] 
+**external_account_id** | **Integer** | Associated External Account ID | [optional] 
 **region** | [**Region**](Region.md) | Associated Region | [optional] 
-**region_id** | **Integer** | Associated Region Id | [optional] 
+**region_id** | **Integer** | Associated Region ID | [optional] 
 **custom_signature** | [**CustomSignature**](CustomSignature.md) | Associated Custom Signature | [optional] 
-**custom_signature_id** | **Integer** | Associated Custom Signature Id | [optional] 
-**errors** | **Array&lt;String&gt;** | Array of error messages if the request failed | [optional] 
+**custom_signature_id** | **Integer** | Associated Custom Signature ID | [optional] 
 
 

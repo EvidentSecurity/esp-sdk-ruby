@@ -25,10 +25,10 @@ module ESP
     # @param last_name The last name of the user
     # @param email The email of the user
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :role_id The role of the user
+    # @option opts [Integer] :role_id The ID of the role of the user
     # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to
     # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to
-    # @option opts [BOOLEAN] :disable_daily_emails Whether the daily emails should be turned off or not.
+    # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :phone The phone number of the user
     # @option opts [String] :time_zone The time zone of the user. See Time Zones for a list of valid time zones
     # @return [User]
@@ -43,10 +43,10 @@ module ESP
     # @param last_name The last name of the user
     # @param email The email of the user
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :role_id The role of the user
+    # @option opts [Integer] :role_id The ID of the role of the user
     # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to
     # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to
-    # @option opts [BOOLEAN] :disable_daily_emails Whether the daily emails should be turned off or not.
+    # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :phone The phone number of the user
     # @option opts [String] :time_zone The time zone of the user. See Time Zones for a list of valid time zones
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
@@ -103,9 +103,9 @@ module ESP
 
     # Remove a(n) User
     # 
-    # @param id User Id
+    # @param id User ID
     # @param [Hash] opts the optional parameters
-    # @return [User]
+    # @return [Meta]
     def destroy(id, opts = {})
       data, _status_code, _headers = destroy_with_http_info(id, opts)
       return data
@@ -113,9 +113,9 @@ module ESP
 
     # Remove a(n) User
     # 
-    # @param id User Id
+    # @param id User ID
     # @param [Hash] opts the optional parameters
-    # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def destroy_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: UsersApi.destroy ..."
@@ -147,7 +147,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'User')
+        :return_type => 'Meta')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: UsersApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -157,9 +157,9 @@ module ESP
     # Get a list of Users
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-    # @option opts [String] :include Objects that can be included in the response:  organization,sub_organizations,teams,role  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -169,9 +169,9 @@ module ESP
     # Get a list of Users
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-    # @option opts [String] :include Objects that can be included in the response:  organization,sub_organizations,teams,role  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -214,9 +214,9 @@ module ESP
 
     # Show a single User
     # 
-    # @param id User Id
+    # @param id User ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  organization,sub_organizations,teams,role  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [User]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
@@ -225,9 +225,9 @@ module ESP
 
     # Show a single User
     # 
-    # @param id User Id
+    # @param id User ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  organization,sub_organizations,teams,role  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -270,15 +270,15 @@ module ESP
 
     # Update a(n) User
     # 
-    # @param id User Id
+    # @param id User ID
     # @param first_name The first name of the user
     # @param last_name The last name of the user
     # @param email The email of the user
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :role_id The role of the user
+    # @option opts [Integer] :role_id The ID of the role of the user
     # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to
     # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to
-    # @option opts [BOOLEAN] :disable_daily_emails Whether the daily emails should be turned off or not.
+    # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :phone The phone number of the user
     # @option opts [String] :time_zone The time zone of the user. See Time Zones for a list of valid time zones
     # @return [User]
@@ -289,15 +289,15 @@ module ESP
 
     # Update a(n) User
     # 
-    # @param id User Id
+    # @param id User ID
     # @param first_name The first name of the user
     # @param last_name The last name of the user
     # @param email The email of the user
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :role_id The role of the user
+    # @option opts [Integer] :role_id The ID of the role of the user
     # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to
     # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to
-    # @option opts [BOOLEAN] :disable_daily_emails Whether the daily emails should be turned off or not.
+    # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :phone The phone number of the user
     # @option opts [String] :time_zone The time zone of the user. See Time Zones for a list of valid time zones
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers

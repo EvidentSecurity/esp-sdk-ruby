@@ -19,24 +19,24 @@ module ESP
       @api_client = api_client
     end
 
-    # Get a list of Compliance Domains
+    # Get a list of ComplianceDomains
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, position, identifier, name] Matching Searchable Attributes: [identifier, name]  Sortable Attributes: [id, identifier, name, position] Searchable Association: [compliance_standard] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-    # @option opts [String] :include Objects that can be included in the response:  compliance_standard,compliance_controls  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
       return data
     end
 
-    # Get a list of Compliance Domains
+    # Get a list of ComplianceDomains
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, position, identifier, name] Matching Searchable Attributes: [identifier, name]  Sortable Attributes: [id, identifier, name, position] Searchable Association: [compliance_standard] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-    # @option opts [String] :include Objects that can be included in the response:  compliance_standard,compliance_controls  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -77,22 +77,22 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single Compliance Domain
+    # Show a single ComplianceDomain
     # 
-    # @param id Compliance Domain Id
+    # @param id ComplianceDomain ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  compliance_standard,compliance_controls  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [ComplianceDomain]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single Compliance Domain
+    # Show a single ComplianceDomain
     # 
-    # @param id Compliance Domain Id
+    # @param id ComplianceDomain ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  compliance_standard,compliance_controls  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Array<(ComplianceDomain, Fixnum, Hash)>] ComplianceDomain data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging

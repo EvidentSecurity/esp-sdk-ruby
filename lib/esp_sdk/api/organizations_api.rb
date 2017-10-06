@@ -22,9 +22,9 @@ module ESP
     # Get a list of Organizations
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id]  Example: filter: {name_eq: &#39;Bob&#39;}
-    # @option opts [String] :include Objects that can be included in the response:  subscription,custom_signatures,external_accounts,sub_organizations,teams,users,compliance_standards,integrations  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -34,9 +34,9 @@ module ESP
     # Get a list of Organizations
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id]  Example: filter: {name_eq: &#39;Bob&#39;}
-    # @option opts [String] :include Objects that can be included in the response:  subscription,custom_signatures,external_accounts,sub_organizations,teams,users,compliance_standards,integrations  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -79,9 +79,9 @@ module ESP
 
     # Show a single Organization
     # 
-    # @param id Organization Id
+    # @param id Organization ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  subscription,custom_signatures,external_accounts,sub_organizations,teams,users,compliance_standards,integrations  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Organization]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
@@ -90,9 +90,9 @@ module ESP
 
     # Show a single Organization
     # 
-    # @param id Organization Id
+    # @param id Organization ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  subscription,custom_signatures,external_accounts,sub_organizations,teams,users,compliance_standards,integrations  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Array<(Organization, Fixnum, Hash)>] Organization data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -135,8 +135,8 @@ module ESP
 
     # Update a(n) Organization
     # 
-    # @param id Organization Id
-    # @param name Name
+    # @param id Organization ID
+    # @param name Name of the organization
     # @param [Hash] opts the optional parameters
     # @return [Organization]
     def update(id, name, opts = {})
@@ -146,8 +146,8 @@ module ESP
 
     # Update a(n) Organization
     # 
-    # @param id Organization Id
-    # @param name Name
+    # @param id Organization ID
+    # @param name Name of the organization
     # @param [Hash] opts the optional parameters
     # @return [Array<(Organization, Fixnum, Hash)>] Organization data, response status code and response headers
     def update_with_http_info(id, name, opts = {})

@@ -21,8 +21,8 @@ module ESP
 
     # A successful call to this API will update the user attributions on an external account.
     # 
-    # @param external_account_id The ID of the external account to update the user attributions of.
-    # @param cloudtrail_name An array of all the signatures to disable on the external account.
+    # @param external_account_id The ID of the external account to update the user attributions of
+    # @param cloudtrail_name The name of the cloudetrail associated with the user attribution.
     # @param [Hash] opts the optional parameters
     # @return [ExternalAccount]
     def update(external_account_id, cloudtrail_name, opts = {})
@@ -32,8 +32,8 @@ module ESP
 
     # A successful call to this API will update the user attributions on an external account.
     # 
-    # @param external_account_id The ID of the external account to update the user attributions of.
-    # @param cloudtrail_name An array of all the signatures to disable on the external account.
+    # @param external_account_id The ID of the external account to update the user attributions of
+    # @param cloudtrail_name The name of the cloudetrail associated with the user attribution.
     # @param [Hash] opts the optional parameters
     # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
     def update_with_http_info(external_account_id, cloudtrail_name, opts = {})

@@ -11,7 +11,6 @@ module ESP
     end
 
     def convert
-      return parse_errors if json_api_hash[:errors]
       included = json_api_hash.delete(:included)
       json_api_hash.tap do |e|
         wrap(e.fetch(:data, {})).each do |object|
@@ -21,11 +20,6 @@ module ESP
     end
 
     private
-
-    def parse_errors
-      errors = json_api_hash['errors'] || json_api_hash[:errors]
-      { data: { errors: errors.map { |e| e[:title] } } }
-    end
 
     def wrap(object)
       if object.nil?

@@ -1,8 +1,8 @@
-# ESP::MetaMessageObject
+# ESP::Meta
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**meta** | [**MessageObject**](MessageObject.md) |  | 
+**meta** | **Object** | The meta object | 
 
 

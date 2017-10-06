@@ -65,7 +65,7 @@ require 'esp_sdk'
 
 api_instance = ESP::MetadataApi.new
 
-id = 56 # Integer | Metadata Id
+id = 56 # Integer | Metadata ID
 
 
 begin
@@ -81,7 +81,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Metadata Id | 
+ **id** | **Integer**| Metadata ID | 
 
 ### Return type
 

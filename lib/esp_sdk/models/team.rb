@@ -17,41 +17,38 @@ module ESP
     # Unique ID
     attr_accessor :id
 
-    # Name
+    # Name of the team
     attr_accessor :name
 
-    # Created At
+    # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
-    # Updated At
+    # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
 
     # Associated Custom Signatures
     attr_accessor :custom_signatures
 
-    # Associated Custom Signatures Ids
+    # Associated Custom Signatures IDs
     attr_accessor :custom_signature_ids
 
     # Associated External Accounts
     attr_accessor :external_accounts
 
-    # Associated External Accounts Ids
+    # Associated External Accounts IDs
     attr_accessor :external_account_ids
 
     # Associated Organization
     attr_accessor :organization
 
-    # Associated Organization Id
+    # Associated Organization ID
     attr_accessor :organization_id
 
     # Associated Sub Organization
     attr_accessor :sub_organization
 
-    # Associated Sub Organization Id
+    # Associated Sub Organization ID
     attr_accessor :sub_organization_id
-
-    # Array of error messages if the request failed
-    attr_accessor :errors
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -68,8 +65,7 @@ module ESP
         :'organization' => :'organization',
         :'organization_id' => :'organization_id',
         :'sub_organization' => :'sub_organization',
-        :'sub_organization_id' => :'sub_organization_id',
-        :'errors' => :'errors'
+        :'sub_organization_id' => :'sub_organization_id'
       }
     end
 
@@ -87,8 +83,7 @@ module ESP
         :'organization' => :'Organization',
         :'organization_id' => :'Integer',
         :'sub_organization' => :'SubOrganization',
-        :'sub_organization_id' => :'Integer',
-        :'errors' => :'Array<String>'
+        :'sub_organization_id' => :'Integer'
       }
     end
 
@@ -156,12 +151,6 @@ module ESP
         self.sub_organization_id = attributes[:'sub_organization_id']
       end
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
-      end
-
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -193,8 +182,7 @@ module ESP
           organization == o.organization &&
           organization_id == o.organization_id &&
           sub_organization == o.sub_organization &&
-          sub_organization_id == o.sub_organization_id &&
-          errors == o.errors
+          sub_organization_id == o.sub_organization_id
     end
 
     # @see the `==` method
@@ -206,7 +194,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, created_at, updated_at, custom_signatures, custom_signature_ids, external_accounts, external_account_ids, organization, organization_id, sub_organization, sub_organization_id, errors].hash
+      [id, name, created_at, updated_at, custom_signatures, custom_signature_ids, external_accounts, external_account_ids, organization, organization_id, sub_organization, sub_organization_id].hash
     end
 
     # Builds the object from hash

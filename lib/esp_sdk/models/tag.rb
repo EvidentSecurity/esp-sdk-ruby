@@ -26,11 +26,8 @@ module ESP
     # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
-    # ISO 8601 timestamp when the resource was last updated
+    # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
-
-    # Array of error messages if the request failed
-    attr_accessor :errors
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -40,8 +37,7 @@ module ESP
         :'key' => :'key',
         :'value' => :'value',
         :'created_at' => :'created_at',
-        :'updated_at' => :'updated_at',
-        :'errors' => :'errors'
+        :'updated_at' => :'updated_at'
       }
     end
 
@@ -52,8 +48,7 @@ module ESP
         :'key' => :'String',
         :'value' => :'String',
         :'created_at' => :'DateTime',
-        :'updated_at' => :'DateTime',
-        :'errors' => :'Array<String>'
+        :'updated_at' => :'DateTime'
       }
     end
 
@@ -85,12 +80,6 @@ module ESP
         self.updated_at = attributes[:'updated_at']
       end
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
-      end
-
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -115,8 +104,7 @@ module ESP
           key == o.key &&
           value == o.value &&
           created_at == o.created_at &&
-          updated_at == o.updated_at &&
-          errors == o.errors
+          updated_at == o.updated_at
     end
 
     # @see the `==` method
@@ -128,7 +116,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, key, value, created_at, updated_at, errors].hash
+      [id, key, value, created_at, updated_at].hash
     end
 
     # Builds the object from hash

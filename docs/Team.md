@@ -4,17 +4,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Integer** | Unique ID | [optional] 
-**name** | **String** | Name | [optional] 
-**created_at** | **DateTime** | Created At | [optional] 
-**updated_at** | **DateTime** | Updated At | [optional] 
+**name** | **String** | Name of the team | [optional] 
+**created_at** | **DateTime** | ISO 8601 timestamp when the resource was created | [optional] 
+**updated_at** | **DateTime** | ISO 8601 timestamp when the resource was updated | [optional] 
 **custom_signatures** | [**Array&lt;CustomSignature&gt;**](CustomSignature.md) | Associated Custom Signatures | [optional] 
-**custom_signature_ids** | **Array&lt;Integer&gt;** | Associated Custom Signatures Ids | [optional] 
+**custom_signature_ids** | **Array&lt;Integer&gt;** | Associated Custom Signatures IDs | [optional] 
 **external_accounts** | [**Array&lt;ExternalAccount&gt;**](ExternalAccount.md) | Associated External Accounts | [optional] 
-**external_account_ids** | **Array&lt;Integer&gt;** | Associated External Accounts Ids | [optional] 
+**external_account_ids** | **Array&lt;Integer&gt;** | Associated External Accounts IDs | [optional] 
 **organization** | [**Organization**](Organization.md) | Associated Organization | [optional] 
-**organization_id** | **Integer** | Associated Organization Id | [optional] 
+**organization_id** | **Integer** | Associated Organization ID | [optional] 
 **sub_organization** | [**SubOrganization**](SubOrganization.md) | Associated Sub Organization | [optional] 
-**sub_organization_id** | **Integer** | Associated Sub Organization Id | [optional] 
-**errors** | **Array&lt;String&gt;** | Array of error messages if the request failed | [optional] 
+**sub_organization_id** | **Integer** | Associated Sub Organization ID | [optional] 
 
 

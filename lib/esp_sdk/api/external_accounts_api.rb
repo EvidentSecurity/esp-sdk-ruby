@@ -19,26 +19,26 @@ module ESP
       @api_client = api_client
     end
 
-    # Create a(n) External Account
+    # Create a(n) ExternalAccount
     # 
     # @param team_id The ID of the team the external account will belong to
     # @param arn Amazon Resource Name for the IAM role
-    # @param external_id External identifier set on the role
+    # @param external_id External Identifier set on the role
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name The name for this external account
+    # @option opts [String] :name Name
     # @return [ExternalAccount]
     def create(team_id, arn, external_id, opts = {})
       data, _status_code, _headers = create_with_http_info(team_id, arn, external_id, opts)
       return data
     end
 
-    # Create a(n) External Account
+    # Create a(n) ExternalAccount
     # 
     # @param team_id The ID of the team the external account will belong to
     # @param arn Amazon Resource Name for the IAM role
-    # @param external_id External identifier set on the role
+    # @param external_id External Identifier set on the role
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name The name for this external account
+    # @option opts [String] :name Name
     # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
     def create_with_http_info(team_id, arn, external_id, opts = {})
       if @api_client.config.debugging
@@ -88,9 +88,9 @@ module ESP
 
     # Remove a(n) ExternalAccount
     # 
-    # @param id ExternalAccount Id
+    # @param id ExternalAccount ID
     # @param [Hash] opts the optional parameters
-    # @return [ExternalAccount]
+    # @return [Meta]
     def destroy(id, opts = {})
       data, _status_code, _headers = destroy_with_http_info(id, opts)
       return data
@@ -98,9 +98,9 @@ module ESP
 
     # Remove a(n) ExternalAccount
     # 
-    # @param id ExternalAccount Id
+    # @param id ExternalAccount ID
     # @param [Hash] opts the optional parameters
-    # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def destroy_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalAccountsApi.destroy ..."
@@ -132,31 +132,31 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ExternalAccount')
+        :return_type => 'Meta')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ExternalAccountsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Get a list of External Accounts
+    # Get a list of ExternalAccounts
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, disabled_signatures] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-    # @option opts [String] :include Objects that can be included in the response:  organization,sub_organization,team,scan_intervals,disabled_signatures,credentials  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
       return data
     end
 
-    # Get a list of External Accounts
+    # Get a list of ExternalAccounts
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, disabled_signatures] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-    # @option opts [String] :include Objects that can be included in the response:  organization,sub_organization,team,scan_intervals,disabled_signatures,credentials  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -197,22 +197,22 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single External Account
+    # Show a single ExternalAccount
     # 
-    # @param id External Account Id
+    # @param id ExternalAccount ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  organization,sub_organization,team,scan_intervals,disabled_signatures,credentials  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [ExternalAccount]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single External Account
+    # Show a single ExternalAccount
     # 
-    # @param id External Account Id
+    # @param id ExternalAccount ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  organization,sub_organization,team,scan_intervals,disabled_signatures,credentials  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -253,43 +253,31 @@ module ESP
       return data, status_code, headers
     end
 
-    # Update a(n) External Account
+    # Update a(n) ExternalAccount
     # 
-    # @param id External Account Id
-    # @param arn Amazon Resource Name for the IAM role
-    # @param external_id External identifier set on the role
-    # @param sub_organization_id The ID of the sub organization the external account will belong to
+    # @param id ExternalAccount ID
     # @param team_id The ID of the team the external account will belong to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name The name for this external account
+    # @option opts [String] :name Name
     # @return [ExternalAccount]
-    def update(id, arn, external_id, sub_organization_id, team_id, opts = {})
-      data, _status_code, _headers = update_with_http_info(id, arn, external_id, sub_organization_id, team_id, opts)
+    def update(id, team_id, opts = {})
+      data, _status_code, _headers = update_with_http_info(id, team_id, opts)
       return data
     end
 
-    # Update a(n) External Account
+    # Update a(n) ExternalAccount
     # 
-    # @param id External Account Id
-    # @param arn Amazon Resource Name for the IAM role
-    # @param external_id External identifier set on the role
-    # @param sub_organization_id The ID of the sub organization the external account will belong to
+    # @param id ExternalAccount ID
     # @param team_id The ID of the team the external account will belong to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name The name for this external account
+    # @option opts [String] :name Name
     # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
-    def update_with_http_info(id, arn, external_id, sub_organization_id, team_id, opts = {})
+    def update_with_http_info(id, team_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalAccountsApi.update ..."
       end
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling ExternalAccountsApi.update" if id.nil?
-      # verify the required parameter 'arn' is set
-      fail ArgumentError, "Missing the required parameter 'arn' when calling ExternalAccountsApi.update" if arn.nil?
-      # verify the required parameter 'external_id' is set
-      fail ArgumentError, "Missing the required parameter 'external_id' when calling ExternalAccountsApi.update" if external_id.nil?
-      # verify the required parameter 'sub_organization_id' is set
-      fail ArgumentError, "Missing the required parameter 'sub_organization_id' when calling ExternalAccountsApi.update" if sub_organization_id.nil?
       # verify the required parameter 'team_id' is set
       fail ArgumentError, "Missing the required parameter 'team_id' when calling ExternalAccountsApi.update" if team_id.nil?
       # resource path
@@ -307,9 +295,6 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["arn"] = arn
-      form_params["external_id"] = external_id
-      form_params["sub_organization_id"] = sub_organization_id
       form_params["team_id"] = team_id
       form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
 

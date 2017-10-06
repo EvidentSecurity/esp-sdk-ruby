@@ -19,11 +19,11 @@ module ESP
       @api_client = api_client
     end
 
-    # Create a(n) Scan Interval
+    # Create a(n) ScanInterval
     # 
     # @param external_account_id The ID of the external account this scan interval is for
     # @param interval The interval, in minutes, this service will be scanned
-    # @param service_id The service ID this scan interval is for
+    # @param service_id The service ID for the scan interval
     # @param [Hash] opts the optional parameters
     # @return [ScanInterval]
     def create(external_account_id, interval, service_id, opts = {})
@@ -31,11 +31,11 @@ module ESP
       return data
     end
 
-    # Create a(n) Scan Interval
+    # Create a(n) ScanInterval
     # 
     # @param external_account_id The ID of the external account this scan interval is for
     # @param interval The interval, in minutes, this service will be scanned
-    # @param service_id The service ID this scan interval is for
+    # @param service_id The service ID for the scan interval
     # @param [Hash] opts the optional parameters
     # @return [Array<(ScanInterval, Fixnum, Hash)>] ScanInterval data, response status code and response headers
     def create_with_http_info(external_account_id, interval, service_id, opts = {})
@@ -85,9 +85,9 @@ module ESP
 
     # Remove a(n) ScanInterval
     # 
-    # @param id ScanInterval Id
+    # @param id ScanInterval ID
     # @param [Hash] opts the optional parameters
-    # @return [ScanInterval]
+    # @return [Meta]
     def destroy(id, opts = {})
       data, _status_code, _headers = destroy_with_http_info(id, opts)
       return data
@@ -95,9 +95,9 @@ module ESP
 
     # Remove a(n) ScanInterval
     # 
-    # @param id ScanInterval Id
+    # @param id ScanInterval ID
     # @param [Hash] opts the optional parameters
-    # @return [Array<(ScanInterval, Fixnum, Hash)>] ScanInterval data, response status code and response headers
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def destroy_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ScanIntervalsApi.destroy ..."
@@ -129,31 +129,31 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ScanInterval')
+        :return_type => 'Meta')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ScanIntervalsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Get a list of Scan Intervals
+    # Get a list of ScanIntervals
     # 
-    # @param external_account_id 
+    # @param external_account_id The ID of the external account to retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  external_account,service  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(external_account_id, opts = {})
       data, _status_code, _headers = list_with_http_info(external_account_id, opts)
       return data
     end
 
-    # Get a list of Scan Intervals
+    # Get a list of ScanIntervals
     # 
-    # @param external_account_id 
+    # @param external_account_id The ID of the external account to retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  external_account,service  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
@@ -195,22 +195,22 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single Scan Interval
+    # Show a single ScanInterval
     # 
-    # @param id Scan Interval Id
+    # @param id ScanInterval ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  external_account,service  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [ScanInterval]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single Scan Interval
+    # Show a single ScanInterval
     # 
-    # @param id Scan Interval Id
+    # @param id ScanInterval ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  external_account,service  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Array<(ScanInterval, Fixnum, Hash)>] ScanInterval data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -251,12 +251,12 @@ module ESP
       return data, status_code, headers
     end
 
-    # Update a(n) Scan Interval
+    # Update a(n) ScanInterval
     # 
-    # @param id Scan Interval Id
+    # @param id ScanInterval ID
     # @param external_account_id The ID of the external account this scan interval is for
     # @param interval The interval, in minutes, this service will be scanned
-    # @param service_id The service ID this scan interval is for
+    # @param service_id The service ID for the scan interval
     # @param [Hash] opts the optional parameters
     # @return [ScanInterval]
     def update(id, external_account_id, interval, service_id, opts = {})
@@ -264,12 +264,12 @@ module ESP
       return data
     end
 
-    # Update a(n) Scan Interval
+    # Update a(n) ScanInterval
     # 
-    # @param id Scan Interval Id
+    # @param id ScanInterval ID
     # @param external_account_id The ID of the external account this scan interval is for
     # @param interval The interval, in minutes, this service will be scanned
-    # @param service_id The service ID this scan interval is for
+    # @param service_id The service ID for the scan interval
     # @param [Hash] opts the optional parameters
     # @return [Array<(ScanInterval, Fixnum, Hash)>] ScanInterval data, response status code and response headers
     def update_with_http_info(id, external_account_id, interval, service_id, opts = {})

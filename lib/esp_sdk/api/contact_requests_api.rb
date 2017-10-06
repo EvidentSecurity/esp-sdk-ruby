@@ -19,11 +19,11 @@ module ESP
       @api_client = api_client
     end
 
-    # Create a(n) Contact Request
+    # Create a(n) ContactRequest
     # 
     # @param title Subject of your message
     # @param description Body of your message
-    # @param request_type Type of contact request. Supported values are support for support requests and feature for a feature request
+    # @param request_type Type of contact request. Valid values are support, feature
     # @param [Hash] opts the optional parameters
     # @return [ContactRequest]
     def create(title, description, request_type, opts = {})
@@ -31,11 +31,11 @@ module ESP
       return data
     end
 
-    # Create a(n) Contact Request
+    # Create a(n) ContactRequest
     # 
     # @param title Subject of your message
     # @param description Body of your message
-    # @param request_type Type of contact request. Supported values are support for support requests and feature for a feature request
+    # @param request_type Type of contact request. Valid values are support, feature
     # @param [Hash] opts the optional parameters
     # @return [Array<(ContactRequest, Fixnum, Hash)>] ContactRequest data, response status code and response headers
     def create_with_http_info(title, description, request_type, opts = {})
@@ -48,6 +48,10 @@ module ESP
       fail ArgumentError, "Missing the required parameter 'description' when calling ContactRequestsApi.create" if description.nil?
       # verify the required parameter 'request_type' is set
       fail ArgumentError, "Missing the required parameter 'request_type' when calling ContactRequestsApi.create" if request_type.nil?
+      # verify enum value
+      unless ['support', 'feature'].include?(request_type)
+        fail ArgumentError, "invalid value for 'request_type', must be one of support, feature"
+      end
       # resource path
       local_var_path = "/api/v2/contact_requests.json_api".sub('{format}','json_api')
 

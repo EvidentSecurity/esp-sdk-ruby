@@ -74,14 +74,7 @@ module ESP
           error = ApiError.new(:code             => response.code,
                                :response_headers => response.headers,
                                :response_body    => response.body)
-          if response.code == 422
-            body = JSON.parse(error.response_body) rescue {}
-            if (body['errors'] || body[:errors]).nil?
-              fail error
-            end
-          else
-            fail error
-          end
+          fail error
         end
       end
 
@@ -227,8 +220,7 @@ module ESP
         end
       else
         data = ESP::JsonApi.new(data).convert
-        return_type = 'MetaMessageObject' if data.fetch(:meta, {})[:message]
-        data = data[:data] unless return_type =~ /PaginatedCollection|MetaMessageObject/
+        data = data[:data] unless return_type =~ /\APaginatedCollection|Meta\Z/
         type = Utils.singularize(Utils.underscore_to_titlecase(data[:type])) || return_type
         # models, e.g. Pet
         ESP.const_get(type).new.tap do |model|

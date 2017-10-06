@@ -26,53 +26,50 @@ module ESP
     # The resource string this suppression will suppress alerts for
     attr_accessor :resource
 
-    # The status of this suppresion
-    attr_accessor :status
-
-    # Type of suppression. Possible values are unique_identifiers, regions, and signatures
+    # Type of suppression.
     attr_accessor :suppression_type
 
-    # ISO 8601 timestamp when the suppression was last updated
+    # The status of this suppresion. Valid values are active, inactive
+    attr_accessor :status
+
+    # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
 
     # Associated Organization
     attr_accessor :organization
 
-    # Associated Organization Id
+    # Associated Organization ID
     attr_accessor :organization_id
 
     # Associated Created By
     attr_accessor :created_by
 
-    # Associated Created By Id
+    # Associated Created By ID
     attr_accessor :created_by_id
 
     # Associated Regions
     attr_accessor :regions
 
-    # Associated Regions Ids
+    # Associated Regions IDs
     attr_accessor :region_ids
 
     # Associated External Accounts
     attr_accessor :external_accounts
 
-    # Associated External Accounts Ids
+    # Associated External Accounts IDs
     attr_accessor :external_account_ids
 
     # Associated Signatures
     attr_accessor :signatures
 
-    # Associated Signatures Ids
+    # Associated Signatures IDs
     attr_accessor :signature_ids
 
     # Associated Custom Signatures
     attr_accessor :custom_signatures
 
-    # Associated Custom Signatures Ids
+    # Associated Custom Signatures IDs
     attr_accessor :custom_signature_ids
-
-    # Array of error messages if the request failed
-    attr_accessor :errors
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -82,8 +79,8 @@ module ESP
         :'created_at' => :'created_at',
         :'reason' => :'reason',
         :'resource' => :'resource',
-        :'status' => :'status',
         :'suppression_type' => :'suppression_type',
+        :'status' => :'status',
         :'updated_at' => :'updated_at',
         :'organization' => :'organization',
         :'organization_id' => :'organization_id',
@@ -96,8 +93,7 @@ module ESP
         :'signatures' => :'signatures',
         :'signature_ids' => :'signature_ids',
         :'custom_signatures' => :'custom_signatures',
-        :'custom_signature_ids' => :'custom_signature_ids',
-        :'errors' => :'errors'
+        :'custom_signature_ids' => :'custom_signature_ids'
       }
     end
 
@@ -108,8 +104,8 @@ module ESP
         :'created_at' => :'DateTime',
         :'reason' => :'String',
         :'resource' => :'String',
-        :'status' => :'String',
         :'suppression_type' => :'String',
+        :'status' => :'String',
         :'updated_at' => :'DateTime',
         :'organization' => :'Organization',
         :'organization_id' => :'Integer',
@@ -122,8 +118,7 @@ module ESP
         :'signatures' => :'Array<Signature>',
         :'signature_ids' => :'Array<Integer>',
         :'custom_signatures' => :'Array<CustomSignature>',
-        :'custom_signature_ids' => :'Array<Integer>',
-        :'errors' => :'Array<String>'
+        :'custom_signature_ids' => :'Array<Integer>'
       }
     end
 
@@ -151,12 +146,12 @@ module ESP
         self.resource = attributes[:'resource']
       end
 
-      if attributes.has_key?(:'status')
-        self.status = attributes[:'status']
-      end
-
       if attributes.has_key?(:'suppression_type')
         self.suppression_type = attributes[:'suppression_type']
+      end
+
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
 
       if attributes.has_key?(:'updated_at')
@@ -227,12 +222,6 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
-      end
-
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -257,8 +246,8 @@ module ESP
           created_at == o.created_at &&
           reason == o.reason &&
           resource == o.resource &&
-          status == o.status &&
           suppression_type == o.suppression_type &&
+          status == o.status &&
           updated_at == o.updated_at &&
           organization == o.organization &&
           organization_id == o.organization_id &&
@@ -271,8 +260,7 @@ module ESP
           signatures == o.signatures &&
           signature_ids == o.signature_ids &&
           custom_signatures == o.custom_signatures &&
-          custom_signature_ids == o.custom_signature_ids &&
-          errors == o.errors
+          custom_signature_ids == o.custom_signature_ids
     end
 
     # @see the `==` method
@@ -284,7 +272,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, reason, resource, status, suppression_type, updated_at, organization, organization_id, created_by, created_by_id, regions, region_ids, external_accounts, external_account_ids, signatures, signature_ids, custom_signatures, custom_signature_ids, errors].hash
+      [id, created_at, reason, resource, suppression_type, status, updated_at, organization, organization_id, created_by, created_by_id, regions, region_ids, external_accounts, external_account_ids, signatures, signature_ids, custom_signatures, custom_signature_ids].hash
     end
 
     # Builds the object from hash

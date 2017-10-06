@@ -4,14 +4,14 @@ All URIs are relative to https://api.evident.io
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list**](CloudTrailEventsApi.md#list) | **GET** /api/v2/alerts/{alert_id}/cloud_trail_events.json_api | Get a list of Cloud Trail Events
-[**show**](CloudTrailEventsApi.md#show) | **GET** /api/v2/cloud_trail_events/{id}.json_api | Show a single Cloud Trail Event
+[**list**](CloudTrailEventsApi.md#list) | **GET** /api/v2/alerts/{alert_id}/cloud_trail_events.json_api | Get a list of CloudTrailEvents
+[**show**](CloudTrailEventsApi.md#show) | **GET** /api/v2/cloud_trail_events/{id}.json_api | Show a single CloudTrailEvent
 
 
 # **list**
 > PaginatedCollection list(alert_id, opts)
 
-Get a list of Cloud Trail Events
+Get a list of CloudTrailEvents
 
 ### Example
 ```ruby
@@ -23,11 +23,11 @@ api_instance = ESP::CloudTrailEventsApi.new
 alert_id = 56 # Integer | The ID of the alert to retrieve cloud trail events for
 
 opts = { 
-  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
 }
 
 begin
-  #Get a list of Cloud Trail Events
+  #Get a list of CloudTrailEvents
   result = api_instance.list(alert_id, opts)
   p result
 rescue ESP::ApiError => e
@@ -40,7 +40,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **alert_id** | **Integer**| The ID of the alert to retrieve cloud trail events for | 
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
+ **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -60,7 +60,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 # **show**
 > CloudTrailEvent show(id)
 
-Show a single Cloud Trail Event
+Show a single CloudTrailEvent
 
 ### Example
 ```ruby
@@ -69,11 +69,11 @@ require 'esp_sdk'
 
 api_instance = ESP::CloudTrailEventsApi.new
 
-id = 56 # Integer | Cloud Trail Event Id
+id = 56 # Integer | CloudTrailEvent ID
 
 
 begin
-  #Show a single Cloud Trail Event
+  #Show a single CloudTrailEvent
   result = api_instance.show(id)
   p result
 rescue ESP::ApiError => e
@@ -85,7 +85,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Cloud Trail Event Id | 
+ **id** | **Integer**| CloudTrailEvent ID | 
 
 ### Return type
 

@@ -22,8 +22,7 @@ module ESP
     # Get a list of Roles
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name, role_name]   Sortable Attributes: [name, role_name, updated_at]  Example: filter: {name_eq: &#39;Bob&#39;}
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -33,8 +32,7 @@ module ESP
     # Get a list of Roles
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name, role_name]   Sortable Attributes: [name, role_name, updated_at]  Example: filter: {name_eq: &#39;Bob&#39;}
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -55,7 +53,6 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
       form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
 
       # http body (model)
@@ -76,7 +73,7 @@ module ESP
 
     # Show a single Role
     # 
-    # @param id Role Id
+    # @param id Role ID
     # @param [Hash] opts the optional parameters
     # @return [Role]
     def show(id, opts = {})
@@ -86,7 +83,7 @@ module ESP
 
     # Show a single Role
     # 
-    # @param id Role Id
+    # @param id Role ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Role, Fixnum, Hash)>] Role data, response status code and response headers
     def show_with_http_info(id, opts = {})

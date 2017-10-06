@@ -74,7 +74,7 @@ module ESP
 
     # Show a single Metadata
     # 
-    # @param id Metadata Id
+    # @param id Metadata ID
     # @param [Hash] opts the optional parameters
     # @return [Metadata]
     def show(id, opts = {})
@@ -84,7 +84,7 @@ module ESP
 
     # Show a single Metadata
     # 
-    # @param id Metadata Id
+    # @param id Metadata ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Metadata, Fixnum, Hash)>] Metadata data, response status code and response headers
     def show_with_http_info(id, opts = {})
