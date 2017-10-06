@@ -20,7 +20,7 @@ module ESP
     # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
-    # The description of the user
+    # The description of the signature
     attr_accessor :description
 
     # The identifier of the signature
@@ -32,26 +32,23 @@ module ESP
     # Details for how to resolve this signature
     attr_accessor :resolution
 
-    # ISO 8601 timestamp when the resource was last updated
-    attr_accessor :updated_at
-
-    # The risk-level of the problem identified by the signature. Valid values are Low, Medium, High
+    # The risk-level of the problem identified by the signature. Valid values are low, medium, high
     attr_accessor :risk_level
+
+    # ISO 8601 timestamp when the resource was updated
+    attr_accessor :updated_at
 
     # Associated Service
     attr_accessor :service
 
-    # Associated Service Id
+    # Associated Service ID
     attr_accessor :service_id
 
     # Associated Disabled External Accounts
     attr_accessor :disabled_external_accounts
 
-    # Associated Disabled External Accounts Id
+    # Associated Disabled External Accounts ID
     attr_accessor :disabled_external_accounts_id
-
-    # Array of error messages if the request failed
-    attr_accessor :errors
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -63,13 +60,12 @@ module ESP
         :'identifier' => :'identifier',
         :'name' => :'name',
         :'resolution' => :'resolution',
-        :'updated_at' => :'updated_at',
         :'risk_level' => :'risk_level',
+        :'updated_at' => :'updated_at',
         :'service' => :'service',
         :'service_id' => :'service_id',
         :'disabled_external_accounts' => :'disabled_external_accounts',
-        :'disabled_external_accounts_id' => :'disabled_external_accounts_id',
-        :'errors' => :'errors'
+        :'disabled_external_accounts_id' => :'disabled_external_accounts_id'
       }
     end
 
@@ -82,13 +78,12 @@ module ESP
         :'identifier' => :'String',
         :'name' => :'String',
         :'resolution' => :'String',
-        :'updated_at' => :'DateTime',
         :'risk_level' => :'String',
+        :'updated_at' => :'DateTime',
         :'service' => :'Service',
         :'service_id' => :'Integer',
         :'disabled_external_accounts' => :'ExternalAccount',
-        :'disabled_external_accounts_id' => :'Integer',
-        :'errors' => :'Array<String>'
+        :'disabled_external_accounts_id' => :'Integer'
       }
     end
 
@@ -124,12 +119,12 @@ module ESP
         self.resolution = attributes[:'resolution']
       end
 
-      if attributes.has_key?(:'updated_at')
-        self.updated_at = attributes[:'updated_at']
-      end
-
       if attributes.has_key?(:'risk_level')
         self.risk_level = attributes[:'risk_level']
+      end
+
+      if attributes.has_key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
       end
 
       if attributes.has_key?(:'service')
@@ -146,12 +141,6 @@ module ESP
 
       if attributes.has_key?(:'disabled_external_accounts_id')
         self.disabled_external_accounts_id = attributes[:'disabled_external_accounts_id']
-      end
-
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
       end
 
     end
@@ -180,13 +169,12 @@ module ESP
           identifier == o.identifier &&
           name == o.name &&
           resolution == o.resolution &&
-          updated_at == o.updated_at &&
           risk_level == o.risk_level &&
+          updated_at == o.updated_at &&
           service == o.service &&
           service_id == o.service_id &&
           disabled_external_accounts == o.disabled_external_accounts &&
-          disabled_external_accounts_id == o.disabled_external_accounts_id &&
-          errors == o.errors
+          disabled_external_accounts_id == o.disabled_external_accounts_id
     end
 
     # @see the `==` method
@@ -198,7 +186,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, description, identifier, name, resolution, updated_at, risk_level, service, service_id, disabled_external_accounts, disabled_external_accounts_id, errors].hash
+      [id, created_at, description, identifier, name, resolution, risk_level, updated_at, service, service_id, disabled_external_accounts, disabled_external_accounts_id].hash
     end
 
     # Builds the object from hash

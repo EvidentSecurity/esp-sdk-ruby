@@ -69,29 +69,13 @@ describe ESP::ApiClient do
       expect(ESP::ApiAuthentication).to have_received(:sign_request)
     end
 
-    it 'should raise an ESP::ApiError if response is not success or 422' do
-      stub_request(:get, %r{alerts/1.json*}).to_return(headers: {}, body: active_record_error_response, status: [401, 'nope'])
+    it 'should raise an ESP::ApiError if response is not success' do
+      stub_request(:get, %r{alerts/1.json*}).to_return(headers: {}, body: active_record_error_response, status: [422, 'nope'])
 
       expect { ESP::AlertsApi.new.show(1) }.to raise_error(ESP::ApiError) do |error|
-        expect(error.code).to eq(401)
-        expect(error.message).to eq("Failed.  Response code = 401.  Response message = Name can't be blank Name is invalid Description can't be blank")
-      end
-    end
-
-    it 'should raise an ESP::ApiError if response is 422 and errors are not set in the body' do
-      stub_request(:post, %r{teams.json*}).to_return(headers: {}, status: [422, 'nope'])
-
-      expect { ESP::TeamsApi.new.create(1, "") }.to raise_error(ESP::ApiError) do |error|
         expect(error.code).to eq(422)
-        expect(error.message).to eq("Failed.  Response code = 422.  Response message = NA")
+        expect(error.message).to eq("Failed.  Response code = 422.  Response message = Name can't be blank Name is invalid Description can't be blank")
       end
-    end
-
-    it 'should set errors attribute if response is 422 and errors are set in the body' do
-      stub_request(:post, %r{teams.json*}).to_return(headers: {}, body: active_record_error_response, status: [422, 'nope'])
-
-      team = ESP::TeamsApi.new.create(1, "")
-      expect(team.errors).to include("Name can't be blank")
     end
 
     it 'should set original_params, api_client and path on PaginatedCollection' do

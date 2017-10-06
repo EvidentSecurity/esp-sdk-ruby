@@ -5,7 +5,7 @@ All URIs are relative to https://api.evident.io
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create**](AuditLogFileExportApi.md#create) | **POST** /api/v2/audit_logs/export/files.json_api | Export an Audit Log File
-[**show**](AuditLogFileExportApi.md#show) | **GET** /api/v2/audit_logs/export/files/{id}.json_api | Show a single Audit Log File
+[**show**](AuditLogFileExportApi.md#show) | **GET** /api/v2/audit_logs/export/files/{id}.json_api | Show a single AuditLogFile
 
 
 # **create**
@@ -50,7 +50,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 # **show**
 > AuditLogFile show(id, opts)
 
-Show a single Audit Log File
+Show a single AuditLogFile
 
 ### Example
 ```ruby
@@ -59,14 +59,14 @@ require 'esp_sdk'
 
 api_instance = ESP::AuditLogFileExportApi.new
 
-id = 56 # Integer | Audit Log File Id
+id = 56 # Integer | AuditLogFile ID
 
 opts = { 
-  include: "include_example" # String | Objects that can be included in the response:  organization,user  See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response.  See Including Objects for more information.
 }
 
 begin
-  #Show a single Audit Log File
+  #Show a single AuditLogFile
   result = api_instance.show(id, opts)
   p result
 rescue ESP::ApiError => e
@@ -78,8 +78,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Audit Log File Id | 
- **include** | **String**| Objects that can be included in the response:  organization,user  See Including Objects for more information. | [optional] 
+ **id** | **Integer**| AuditLogFile ID | 
+ **include** | **String**| Related objects that can be included in the response.  See Including Objects for more information. | [optional] 
 
 ### Return type
 

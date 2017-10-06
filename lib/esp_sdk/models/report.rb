@@ -17,53 +17,50 @@ module ESP
     # Unique ID
     attr_accessor :id
 
-    # ISO 8601 timestamp when the alert was created
+    # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
-    # Status of the report
+    # Status of the report. Valid values are queued, processing, partial, complete, failed
     attr_accessor :status
 
-    # ISO 8601 timestamp when the alert was last updated
+    # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
 
     # Associated Organization
     attr_accessor :organization
 
-    # Associated Organization Id
+    # Associated Organization ID
     attr_accessor :organization_id
 
     # Associated Sub Organization
     attr_accessor :sub_organization
 
-    # Associated Sub Organization Id
+    # Associated Sub Organization ID
     attr_accessor :sub_organization_id
 
     # Associated Team
     attr_accessor :team
 
-    # Associated Team Id
+    # Associated Team ID
     attr_accessor :team_id
 
     # Associated External Account
     attr_accessor :external_account
 
-    # Associated External Account Id
+    # Associated External Account ID
     attr_accessor :external_account_id
 
     # Associated Alerts
     attr_accessor :alerts
 
-    # Associated Alerts Ids
+    # Associated Alerts IDs
     attr_accessor :alert_ids
 
     # Associated Stat
     attr_accessor :stat
 
-    # Associated Stat Id
+    # Associated Stat ID
     attr_accessor :stat_id
-
-    # Array of error messages if the request failed
-    attr_accessor :errors
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -84,8 +81,7 @@ module ESP
         :'alerts' => :'alerts',
         :'alert_ids' => :'alert_ids',
         :'stat' => :'stat',
-        :'stat_id' => :'stat_id',
-        :'errors' => :'errors'
+        :'stat_id' => :'stat_id'
       }
     end
 
@@ -107,8 +103,7 @@ module ESP
         :'alerts' => :'Array<Alert>',
         :'alert_ids' => :'Array<Integer>',
         :'stat' => :'Stat',
-        :'stat_id' => :'Integer',
-        :'errors' => :'Array<String>'
+        :'stat_id' => :'Integer'
       }
     end
 
@@ -188,12 +183,6 @@ module ESP
         self.stat_id = attributes[:'stat_id']
       end
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
-      end
-
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -229,8 +218,7 @@ module ESP
           alerts == o.alerts &&
           alert_ids == o.alert_ids &&
           stat == o.stat &&
-          stat_id == o.stat_id &&
-          errors == o.errors
+          stat_id == o.stat_id
     end
 
     # @see the `==` method
@@ -242,7 +230,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, status, updated_at, organization, organization_id, sub_organization, sub_organization_id, team, team_id, external_account, external_account_id, alerts, alert_ids, stat, stat_id, errors].hash
+      [id, created_at, status, updated_at, organization, organization_id, sub_organization, sub_organization_id, team, team_id, external_account, external_account_id, alerts, alert_ids, stat, stat_id].hash
     end
 
     # Builds the object from hash

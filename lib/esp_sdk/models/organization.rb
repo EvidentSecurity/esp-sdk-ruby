@@ -17,73 +17,74 @@ module ESP
     # Unique ID
     attr_accessor :id
 
-    # Name of the organization
-    attr_accessor :name
-
     # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
-    # ISO 8601 timestamp when the resource was last updated
+    # Name of the organization
+    attr_accessor :name
+
+    # Whether or not users for this organization are required to enable Multi Factor Authentication
+    attr_accessor :require_mfa
+
+    # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
 
     # Associated Subscription
     attr_accessor :subscription
 
-    # Associated Subscription Id
+    # Associated Subscription ID
     attr_accessor :subscription_id
 
     # Associated Custom Signatures
     attr_accessor :custom_signatures
 
-    # Associated Custom Signatures Ids
+    # Associated Custom Signatures IDs
     attr_accessor :custom_signature_ids
 
     # Associated External Accounts
     attr_accessor :external_accounts
 
-    # Associated External Accounts Ids
+    # Associated External Accounts IDs
     attr_accessor :external_account_ids
 
     # Associated Sub Organizations
     attr_accessor :sub_organizations
 
-    # Associated Sub Organizations Ids
+    # Associated Sub Organizations IDs
     attr_accessor :sub_organization_ids
 
     # Associated Teams
     attr_accessor :teams
 
-    # Associated Teams Ids
+    # Associated Teams IDs
     attr_accessor :team_ids
 
     # Associated Users
     attr_accessor :users
 
-    # Associated Users Ids
+    # Associated Users IDs
     attr_accessor :user_ids
 
     # Associated Compliance Standards
     attr_accessor :compliance_standards
 
-    # Associated Compliance Standards Ids
+    # Associated Compliance Standards IDs
     attr_accessor :compliance_standard_ids
 
     # Associated Integrations
     attr_accessor :integrations
 
-    # Associated Integrations Ids
+    # Associated Integrations IDs
     attr_accessor :integration_ids
-
-    # Array of error messages if the request failed
-    attr_accessor :errors
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'name' => :'name',
         :'created_at' => :'created_at',
+        :'name' => :'name',
+        :'require_mfa' => :'require_mfa',
         :'updated_at' => :'updated_at',
         :'subscription' => :'subscription',
         :'subscription_id' => :'subscription_id',
@@ -100,8 +101,7 @@ module ESP
         :'compliance_standards' => :'compliance_standards',
         :'compliance_standard_ids' => :'compliance_standard_ids',
         :'integrations' => :'integrations',
-        :'integration_ids' => :'integration_ids',
-        :'errors' => :'errors'
+        :'integration_ids' => :'integration_ids'
       }
     end
 
@@ -109,8 +109,9 @@ module ESP
     def self.swagger_types
       {
         :'id' => :'Integer',
-        :'name' => :'String',
         :'created_at' => :'DateTime',
+        :'name' => :'String',
+        :'require_mfa' => :'BOOLEAN',
         :'updated_at' => :'DateTime',
         :'subscription' => :'Subscription',
         :'subscription_id' => :'Integer',
@@ -127,8 +128,7 @@ module ESP
         :'compliance_standards' => :'Array<ComplianceStandard>',
         :'compliance_standard_ids' => :'Array<Integer>',
         :'integrations' => :'Array<Integration>',
-        :'integration_ids' => :'Array<Integer>',
-        :'errors' => :'Array<String>'
+        :'integration_ids' => :'Array<Integer>'
       }
     end
 
@@ -144,12 +144,16 @@ module ESP
         self.id = attributes[:'id']
       end
 
+      if attributes.has_key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      end
+
       if attributes.has_key?(:'name')
         self.name = attributes[:'name']
       end
 
-      if attributes.has_key?(:'created_at')
-        self.created_at = attributes[:'created_at']
+      if attributes.has_key?(:'require_mfa')
+        self.require_mfa = attributes[:'require_mfa']
       end
 
       if attributes.has_key?(:'updated_at')
@@ -248,12 +252,6 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
-      end
-
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -275,8 +273,9 @@ module ESP
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          name == o.name &&
           created_at == o.created_at &&
+          name == o.name &&
+          require_mfa == o.require_mfa &&
           updated_at == o.updated_at &&
           subscription == o.subscription &&
           subscription_id == o.subscription_id &&
@@ -293,8 +292,7 @@ module ESP
           compliance_standards == o.compliance_standards &&
           compliance_standard_ids == o.compliance_standard_ids &&
           integrations == o.integrations &&
-          integration_ids == o.integration_ids &&
-          errors == o.errors
+          integration_ids == o.integration_ids
     end
 
     # @see the `==` method
@@ -306,7 +304,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, created_at, updated_at, subscription, subscription_id, custom_signatures, custom_signature_ids, external_accounts, external_account_ids, sub_organizations, sub_organization_ids, teams, team_ids, users, user_ids, compliance_standards, compliance_standard_ids, integrations, integration_ids, errors].hash
+      [id, created_at, name, require_mfa, updated_at, subscription, subscription_id, custom_signatures, custom_signature_ids, external_accounts, external_account_ids, sub_organizations, sub_organization_ids, teams, team_ids, users, user_ids, compliance_standards, compliance_standard_ids, integrations, integration_ids].hash
     end
 
     # Builds the object from hash

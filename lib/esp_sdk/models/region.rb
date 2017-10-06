@@ -20,8 +20,14 @@ module ESP
     # AWS region code. This code is underscored
     attr_accessor :code
 
-    # Array of error messages if the request failed
-    attr_accessor :errors
+    # ISO 8601 timestamp when the resource was created
+    attr_accessor :created_at
+
+    # ISO 8601 timestamp when the resource was updated
+    attr_accessor :updated_at
+
+    # The cloud provider this account is for
+    attr_accessor :provider
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -29,7 +35,9 @@ module ESP
       {
         :'id' => :'id',
         :'code' => :'code',
-        :'errors' => :'errors'
+        :'created_at' => :'created_at',
+        :'updated_at' => :'updated_at',
+        :'provider' => :'provider'
       }
     end
 
@@ -38,7 +46,9 @@ module ESP
       {
         :'id' => :'Integer',
         :'code' => :'String',
-        :'errors' => :'Array<String>'
+        :'created_at' => :'DateTime',
+        :'updated_at' => :'DateTime',
+        :'provider' => :'String'
       }
     end
 
@@ -58,10 +68,16 @@ module ESP
         self.code = attributes[:'code']
       end
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
+      if attributes.has_key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.has_key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
+      end
+
+      if attributes.has_key?(:'provider')
+        self.provider = attributes[:'provider']
       end
 
     end
@@ -86,7 +102,9 @@ module ESP
       self.class == o.class &&
           id == o.id &&
           code == o.code &&
-          errors == o.errors
+          created_at == o.created_at &&
+          updated_at == o.updated_at &&
+          provider == o.provider
     end
 
     # @see the `==` method
@@ -98,7 +116,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, code, errors].hash
+      [id, code, created_at, updated_at, provider].hash
     end
 
     # Builds the object from hash

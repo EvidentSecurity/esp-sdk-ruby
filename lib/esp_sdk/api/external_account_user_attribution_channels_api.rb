@@ -23,7 +23,7 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to create a User Attribution Channel for
     # @param [Hash] opts the optional parameters
-    # @return [Channel]
+    # @return [ExternalAccountUserAttributionChannel]
     def create(external_account_id, opts = {})
       data, _status_code, _headers = create_with_http_info(external_account_id, opts)
       return data
@@ -33,7 +33,7 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to create a User Attribution Channel for
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Channel, Fixnum, Hash)>] Channel data, response status code and response headers
+    # @return [Array<(ExternalAccountUserAttributionChannel, Fixnum, Hash)>] ExternalAccountUserAttributionChannel data, response status code and response headers
     def create_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalAccountUserAttributionChannelsApi.create ..."
@@ -65,7 +65,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Channel')
+        :return_type => 'ExternalAccountUserAttributionChannel')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ExternalAccountUserAttributionChannelsApi#create\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -76,7 +76,7 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to remove the User Attribution Channel from
     # @param [Hash] opts the optional parameters
-    # @return [Channel]
+    # @return [Meta]
     def destroy(external_account_id, opts = {})
       data, _status_code, _headers = destroy_with_http_info(external_account_id, opts)
       return data
@@ -86,7 +86,7 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to remove the User Attribution Channel from
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Channel, Fixnum, Hash)>] Channel data, response status code and response headers
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def destroy_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalAccountUserAttributionChannelsApi.destroy ..."
@@ -118,7 +118,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Channel')
+        :return_type => 'Meta')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ExternalAccountUserAttributionChannelsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -129,7 +129,7 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to show the user attribution channel for
     # @param [Hash] opts the optional parameters
-    # @return [Channel]
+    # @return [ExternalAccountUserAttributionChannel]
     def show(external_account_id, opts = {})
       data, _status_code, _headers = show_with_http_info(external_account_id, opts)
       return data
@@ -139,7 +139,7 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to show the user attribution channel for
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Channel, Fixnum, Hash)>] Channel data, response status code and response headers
+    # @return [Array<(ExternalAccountUserAttributionChannel, Fixnum, Hash)>] ExternalAccountUserAttributionChannel data, response status code and response headers
     def show_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalAccountUserAttributionChannelsApi.show ..."
@@ -171,7 +171,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Channel')
+        :return_type => 'ExternalAccountUserAttributionChannel')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ExternalAccountUserAttributionChannelsApi#show\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

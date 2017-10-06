@@ -24,7 +24,7 @@ module ESP
     # @param report_ids An array of report IDs
     # @param integration_id The ID of the integration to send the alerts to
     # @param [Hash] opts the optional parameters
-    # @return [SuccessObject]
+    # @return [Meta]
     def create(report_ids, integration_id, opts = {})
       data, _status_code, _headers = create_with_http_info(report_ids, integration_id, opts)
       return data
@@ -35,7 +35,7 @@ module ESP
     # @param report_ids An array of report IDs
     # @param integration_id The ID of the integration to send the alerts to
     # @param [Hash] opts the optional parameters
-    # @return [Array<(SuccessObject, Fixnum, Hash)>] SuccessObject data, response status code and response headers
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def create_with_http_info(report_ids, integration_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ReportIntegrationsApi.create ..."
@@ -71,7 +71,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'SuccessObject')
+        :return_type => 'Meta')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ReportIntegrationsApi#create\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

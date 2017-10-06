@@ -22,9 +22,9 @@ require 'esp_sdk'
 api_instance = ESP::OrganizationsApi.new
 
 opts = { 
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id]  Example: filter: {name_eq: 'Bob'}
-  include: "include_example", # String | Objects that can be included in the response:  subscription,custom_signatures,external_accounts,sub_organizations,teams,users,compliance_standards,integrations  See Including Objects for more information.
-  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  See Searching Lists for more information.
+  include: "include_example", # String | Related objects that can be included in the response.  See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
 }
 
 begin
@@ -40,9 +40,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id]  Example: filter: {name_eq: &#39;Bob&#39;} | [optional] 
- **include** | **String**| Objects that can be included in the response:  subscription,custom_signatures,external_accounts,sub_organizations,teams,users,compliance_standards,integrations  See Including Objects for more information. | [optional] 
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  See Searching Lists for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response.  See Including Objects for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -71,10 +71,10 @@ require 'esp_sdk'
 
 api_instance = ESP::OrganizationsApi.new
 
-id = 56 # Integer | Organization Id
+id = 56 # Integer | Organization ID
 
 opts = { 
-  include: "include_example" # String | Objects that can be included in the response:  subscription,custom_signatures,external_accounts,sub_organizations,teams,users,compliance_standards,integrations  See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response.  See Including Objects for more information.
 }
 
 begin
@@ -90,8 +90,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Organization Id | 
- **include** | **String**| Objects that can be included in the response:  subscription,custom_signatures,external_accounts,sub_organizations,teams,users,compliance_standards,integrations  See Including Objects for more information. | [optional] 
+ **id** | **Integer**| Organization ID | 
+ **include** | **String**| Related objects that can be included in the response.  See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -120,9 +120,9 @@ require 'esp_sdk'
 
 api_instance = ESP::OrganizationsApi.new
 
-id = 56 # Integer | Organization Id
+id = 56 # Integer | Organization ID
 
-name = "name_example" # String | Name
+name = "name_example" # String | Name of the organization
 
 
 begin
@@ -138,8 +138,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Organization Id | 
- **name** | **String**| Name | 
+ **id** | **Integer**| Organization ID | 
+ **name** | **String**| Name of the organization | 
 
 ### Return type
 

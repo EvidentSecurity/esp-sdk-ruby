@@ -19,10 +19,10 @@ module ESP
       @api_client = api_client
     end
 
-    # Create a(n) Signature Custom Risk Level
+    # Create a(n) SignatureCustomRiskLevel
     # 
     # @param external_account_id The ID of the external account this signature custom risk level is for
-    # @param risk_level The risk-level of the problem identified by the signature. Valid values are Low, Medium, High
+    # @param risk_level The risk-level of the problem identified by the signature. Valid values are low, medium, high
     # @param signature_id The signature ID this signature custom risk level is for
     # @param [Hash] opts the optional parameters
     # @return [SignatureCustomRiskLevel]
@@ -31,10 +31,10 @@ module ESP
       return data
     end
 
-    # Create a(n) Signature Custom Risk Level
+    # Create a(n) SignatureCustomRiskLevel
     # 
     # @param external_account_id The ID of the external account this signature custom risk level is for
-    # @param risk_level The risk-level of the problem identified by the signature. Valid values are Low, Medium, High
+    # @param risk_level The risk-level of the problem identified by the signature. Valid values are low, medium, high
     # @param signature_id The signature ID this signature custom risk level is for
     # @param [Hash] opts the optional parameters
     # @return [Array<(SignatureCustomRiskLevel, Fixnum, Hash)>] SignatureCustomRiskLevel data, response status code and response headers
@@ -47,8 +47,8 @@ module ESP
       # verify the required parameter 'risk_level' is set
       fail ArgumentError, "Missing the required parameter 'risk_level' when calling SignatureCustomRiskLevelsApi.create" if risk_level.nil?
       # verify enum value
-      unless ['Low', 'Medium', 'High'].include?(risk_level)
-        fail ArgumentError, "invalid value for 'risk_level', must be one of Low, Medium, High"
+      unless ['low', 'medium', 'high'].include?(risk_level)
+        fail ArgumentError, "invalid value for 'risk_level', must be one of low, medium, high"
       end
       # verify the required parameter 'signature_id' is set
       fail ArgumentError, "Missing the required parameter 'signature_id' when calling SignatureCustomRiskLevelsApi.create" if signature_id.nil?
@@ -89,9 +89,9 @@ module ESP
 
     # Remove a(n) SignatureCustomRiskLevel
     # 
-    # @param id SignatureCustomRiskLevel Id
+    # @param id SignatureCustomRiskLevel ID
     # @param [Hash] opts the optional parameters
-    # @return [SignatureCustomRiskLevel]
+    # @return [Meta]
     def destroy(id, opts = {})
       data, _status_code, _headers = destroy_with_http_info(id, opts)
       return data
@@ -99,9 +99,9 @@ module ESP
 
     # Remove a(n) SignatureCustomRiskLevel
     # 
-    # @param id SignatureCustomRiskLevel Id
+    # @param id SignatureCustomRiskLevel ID
     # @param [Hash] opts the optional parameters
-    # @return [Array<(SignatureCustomRiskLevel, Fixnum, Hash)>] SignatureCustomRiskLevel data, response status code and response headers
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def destroy_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: SignatureCustomRiskLevelsApi.destroy ..."
@@ -133,31 +133,31 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'SignatureCustomRiskLevel')
+        :return_type => 'Meta')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: SignatureCustomRiskLevelsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Get a list of Signature Custom Risk Levels
+    # Get a list of SignatureCustomRiskLevels
     # 
     # @param external_account_id The ID of the external account to retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  external_account,signature  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(external_account_id, opts = {})
       data, _status_code, _headers = list_with_http_info(external_account_id, opts)
       return data
     end
 
-    # Get a list of Signature Custom Risk Levels
+    # Get a list of SignatureCustomRiskLevels
     # 
     # @param external_account_id The ID of the external account to retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  external_account,signature  See Including Objects for more information.
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
@@ -199,22 +199,22 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single Signature Custom Risk Level
+    # Show a single SignatureCustomRiskLevel
     # 
-    # @param id Signature Custom Risk Level Id
+    # @param id SignatureCustomRiskLevel ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  external_account,signature  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [SignatureCustomRiskLevel]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single Signature Custom Risk Level
+    # Show a single SignatureCustomRiskLevel
     # 
-    # @param id Signature Custom Risk Level Id
+    # @param id SignatureCustomRiskLevel ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  external_account,signature  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Array<(SignatureCustomRiskLevel, Fixnum, Hash)>] SignatureCustomRiskLevel data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -255,11 +255,11 @@ module ESP
       return data, status_code, headers
     end
 
-    # Update a(n) Signature Custom Risk Level
+    # Update a(n) SignatureCustomRiskLevel
     # 
-    # @param id Signature Custom Risk Level Id
+    # @param id SignatureCustomRiskLevel ID
     # @param external_account_id The ID of the external account this signature custom risk level is for
-    # @param risk_level The risk-level of the problem identified by the signature. Valid values are Low, Medium, High
+    # @param risk_level The risk-level of the problem identified by the signature. Valid values are low, medium, high
     # @param signature_id The signature ID this signature custom risk level is for
     # @param [Hash] opts the optional parameters
     # @return [SignatureCustomRiskLevel]
@@ -268,11 +268,11 @@ module ESP
       return data
     end
 
-    # Update a(n) Signature Custom Risk Level
+    # Update a(n) SignatureCustomRiskLevel
     # 
-    # @param id Signature Custom Risk Level Id
+    # @param id SignatureCustomRiskLevel ID
     # @param external_account_id The ID of the external account this signature custom risk level is for
-    # @param risk_level The risk-level of the problem identified by the signature. Valid values are Low, Medium, High
+    # @param risk_level The risk-level of the problem identified by the signature. Valid values are low, medium, high
     # @param signature_id The signature ID this signature custom risk level is for
     # @param [Hash] opts the optional parameters
     # @return [Array<(SignatureCustomRiskLevel, Fixnum, Hash)>] SignatureCustomRiskLevel data, response status code and response headers
@@ -287,8 +287,8 @@ module ESP
       # verify the required parameter 'risk_level' is set
       fail ArgumentError, "Missing the required parameter 'risk_level' when calling SignatureCustomRiskLevelsApi.update" if risk_level.nil?
       # verify enum value
-      unless ['Low', 'Medium', 'High'].include?(risk_level)
-        fail ArgumentError, "invalid value for 'risk_level', must be one of Low, Medium, High"
+      unless ['low', 'medium', 'high'].include?(risk_level)
+        fail ArgumentError, "invalid value for 'risk_level', must be one of low, medium, high"
       end
       # verify the required parameter 'signature_id' is set
       fail ArgumentError, "Missing the required parameter 'signature_id' when calling SignatureCustomRiskLevelsApi.update" if signature_id.nil?

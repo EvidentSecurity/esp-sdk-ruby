@@ -23,7 +23,7 @@ api_instance = ESP::TagsApi.new
 alert_id = 56 # Integer | The ID of the alert to list tags for
 
 opts = { 
-  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
 }
 
 begin
@@ -40,7 +40,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **alert_id** | **Integer**| The ID of the alert to list tags for | 
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
+ **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -69,7 +69,7 @@ require 'esp_sdk'
 
 api_instance = ESP::TagsApi.new
 
-id = 56 # Integer | Tag Id
+id = 56 # Integer | Tag ID
 
 
 begin
@@ -85,7 +85,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Tag Id | 
+ **id** | **Integer**| Tag ID | 
 
 ### Return type
 
