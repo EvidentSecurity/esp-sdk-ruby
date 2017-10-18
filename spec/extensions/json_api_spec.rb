@@ -24,7 +24,7 @@ describe ESP::JsonApi do
         parsed_json = JSON.parse(json)
         stub_request(:put, %r{reports/1/alerts.json*}).to_return(headers: {}, body: json)
 
-        alert = ESP::AlertsApi.new.list(1).first
+        alert = ESP::AlertsApi.new.list_for_report(1).first
 
         expect(parsed_json['included'].detect {|e| e['type'] == 'external_accounts'}['id']).to eq(alert.external_account_id.to_s)
         expect(parsed_json['included'].detect {|e| e['type'] == 'regions'}['id']).to eq(alert.region_id.to_s)
@@ -41,7 +41,7 @@ describe ESP::JsonApi do
         manufactured_hash['included'] << nil
         stub_request(:put, %r{reports/1/alerts.json*}).to_return(headers: {}, body: manufactured_hash.to_json)
 
-        alert = ESP::AlertsApi.new.list(1).first
+        alert = ESP::AlertsApi.new.list_for_report(1).first
 
         expect(alert.external_account_id).not_to be_nil
         expect(alert.region_id).not_to be_nil
