@@ -83,7 +83,7 @@ describe ESP::ApiClient do
       stub_request(:put, %r{reports/1/alerts.json*}).to_return(headers: {}, body: json)
 
       api = ESP::AlertsApi.new
-      alert = api.list(1, filter: { name: 'Evid' })
+      alert = api.list_for_report(1, filter: { name: 'Evid' })
 
       expect(alert.api_client).to eq(api.api_client)
       expect(alert.original_params).to include(form_params: { 'filter' => { name: 'Evid' } })

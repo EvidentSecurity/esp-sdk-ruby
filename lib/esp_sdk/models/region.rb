@@ -20,6 +20,9 @@ module ESP
     # AWS region code. This code is underscored
     attr_accessor :code
 
+    # The display name associated with the code
+    attr_accessor :name
+
     # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
@@ -35,6 +38,7 @@ module ESP
       {
         :'id' => :'id',
         :'code' => :'code',
+        :'name' => :'name',
         :'created_at' => :'created_at',
         :'updated_at' => :'updated_at',
         :'provider' => :'provider'
@@ -46,6 +50,7 @@ module ESP
       {
         :'id' => :'Integer',
         :'code' => :'String',
+        :'name' => :'String',
         :'created_at' => :'DateTime',
         :'updated_at' => :'DateTime',
         :'provider' => :'String'
@@ -66,6 +71,10 @@ module ESP
 
       if attributes.has_key?(:'code')
         self.code = attributes[:'code']
+      end
+
+      if attributes.has_key?(:'name')
+        self.name = attributes[:'name']
       end
 
       if attributes.has_key?(:'created_at')
@@ -102,6 +111,7 @@ module ESP
       self.class == o.class &&
           id == o.id &&
           code == o.code &&
+          name == o.name &&
           created_at == o.created_at &&
           updated_at == o.updated_at &&
           provider == o.provider
@@ -116,7 +126,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, code, created_at, updated_at, provider].hash
+      [id, code, name, created_at, updated_at, provider].hash
     end
 
     # Builds the object from hash

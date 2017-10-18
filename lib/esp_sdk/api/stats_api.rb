@@ -19,242 +19,6 @@ module ESP
       @api_client = api_client
     end
 
-    # A successful call to this API returns all the stats of all the compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all compliance controls for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve compliance control stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @return [PaginatedCollection]
-    def for_compliance_controls(stat_id, opts = {})
-      data, _status_code, _headers = for_compliance_controls_with_http_info(stat_id, opts)
-      return data
-    end
-
-    # A successful call to this API returns all the stats of all the compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all compliance controls for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve compliance control stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
-    def for_compliance_controls_with_http_info(stat_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.for_compliance_controls ..."
-      end
-      # verify the required parameter 'stat_id' is set
-      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.for_compliance_controls" if stat_id.nil?
-      # resource path
-      local_var_path = "/api/v2/stats/{stat_id}/compliance_controls.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
-
-      # query parameters
-      query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = {}
-      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'PaginatedCollection')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#for_compliance_controls\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # A successful call to this API returns all the stats of all the custom compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom compliance controls for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve custom compliance control stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @return [PaginatedCollection]
-    def for_custom_compliance_controls(stat_id, opts = {})
-      data, _status_code, _headers = for_custom_compliance_controls_with_http_info(stat_id, opts)
-      return data
-    end
-
-    # A successful call to this API returns all the stats of all the custom compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom compliance controls for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve custom compliance control stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
-    def for_custom_compliance_controls_with_http_info(stat_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.for_custom_compliance_controls ..."
-      end
-      # verify the required parameter 'stat_id' is set
-      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.for_custom_compliance_controls" if stat_id.nil?
-      # resource path
-      local_var_path = "/api/v2/stats/{stat_id}/custom_compliance_controls.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
-
-      # query parameters
-      query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = {}
-      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'PaginatedCollection')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#for_custom_compliance_controls\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # A successful call to this API returns all the stats of all the custom signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom_signatures for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve custom signature stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @return [PaginatedCollection]
-    def for_custom_signatures(stat_id, opts = {})
-      data, _status_code, _headers = for_custom_signatures_with_http_info(stat_id, opts)
-      return data
-    end
-
-    # A successful call to this API returns all the stats of all the custom signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom_signatures for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve custom signature stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
-    def for_custom_signatures_with_http_info(stat_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.for_custom_signatures ..."
-      end
-      # verify the required parameter 'stat_id' is set
-      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.for_custom_signatures" if stat_id.nil?
-      # resource path
-      local_var_path = "/api/v2/stats/{stat_id}/custom_signatures.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
-
-      # query parameters
-      query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = {}
-      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'PaginatedCollection')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#for_custom_signatures\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # A successful call to this API returns all the stats of all the regions for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all regions for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve region stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @return [PaginatedCollection]
-    def for_regions(stat_id, opts = {})
-      data, _status_code, _headers = for_regions_with_http_info(stat_id, opts)
-      return data
-    end
-
-    # A successful call to this API returns all the stats of all the regions for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all regions for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve region stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
-    def for_regions_with_http_info(stat_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.for_regions ..."
-      end
-      # verify the required parameter 'stat_id' is set
-      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.for_regions" if stat_id.nil?
-      # resource path
-      local_var_path = "/api/v2/stats/{stat_id}/regions.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
-
-      # query parameters
-      query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = {}
-      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'PaginatedCollection')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#for_regions\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
     # A successful call to this API returns all the stats of all the alerts for a report identified by the report_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all regions for the selected hour.
     # 
     # @param report_id The ID of the report to retrieve stats for
@@ -307,124 +71,6 @@ module ESP
         :return_type => 'Stat')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: StatsApi#for_report\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # A successful call to this API returns all the stats of all the services for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from services contained in all services for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve service stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @return [PaginatedCollection]
-    def for_services(stat_id, opts = {})
-      data, _status_code, _headers = for_services_with_http_info(stat_id, opts)
-      return data
-    end
-
-    # A successful call to this API returns all the stats of all the services for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from services contained in all services for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve service stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
-    def for_services_with_http_info(stat_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.for_services ..."
-      end
-      # verify the required parameter 'stat_id' is set
-      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.for_services" if stat_id.nil?
-      # resource path
-      local_var_path = "/api/v2/stats/{stat_id}/services.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
-
-      # query parameters
-      query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = {}
-      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'PaginatedCollection')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#for_services\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # A successful call to this API returns all the stats of all the signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all signatures for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve signature stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @return [PaginatedCollection]
-    def for_signatures(stat_id, opts = {})
-      data, _status_code, _headers = for_signatures_with_http_info(stat_id, opts)
-      return data
-    end
-
-    # A successful call to this API returns all the stats of all the signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all signatures for the selected hour.
-    # 
-    # @param stat_id The ID of the stat to retrieve signature stats for
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
-    def for_signatures_with_http_info(stat_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.for_signatures ..."
-      end
-      # verify the required parameter 'stat_id' is set
-      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.for_signatures" if stat_id.nil?
-      # resource path
-      local_var_path = "/api/v2/stats/{stat_id}/signatures.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
-
-      # query parameters
-      query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = {}
-      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'PaginatedCollection')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#for_signatures\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -487,31 +133,33 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single StatCustomComplianceControl
+    # A successful call to this API returns all the stats of all the compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all compliance controls for the selected hour.
     # 
-    # @param id StatCustomComplianceControl ID
+    # @param stat_id The ID of the stat to retrieve compliance control stats for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @return [StatCustomComplianceControl]
-    def show(id, opts = {})
-      data, _status_code, _headers = show_with_http_info(id, opts)
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @return [PaginatedCollection]
+    def list_stat_compliance_controls_for_stat(stat_id, opts = {})
+      data, _status_code, _headers = list_stat_compliance_controls_for_stat_with_http_info(stat_id, opts)
       return data
     end
 
-    # Show a single StatCustomComplianceControl
+    # A successful call to this API returns all the stats of all the compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all compliance controls for the selected hour.
     # 
-    # @param id StatCustomComplianceControl ID
+    # @param stat_id The ID of the stat to retrieve compliance control stats for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @return [Array<(StatCustomComplianceControl, Fixnum, Hash)>] StatCustomComplianceControl data, response status code and response headers
-    def show_with_http_info(id, opts = {})
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_stat_compliance_controls_for_stat_with_http_info(stat_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.show ..."
+        @api_client.config.logger.debug "Calling API: StatsApi.list_stat_compliance_controls_for_stat ..."
       end
-      # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show" if id.nil?
+      # verify the required parameter 'stat_id' is set
+      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.list_stat_compliance_controls_for_stat" if stat_id.nil?
       # resource path
-      local_var_path = "/api/v2/stats/custom_compliance_controls/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/stats/{stat_id}/compliance_controls.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
 
       # query parameters
       query_params = {}
@@ -526,6 +174,7 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
 
       # http body (model)
       post_body = nil
@@ -536,38 +185,40 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'StatCustomComplianceControl')
+        :return_type => 'PaginatedCollection')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#show\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: StatsApi#list_stat_compliance_controls_for_stat\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Show a single StatComplianceControl
+    # A successful call to this API returns all the stats of all the custom compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom compliance controls for the selected hour.
     # 
-    # @param id StatComplianceControl ID
+    # @param stat_id The ID of the stat to retrieve custom compliance control stats for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @return [StatComplianceControl]
-    def show_0(id, opts = {})
-      data, _status_code, _headers = show_0_with_http_info(id, opts)
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @return [PaginatedCollection]
+    def list_stat_custom_compliance_controls_for_stat(stat_id, opts = {})
+      data, _status_code, _headers = list_stat_custom_compliance_controls_for_stat_with_http_info(stat_id, opts)
       return data
     end
 
-    # Show a single StatComplianceControl
+    # A successful call to this API returns all the stats of all the custom compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom compliance controls for the selected hour.
     # 
-    # @param id StatComplianceControl ID
+    # @param stat_id The ID of the stat to retrieve custom compliance control stats for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @return [Array<(StatComplianceControl, Fixnum, Hash)>] StatComplianceControl data, response status code and response headers
-    def show_0_with_http_info(id, opts = {})
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_stat_custom_compliance_controls_for_stat_with_http_info(stat_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.show_0 ..."
+        @api_client.config.logger.debug "Calling API: StatsApi.list_stat_custom_compliance_controls_for_stat ..."
       end
-      # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_0" if id.nil?
+      # verify the required parameter 'stat_id' is set
+      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.list_stat_custom_compliance_controls_for_stat" if stat_id.nil?
       # resource path
-      local_var_path = "/api/v2/stats/compliance_controls/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/stats/{stat_id}/custom_compliance_controls.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
 
       # query parameters
       query_params = {}
@@ -582,6 +233,7 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
 
       # http body (model)
       post_body = nil
@@ -592,38 +244,40 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'StatComplianceControl')
+        :return_type => 'PaginatedCollection')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#show_0\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: StatsApi#list_stat_custom_compliance_controls_for_stat\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Show a single StatSignature
+    # A successful call to this API returns all the stats of all the custom signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom_signatures for the selected hour.
     # 
-    # @param id StatSignature ID
+    # @param stat_id The ID of the stat to retrieve custom signature stats for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @return [StatSignature]
-    def show_1(id, opts = {})
-      data, _status_code, _headers = show_1_with_http_info(id, opts)
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @return [PaginatedCollection]
+    def list_stat_custom_signatures_for_stat(stat_id, opts = {})
+      data, _status_code, _headers = list_stat_custom_signatures_for_stat_with_http_info(stat_id, opts)
       return data
     end
 
-    # Show a single StatSignature
+    # A successful call to this API returns all the stats of all the custom signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom_signatures for the selected hour.
     # 
-    # @param id StatSignature ID
+    # @param stat_id The ID of the stat to retrieve custom signature stats for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @return [Array<(StatSignature, Fixnum, Hash)>] StatSignature data, response status code and response headers
-    def show_1_with_http_info(id, opts = {})
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_stat_custom_signatures_for_stat_with_http_info(stat_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.show_1 ..."
+        @api_client.config.logger.debug "Calling API: StatsApi.list_stat_custom_signatures_for_stat ..."
       end
-      # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_1" if id.nil?
+      # verify the required parameter 'stat_id' is set
+      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.list_stat_custom_signatures_for_stat" if stat_id.nil?
       # resource path
-      local_var_path = "/api/v2/stats/signatures/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/stats/{stat_id}/custom_signatures.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
 
       # query parameters
       query_params = {}
@@ -638,6 +292,7 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
 
       # http body (model)
       post_body = nil
@@ -648,9 +303,186 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'StatSignature')
+        :return_type => 'PaginatedCollection')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#show_1\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: StatsApi#list_stat_custom_signatures_for_stat\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # A successful call to this API returns all the stats of all the regions for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all regions for the selected hour.
+    # 
+    # @param stat_id The ID of the stat to retrieve region stats for
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @return [PaginatedCollection]
+    def list_stat_regions_for_stat(stat_id, opts = {})
+      data, _status_code, _headers = list_stat_regions_for_stat_with_http_info(stat_id, opts)
+      return data
+    end
+
+    # A successful call to this API returns all the stats of all the regions for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all regions for the selected hour.
+    # 
+    # @param stat_id The ID of the stat to retrieve region stats for
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_stat_regions_for_stat_with_http_info(stat_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: StatsApi.list_stat_regions_for_stat ..."
+      end
+      # verify the required parameter 'stat_id' is set
+      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.list_stat_regions_for_stat" if stat_id.nil?
+      # resource path
+      local_var_path = "/api/v2/stats/{stat_id}/regions.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'PaginatedCollection')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: StatsApi#list_stat_regions_for_stat\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # A successful call to this API returns all the stats of all the services for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from services contained in all services for the selected hour.
+    # 
+    # @param stat_id The ID of the stat to retrieve service stats for
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @return [PaginatedCollection]
+    def list_stat_services_for_stat(stat_id, opts = {})
+      data, _status_code, _headers = list_stat_services_for_stat_with_http_info(stat_id, opts)
+      return data
+    end
+
+    # A successful call to this API returns all the stats of all the services for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from services contained in all services for the selected hour.
+    # 
+    # @param stat_id The ID of the stat to retrieve service stats for
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_stat_services_for_stat_with_http_info(stat_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: StatsApi.list_stat_services_for_stat ..."
+      end
+      # verify the required parameter 'stat_id' is set
+      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.list_stat_services_for_stat" if stat_id.nil?
+      # resource path
+      local_var_path = "/api/v2/stats/{stat_id}/services.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'PaginatedCollection')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: StatsApi#list_stat_services_for_stat\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # A successful call to this API returns all the stats of all the signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all signatures for the selected hour.
+    # 
+    # @param stat_id The ID of the stat to retrieve signature stats for
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @return [PaginatedCollection]
+    def list_stat_signatures_for_stat(stat_id, opts = {})
+      data, _status_code, _headers = list_stat_signatures_for_stat_with_http_info(stat_id, opts)
+      return data
+    end
+
+    # A successful call to this API returns all the stats of all the signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all signatures for the selected hour.
+    # 
+    # @param stat_id The ID of the stat to retrieve signature stats for
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_stat_signatures_for_stat_with_http_info(stat_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: StatsApi.list_stat_signatures_for_stat ..."
+      end
+      # verify the required parameter 'stat_id' is set
+      fail ArgumentError, "Missing the required parameter 'stat_id' when calling StatsApi.list_stat_signatures_for_stat" if stat_id.nil?
+      # resource path
+      local_var_path = "/api/v2/stats/{stat_id}/signatures.json_api".sub('{format}','json_api').sub('{' + 'stat_id' + '}', stat_id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'PaginatedCollection')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: StatsApi#list_stat_signatures_for_stat\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -661,8 +493,8 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Stat]
-    def show_2(id, opts = {})
-      data, _status_code, _headers = show_2_with_http_info(id, opts)
+    def show(id, opts = {})
+      data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
@@ -672,12 +504,12 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Array<(Stat, Fixnum, Hash)>] Stat data, response status code and response headers
-    def show_2_with_http_info(id, opts = {})
+    def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.show_2 ..."
+        @api_client.config.logger.debug "Calling API: StatsApi.show ..."
       end
       # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_2" if id.nil?
+      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show" if id.nil?
       # resource path
       local_var_path = "/api/v2/stats/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
@@ -706,36 +538,36 @@ module ESP
         :auth_names => auth_names,
         :return_type => 'Stat')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#show_2\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: StatsApi#show\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Show a single StatRegion
+    # Show a single StatComplianceControl
     # 
-    # @param id StatRegion ID
+    # @param id StatComplianceControl ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @return [StatRegion]
-    def show_3(id, opts = {})
-      data, _status_code, _headers = show_3_with_http_info(id, opts)
+    # @return [StatComplianceControl]
+    def show_stat_compliance_control(id, opts = {})
+      data, _status_code, _headers = show_stat_compliance_control_with_http_info(id, opts)
       return data
     end
 
-    # Show a single StatRegion
+    # Show a single StatComplianceControl
     # 
-    # @param id StatRegion ID
+    # @param id StatComplianceControl ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @return [Array<(StatRegion, Fixnum, Hash)>] StatRegion data, response status code and response headers
-    def show_3_with_http_info(id, opts = {})
+    # @return [Array<(StatComplianceControl, Fixnum, Hash)>] StatComplianceControl data, response status code and response headers
+    def show_stat_compliance_control_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.show_3 ..."
+        @api_client.config.logger.debug "Calling API: StatsApi.show_stat_compliance_control ..."
       end
       # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_3" if id.nil?
+      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_stat_compliance_control" if id.nil?
       # resource path
-      local_var_path = "/api/v2/stats/regions/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/api/v2/stats/compliance_controls/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -760,9 +592,65 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'StatRegion')
+        :return_type => 'StatComplianceControl')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#show_3\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: StatsApi#show_stat_compliance_control\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Show a single StatCustomComplianceControl
+    # 
+    # @param id StatCustomComplianceControl ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @return [StatCustomComplianceControl]
+    def show_stat_custom_compliance_control(id, opts = {})
+      data, _status_code, _headers = show_stat_custom_compliance_control_with_http_info(id, opts)
+      return data
+    end
+
+    # Show a single StatCustomComplianceControl
+    # 
+    # @param id StatCustomComplianceControl ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @return [Array<(StatCustomComplianceControl, Fixnum, Hash)>] StatCustomComplianceControl data, response status code and response headers
+    def show_stat_custom_compliance_control_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: StatsApi.show_stat_custom_compliance_control ..."
+      end
+      # verify the required parameter 'id' is set
+      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_stat_custom_compliance_control" if id.nil?
+      # resource path
+      local_var_path = "/api/v2/stats/custom_compliance_controls/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'StatCustomComplianceControl')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: StatsApi#show_stat_custom_compliance_control\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -773,8 +661,8 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [StatCustomSignature]
-    def show_4(id, opts = {})
-      data, _status_code, _headers = show_4_with_http_info(id, opts)
+    def show_stat_custom_signature(id, opts = {})
+      data, _status_code, _headers = show_stat_custom_signature_with_http_info(id, opts)
       return data
     end
 
@@ -784,12 +672,12 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Array<(StatCustomSignature, Fixnum, Hash)>] StatCustomSignature data, response status code and response headers
-    def show_4_with_http_info(id, opts = {})
+    def show_stat_custom_signature_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.show_4 ..."
+        @api_client.config.logger.debug "Calling API: StatsApi.show_stat_custom_signature ..."
       end
       # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_4" if id.nil?
+      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_stat_custom_signature" if id.nil?
       # resource path
       local_var_path = "/api/v2/stats/custom_signatures/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
@@ -818,7 +706,63 @@ module ESP
         :auth_names => auth_names,
         :return_type => 'StatCustomSignature')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#show_4\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: StatsApi#show_stat_custom_signature\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Show a single StatRegion
+    # 
+    # @param id StatRegion ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @return [StatRegion]
+    def show_stat_region(id, opts = {})
+      data, _status_code, _headers = show_stat_region_with_http_info(id, opts)
+      return data
+    end
+
+    # Show a single StatRegion
+    # 
+    # @param id StatRegion ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @return [Array<(StatRegion, Fixnum, Hash)>] StatRegion data, response status code and response headers
+    def show_stat_region_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: StatsApi.show_stat_region ..."
+      end
+      # verify the required parameter 'id' is set
+      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_stat_region" if id.nil?
+      # resource path
+      local_var_path = "/api/v2/stats/regions/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'StatRegion')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: StatsApi#show_stat_region\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -829,8 +773,8 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [StatService]
-    def show_5(id, opts = {})
-      data, _status_code, _headers = show_5_with_http_info(id, opts)
+    def show_stat_service(id, opts = {})
+      data, _status_code, _headers = show_stat_service_with_http_info(id, opts)
       return data
     end
 
@@ -840,12 +784,12 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Array<(StatService, Fixnum, Hash)>] StatService data, response status code and response headers
-    def show_5_with_http_info(id, opts = {})
+    def show_stat_service_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: StatsApi.show_5 ..."
+        @api_client.config.logger.debug "Calling API: StatsApi.show_stat_service ..."
       end
       # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_5" if id.nil?
+      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_stat_service" if id.nil?
       # resource path
       local_var_path = "/api/v2/stats/services/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
@@ -874,7 +818,63 @@ module ESP
         :auth_names => auth_names,
         :return_type => 'StatService')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: StatsApi#show_5\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: StatsApi#show_stat_service\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Show a single StatSignature
+    # 
+    # @param id StatSignature ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @return [StatSignature]
+    def show_stat_signature(id, opts = {})
+      data, _status_code, _headers = show_stat_signature_with_http_info(id, opts)
+      return data
+    end
+
+    # Show a single StatSignature
+    # 
+    # @param id StatSignature ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @return [Array<(StatSignature, Fixnum, Hash)>] StatSignature data, response status code and response headers
+    def show_stat_signature_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: StatsApi.show_stat_signature ..."
+      end
+      # verify the required parameter 'id' is set
+      fail ArgumentError, "Missing the required parameter 'id' when calling StatsApi.show_stat_signature" if id.nil?
+      # resource path
+      local_var_path = "/api/v2/stats/signatures/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'StatSignature')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: StatsApi#show_stat_signature\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
