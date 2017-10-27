@@ -19,22 +19,22 @@ module ESP
       @api_client = api_client
     end
 
-    # Get a list of Cloud Trail Events
+    # Get a list of CloudTrailEvents
     # 
     # @param alert_id The ID of the alert to retrieve cloud trail events for
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(alert_id, opts = {})
       data, _status_code, _headers = list_with_http_info(alert_id, opts)
       return data
     end
 
-    # Get a list of Cloud Trail Events
+    # Get a list of CloudTrailEvents
     # 
     # @param alert_id The ID of the alert to retrieve cloud trail events for
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(alert_id, opts = {})
       if @api_client.config.debugging
@@ -75,9 +75,9 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single Cloud Trail Event
+    # Show a single CloudTrailEvent
     # 
-    # @param id Cloud Trail Event Id
+    # @param id CloudTrailEvent ID
     # @param [Hash] opts the optional parameters
     # @return [CloudTrailEvent]
     def show(id, opts = {})
@@ -85,9 +85,9 @@ module ESP
       return data
     end
 
-    # Show a single Cloud Trail Event
+    # Show a single CloudTrailEvent
     # 
-    # @param id Cloud Trail Event Id
+    # @param id CloudTrailEvent ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(CloudTrailEvent, Fixnum, Hash)>] CloudTrailEvent data, response status code and response headers
     def show_with_http_info(id, opts = {})

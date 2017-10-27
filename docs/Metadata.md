@@ -4,7 +4,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Integer** | Unique ID | [optional] 
-**data** | **Object** | Contains metadata returned by the signature. The object will be different for each alert depending on signature and status. | [optional] 
-**errors** | **Array&lt;String&gt;** | Array of error messages if the request failed | [optional] 
+**data** | **Object** | Contains metadata returned by the signature. The object will be different for each alert depending on signature and status | [optional] 
 
 

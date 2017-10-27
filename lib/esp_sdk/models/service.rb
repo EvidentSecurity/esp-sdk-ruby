@@ -20,26 +20,26 @@ module ESP
     # The code associated with this service
     attr_accessor :code
 
-    # ISO 8601 timestamp when the resource was created
-    attr_accessor :created_at
-
     # Default interval used for scans if a scan interval was not created
     attr_accessor :default_interval
 
     # Minimum interval allowed for scans on this service
     attr_accessor :minimum_interval
 
+    # ISO 8601 timestamp when the resource was created
+    attr_accessor :created_at
+
     # The name of the service
     attr_accessor :name
 
-    # The policy name of the service. This matches the namespace set by Amazon here
+    # The policy name of the service. This matches the namespace set by Amazon
     attr_accessor :policy_name
 
-    # ISO 8601 timestamp when the resource was last updated
+    # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
 
-    # Array of error messages if the request failed
-    attr_accessor :errors
+    # The cloud provider this account is for
+    attr_accessor :provider
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -47,13 +47,13 @@ module ESP
       {
         :'id' => :'id',
         :'code' => :'code',
-        :'created_at' => :'created_at',
         :'default_interval' => :'default_interval',
         :'minimum_interval' => :'minimum_interval',
+        :'created_at' => :'created_at',
         :'name' => :'name',
         :'policy_name' => :'policy_name',
         :'updated_at' => :'updated_at',
-        :'errors' => :'errors'
+        :'provider' => :'provider'
       }
     end
 
@@ -62,13 +62,13 @@ module ESP
       {
         :'id' => :'Integer',
         :'code' => :'String',
-        :'created_at' => :'DateTime',
         :'default_interval' => :'Integer',
         :'minimum_interval' => :'Integer',
+        :'created_at' => :'DateTime',
         :'name' => :'String',
         :'policy_name' => :'String',
         :'updated_at' => :'DateTime',
-        :'errors' => :'Array<String>'
+        :'provider' => :'String'
       }
     end
 
@@ -88,16 +88,16 @@ module ESP
         self.code = attributes[:'code']
       end
 
-      if attributes.has_key?(:'created_at')
-        self.created_at = attributes[:'created_at']
-      end
-
       if attributes.has_key?(:'default_interval')
         self.default_interval = attributes[:'default_interval']
       end
 
       if attributes.has_key?(:'minimum_interval')
         self.minimum_interval = attributes[:'minimum_interval']
+      end
+
+      if attributes.has_key?(:'created_at')
+        self.created_at = attributes[:'created_at']
       end
 
       if attributes.has_key?(:'name')
@@ -112,10 +112,8 @@ module ESP
         self.updated_at = attributes[:'updated_at']
       end
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
+      if attributes.has_key?(:'provider')
+        self.provider = attributes[:'provider']
       end
 
     end
@@ -140,13 +138,13 @@ module ESP
       self.class == o.class &&
           id == o.id &&
           code == o.code &&
-          created_at == o.created_at &&
           default_interval == o.default_interval &&
           minimum_interval == o.minimum_interval &&
+          created_at == o.created_at &&
           name == o.name &&
           policy_name == o.policy_name &&
           updated_at == o.updated_at &&
-          errors == o.errors
+          provider == o.provider
     end
 
     # @see the `==` method
@@ -158,7 +156,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, code, created_at, default_interval, minimum_interval, name, policy_name, updated_at, errors].hash
+      [id, code, default_interval, minimum_interval, created_at, name, policy_name, updated_at, provider].hash
     end
 
     # Builds the object from hash

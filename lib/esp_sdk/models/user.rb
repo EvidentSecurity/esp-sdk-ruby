@@ -23,8 +23,11 @@ module ESP
     # The email of the user
     attr_accessor :email
 
-    # The time-zone of the user
+    # The time zone of the user. See Time Zones for a list of valid time zones
     attr_accessor :time_zone
+
+    # ISO 8601 timestamp when the resource was updated
+    attr_accessor :updated_at
 
     # The first name of the user
     attr_accessor :first_name
@@ -32,13 +35,13 @@ module ESP
     # The last name of the user
     attr_accessor :last_name
 
-    # The phone number associated with the user
+    # The phone number of the user
     attr_accessor :phone
 
     # Specifies whether Multi Factor Authentication is enabled or not
     attr_accessor :mfa_enabled
 
-    # This option toggles the daily emails option
+    # Specifies whether the daily emails should be turned off or not
     attr_accessor :disable_daily_emails
 
     # Specifies whether the user account is locked from accessing ESP
@@ -47,35 +50,32 @@ module ESP
     # The time the user account was locked
     attr_accessor :locked_at
 
-    # ISO 8601 timestamp when the resource was updated
-    attr_accessor :updated_at
+    # The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization, sub_organization, team
+    attr_accessor :access_level
 
     # Associated Organization
     attr_accessor :organization
 
-    # Associated Organization Id
+    # Associated Organization ID
     attr_accessor :organization_id
 
     # Associated Sub Organizations
     attr_accessor :sub_organizations
 
-    # Associated Sub Organizations Ids
+    # Associated Sub Organizations IDs
     attr_accessor :sub_organization_ids
 
     # Associated Teams
     attr_accessor :teams
 
-    # Associated Teams Ids
+    # Associated Teams IDs
     attr_accessor :team_ids
 
     # Associated Role
     attr_accessor :role
 
-    # Associated Role Id
+    # Associated Role ID
     attr_accessor :role_id
-
-    # Array of error messages if the request failed
-    attr_accessor :errors
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -85,6 +85,7 @@ module ESP
         :'created_at' => :'created_at',
         :'email' => :'email',
         :'time_zone' => :'time_zone',
+        :'updated_at' => :'updated_at',
         :'first_name' => :'first_name',
         :'last_name' => :'last_name',
         :'phone' => :'phone',
@@ -92,7 +93,7 @@ module ESP
         :'disable_daily_emails' => :'disable_daily_emails',
         :'locked' => :'locked',
         :'locked_at' => :'locked_at',
-        :'updated_at' => :'updated_at',
+        :'access_level' => :'access_level',
         :'organization' => :'organization',
         :'organization_id' => :'organization_id',
         :'sub_organizations' => :'sub_organizations',
@@ -100,8 +101,7 @@ module ESP
         :'teams' => :'teams',
         :'team_ids' => :'team_ids',
         :'role' => :'role',
-        :'role_id' => :'role_id',
-        :'errors' => :'errors'
+        :'role_id' => :'role_id'
       }
     end
 
@@ -112,6 +112,7 @@ module ESP
         :'created_at' => :'DateTime',
         :'email' => :'String',
         :'time_zone' => :'String',
+        :'updated_at' => :'DateTime',
         :'first_name' => :'String',
         :'last_name' => :'String',
         :'phone' => :'String',
@@ -119,7 +120,7 @@ module ESP
         :'disable_daily_emails' => :'BOOLEAN',
         :'locked' => :'BOOLEAN',
         :'locked_at' => :'DateTime',
-        :'updated_at' => :'DateTime',
+        :'access_level' => :'String',
         :'organization' => :'Organization',
         :'organization_id' => :'Integer',
         :'sub_organizations' => :'Array<SubOrganization>',
@@ -127,8 +128,7 @@ module ESP
         :'teams' => :'Array<Team>',
         :'team_ids' => :'Array<Integer>',
         :'role' => :'Role',
-        :'role_id' => :'Integer',
-        :'errors' => :'Array<String>'
+        :'role_id' => :'Integer'
       }
     end
 
@@ -154,6 +154,10 @@ module ESP
 
       if attributes.has_key?(:'time_zone')
         self.time_zone = attributes[:'time_zone']
+      end
+
+      if attributes.has_key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
       end
 
       if attributes.has_key?(:'first_name')
@@ -184,8 +188,8 @@ module ESP
         self.locked_at = attributes[:'locked_at']
       end
 
-      if attributes.has_key?(:'updated_at')
-        self.updated_at = attributes[:'updated_at']
+      if attributes.has_key?(:'access_level')
+        self.access_level = attributes[:'access_level']
       end
 
       if attributes.has_key?(:'organization')
@@ -228,12 +232,6 @@ module ESP
         self.role_id = attributes[:'role_id']
       end
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
-      end
-
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -258,6 +256,7 @@ module ESP
           created_at == o.created_at &&
           email == o.email &&
           time_zone == o.time_zone &&
+          updated_at == o.updated_at &&
           first_name == o.first_name &&
           last_name == o.last_name &&
           phone == o.phone &&
@@ -265,7 +264,7 @@ module ESP
           disable_daily_emails == o.disable_daily_emails &&
           locked == o.locked &&
           locked_at == o.locked_at &&
-          updated_at == o.updated_at &&
+          access_level == o.access_level &&
           organization == o.organization &&
           organization_id == o.organization_id &&
           sub_organizations == o.sub_organizations &&
@@ -273,8 +272,7 @@ module ESP
           teams == o.teams &&
           team_ids == o.team_ids &&
           role == o.role &&
-          role_id == o.role_id &&
-          errors == o.errors
+          role_id == o.role_id
     end
 
     # @see the `==` method
@@ -286,7 +284,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, email, time_zone, first_name, last_name, phone, mfa_enabled, disable_daily_emails, locked, locked_at, updated_at, organization, organization_id, sub_organizations, sub_organization_ids, teams, team_ids, role, role_id, errors].hash
+      [id, created_at, email, time_zone, updated_at, first_name, last_name, phone, mfa_enabled, disable_daily_emails, locked, locked_at, access_level, organization, organization_id, sub_organizations, sub_organization_ids, teams, team_ids, role, role_id].hash
     end
 
     # Builds the object from hash

@@ -17,19 +17,15 @@ module ESP
     # Unique ID
     attr_accessor :id
 
-    # Contains metadata returned by the signature. The object will be different for each alert depending on signature and status.
+    # Contains metadata returned by the signature. The object will be different for each alert depending on signature and status
     attr_accessor :data
-
-    # Array of error messages if the request failed
-    attr_accessor :errors
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'data' => :'data',
-        :'errors' => :'errors'
+        :'data' => :'data'
       }
     end
 
@@ -37,8 +33,7 @@ module ESP
     def self.swagger_types
       {
         :'id' => :'Integer',
-        :'data' => :'Object',
-        :'errors' => :'Array<String>'
+        :'data' => :'Object'
       }
     end
 
@@ -56,12 +51,6 @@ module ESP
 
       if attributes.has_key?(:'data')
         self.data = attributes[:'data']
-      end
-
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
       end
 
     end
@@ -85,8 +74,7 @@ module ESP
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          data == o.data &&
-          errors == o.errors
+          data == o.data
     end
 
     # @see the `==` method
@@ -98,7 +86,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, data, errors].hash
+      [id, data].hash
     end
 
     # Builds the object from hash

@@ -20,80 +20,92 @@ module ESP
     # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
-    # The description of the user
-    attr_accessor :description
+    # Status of the alert. Valid values are fail, warn, error, pass, info
+    attr_accessor :status
 
-    # The identifier of the signature
-    attr_accessor :identifier
+    # The risk-level of the problem identified by the signature or custom signature. Valid values are low, medium, high
+    attr_accessor :risk_level
 
-    # The name of the signature
-    attr_accessor :name
+    # Resource identifier in Amazon
+    attr_accessor :resource
 
-    # Details for how to resolve this signature
-    attr_accessor :resolution
+    # The reason this alert ended. Valid values are from_api, new_alert, from_scan, not_present_after_scan, signature_deleted, custom_signature_deleted, suppression_created, suppression_deactivated, custom_risk_level_created, custom_risk_level_deleted
+    attr_accessor :ended_reason
 
-    # ISO 8601 timestamp when the resource was last updated
+    # The ID of the alert that replaced this alert
+    attr_accessor :replaced_by_id
+
+    # The status of the alert that replaced this alert
+    attr_accessor :replaced_by_status
+
+    # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
 
-    # The risk-level of the problem identified by the signature. Valid values are Low, Medium, High
-    attr_accessor :risk_level
+    # ISO 8601 timestamp when the alert started being active
+    attr_accessor :started_at
+
+    # ISO 8601 timestamp when the alert stopped being active
+    attr_accessor :ended_at
 
     # Associated External Account
     attr_accessor :external_account
 
-    # Associated External Account Id
+    # Associated External Account ID
     attr_accessor :external_account_id
 
     # Associated Region
     attr_accessor :region
 
-    # Associated Region Id
+    # Associated Region ID
     attr_accessor :region_id
 
     # Associated Signature
     attr_accessor :signature
 
-    # Associated Signature Id
+    # Associated Signature ID
     attr_accessor :signature_id
 
     # Associated Custom Signature
     attr_accessor :custom_signature
 
-    # Associated Custom Signature Id
+    # Associated Custom Signature ID
     attr_accessor :custom_signature_id
 
     # Associated Suppression
     attr_accessor :suppression
 
-    # Associated Suppression Id
+    # Associated Suppression ID
     attr_accessor :suppression_id
 
     # Associated Metadata
     attr_accessor :metadata
 
-    # Associated Metadata Id
+    # Associated Metadata ID
     attr_accessor :metadata_id
 
     # Associated Cloud Trail Events
     attr_accessor :cloud_trail_events
 
-    # Associated Cloud Trail Events Ids
+    # Associated Cloud Trail Events IDs
     attr_accessor :cloud_trail_event_ids
 
     # Associated Tags
     attr_accessor :tags
 
-    # Associated Tags Ids
+    # Associated Tags IDs
     attr_accessor :tag_ids
 
     # Associated Compliance Controls
     attr_accessor :compliance_controls
 
-    # Associated Compliance Controls Ids
+    # Associated Compliance Controls IDs
     attr_accessor :compliance_control_ids
 
-    # Array of error messages if the request failed
-    attr_accessor :errors
+    # Associated Custom Compliance Controls
+    attr_accessor :custom_compliance_controls
+
+    # Associated Custom Compliance Controls IDs
+    attr_accessor :custom_compliance_control_ids
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -101,12 +113,15 @@ module ESP
       {
         :'id' => :'id',
         :'created_at' => :'created_at',
-        :'description' => :'description',
-        :'identifier' => :'identifier',
-        :'name' => :'name',
-        :'resolution' => :'resolution',
-        :'updated_at' => :'updated_at',
+        :'status' => :'status',
         :'risk_level' => :'risk_level',
+        :'resource' => :'resource',
+        :'ended_reason' => :'ended_reason',
+        :'replaced_by_id' => :'replaced_by_id',
+        :'replaced_by_status' => :'replaced_by_status',
+        :'updated_at' => :'updated_at',
+        :'started_at' => :'started_at',
+        :'ended_at' => :'ended_at',
         :'external_account' => :'external_account',
         :'external_account_id' => :'external_account_id',
         :'region' => :'region',
@@ -125,7 +140,8 @@ module ESP
         :'tag_ids' => :'tag_ids',
         :'compliance_controls' => :'compliance_controls',
         :'compliance_control_ids' => :'compliance_control_ids',
-        :'errors' => :'errors'
+        :'custom_compliance_controls' => :'custom_compliance_controls',
+        :'custom_compliance_control_ids' => :'custom_compliance_control_ids'
       }
     end
 
@@ -134,12 +150,15 @@ module ESP
       {
         :'id' => :'Integer',
         :'created_at' => :'DateTime',
-        :'description' => :'String',
-        :'identifier' => :'String',
-        :'name' => :'String',
-        :'resolution' => :'String',
-        :'updated_at' => :'DateTime',
+        :'status' => :'String',
         :'risk_level' => :'String',
+        :'resource' => :'String',
+        :'ended_reason' => :'String',
+        :'replaced_by_id' => :'Integer',
+        :'replaced_by_status' => :'String',
+        :'updated_at' => :'DateTime',
+        :'started_at' => :'DateTime',
+        :'ended_at' => :'DateTime',
         :'external_account' => :'ExternalAccount',
         :'external_account_id' => :'Integer',
         :'region' => :'Region',
@@ -158,7 +177,8 @@ module ESP
         :'tag_ids' => :'Array<Integer>',
         :'compliance_controls' => :'Array<ComplianceControl>',
         :'compliance_control_ids' => :'Array<Integer>',
-        :'errors' => :'Array<String>'
+        :'custom_compliance_controls' => :'Array<CustomComplianceControl>',
+        :'custom_compliance_control_ids' => :'Array<Integer>'
       }
     end
 
@@ -178,28 +198,40 @@ module ESP
         self.created_at = attributes[:'created_at']
       end
 
-      if attributes.has_key?(:'description')
-        self.description = attributes[:'description']
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'identifier')
-        self.identifier = attributes[:'identifier']
+      if attributes.has_key?(:'risk_level')
+        self.risk_level = attributes[:'risk_level']
       end
 
-      if attributes.has_key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.has_key?(:'resource')
+        self.resource = attributes[:'resource']
       end
 
-      if attributes.has_key?(:'resolution')
-        self.resolution = attributes[:'resolution']
+      if attributes.has_key?(:'ended_reason')
+        self.ended_reason = attributes[:'ended_reason']
+      end
+
+      if attributes.has_key?(:'replaced_by_id')
+        self.replaced_by_id = attributes[:'replaced_by_id']
+      end
+
+      if attributes.has_key?(:'replaced_by_status')
+        self.replaced_by_status = attributes[:'replaced_by_status']
       end
 
       if attributes.has_key?(:'updated_at')
         self.updated_at = attributes[:'updated_at']
       end
 
-      if attributes.has_key?(:'risk_level')
-        self.risk_level = attributes[:'risk_level']
+      if attributes.has_key?(:'started_at')
+        self.started_at = attributes[:'started_at']
+      end
+
+      if attributes.has_key?(:'ended_at')
+        self.ended_at = attributes[:'ended_at']
       end
 
       if attributes.has_key?(:'external_account')
@@ -286,9 +318,15 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
+      if attributes.has_key?(:'custom_compliance_controls')
+        if (value = attributes[:'custom_compliance_controls']).is_a?(Array)
+          self.custom_compliance_controls = value
+        end
+      end
+
+      if attributes.has_key?(:'custom_compliance_control_ids')
+        if (value = attributes[:'custom_compliance_control_ids']).is_a?(Array)
+          self.custom_compliance_control_ids = value
         end
       end
 
@@ -314,12 +352,15 @@ module ESP
       self.class == o.class &&
           id == o.id &&
           created_at == o.created_at &&
-          description == o.description &&
-          identifier == o.identifier &&
-          name == o.name &&
-          resolution == o.resolution &&
-          updated_at == o.updated_at &&
+          status == o.status &&
           risk_level == o.risk_level &&
+          resource == o.resource &&
+          ended_reason == o.ended_reason &&
+          replaced_by_id == o.replaced_by_id &&
+          replaced_by_status == o.replaced_by_status &&
+          updated_at == o.updated_at &&
+          started_at == o.started_at &&
+          ended_at == o.ended_at &&
           external_account == o.external_account &&
           external_account_id == o.external_account_id &&
           region == o.region &&
@@ -338,7 +379,8 @@ module ESP
           tag_ids == o.tag_ids &&
           compliance_controls == o.compliance_controls &&
           compliance_control_ids == o.compliance_control_ids &&
-          errors == o.errors
+          custom_compliance_controls == o.custom_compliance_controls &&
+          custom_compliance_control_ids == o.custom_compliance_control_ids
     end
 
     # @see the `==` method
@@ -350,7 +392,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, description, identifier, name, resolution, updated_at, risk_level, external_account, external_account_id, region, region_id, signature, signature_id, custom_signature, custom_signature_id, suppression, suppression_id, metadata, metadata_id, cloud_trail_events, cloud_trail_event_ids, tags, tag_ids, compliance_controls, compliance_control_ids, errors].hash
+      [id, created_at, status, risk_level, resource, ended_reason, replaced_by_id, replaced_by_status, updated_at, started_at, ended_at, external_account, external_account_id, region, region_id, signature, signature_id, custom_signature, custom_signature_id, suppression, suppression_id, metadata, metadata_id, cloud_trail_events, cloud_trail_event_ids, tags, tag_ids, compliance_controls, compliance_control_ids, custom_compliance_controls, custom_compliance_control_ids].hash
     end
 
     # Builds the object from hash

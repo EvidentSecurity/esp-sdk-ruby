@@ -23,7 +23,7 @@ module ESP
     # 
     # @param alert_id The ID of the alert to list tags for
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(alert_id, opts = {})
       data, _status_code, _headers = list_with_http_info(alert_id, opts)
@@ -34,7 +34,7 @@ module ESP
     # 
     # @param alert_id The ID of the alert to list tags for
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(alert_id, opts = {})
       if @api_client.config.debugging
@@ -77,7 +77,7 @@ module ESP
 
     # Show a single Tag
     # 
-    # @param id Tag Id
+    # @param id Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Tag]
     def show(id, opts = {})
@@ -87,7 +87,7 @@ module ESP
 
     # Show a single Tag
     # 
-    # @param id Tag Id
+    # @param id Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Tag, Fixnum, Hash)>] Tag data, response status code and response headers
     def show_with_http_info(id, opts = {})

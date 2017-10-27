@@ -17,27 +17,23 @@ module ESP
     # Unique ID
     attr_accessor :id
 
-    # ISO 8601 timestamp when the resource was created
-    attr_accessor :created_at
-
     # The name of the role
     attr_accessor :name
 
+    # ISO 8601 timestamp when the resource was created
+    attr_accessor :created_at
+
     # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
-
-    # Array of error messages if the request failed
-    attr_accessor :errors
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'created_at' => :'created_at',
         :'name' => :'name',
-        :'updated_at' => :'updated_at',
-        :'errors' => :'errors'
+        :'created_at' => :'created_at',
+        :'updated_at' => :'updated_at'
       }
     end
 
@@ -45,10 +41,9 @@ module ESP
     def self.swagger_types
       {
         :'id' => :'Integer',
-        :'created_at' => :'DateTime',
         :'name' => :'String',
-        :'updated_at' => :'DateTime',
-        :'errors' => :'Array<String>'
+        :'created_at' => :'DateTime',
+        :'updated_at' => :'DateTime'
       }
     end
 
@@ -64,22 +59,16 @@ module ESP
         self.id = attributes[:'id']
       end
 
-      if attributes.has_key?(:'created_at')
-        self.created_at = attributes[:'created_at']
-      end
-
       if attributes.has_key?(:'name')
         self.name = attributes[:'name']
       end
 
-      if attributes.has_key?(:'updated_at')
-        self.updated_at = attributes[:'updated_at']
+      if attributes.has_key?(:'created_at')
+        self.created_at = attributes[:'created_at']
       end
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
+      if attributes.has_key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
       end
 
     end
@@ -103,10 +92,9 @@ module ESP
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          created_at == o.created_at &&
           name == o.name &&
-          updated_at == o.updated_at &&
-          errors == o.errors
+          created_at == o.created_at &&
+          updated_at == o.updated_at
     end
 
     # @see the `==` method
@@ -118,7 +106,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, name, updated_at, errors].hash
+      [id, name, created_at, updated_at].hash
     end
 
     # Builds the object from hash

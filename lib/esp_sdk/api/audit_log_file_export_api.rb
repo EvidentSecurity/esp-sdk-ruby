@@ -68,22 +68,22 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single Audit Log File
+    # Show a single AuditLogFile
     # 
-    # @param id Audit Log File Id
+    # @param id AuditLogFile ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  organization,user  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [AuditLogFile]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single Audit Log File
+    # Show a single AuditLogFile
     # 
-    # @param id Audit Log File Id
+    # @param id AuditLogFile ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Objects that can be included in the response:  organization,user  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @return [Array<(AuditLogFile, Fixnum, Hash)>] AuditLogFile data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging

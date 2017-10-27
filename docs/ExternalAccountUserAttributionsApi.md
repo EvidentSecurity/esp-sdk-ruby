@@ -19,9 +19,9 @@ require 'esp_sdk'
 
 api_instance = ESP::ExternalAccountUserAttributionsApi.new
 
-external_account_id = 56 # Integer | The ID of the external account to update the user attributions of.
+external_account_id = 56 # Integer | The ID of the external account to update the user attributions of
 
-cloudtrail_name = "cloudtrail_name_example" # String | An array of all the signatures to disable on the external account.
+cloudtrail_name = "cloudtrail_name_example" # String | The name of the cloudetrail associated with the user attribution.
 
 
 begin
@@ -37,8 +37,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **external_account_id** | **Integer**| The ID of the external account to update the user attributions of. | 
- **cloudtrail_name** | **String**| An array of all the signatures to disable on the external account. | 
+ **external_account_id** | **Integer**| The ID of the external account to update the user attributions of | 
+ **cloudtrail_name** | **String**| The name of the cloudetrail associated with the user attribution. | 
 
 ### Return type
 

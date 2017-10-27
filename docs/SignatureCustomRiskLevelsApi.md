@@ -4,17 +4,17 @@ All URIs are relative to https://api.evident.io
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](SignatureCustomRiskLevelsApi.md#create) | **POST** /api/v2/signature_custom_risk_levels.json_api | Create a(n) Signature Custom Risk Level
+[**create**](SignatureCustomRiskLevelsApi.md#create) | **POST** /api/v2/signature_custom_risk_levels.json_api | Create a(n) SignatureCustomRiskLevel
 [**destroy**](SignatureCustomRiskLevelsApi.md#destroy) | **DELETE** /api/v2/signature_custom_risk_levels/{id}.json_api | Remove a(n) SignatureCustomRiskLevel
-[**list**](SignatureCustomRiskLevelsApi.md#list) | **GET** /api/v2/external_accounts/{external_account_id}/signature_custom_risk_levels.json_api | Get a list of Signature Custom Risk Levels
-[**show**](SignatureCustomRiskLevelsApi.md#show) | **GET** /api/v2/signature_custom_risk_levels/{id}.json_api | Show a single Signature Custom Risk Level
-[**update**](SignatureCustomRiskLevelsApi.md#update) | **PATCH** /api/v2/signature_custom_risk_levels/{id}.json_api | Update a(n) Signature Custom Risk Level
+[**list**](SignatureCustomRiskLevelsApi.md#list) | **GET** /api/v2/external_accounts/{external_account_id}/signature_custom_risk_levels.json_api | Get a list of SignatureCustomRiskLevels
+[**show**](SignatureCustomRiskLevelsApi.md#show) | **GET** /api/v2/signature_custom_risk_levels/{id}.json_api | Show a single SignatureCustomRiskLevel
+[**update**](SignatureCustomRiskLevelsApi.md#update) | **PATCH** /api/v2/signature_custom_risk_levels/{id}.json_api | Update a(n) SignatureCustomRiskLevel
 
 
 # **create**
 > SignatureCustomRiskLevel create(external_account_id, risk_level, signature_id)
 
-Create a(n) Signature Custom Risk Level
+Create a(n) SignatureCustomRiskLevel
 
 ### Example
 ```ruby
@@ -25,13 +25,13 @@ api_instance = ESP::SignatureCustomRiskLevelsApi.new
 
 external_account_id = 56 # Integer | The ID of the external account this signature custom risk level is for
 
-risk_level = "risk_level_example" # String | The risk-level of the problem identified by the signature. Valid values are Low, Medium, High
+risk_level = "risk_level_example" # String | The risk-level of the problem identified by the signature. Valid values are low, medium, high
 
 signature_id = 56 # Integer | The signature ID this signature custom risk level is for
 
 
 begin
-  #Create a(n) Signature Custom Risk Level
+  #Create a(n) SignatureCustomRiskLevel
   result = api_instance.create(external_account_id, risk_level, signature_id)
   p result
 rescue ESP::ApiError => e
@@ -44,7 +44,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account this signature custom risk level is for | 
- **risk_level** | **String**| The risk-level of the problem identified by the signature. Valid values are Low, Medium, High | 
+ **risk_level** | **String**| The risk-level of the problem identified by the signature. Valid values are low, medium, high | 
  **signature_id** | **Integer**| The signature ID this signature custom risk level is for | 
 
 ### Return type
@@ -63,7 +63,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **destroy**
-> SignatureCustomRiskLevel destroy(id)
+> Meta destroy(id)
 
 Remove a(n) SignatureCustomRiskLevel
 
@@ -74,7 +74,7 @@ require 'esp_sdk'
 
 api_instance = ESP::SignatureCustomRiskLevelsApi.new
 
-id = 56 # Integer | SignatureCustomRiskLevel Id
+id = 56 # Integer | SignatureCustomRiskLevel ID
 
 
 begin
@@ -90,11 +90,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| SignatureCustomRiskLevel Id | 
+ **id** | **Integer**| SignatureCustomRiskLevel ID | 
 
 ### Return type
 
-[**SignatureCustomRiskLevel**](SignatureCustomRiskLevel.md)
+[**Meta**](Meta.md)
 
 ### Authorization
 
@@ -110,7 +110,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 # **list**
 > PaginatedCollection list(external_account_id, opts)
 
-Get a list of Signature Custom Risk Levels
+Get a list of SignatureCustomRiskLevels
 
 ### Example
 ```ruby
@@ -122,12 +122,12 @@ api_instance = ESP::SignatureCustomRiskLevelsApi.new
 external_account_id = 56 # Integer | The ID of the external account to retrieve
 
 opts = { 
-  include: "include_example", # String | Objects that can be included in the response:  external_account,signature  See Including Objects for more information.
-  page: {'key' => "page_example"} # Hash<String, String> | Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  include: "include_example", # String | Related objects that can be included in the response.  See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
 }
 
 begin
-  #Get a list of Signature Custom Risk Levels
+  #Get a list of SignatureCustomRiskLevels
   result = api_instance.list(external_account_id, opts)
   p result
 rescue ESP::ApiError => e
@@ -140,8 +140,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account to retrieve | 
- **include** | **String**| Objects that can be included in the response:  external_account,signature  See Including Objects for more information. | [optional] 
- **page** | [**Hash&lt;String, String&gt;**](String.md)| Page Number and Page Size.  Example: page: {number: 1, size: 20} | [optional] 
+ **include** | **String**| Related objects that can be included in the response.  See Including Objects for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -161,7 +161,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 # **show**
 > SignatureCustomRiskLevel show(id, opts)
 
-Show a single Signature Custom Risk Level
+Show a single SignatureCustomRiskLevel
 
 ### Example
 ```ruby
@@ -170,14 +170,14 @@ require 'esp_sdk'
 
 api_instance = ESP::SignatureCustomRiskLevelsApi.new
 
-id = 56 # Integer | Signature Custom Risk Level Id
+id = 56 # Integer | SignatureCustomRiskLevel ID
 
 opts = { 
-  include: "include_example" # String | Objects that can be included in the response:  external_account,signature  See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response.  See Including Objects for more information.
 }
 
 begin
-  #Show a single Signature Custom Risk Level
+  #Show a single SignatureCustomRiskLevel
   result = api_instance.show(id, opts)
   p result
 rescue ESP::ApiError => e
@@ -189,8 +189,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Signature Custom Risk Level Id | 
- **include** | **String**| Objects that can be included in the response:  external_account,signature  See Including Objects for more information. | [optional] 
+ **id** | **Integer**| SignatureCustomRiskLevel ID | 
+ **include** | **String**| Related objects that can be included in the response.  See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -210,7 +210,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 # **update**
 > SignatureCustomRiskLevel update(id, external_account_id, risk_level, signature_id)
 
-Update a(n) Signature Custom Risk Level
+Update a(n) SignatureCustomRiskLevel
 
 ### Example
 ```ruby
@@ -219,17 +219,17 @@ require 'esp_sdk'
 
 api_instance = ESP::SignatureCustomRiskLevelsApi.new
 
-id = 56 # Integer | Signature Custom Risk Level Id
+id = 56 # Integer | SignatureCustomRiskLevel ID
 
 external_account_id = 56 # Integer | The ID of the external account this signature custom risk level is for
 
-risk_level = "risk_level_example" # String | The risk-level of the problem identified by the signature. Valid values are Low, Medium, High
+risk_level = "risk_level_example" # String | The risk-level of the problem identified by the signature. Valid values are low, medium, high
 
 signature_id = 56 # Integer | The signature ID this signature custom risk level is for
 
 
 begin
-  #Update a(n) Signature Custom Risk Level
+  #Update a(n) SignatureCustomRiskLevel
   result = api_instance.update(id, external_account_id, risk_level, signature_id)
   p result
 rescue ESP::ApiError => e
@@ -241,9 +241,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| Signature Custom Risk Level Id | 
+ **id** | **Integer**| SignatureCustomRiskLevel ID | 
  **external_account_id** | **Integer**| The ID of the external account this signature custom risk level is for | 
- **risk_level** | **String**| The risk-level of the problem identified by the signature. Valid values are Low, Medium, High | 
+ **risk_level** | **String**| The risk-level of the problem identified by the signature. Valid values are low, medium, high | 
  **signature_id** | **Integer**| The signature ID this signature custom risk level is for | 
 
 ### Return type
