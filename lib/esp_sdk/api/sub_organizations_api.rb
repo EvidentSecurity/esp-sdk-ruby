@@ -248,28 +248,26 @@ module ESP
     # Update a(n) SubOrganization
     # 
     # @param id SubOrganization ID
-    # @param name Name of the sub organization
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :name Name of the sub organization
     # @return [SubOrganization]
-    def update(id, name, opts = {})
-      data, _status_code, _headers = update_with_http_info(id, name, opts)
+    def update(id, opts = {})
+      data, _status_code, _headers = update_with_http_info(id, opts)
       return data
     end
 
     # Update a(n) SubOrganization
     # 
     # @param id SubOrganization ID
-    # @param name Name of the sub organization
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :name Name of the sub organization
     # @return [Array<(SubOrganization, Fixnum, Hash)>] SubOrganization data, response status code and response headers
-    def update_with_http_info(id, name, opts = {})
+    def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: SubOrganizationsApi.update ..."
       end
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling SubOrganizationsApi.update" if id.nil?
-      # verify the required parameter 'name' is set
-      fail ArgumentError, "Missing the required parameter 'name' when calling SubOrganizationsApi.update" if name.nil?
       # resource path
       local_var_path = "/api/v2/sub_organizations/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
@@ -285,7 +283,7 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["name"] = name
+      form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
 
       # http body (model)
       post_body = nil
