@@ -29,30 +29,6 @@ module ESP
     # The cloud provider this account is for
     attr_accessor :provider
 
-    # Amazon Resource Name for the IAM role
-    attr_accessor :arn
-
-    # The AWS account
-    attr_accessor :account
-
-    # External Identifier set on the role
-    attr_accessor :external_id
-
-    # Cloudtrail Name
-    attr_accessor :cloudtrail_name
-
-    # Associated Organization
-    attr_accessor :organization
-
-    # Associated Organization ID
-    attr_accessor :organization_id
-
-    # Associated Sub Organization
-    attr_accessor :sub_organization
-
-    # Associated Sub Organization ID
-    attr_accessor :sub_organization_id
-
     # Associated Team
     attr_accessor :team
 
@@ -71,6 +47,12 @@ module ESP
     # Associated Disabled Signatures IDs
     attr_accessor :disabled_signature_ids
 
+    # Associated Azure Group
+    attr_accessor :azure_group
+
+    # Associated Azure Group ID
+    attr_accessor :azure_group_id
+
     # Associated Credentials
     attr_accessor :credentials
 
@@ -86,20 +68,14 @@ module ESP
         :'name' => :'name',
         :'updated_at' => :'updated_at',
         :'provider' => :'provider',
-        :'arn' => :'arn',
-        :'account' => :'account',
-        :'external_id' => :'external_id',
-        :'cloudtrail_name' => :'cloudtrail_name',
-        :'organization' => :'organization',
-        :'organization_id' => :'organization_id',
-        :'sub_organization' => :'sub_organization',
-        :'sub_organization_id' => :'sub_organization_id',
         :'team' => :'team',
         :'team_id' => :'team_id',
         :'scan_intervals' => :'scan_intervals',
         :'scan_interval_ids' => :'scan_interval_ids',
         :'disabled_signatures' => :'disabled_signatures',
         :'disabled_signature_ids' => :'disabled_signature_ids',
+        :'azure_group' => :'azure_group',
+        :'azure_group_id' => :'azure_group_id',
         :'credentials' => :'credentials',
         :'credentials_id' => :'credentials_id'
       }
@@ -113,20 +89,14 @@ module ESP
         :'name' => :'String',
         :'updated_at' => :'DateTime',
         :'provider' => :'String',
-        :'arn' => :'String',
-        :'account' => :'String',
-        :'external_id' => :'String',
-        :'cloudtrail_name' => :'String',
-        :'organization' => :'Organization',
-        :'organization_id' => :'Integer',
-        :'sub_organization' => :'SubOrganization',
-        :'sub_organization_id' => :'Integer',
         :'team' => :'Team',
         :'team_id' => :'Integer',
         :'scan_intervals' => :'Array<ScanInterval>',
         :'scan_interval_ids' => :'Array<Integer>',
         :'disabled_signatures' => :'Array<Signature>',
         :'disabled_signature_ids' => :'Array<Integer>',
+        :'azure_group' => :'AzureGroup',
+        :'azure_group_id' => :'Integer',
         :'credentials' => :'ExternalAccountAmazonIAM',
         :'credentials_id' => :'Integer'
       }
@@ -160,38 +130,6 @@ module ESP
         self.provider = attributes[:'provider']
       end
 
-      if attributes.has_key?(:'arn')
-        self.arn = attributes[:'arn']
-      end
-
-      if attributes.has_key?(:'account')
-        self.account = attributes[:'account']
-      end
-
-      if attributes.has_key?(:'external_id')
-        self.external_id = attributes[:'external_id']
-      end
-
-      if attributes.has_key?(:'cloudtrail_name')
-        self.cloudtrail_name = attributes[:'cloudtrail_name']
-      end
-
-      if attributes.has_key?(:'organization')
-        self.organization = attributes[:'organization']
-      end
-
-      if attributes.has_key?(:'organization_id')
-        self.organization_id = attributes[:'organization_id']
-      end
-
-      if attributes.has_key?(:'sub_organization')
-        self.sub_organization = attributes[:'sub_organization']
-      end
-
-      if attributes.has_key?(:'sub_organization_id')
-        self.sub_organization_id = attributes[:'sub_organization_id']
-      end
-
       if attributes.has_key?(:'team')
         self.team = attributes[:'team']
       end
@@ -222,6 +160,14 @@ module ESP
         if (value = attributes[:'disabled_signature_ids']).is_a?(Array)
           self.disabled_signature_ids = value
         end
+      end
+
+      if attributes.has_key?(:'azure_group')
+        self.azure_group = attributes[:'azure_group']
+      end
+
+      if attributes.has_key?(:'azure_group_id')
+        self.azure_group_id = attributes[:'azure_group_id']
       end
 
       if attributes.has_key?(:'credentials')
@@ -257,20 +203,14 @@ module ESP
           name == o.name &&
           updated_at == o.updated_at &&
           provider == o.provider &&
-          arn == o.arn &&
-          account == o.account &&
-          external_id == o.external_id &&
-          cloudtrail_name == o.cloudtrail_name &&
-          organization == o.organization &&
-          organization_id == o.organization_id &&
-          sub_organization == o.sub_organization &&
-          sub_organization_id == o.sub_organization_id &&
           team == o.team &&
           team_id == o.team_id &&
           scan_intervals == o.scan_intervals &&
           scan_interval_ids == o.scan_interval_ids &&
           disabled_signatures == o.disabled_signatures &&
           disabled_signature_ids == o.disabled_signature_ids &&
+          azure_group == o.azure_group &&
+          azure_group_id == o.azure_group_id &&
           credentials == o.credentials &&
           credentials_id == o.credentials_id
     end
@@ -284,7 +224,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, name, updated_at, provider, arn, account, external_id, cloudtrail_name, organization, organization_id, sub_organization, sub_organization_id, team, team_id, scan_intervals, scan_interval_ids, disabled_signatures, disabled_signature_ids, credentials, credentials_id].hash
+      [id, created_at, name, updated_at, provider, team, team_id, scan_intervals, scan_interval_ids, disabled_signatures, disabled_signature_ids, azure_group, azure_group_id, credentials, credentials_id].hash
     end
 
     # Builds the object from hash

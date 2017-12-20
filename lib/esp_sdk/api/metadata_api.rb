@@ -23,6 +23,7 @@ module ESP
     # 
     # @param alert_id Alert Id
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [Metadata]
     def for_alert(alert_id, opts = {})
       data, _status_code, _headers = for_alert_with_http_info(alert_id, opts)
@@ -33,6 +34,7 @@ module ESP
     # 
     # @param alert_id Alert Id
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [Array<(Metadata, Fixnum, Hash)>] Metadata data, response status code and response headers
     def for_alert_with_http_info(alert_id, opts = {})
       if @api_client.config.debugging
@@ -45,6 +47,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -76,6 +79,7 @@ module ESP
     # 
     # @param id Metadata ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [Metadata]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
@@ -86,6 +90,7 @@ module ESP
     # 
     # @param id Metadata ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [Array<(Metadata, Fixnum, Hash)>] Metadata data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -98,6 +103,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}

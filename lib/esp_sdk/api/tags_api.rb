@@ -24,9 +24,10 @@ module ESP
     # @param alert_id The ID of the alert to list tags for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [PaginatedCollection]
-    def list(alert_id, opts = {})
-      data, _status_code, _headers = list_with_http_info(alert_id, opts)
+    def list_for_alert(alert_id, opts = {})
+      data, _status_code, _headers = list_for_alert_with_http_info(alert_id, opts)
       return data
     end
 
@@ -35,18 +36,20 @@ module ESP
     # @param alert_id The ID of the alert to list tags for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
-    def list_with_http_info(alert_id, opts = {})
+    def list_for_alert_with_http_info(alert_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: TagsApi.list ..."
+        @api_client.config.logger.debug "Calling API: TagsApi.list_for_alert ..."
       end
       # verify the required parameter 'alert_id' is set
-      fail ArgumentError, "Missing the required parameter 'alert_id' when calling TagsApi.list" if alert_id.nil?
+      fail ArgumentError, "Missing the required parameter 'alert_id' when calling TagsApi.list_for_alert" if alert_id.nil?
       # resource path
       local_var_path = "/api/v2/alerts/{alert_id}/tags.json_api".sub('{format}','json_api').sub('{' + 'alert_id' + '}', alert_id.to_s)
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -70,7 +73,7 @@ module ESP
         :auth_names => auth_names,
         :return_type => 'PaginatedCollection')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: TagsApi#list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: TagsApi#list_for_alert\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -79,6 +82,7 @@ module ESP
     # 
     # @param id Tag ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [Tag]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
@@ -89,6 +93,7 @@ module ESP
     # 
     # @param id Tag ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [Array<(Tag, Fixnum, Hash)>] Tag data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -101,6 +106,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}

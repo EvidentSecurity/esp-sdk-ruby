@@ -31,14 +31,15 @@ describe 'CloudTrailEventsApi' do
     end
   end
 
-  # unit tests for list
+  # unit tests for list_for_alert
   # Get a list of Cloud Trail Events
   # 
   # @param alert_id The ID of the alert to retrieve cloud trail events for
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [PaginatedCollection]
-  describe 'list test' do
+  describe 'list_for_alert test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -47,8 +48,9 @@ describe 'CloudTrailEventsApi' do
   # unit tests for show
   # Show a single Cloud Trail Event
   # 
-  # @param id Cloud Trail Event Id
+  # @param id Cloud Trail Event ID
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [CloudTrailEvent]
   describe 'show test' do
     it "should work" do

@@ -19,24 +19,26 @@ module ESP
       @api_client = api_client
     end
 
-    # Create a(n) ContactRequest
+    # Create a(n) Contact Request
     # 
     # @param title Subject of your message
     # @param description Body of your message
     # @param request_type Type of contact request. Valid values are support, feature
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @return [ContactRequest]
     def create(title, description, request_type, opts = {})
       data, _status_code, _headers = create_with_http_info(title, description, request_type, opts)
       return data
     end
 
-    # Create a(n) ContactRequest
+    # Create a(n) Contact Request
     # 
     # @param title Subject of your message
     # @param description Body of your message
     # @param request_type Type of contact request. Valid values are support, feature
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @return [Array<(ContactRequest, Fixnum, Hash)>] ContactRequest data, response status code and response headers
     def create_with_http_info(title, description, request_type, opts = {})
       if @api_client.config.debugging
@@ -57,6 +59,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}

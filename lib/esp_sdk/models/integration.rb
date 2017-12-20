@@ -71,11 +71,11 @@ module ESP
     # Associated Service ID
     attr_accessor :service_id
 
-    # Associated Teams
-    attr_accessor :teams
+    # Associated External Accounts
+    attr_accessor :external_accounts
 
-    # Associated Teams IDs
-    attr_accessor :team_ids
+    # Associated External Accounts IDs
+    attr_accessor :external_account_ids
 
     # Associated Signatures
     attr_accessor :signatures
@@ -112,8 +112,8 @@ module ESP
         :'creator_id' => :'creator_id',
         :'service' => :'service',
         :'service_id' => :'service_id',
-        :'teams' => :'teams',
-        :'team_ids' => :'team_ids',
+        :'external_accounts' => :'external_accounts',
+        :'external_account_ids' => :'external_account_ids',
         :'signatures' => :'signatures',
         :'signature_ids' => :'signature_ids',
         :'custom_signatures' => :'custom_signatures',
@@ -143,8 +143,8 @@ module ESP
         :'creator_id' => :'Integer',
         :'service' => :'Service',
         :'service_id' => :'Integer',
-        :'teams' => :'Array<Team>',
-        :'team_ids' => :'Array<Integer>',
+        :'external_accounts' => :'Array<ExternalAccount>',
+        :'external_account_ids' => :'Array<Integer>',
         :'signatures' => :'Array<Signature>',
         :'signature_ids' => :'Array<Integer>',
         :'custom_signatures' => :'Array<CustomSignature>',
@@ -240,15 +240,15 @@ module ESP
         self.service_id = attributes[:'service_id']
       end
 
-      if attributes.has_key?(:'teams')
-        if (value = attributes[:'teams']).is_a?(Array)
-          self.teams = value
+      if attributes.has_key?(:'external_accounts')
+        if (value = attributes[:'external_accounts']).is_a?(Array)
+          self.external_accounts = value
         end
       end
 
-      if attributes.has_key?(:'team_ids')
-        if (value = attributes[:'team_ids']).is_a?(Array)
-          self.team_ids = value
+      if attributes.has_key?(:'external_account_ids')
+        if (value = attributes[:'external_account_ids']).is_a?(Array)
+          self.external_account_ids = value
         end
       end
 
@@ -315,8 +315,8 @@ module ESP
           creator_id == o.creator_id &&
           service == o.service &&
           service_id == o.service_id &&
-          teams == o.teams &&
-          team_ids == o.team_ids &&
+          external_accounts == o.external_accounts &&
+          external_account_ids == o.external_account_ids &&
           signatures == o.signatures &&
           signature_ids == o.signature_ids &&
           custom_signatures == o.custom_signatures &&
@@ -332,7 +332,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, updated_at, state, statuses, name, all_high_risk, all_medium_risk, all_low_risk, send_updates, error_messages, last_throttled_at, send_when_suppressed, organization, organization_id, creator, creator_id, service, service_id, teams, team_ids, signatures, signature_ids, custom_signatures, custom_signature_ids].hash
+      [id, created_at, updated_at, state, statuses, name, all_high_risk, all_medium_risk, all_low_risk, send_updates, error_messages, last_throttled_at, send_when_suppressed, organization, organization_id, creator, creator_id, service, service_id, external_accounts, external_account_ids, signatures, signature_ids, custom_signatures, custom_signature_ids].hash
     end
 
     # Builds the object from hash

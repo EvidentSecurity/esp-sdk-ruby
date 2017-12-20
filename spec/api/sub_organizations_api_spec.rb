@@ -34,8 +34,10 @@ describe 'SubOrganizationsApi' do
   # unit tests for create
   # Create a(n) Sub Organization
   # 
-  # @param name The name of the sub organization
+  # @param organization_id The ID of the organization this sub organization should belong to
+  # @param name Name of the sub organization
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
   # @return [SubOrganization]
   describe 'create test' do
     it "should work" do
@@ -43,13 +45,13 @@ describe 'SubOrganizationsApi' do
     end
   end
 
-  # unit tests for destroy
-  # Remove a(n) Sub Organization
+  # unit tests for delete
+  # Delete a(n) Sub Organization
   # 
-  # @param id Sub Organization Id
+  # @param id  ID
   # @param [Hash] opts the optional parameters
-  # @return [SuccessObject]
-  describe 'destroy test' do
+  # @return [Meta]
+  describe 'delete test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -59,9 +61,9 @@ describe 'SubOrganizationsApi' do
   # Get a list of Sub Organizations
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Association: [organization] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-  # @option opts [String] :include Objects that can be included in the response:  external_accounts,organization,teams  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Association: [organization] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -72,9 +74,9 @@ describe 'SubOrganizationsApi' do
   # unit tests for show
   # Show a single Sub Organization
   # 
-  # @param id Sub Organization Id
+  # @param id Sub Organization ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  external_accounts,organization,teams  See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
   # @return [SubOrganization]
   describe 'show test' do
     it "should work" do
@@ -85,9 +87,10 @@ describe 'SubOrganizationsApi' do
   # unit tests for update
   # Update a(n) Sub Organization
   # 
-  # @param id Sub Organization Id
-  # @param name The name of the sub organization
+  # @param id Sub Organization ID
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :name Name of the sub organization
+  # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
   # @return [SubOrganization]
   describe 'update test' do
     it "should work" do

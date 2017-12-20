@@ -19,24 +19,24 @@ module ESP
       @api_client = api_client
     end
 
-    # Get a list of ComplianceControls
+    # Get a list of Compliance Controls
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, identifier, name] Matching Searchable Attributes: [identifier, name]  Sortable Attributes: [id, identifier, name, position] Searchable Associations: [compliance_standard, compliance_domain] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  compliance_standard, compliance_domain, signatures See Including Objects for more information.
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
       return data
     end
 
-    # Get a list of ComplianceControls
+    # Get a list of Compliance Controls
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, identifier, name] Matching Searchable Attributes: [identifier, name]  Sortable Attributes: [id, identifier, name, position] Searchable Associations: [compliance_standard, compliance_domain] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  compliance_standard, compliance_domain, signatures See Including Objects for more information.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -77,22 +77,81 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single ComplianceControl
-    # 
-    # @param id ComplianceControl ID
+    # Get a list of Signatures for a Compliance Control
+    # The compliance standard must be paid for to view signatures for a control on that standard.
+    # @param compliance_control_id The ID of the Compliance Control this signature belongs to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @return [PaginatedCollection]
+    def list_signatures(compliance_control_id, opts = {})
+      data, _status_code, _headers = list_signatures_with_http_info(compliance_control_id, opts)
+      return data
+    end
+
+    # Get a list of Signatures for a Compliance Control
+    # The compliance standard must be paid for to view signatures for a control on that standard.
+    # @param compliance_control_id The ID of the Compliance Control this signature belongs to
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_signatures_with_http_info(compliance_control_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ComplianceControlsApi.list_signatures ..."
+      end
+      # verify the required parameter 'compliance_control_id' is set
+      fail ArgumentError, "Missing the required parameter 'compliance_control_id' when calling ComplianceControlsApi.list_signatures" if compliance_control_id.nil?
+      # resource path
+      local_var_path = "/api/v2/compliance_controls/{compliance_control_id}/signatures.json_api".sub('{format}','json_api').sub('{' + 'compliance_control_id' + '}', compliance_control_id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'PaginatedCollection')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ComplianceControlsApi#list_signatures\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Show a single Compliance Control
+    # 
+    # @param id Compliance Control ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  compliance_standard, compliance_domain, signatures See Including Objects for more information.
     # @return [ComplianceControl]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single ComplianceControl
+    # Show a single Compliance Control
     # 
-    # @param id ComplianceControl ID
+    # @param id Compliance Control ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  compliance_standard, compliance_domain, signatures See Including Objects for more information.
     # @return [Array<(ComplianceControl, Fixnum, Hash)>] ComplianceControl data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging

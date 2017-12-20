@@ -31,39 +31,13 @@ describe 'ComplianceStandardsApi' do
     end
   end
 
-  # unit tests for create
-  # Create a(n) Compliance Standard
-  # 
-  # @param name The name of this standard
-  # @param description The description for this standard
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :free Indicator whether or not this standard is free to customers
-  # @return [ComplianceStandard]
-  describe 'create test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for destroy
-  # Remove a(n) ComplianceStandard
-  # 
-  # @param id ComplianceStandard Id
-  # @param [Hash] opts the optional parameters
-  # @return [ComplianceStandard]
-  describe 'destroy test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for list
   # Get a list of Compliance Standards
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Association: [compliance_controls] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-  # @option opts [String] :include Objects that can be included in the response:  compliance_domains,compliance_controls  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [compliance_controls, organizations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -74,26 +48,11 @@ describe 'ComplianceStandardsApi' do
   # unit tests for show
   # Show a single Compliance Standard
   # 
-  # @param id Compliance Standard Id
+  # @param id Compliance Standard ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  compliance_domains,compliance_controls  See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
   # @return [ComplianceStandard]
   describe 'show test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for update
-  # Update a(n) Compliance Standard
-  # 
-  # @param id Compliance Standard Id
-  # @param name The name of this standard
-  # @param description The description for this standard
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :free Indicator whether or not this standard is free to customers
-  # @return [ComplianceStandard]
-  describe 'update test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

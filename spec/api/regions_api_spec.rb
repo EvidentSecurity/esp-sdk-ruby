@@ -35,8 +35,9 @@ describe 'RegionsApi' do
   # Get a list of Regions
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, code] Matching Searchable Attribute: [code] Limited Searchable Attribute: [provider_eq]  Searchable Association: [suppressions] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, code, name] Matching Searchable Attributes: [code, name] Limited Searchable Attribute: [provider_eq]  Searchable Association: [suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -47,8 +48,9 @@ describe 'RegionsApi' do
   # unit tests for show
   # Show a single Region
   # 
-  # @param id Region Id
+  # @param id Region ID
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [Region]
   describe 'show test' do
     it "should work" do

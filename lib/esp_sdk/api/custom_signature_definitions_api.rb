@@ -19,20 +19,22 @@ module ESP
       @api_client = api_client
     end
 
+    # Activate a Custom Signature Definition
     # A successful call to this API marks the definition for activation.  The definition will go into the 'validating' state and will be tested before activating. The definition must have a status of editable to be activated.
-    # 
     # @param custom_signature_definition_id ID of Custom Signature Definition
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [CustomSignatureDefinition]
     def activate(custom_signature_definition_id, opts = {})
       data, _status_code, _headers = activate_with_http_info(custom_signature_definition_id, opts)
       return data
     end
 
+    # Activate a Custom Signature Definition
     # A successful call to this API marks the definition for activation.  The definition will go into the &#39;validating&#39; state and will be tested before activating. The definition must have a status of editable to be activated.
-    # 
     # @param custom_signature_definition_id ID of Custom Signature Definition
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [Array<(CustomSignatureDefinition, Fixnum, Hash)>] CustomSignatureDefinition data, response status code and response headers
     def activate_with_http_info(custom_signature_definition_id, opts = {})
       if @api_client.config.debugging
@@ -45,6 +47,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -72,20 +75,22 @@ module ESP
       return data, status_code, headers
     end
 
+    # Archive a Custom Signature Definition
     # A successful call to this API archives and returns a specific custom signature definition identified by the id parameter. The definition must have a status of active to be archived.
-    # 
     # @param custom_signature_definition_id ID of Custom Signature Definition
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [CustomSignatureDefinition]
     def archive(custom_signature_definition_id, opts = {})
       data, _status_code, _headers = archive_with_http_info(custom_signature_definition_id, opts)
       return data
     end
 
+    # Archive a Custom Signature Definition
     # A successful call to this API archives and returns a specific custom signature definition identified by the id parameter. The definition must have a status of active to be archived.
-    # 
     # @param custom_signature_definition_id ID of Custom Signature Definition
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [Array<(CustomSignatureDefinition, Fixnum, Hash)>] CustomSignatureDefinition data, response status code and response headers
     def archive_with_http_info(custom_signature_definition_id, opts = {})
       if @api_client.config.debugging
@@ -98,6 +103,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -125,20 +131,22 @@ module ESP
       return data, status_code, headers
     end
 
-    # Create a(n) CustomSignatureDefinition
+    # Create a(n) Custom Signature Definition
     # 
     # @param custom_signature_id ID of the custom signature this definition belongs to
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [CustomSignatureDefinition]
     def create(custom_signature_id, opts = {})
       data, _status_code, _headers = create_with_http_info(custom_signature_id, opts)
       return data
     end
 
-    # Create a(n) CustomSignatureDefinition
+    # Create a(n) Custom Signature Definition
     # 
     # @param custom_signature_id ID of the custom signature this definition belongs to
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [Array<(CustomSignatureDefinition, Fixnum, Hash)>] CustomSignatureDefinition data, response status code and response headers
     def create_with_http_info(custom_signature_id, opts = {})
       if @api_client.config.debugging
@@ -151,6 +159,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -179,27 +188,27 @@ module ESP
       return data, status_code, headers
     end
 
-    # Remove a(n) CustomSignatureDefinition
+    # Delete a(n) Custom Signature Definition
     # 
-    # @param id CustomSignatureDefinition ID
+    # @param id  ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
-    def destroy(id, opts = {})
-      data, _status_code, _headers = destroy_with_http_info(id, opts)
+    def delete(id, opts = {})
+      data, _status_code, _headers = delete_with_http_info(id, opts)
       return data
     end
 
-    # Remove a(n) CustomSignatureDefinition
+    # Delete a(n) Custom Signature Definition
     # 
-    # @param id CustomSignatureDefinition ID
+    # @param id  ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
-    def destroy_with_http_info(id, opts = {})
+    def delete_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: CustomSignatureDefinitionsApi.destroy ..."
+        @api_client.config.logger.debug "Calling API: CustomSignatureDefinitionsApi.delete ..."
       end
       # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling CustomSignatureDefinitionsApi.destroy" if id.nil?
+      fail ArgumentError, "Missing the required parameter 'id' when calling CustomSignatureDefinitionsApi.delete" if id.nil?
       # resource path
       local_var_path = "/api/v2/custom_signature_definitions/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
@@ -227,29 +236,29 @@ module ESP
         :auth_names => auth_names,
         :return_type => 'Meta')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CustomSignatureDefinitionsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CustomSignatureDefinitionsApi#delete\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Get a list of CustomSignatureDefinitions
+    # Get a list of Custom Signature Definitions
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, language, status, version_number]    Searchable Association: [custom_signature] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
       return data
     end
 
-    # Get a list of CustomSignatureDefinitions
+    # Get a list of Custom Signature Definitions
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, language, status, version_number]    Searchable Association: [custom_signature] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -290,22 +299,22 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single CustomSignatureDefinition
+    # Show a single Custom Signature Definition
     # 
-    # @param id CustomSignatureDefinition ID
+    # @param id Custom Signature Definition ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [CustomSignatureDefinition]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single CustomSignatureDefinition
+    # Show a single Custom Signature Definition
     # 
-    # @param id CustomSignatureDefinition ID
+    # @param id Custom Signature Definition ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [Array<(CustomSignatureDefinition, Fixnum, Hash)>] CustomSignatureDefinition data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -346,44 +355,42 @@ module ESP
       return data, status_code, headers
     end
 
-    # Update a(n) CustomSignatureDefinition
+    # Update a(n) Custom Signature Definition
     # 
-    # @param id CustomSignatureDefinition ID
-    # @param code The code for this definition
-    # @param language The language of the definition. Valid values are ruby, javascript
+    # @param id Custom Signature Definition ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :code The code for this definition
+    # @option opts [String] :language The language of the definition. Valid values are ruby, javascript
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [CustomSignatureDefinition]
-    def update(id, code, language, opts = {})
-      data, _status_code, _headers = update_with_http_info(id, code, language, opts)
+    def update(id, opts = {})
+      data, _status_code, _headers = update_with_http_info(id, opts)
       return data
     end
 
-    # Update a(n) CustomSignatureDefinition
+    # Update a(n) Custom Signature Definition
     # 
-    # @param id CustomSignatureDefinition ID
-    # @param code The code for this definition
-    # @param language The language of the definition. Valid values are ruby, javascript
+    # @param id Custom Signature Definition ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :code The code for this definition
+    # @option opts [String] :language The language of the definition. Valid values are ruby, javascript
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [Array<(CustomSignatureDefinition, Fixnum, Hash)>] CustomSignatureDefinition data, response status code and response headers
-    def update_with_http_info(id, code, language, opts = {})
+    def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: CustomSignatureDefinitionsApi.update ..."
       end
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling CustomSignatureDefinitionsApi.update" if id.nil?
-      # verify the required parameter 'code' is set
-      fail ArgumentError, "Missing the required parameter 'code' when calling CustomSignatureDefinitionsApi.update" if code.nil?
-      # verify the required parameter 'language' is set
-      fail ArgumentError, "Missing the required parameter 'language' when calling CustomSignatureDefinitionsApi.update" if language.nil?
-      # verify enum value
-      unless ['ruby', 'javascript'].include?(language)
-        fail ArgumentError, "invalid value for 'language', must be one of ruby, javascript"
+      if opts[:'language'] && !['ruby', 'javascript'].include?(opts[:'language'])
+        fail ArgumentError, 'invalid value for "language", must be one of ruby, javascript'
       end
       # resource path
       local_var_path = "/api/v2/custom_signature_definitions/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -394,8 +401,8 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["code"] = code
-      form_params["language"] = language
+      form_params["code"] = opts[:'code'] if !opts[:'code'].nil?
+      form_params["language"] = opts[:'language'] if !opts[:'language'].nil?
 
       # http body (model)
       post_body = nil

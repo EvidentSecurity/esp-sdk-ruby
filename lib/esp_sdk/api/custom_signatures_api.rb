@@ -19,32 +19,34 @@ module ESP
       @api_client = api_client
     end
 
-    # Create a(n) CustomSignature
+    # Create a(n) Custom Signature
     # 
     # @param identifier The identifier to use for the custom signature. Common format is AWS:- such as AWS:IAM-001
     # @param name The name of the custom signature
     # @param risk_level The risk-level of the problem identified by the custom signature. Valid values are low, medium, high
-    # @param team_ids The team IDs this custom signature should run for. If no teams are selected the custom signature will not be run.
+    # @param external_account_ids The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :description The description of the custom signature that is displayed on alerts
     # @option opts [String] :resolution Details for how to resolve this custom signature that is displayed on alerts
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
     # @return [CustomSignature]
-    def create(identifier, name, risk_level, team_ids, opts = {})
-      data, _status_code, _headers = create_with_http_info(identifier, name, risk_level, team_ids, opts)
+    def create(identifier, name, risk_level, external_account_ids, opts = {})
+      data, _status_code, _headers = create_with_http_info(identifier, name, risk_level, external_account_ids, opts)
       return data
     end
 
-    # Create a(n) CustomSignature
+    # Create a(n) Custom Signature
     # 
     # @param identifier The identifier to use for the custom signature. Common format is AWS:- such as AWS:IAM-001
     # @param name The name of the custom signature
     # @param risk_level The risk-level of the problem identified by the custom signature. Valid values are low, medium, high
-    # @param team_ids The team IDs this custom signature should run for. If no teams are selected the custom signature will not be run.
+    # @param external_account_ids The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :description The description of the custom signature that is displayed on alerts
     # @option opts [String] :resolution Details for how to resolve this custom signature that is displayed on alerts
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
     # @return [Array<(CustomSignature, Fixnum, Hash)>] CustomSignature data, response status code and response headers
-    def create_with_http_info(identifier, name, risk_level, team_ids, opts = {})
+    def create_with_http_info(identifier, name, risk_level, external_account_ids, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: CustomSignaturesApi.create ..."
       end
@@ -58,13 +60,14 @@ module ESP
       unless ['low', 'medium', 'high'].include?(risk_level)
         fail ArgumentError, "invalid value for 'risk_level', must be one of low, medium, high"
       end
-      # verify the required parameter 'team_ids' is set
-      fail ArgumentError, "Missing the required parameter 'team_ids' when calling CustomSignaturesApi.create" if team_ids.nil?
+      # verify the required parameter 'external_account_ids' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_ids' when calling CustomSignaturesApi.create" if external_account_ids.nil?
       # resource path
       local_var_path = "/api/v2/custom_signatures.json_api".sub('{format}','json_api')
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -78,7 +81,7 @@ module ESP
       form_params["identifier"] = identifier
       form_params["name"] = name
       form_params["risk_level"] = risk_level
-      form_params["team_ids"] = @api_client.build_collection_param(team_ids, :csv)
+      form_params["external_account_ids"] = @api_client.build_collection_param(external_account_ids, :multi)
       form_params["description"] = opts[:'description'] if !opts[:'description'].nil?
       form_params["resolution"] = opts[:'resolution'] if !opts[:'resolution'].nil?
 
@@ -98,27 +101,27 @@ module ESP
       return data, status_code, headers
     end
 
-    # Remove a(n) CustomSignature
+    # Delete a(n) Custom Signature
     # 
-    # @param id CustomSignature ID
+    # @param id  ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
-    def destroy(id, opts = {})
-      data, _status_code, _headers = destroy_with_http_info(id, opts)
+    def delete(id, opts = {})
+      data, _status_code, _headers = delete_with_http_info(id, opts)
       return data
     end
 
-    # Remove a(n) CustomSignature
+    # Delete a(n) Custom Signature
     # 
-    # @param id CustomSignature ID
+    # @param id  ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
-    def destroy_with_http_info(id, opts = {})
+    def delete_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: CustomSignaturesApi.destroy ..."
+        @api_client.config.logger.debug "Calling API: CustomSignaturesApi.delete ..."
       end
       # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling CustomSignaturesApi.destroy" if id.nil?
+      fail ArgumentError, "Missing the required parameter 'id' when calling CustomSignaturesApi.delete" if id.nil?
       # resource path
       local_var_path = "/api/v2/custom_signatures/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
@@ -146,29 +149,29 @@ module ESP
         :auth_names => auth_names,
         :return_type => 'Meta')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CustomSignaturesApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CustomSignaturesApi#delete\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Get a list of CustomSignatures
+    # Get a list of Custom Signatures
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, name, identifier] Matching Searchable Attributes: [name, identifier]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, teams, definitions, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
       return data
     end
 
-    # Get a list of CustomSignatures
+    # Get a list of Custom Signatures
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, name, identifier] Matching Searchable Attributes: [name, identifier]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, teams, definitions, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -209,22 +212,22 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single CustomSignature
+    # Show a single Custom Signature
     # 
-    # @param id CustomSignature ID
+    # @param id Custom Signature ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
     # @return [CustomSignature]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single CustomSignature
+    # Show a single Custom Signature
     # 
-    # @param id CustomSignature ID
+    # @param id Custom Signature ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
     # @return [Array<(CustomSignature, Fixnum, Hash)>] CustomSignature data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -265,32 +268,34 @@ module ESP
       return data, status_code, headers
     end
 
-    # Update a(n) CustomSignature
+    # Update a(n) Custom Signature
     # 
-    # @param id CustomSignature ID
+    # @param id Custom Signature ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :description The description of the custom signature that is displayed on alerts
     # @option opts [String] :identifier The identifier to use for the custom signature. Common format is AWS:- such as AWS:IAM-001
     # @option opts [String] :name The name of the custom signature
     # @option opts [String] :resolution Details for how to resolve this custom signature that is displayed on alerts
     # @option opts [String] :risk_level The risk-level of the problem identified by the custom signature. Valid values are low, medium, high
-    # @option opts [Array<Integer>] :team_ids The team IDs this custom signature should run for. If no teams are selected the custom signature will not be run.
+    # @option opts [Array<Integer>] :external_account_ids The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
     # @return [CustomSignature]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
       return data
     end
 
-    # Update a(n) CustomSignature
+    # Update a(n) Custom Signature
     # 
-    # @param id CustomSignature ID
+    # @param id Custom Signature ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :description The description of the custom signature that is displayed on alerts
     # @option opts [String] :identifier The identifier to use for the custom signature. Common format is AWS:- such as AWS:IAM-001
     # @option opts [String] :name The name of the custom signature
     # @option opts [String] :resolution Details for how to resolve this custom signature that is displayed on alerts
     # @option opts [String] :risk_level The risk-level of the problem identified by the custom signature. Valid values are low, medium, high
-    # @option opts [Array<Integer>] :team_ids The team IDs this custom signature should run for. If no teams are selected the custom signature will not be run.
+    # @option opts [Array<Integer>] :external_account_ids The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
     # @return [Array<(CustomSignature, Fixnum, Hash)>] CustomSignature data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -306,6 +311,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -321,7 +327,7 @@ module ESP
       form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
       form_params["resolution"] = opts[:'resolution'] if !opts[:'resolution'].nil?
       form_params["risk_level"] = opts[:'risk_level'] if !opts[:'risk_level'].nil?
-      form_params["team_ids"] = @api_client.build_collection_param(opts[:'team_ids'], :csv) if !opts[:'team_ids'].nil?
+      form_params["external_account_ids"] = @api_client.build_collection_param(opts[:'external_account_ids'], :multi) if !opts[:'external_account_ids'].nil?
 
       # http body (model)
       post_body = nil

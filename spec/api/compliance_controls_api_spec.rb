@@ -31,43 +31,29 @@ describe 'ComplianceControlsApi' do
     end
   end
 
-  # unit tests for create
-  # Create a(n) Compliance Control
-  # 
-  # @param identifier The identifier of this control
-  # @param compliance_domain_id The Id of the Compliance Domain this control belongs to
-  # @param name The name of this control
-  # @param signature_ids An array of signatures identified by signature_id that belong to this control
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :description The description for this control
-  # @return [ComplianceControl]
-  describe 'create test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for destroy
-  # Remove a(n) ComplianceControl
-  # 
-  # @param id ComplianceControl Id
-  # @param [Hash] opts the optional parameters
-  # @return [ComplianceControl]
-  describe 'destroy test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for list
   # Get a list of Compliance Controls
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, identifier, name] Matching Searchable Attributes: [identifier, name]  Sortable Attributes: [id, identifier, name, position] Searchable Associations: [compliance_standard, compliance_domain] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-  # @option opts [String] :include Objects that can be included in the response:  compliance_standard,compliance_domain,signatures  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, identifier, name] Matching Searchable Attributes: [identifier, name]  Sortable Attributes: [id, identifier, name, position] Searchable Associations: [compliance_standard, compliance_domain] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  compliance_standard, compliance_domain, signatures See Including Objects for more information.
   # @return [PaginatedCollection]
   describe 'list test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_signatures
+  # Get a list of Signatures for a Compliance Control
+  # The compliance standard must be paid for to view signatures for a control on that standard.
+  # @param compliance_control_id The ID of the Compliance Control this signature belongs to
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+  # @return [PaginatedCollection]
+  describe 'list_signatures test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -76,28 +62,11 @@ describe 'ComplianceControlsApi' do
   # unit tests for show
   # Show a single Compliance Control
   # 
-  # @param id Compliance Control Id
+  # @param id Compliance Control ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  compliance_standard,compliance_domain,signatures  See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  compliance_standard, compliance_domain, signatures See Including Objects for more information.
   # @return [ComplianceControl]
   describe 'show test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for update
-  # Update a(n) Compliance Control
-  # 
-  # @param id Compliance Control Id
-  # @param identifier The identifier of this control
-  # @param compliance_domain_id The Id of the Compliance Domain this control belongs to
-  # @param name The name of this control
-  # @param signature_ids An array of signatures identified by signature_id that belong to this control
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :description The description for this control
-  # @return [ComplianceControl]
-  describe 'update test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

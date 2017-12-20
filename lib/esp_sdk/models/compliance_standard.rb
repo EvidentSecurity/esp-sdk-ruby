@@ -29,6 +29,9 @@ module ESP
     # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
 
+    # The max number of external accounts allowed for the organization.  This is only returned by the organizations/:organization_id/compliance_standards endpoint.
+    attr_accessor :max_accounts
+
     # Associated Compliance Domains
     attr_accessor :compliance_domains
 
@@ -50,6 +53,7 @@ module ESP
         :'created_at' => :'created_at',
         :'description' => :'description',
         :'updated_at' => :'updated_at',
+        :'max_accounts' => :'max_accounts',
         :'compliance_domains' => :'compliance_domains',
         :'compliance_domain_ids' => :'compliance_domain_ids',
         :'compliance_controls' => :'compliance_controls',
@@ -65,6 +69,7 @@ module ESP
         :'created_at' => :'DateTime',
         :'description' => :'String',
         :'updated_at' => :'DateTime',
+        :'max_accounts' => :'Integer',
         :'compliance_domains' => :'Array<ComplianceDomain>',
         :'compliance_domain_ids' => :'Array<Integer>',
         :'compliance_controls' => :'Array<ComplianceControl>',
@@ -98,6 +103,10 @@ module ESP
 
       if attributes.has_key?(:'updated_at')
         self.updated_at = attributes[:'updated_at']
+      end
+
+      if attributes.has_key?(:'max_accounts')
+        self.max_accounts = attributes[:'max_accounts']
       end
 
       if attributes.has_key?(:'compliance_domains')
@@ -149,6 +158,7 @@ module ESP
           created_at == o.created_at &&
           description == o.description &&
           updated_at == o.updated_at &&
+          max_accounts == o.max_accounts &&
           compliance_domains == o.compliance_domains &&
           compliance_domain_ids == o.compliance_domain_ids &&
           compliance_controls == o.compliance_controls &&
@@ -164,7 +174,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, created_at, description, updated_at, compliance_domains, compliance_domain_ids, compliance_controls, compliance_control_ids].hash
+      [id, name, created_at, description, updated_at, max_accounts, compliance_domains, compliance_domain_ids, compliance_controls, compliance_control_ids].hash
     end
 
     # Builds the object from hash

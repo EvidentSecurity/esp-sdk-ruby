@@ -35,8 +35,8 @@ describe 'RolesApi' do
   # Get a list of Roles
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name, role_name]   Sortable Attributes: [name, role_name, updated_at]  Example: filter: {name_eq: &#39;Bob&#39;}
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -47,8 +47,9 @@ describe 'RolesApi' do
   # unit tests for show
   # Show a single Role
   # 
-  # @param id Role Id
+  # @param id Role ID
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [Role]
   describe 'show test' do
     it "should work" do

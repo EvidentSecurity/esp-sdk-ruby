@@ -36,6 +36,7 @@ describe 'ReportsApi' do
   # 
   # @param team_id The ID of the team to create a report for
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, external_account, stat See Including Objects for more information.
   # @return [Report]
   describe 'create test' do
     it "should work" do
@@ -47,9 +48,9 @@ describe 'ReportsApi' do
   # Get a list of Reports
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, created_at]   Sortable Attributes: [created_at, id] Searchable Associations: [organization, sub_organization, team, external_account] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-  # @option opts [String] :include Objects that can be included in the response:  organization,sub_organization,team,external_account,alerts,stat  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, created_at]  Limited Searchable Attributes: [external_account_arn_eq, external_account_provider_eq] Sortable Attributes: [created_at, id] Searchable Associations: [organization, sub_organization, team, external_account] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, external_account, stat See Including Objects for more information.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -60,9 +61,9 @@ describe 'ReportsApi' do
   # unit tests for show
   # Show a single Report
   # 
-  # @param id Report Id
+  # @param id Report ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  organization,sub_organization,team,external_account,alerts,stat  See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, external_account, stat See Including Objects for more information.
   # @return [Report]
   describe 'show test' do
     it "should work" do

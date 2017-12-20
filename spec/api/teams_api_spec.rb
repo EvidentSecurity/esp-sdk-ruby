@@ -34,9 +34,10 @@ describe 'TeamsApi' do
   # unit tests for create
   # Create a(n) Team
   # 
+  # @param name Name of the team
   # @param sub_organization_id The ID of the sub organization to attach this team to
-  # @param name The name of the sub organization
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
   # @return [Team]
   describe 'create test' do
     it "should work" do
@@ -44,13 +45,13 @@ describe 'TeamsApi' do
     end
   end
 
-  # unit tests for destroy
-  # Remove a(n) Team
+  # unit tests for delete
+  # Delete a(n) Team
   # 
-  # @param id Team Id
+  # @param id  ID
   # @param [Hash] opts the optional parameters
-  # @return [SuccessObject]
-  describe 'destroy test' do
+  # @return [Meta]
+  describe 'delete test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -60,9 +61,9 @@ describe 'TeamsApi' do
   # Get a list of Teams
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-  # @option opts [String] :include Objects that can be included in the response:  custom_signatures,external_accounts,organization,sub_organization  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -73,9 +74,9 @@ describe 'TeamsApi' do
   # unit tests for show
   # Show a single Team
   # 
-  # @param id Team Id
+  # @param id Team ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  custom_signatures,external_accounts,organization,sub_organization  See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
   # @return [Team]
   describe 'show test' do
     it "should work" do
@@ -86,9 +87,10 @@ describe 'TeamsApi' do
   # unit tests for update
   # Update a(n) Team
   # 
-  # @param id Team Id
-  # @param name The name of the sub organization
+  # @param id Team ID
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :name Name of the team
+  # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
   # @return [Team]
   describe 'update test' do
     it "should work" do

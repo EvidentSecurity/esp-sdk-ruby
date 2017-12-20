@@ -24,6 +24,7 @@ module ESP
     # @param name Name of the team
     # @param sub_organization_id The ID of the sub organization to attach this team to
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
     # @return [Team]
     def create(name, sub_organization_id, opts = {})
       data, _status_code, _headers = create_with_http_info(name, sub_organization_id, opts)
@@ -35,6 +36,7 @@ module ESP
     # @param name Name of the team
     # @param sub_organization_id The ID of the sub organization to attach this team to
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
     # @return [Array<(Team, Fixnum, Hash)>] Team data, response status code and response headers
     def create_with_http_info(name, sub_organization_id, opts = {})
       if @api_client.config.debugging
@@ -49,6 +51,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -78,27 +81,27 @@ module ESP
       return data, status_code, headers
     end
 
-    # Remove a(n) Team
+    # Delete a(n) Team
     # 
-    # @param id Team ID
+    # @param id  ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
-    def destroy(id, opts = {})
-      data, _status_code, _headers = destroy_with_http_info(id, opts)
+    def delete(id, opts = {})
+      data, _status_code, _headers = delete_with_http_info(id, opts)
       return data
     end
 
-    # Remove a(n) Team
+    # Delete a(n) Team
     # 
-    # @param id Team ID
+    # @param id  ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
-    def destroy_with_http_info(id, opts = {})
+    def delete_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: TeamsApi.destroy ..."
+        @api_client.config.logger.debug "Calling API: TeamsApi.delete ..."
       end
       # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling TeamsApi.destroy" if id.nil?
+      fail ArgumentError, "Missing the required parameter 'id' when calling TeamsApi.delete" if id.nil?
       # resource path
       local_var_path = "/api/v2/teams/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
@@ -126,7 +129,7 @@ module ESP
         :auth_names => auth_names,
         :return_type => 'Meta')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: TeamsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: TeamsApi#delete\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -134,9 +137,9 @@ module ESP
     # Get a list of Teams
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -146,9 +149,9 @@ module ESP
     # Get a list of Teams
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -193,7 +196,7 @@ module ESP
     # 
     # @param id Team ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
     # @return [Team]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
@@ -204,7 +207,7 @@ module ESP
     # 
     # @param id Team ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
     # @return [Array<(Team, Fixnum, Hash)>] Team data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -248,33 +251,34 @@ module ESP
     # Update a(n) Team
     # 
     # @param id Team ID
-    # @param name Name of the team
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :name Name of the team
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
     # @return [Team]
-    def update(id, name, opts = {})
-      data, _status_code, _headers = update_with_http_info(id, name, opts)
+    def update(id, opts = {})
+      data, _status_code, _headers = update_with_http_info(id, opts)
       return data
     end
 
     # Update a(n) Team
     # 
     # @param id Team ID
-    # @param name Name of the team
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :name Name of the team
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
     # @return [Array<(Team, Fixnum, Hash)>] Team data, response status code and response headers
-    def update_with_http_info(id, name, opts = {})
+    def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: TeamsApi.update ..."
       end
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling TeamsApi.update" if id.nil?
-      # verify the required parameter 'name' is set
-      fail ArgumentError, "Missing the required parameter 'name' when calling TeamsApi.update" if name.nil?
       # resource path
       local_var_path = "/api/v2/teams/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -285,7 +289,7 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["name"] = name
+      form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
 
       # http body (model)
       post_body = nil

@@ -19,22 +19,24 @@ module ESP
       @api_client = api_client
     end
 
-    # Create a(n) SubOrganization
+    # Create a(n) Sub Organization
     # 
     # @param organization_id The ID of the organization this sub organization should belong to
     # @param name Name of the sub organization
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
     # @return [SubOrganization]
     def create(organization_id, name, opts = {})
       data, _status_code, _headers = create_with_http_info(organization_id, name, opts)
       return data
     end
 
-    # Create a(n) SubOrganization
+    # Create a(n) Sub Organization
     # 
     # @param organization_id The ID of the organization this sub organization should belong to
     # @param name Name of the sub organization
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
     # @return [Array<(SubOrganization, Fixnum, Hash)>] SubOrganization data, response status code and response headers
     def create_with_http_info(organization_id, name, opts = {})
       if @api_client.config.debugging
@@ -49,6 +51,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -78,27 +81,27 @@ module ESP
       return data, status_code, headers
     end
 
-    # Remove a(n) SubOrganization
+    # Delete a(n) Sub Organization
     # 
-    # @param id SubOrganization ID
+    # @param id  ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
-    def destroy(id, opts = {})
-      data, _status_code, _headers = destroy_with_http_info(id, opts)
+    def delete(id, opts = {})
+      data, _status_code, _headers = delete_with_http_info(id, opts)
       return data
     end
 
-    # Remove a(n) SubOrganization
+    # Delete a(n) Sub Organization
     # 
-    # @param id SubOrganization ID
+    # @param id  ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
-    def destroy_with_http_info(id, opts = {})
+    def delete_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: SubOrganizationsApi.destroy ..."
+        @api_client.config.logger.debug "Calling API: SubOrganizationsApi.delete ..."
       end
       # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling SubOrganizationsApi.destroy" if id.nil?
+      fail ArgumentError, "Missing the required parameter 'id' when calling SubOrganizationsApi.delete" if id.nil?
       # resource path
       local_var_path = "/api/v2/sub_organizations/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
@@ -126,29 +129,29 @@ module ESP
         :auth_names => auth_names,
         :return_type => 'Meta')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SubOrganizationsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SubOrganizationsApi#delete\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Get a list of SubOrganizations
+    # Get a list of Sub Organizations
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Association: [organization] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
       return data
     end
 
-    # Get a list of SubOrganizations
+    # Get a list of Sub Organizations
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Association: [organization] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -189,22 +192,22 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single SubOrganization
+    # Show a single Sub Organization
     # 
-    # @param id SubOrganization ID
+    # @param id Sub Organization ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
     # @return [SubOrganization]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single SubOrganization
+    # Show a single Sub Organization
     # 
-    # @param id SubOrganization ID
+    # @param id Sub Organization ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
     # @return [Array<(SubOrganization, Fixnum, Hash)>] SubOrganization data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -245,22 +248,24 @@ module ESP
       return data, status_code, headers
     end
 
-    # Update a(n) SubOrganization
+    # Update a(n) Sub Organization
     # 
-    # @param id SubOrganization ID
+    # @param id Sub Organization ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :name Name of the sub organization
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
     # @return [SubOrganization]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
       return data
     end
 
-    # Update a(n) SubOrganization
+    # Update a(n) Sub Organization
     # 
-    # @param id SubOrganization ID
+    # @param id Sub Organization ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :name Name of the sub organization
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
     # @return [Array<(SubOrganization, Fixnum, Hash)>] SubOrganization data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -273,6 +278,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
