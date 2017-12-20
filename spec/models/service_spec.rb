@@ -43,12 +43,6 @@ describe 'Service' do
     end
   end
 
-  describe 'test attribute "created_at"' do
-    it 'should work' do
-       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   describe 'test attribute "default_interval"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -56,6 +50,12 @@ describe 'Service' do
   end
 
   describe 'test attribute "minimum_interval"' do
+    it 'should work' do
+       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "created_at"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -79,7 +79,7 @@ describe 'Service' do
     end
   end
 
-  describe 'test attribute "errors"' do
+  describe 'test attribute "provider"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

@@ -145,13 +145,13 @@ describe 'Integration' do
     end
   end
 
-  describe 'test attribute "teams"' do
+  describe 'test attribute "external_accounts"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "team_ids"' do
+  describe 'test attribute "external_account_ids"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

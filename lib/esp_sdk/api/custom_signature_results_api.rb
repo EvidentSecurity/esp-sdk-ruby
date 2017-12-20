@@ -19,66 +19,7 @@ module ESP
       @api_client = api_client
     end
 
-    # Returns the alerts for a given result. Note that this format is slightly different than the standard alert format. A successful call to this API returns a list of alerts for the custom signature result identified by the custom_signature_result_id parameter.
-    # 
-    # @param custom_signature_result_id Custom Signature Result ID
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @return [PaginatedCollection]
-    def alerts(custom_signature_result_id, opts = {})
-      data, _status_code, _headers = alerts_with_http_info(custom_signature_result_id, opts)
-      return data
-    end
-
-    # Returns the alerts for a given result. Note that this format is slightly different than the standard alert format. A successful call to this API returns a list of alerts for the custom signature result identified by the custom_signature_result_id parameter.
-    # 
-    # @param custom_signature_result_id Custom Signature Result ID
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
-    def alerts_with_http_info(custom_signature_result_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: CustomSignatureResultsApi.alerts ..."
-      end
-      # verify the required parameter 'custom_signature_result_id' is set
-      fail ArgumentError, "Missing the required parameter 'custom_signature_result_id' when calling CustomSignatureResultsApi.alerts" if custom_signature_result_id.nil?
-      # resource path
-      local_var_path = "/api/v2/custom_signature_results/{custom_signature_result_id}/alerts.json_api".sub('{format}','json_api').sub('{' + 'custom_signature_result_id' + '}', custom_signature_result_id.to_s)
-
-      # query parameters
-      query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = {}
-      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'PaginatedCollection')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CustomSignatureResultsApi#alerts\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Create a(n) CustomSignatureResult
+    # Create a(n) Custom Signature Result
     # 
     # @param code The code for this definition
     # @param custom_signature_definition_id ID of the custom signature definition this result belongs to
@@ -87,13 +28,14 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :region_id ID of the region the code should run for.  Required if region is not supplied.
     # @option opts [String] :region Code of the region the result code should run for. Ex: us-east-1. This can be sent instead of region_id
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information.
     # @return [CustomSignatureResult]
     def create(code, custom_signature_definition_id, external_account_id, language, opts = {})
       data, _status_code, _headers = create_with_http_info(code, custom_signature_definition_id, external_account_id, language, opts)
       return data
     end
 
-    # Create a(n) CustomSignatureResult
+    # Create a(n) Custom Signature Result
     # 
     # @param code The code for this definition
     # @param custom_signature_definition_id ID of the custom signature definition this result belongs to
@@ -102,6 +44,7 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :region_id ID of the region the code should run for.  Required if region is not supplied.
     # @option opts [String] :region Code of the region the result code should run for. Ex: us-east-1. This can be sent instead of region_id
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information.
     # @return [Array<(CustomSignatureResult, Fixnum, Hash)>] CustomSignatureResult data, response status code and response headers
     def create_with_http_info(code, custom_signature_definition_id, external_account_id, language, opts = {})
       if @api_client.config.debugging
@@ -124,6 +67,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -157,24 +101,24 @@ module ESP
       return data, status_code, headers
     end
 
-    # Get a list of CustomSignatureResults
+    # Get a list of Custom Signature Results
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, language, status]   Sortable Attribute: [id] Searchable Associations: [definition, region, external_account] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information.
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
       return data
     end
 
-    # Get a list of CustomSignatureResults
+    # Get a list of Custom Signature Results
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, language, status]   Sortable Attribute: [id] Searchable Associations: [definition, region, external_account] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -215,22 +159,81 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single CustomSignatureResult
-    # 
-    # @param id CustomSignatureResult ID
+    # Returns the Alerts for a given Custom Signature Result
+    # This format is slightly different than the standard alert format. A successful call to this API returns a list of alerts for the custom signature result identified by the custom_signature_result_id parameter.
+    # @param custom_signature_result_id Custom Signature Result ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, custom_signature See Including Objects for more information.
+    # @return [PaginatedCollection]
+    def list_alerts(custom_signature_result_id, opts = {})
+      data, _status_code, _headers = list_alerts_with_http_info(custom_signature_result_id, opts)
+      return data
+    end
+
+    # Returns the Alerts for a given Custom Signature Result
+    # This format is slightly different than the standard alert format. A successful call to this API returns a list of alerts for the custom signature result identified by the custom_signature_result_id parameter.
+    # @param custom_signature_result_id Custom Signature Result ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, custom_signature See Including Objects for more information.
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_alerts_with_http_info(custom_signature_result_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: CustomSignatureResultsApi.list_alerts ..."
+      end
+      # verify the required parameter 'custom_signature_result_id' is set
+      fail ArgumentError, "Missing the required parameter 'custom_signature_result_id' when calling CustomSignatureResultsApi.list_alerts" if custom_signature_result_id.nil?
+      # resource path
+      local_var_path = "/api/v2/custom_signature_results/{custom_signature_result_id}/alerts.json_api".sub('{format}','json_api').sub('{' + 'custom_signature_result_id' + '}', custom_signature_result_id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'PaginatedCollection')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomSignatureResultsApi#list_alerts\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Show a single Custom Signature Result
+    # 
+    # @param id Custom Signature Result ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information.
     # @return [CustomSignatureResult]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single CustomSignatureResult
+    # Show a single Custom Signature Result
     # 
-    # @param id CustomSignatureResult ID
+    # @param id Custom Signature Result ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information.
     # @return [Array<(CustomSignatureResult, Fixnum, Hash)>] CustomSignatureResult data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging

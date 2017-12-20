@@ -4,17 +4,19 @@ All URIs are relative to https://api.evident.io
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](ScanIntervalsApi.md#create) | **POST** /api/v2/scan_intervals.json_api | Create a(n) ScanInterval
-[**destroy**](ScanIntervalsApi.md#destroy) | **DELETE** /api/v2/scan_intervals/{id}.json_api | Remove a(n) ScanInterval
-[**list**](ScanIntervalsApi.md#list) | **GET** /api/v2/external_accounts/{external_account_id}/scan_intervals.json_api | Get a list of ScanIntervals
-[**show**](ScanIntervalsApi.md#show) | **GET** /api/v2/scan_intervals/{id}.json_api | Show a single ScanInterval
-[**update**](ScanIntervalsApi.md#update) | **PATCH** /api/v2/scan_intervals/{id}.json_api | Update a(n) ScanInterval
+[**create**](ScanIntervalsApi.md#create) | **POST** /api/v2/scan_intervals.json_api | Create a(n) Scan Interval
+[**delete**](ScanIntervalsApi.md#delete) | **DELETE** /api/v2/scan_intervals/{id}.json_api | Delete a(n) Scan Interval
+[**list_for_external_account**](ScanIntervalsApi.md#list_for_external_account) | **GET** /api/v2/external_accounts/{external_account_id}/scan_intervals.json_api | Get a list of Scan Intervals
+[**show**](ScanIntervalsApi.md#show) | **GET** /api/v2/scan_intervals/{id}.json_api | Show a single Scan Interval
+[**update**](ScanIntervalsApi.md#update) | **PATCH** /api/v2/scan_intervals/{id}.json_api | Update a(n) Scan Interval
 
 
 # **create**
-> ScanInterval create(external_account_id, interval, service_id)
+> ScanInterval create(external_account_id, interval, service_id, opts)
 
-Create a(n) ScanInterval
+Create a(n) Scan Interval
+
+
 
 ### Example
 ```ruby
@@ -29,10 +31,13 @@ interval = 56 # Integer | The interval, in minutes, this service will be scanned
 
 service_id = 56 # Integer | The service ID for the scan interval
 
+opts = { 
+  include: "include_example" # String | Related objects that can be included in the response:  external_account, service See Including Objects for more information.
+}
 
 begin
-  #Create a(n) ScanInterval
-  result = api_instance.create(external_account_id, interval, service_id)
+  #Create a(n) Scan Interval
+  result = api_instance.create(external_account_id, interval, service_id, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling ScanIntervalsApi->create: #{e}"
@@ -46,6 +51,7 @@ Name | Type | Description  | Notes
  **external_account_id** | **Integer**| The ID of the external account this scan interval is for | 
  **interval** | **Integer**| The interval, in minutes, this service will be scanned | 
  **service_id** | **Integer**| The service ID for the scan interval | 
+ **include** | **String**| Related objects that can be included in the response:  external_account, service See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -62,10 +68,12 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 
-# **destroy**
-> Meta destroy(id)
+# **delete**
+> Meta delete(id)
 
-Remove a(n) ScanInterval
+Delete a(n) Scan Interval
+
+
 
 ### Example
 ```ruby
@@ -74,15 +82,15 @@ require 'esp_sdk'
 
 api_instance = ESP::ScanIntervalsApi.new
 
-id = 56 # Integer | ScanInterval ID
+id = 56 # Integer |  ID
 
 
 begin
-  #Remove a(n) ScanInterval
-  result = api_instance.destroy(id)
+  #Delete a(n) Scan Interval
+  result = api_instance.delete(id)
   p result
 rescue ESP::ApiError => e
-  puts "Exception when calling ScanIntervalsApi->destroy: #{e}"
+  puts "Exception when calling ScanIntervalsApi->delete: #{e}"
 end
 ```
 
@@ -90,7 +98,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| ScanInterval ID | 
+ **id** | **Integer**|  ID | 
 
 ### Return type
 
@@ -107,10 +115,12 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 
-# **list**
-> PaginatedCollection list(external_account_id, opts)
+# **list_for_external_account**
+> PaginatedCollection list_for_external_account(external_account_id, opts)
 
-Get a list of ScanIntervals
+Get a list of Scan Intervals
+
+
 
 ### Example
 ```ruby
@@ -122,16 +132,16 @@ api_instance = ESP::ScanIntervalsApi.new
 external_account_id = 56 # Integer | The ID of the external account to retrieve
 
 opts = { 
-  include: "include_example", # String | Related objects that can be included in the response.  See Including Objects for more information.
-  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  include: "include_example" # String | Related objects that can be included in the response:  external_account, service See Including Objects for more information.
 }
 
 begin
-  #Get a list of ScanIntervals
-  result = api_instance.list(external_account_id, opts)
+  #Get a list of Scan Intervals
+  result = api_instance.list_for_external_account(external_account_id, opts)
   p result
 rescue ESP::ApiError => e
-  puts "Exception when calling ScanIntervalsApi->list: #{e}"
+  puts "Exception when calling ScanIntervalsApi->list_for_external_account: #{e}"
 end
 ```
 
@@ -140,8 +150,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account to retrieve | 
- **include** | **String**| Related objects that can be included in the response.  See Including Objects for more information. | [optional] 
  **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
+ **include** | **String**| Related objects that can be included in the response:  external_account, service See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -161,7 +171,9 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 # **show**
 > ScanInterval show(id, opts)
 
-Show a single ScanInterval
+Show a single Scan Interval
+
+
 
 ### Example
 ```ruby
@@ -170,14 +182,14 @@ require 'esp_sdk'
 
 api_instance = ESP::ScanIntervalsApi.new
 
-id = 56 # Integer | ScanInterval ID
+id = 56 # Integer | Scan Interval ID
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response.  See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  external_account, service See Including Objects for more information.
 }
 
 begin
-  #Show a single ScanInterval
+  #Show a single Scan Interval
   result = api_instance.show(id, opts)
   p result
 rescue ESP::ApiError => e
@@ -189,8 +201,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| ScanInterval ID | 
- **include** | **String**| Related objects that can be included in the response.  See Including Objects for more information. | [optional] 
+ **id** | **Integer**| Scan Interval ID | 
+ **include** | **String**| Related objects that can be included in the response:  external_account, service See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -208,9 +220,11 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **update**
-> ScanInterval update(id, external_account_id, interval, service_id)
+> ScanInterval update(id, opts)
 
-Update a(n) ScanInterval
+Update a(n) Scan Interval
+
+
 
 ### Example
 ```ruby
@@ -219,18 +233,18 @@ require 'esp_sdk'
 
 api_instance = ESP::ScanIntervalsApi.new
 
-id = 56 # Integer | ScanInterval ID
+id = 56 # Integer | Scan Interval ID
 
-external_account_id = 56 # Integer | The ID of the external account this scan interval is for
-
-interval = 56 # Integer | The interval, in minutes, this service will be scanned
-
-service_id = 56 # Integer | The service ID for the scan interval
-
+opts = { 
+  external_account_id: 56, # Integer | The ID of the external account this scan interval is for
+  interval: 56, # Integer | The interval, in minutes, this service will be scanned
+  service_id: 56, # Integer | The service ID for the scan interval
+  include: "include_example" # String | Related objects that can be included in the response:  external_account, service See Including Objects for more information.
+}
 
 begin
-  #Update a(n) ScanInterval
-  result = api_instance.update(id, external_account_id, interval, service_id)
+  #Update a(n) Scan Interval
+  result = api_instance.update(id, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling ScanIntervalsApi->update: #{e}"
@@ -241,10 +255,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| ScanInterval ID | 
- **external_account_id** | **Integer**| The ID of the external account this scan interval is for | 
- **interval** | **Integer**| The interval, in minutes, this service will be scanned | 
- **service_id** | **Integer**| The service ID for the scan interval | 
+ **id** | **Integer**| Scan Interval ID | 
+ **external_account_id** | **Integer**| The ID of the external account this scan interval is for | [optional] 
+ **interval** | **Integer**| The interval, in minutes, this service will be scanned | [optional] 
+ **service_id** | **Integer**| The service ID for the scan interval | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  external_account, service See Including Objects for more information. | [optional] 
 
 ### Return type
 

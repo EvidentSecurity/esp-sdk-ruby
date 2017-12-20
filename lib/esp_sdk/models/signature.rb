@@ -38,6 +38,9 @@ module ESP
     # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
 
+    # The custom risk-level of the problem identified by the signature for this external_account. Valid values are low, medium, high
+    attr_accessor :custom_risk_level
+
     # Associated Service
     attr_accessor :service
 
@@ -62,6 +65,7 @@ module ESP
         :'resolution' => :'resolution',
         :'risk_level' => :'risk_level',
         :'updated_at' => :'updated_at',
+        :'custom_risk_level' => :'custom_risk_level',
         :'service' => :'service',
         :'service_id' => :'service_id',
         :'disabled_external_accounts' => :'disabled_external_accounts',
@@ -80,6 +84,7 @@ module ESP
         :'resolution' => :'String',
         :'risk_level' => :'String',
         :'updated_at' => :'DateTime',
+        :'custom_risk_level' => :'String',
         :'service' => :'Service',
         :'service_id' => :'Integer',
         :'disabled_external_accounts' => :'ExternalAccount',
@@ -127,6 +132,10 @@ module ESP
         self.updated_at = attributes[:'updated_at']
       end
 
+      if attributes.has_key?(:'custom_risk_level')
+        self.custom_risk_level = attributes[:'custom_risk_level']
+      end
+
       if attributes.has_key?(:'service')
         self.service = attributes[:'service']
       end
@@ -171,6 +180,7 @@ module ESP
           resolution == o.resolution &&
           risk_level == o.risk_level &&
           updated_at == o.updated_at &&
+          custom_risk_level == o.custom_risk_level &&
           service == o.service &&
           service_id == o.service_id &&
           disabled_external_accounts == o.disabled_external_accounts &&
@@ -186,7 +196,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, description, identifier, name, resolution, risk_level, updated_at, service, service_id, disabled_external_accounts, disabled_external_accounts_id].hash
+      [id, created_at, description, identifier, name, resolution, risk_level, updated_at, custom_risk_level, service, service_id, disabled_external_accounts, disabled_external_accounts_id].hash
     end
 
     # Builds the object from hash

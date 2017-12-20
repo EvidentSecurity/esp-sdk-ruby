@@ -31,54 +31,12 @@ describe 'StatsApi' do
     end
   end
 
-  # unit tests for for_compliance_controls
-  # A successful call to this API returns all the stats of all the compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all compliance controls for the selected hour.
-  # 
-  # @param stat_id The ID of the stat to retrieve compliance control stats for
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  compliance_control,stat  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
-  # @return [PaginatedCollection]
-  describe 'for_compliance_controls test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for for_custom_signatures
-  # A successful call to this API returns all the stats of all the custom signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom_signatures for the selected hour.
-  # 
-  # @param stat_id The ID of the stat to retrieve custom signature stats for
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  custom_signature,stat  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
-  # @return [PaginatedCollection]
-  describe 'for_custom_signatures test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for for_regions
-  # A successful call to this API returns all the stats of all the regions for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all regions for the selected hour.
-  # 
-  # @param stat_id The ID of the stat to retrieve region stats for
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  region,stat  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
-  # @return [PaginatedCollection]
-  describe 'for_regions test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for for_report
+  # Stats for a report
   # A successful call to this API returns all the stats of all the alerts for a report identified by the report_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all regions for the selected hour.
-  # 
   # @param report_id The ID of the report to retrieve stats for
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  report,regions,services,signatures,custom_signatures  See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  report, regions, services, signatures, custom_signatures, custom_compliance_controls, compliance_controls See Including Objects for more information.
   # @return [Stat]
   describe 'for_report test' do
     it "should work" do
@@ -86,40 +44,13 @@ describe 'StatsApi' do
     end
   end
 
-  # unit tests for for_services
-  # A successful call to this API returns all the stats of all the services for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all services for the selected hour.
-  # 
-  # @param stat_id The ID of the stat to retrieve service stats for
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  service,stat  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
-  # @return [PaginatedCollection]
-  describe 'for_services test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for for_signatures
-  # A successful call to this API returns all the stats of all the signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all signatures for the selected hour.
-  # 
-  # @param stat_id The ID of the stat to retrieve signature stats for
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  signature,stat  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
-  # @return [PaginatedCollection]
-  describe 'for_signatures test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for latest_for_teams
+  # Stats for teams
   # A successful call to this API returns all the stats for the most recent report of each team accessible by the given API key
-  # 
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  report,regions,services,signatures,custom_signatures  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.      Searchable Association: [report] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  report, regions, services, signatures, custom_signatures, custom_compliance_controls, compliance_controls See Including Objects for more information.
   # @return [PaginatedCollection]
   describe 'latest_for_teams test' do
     it "should work" do
@@ -130,9 +61,9 @@ describe 'StatsApi' do
   # unit tests for show
   # Show a single Stat
   # 
-  # @param id Stat Id
+  # @param id Stat ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  report,regions,services,signatures,custom_signatures  See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  report, regions, services, signatures, custom_signatures, custom_compliance_controls, compliance_controls See Including Objects for more information.
   # @return [Stat]
   describe 'show test' do
     it "should work" do

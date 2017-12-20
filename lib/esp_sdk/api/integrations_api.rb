@@ -19,11 +19,175 @@ module ESP
       @api_client = api_client
     end
 
-    # Show a single Integration
-    # 
+    # Delete a(n) Integration
+    # Use this endpoint to destory any type of Integration.
+    # @param id  ID
+    # @param [Hash] opts the optional parameters
+    # @return [Meta]
+    def delete(id, opts = {})
+      data, _status_code, _headers = delete_with_http_info(id, opts)
+      return data
+    end
+
+    # Delete a(n) Integration
+    # Use this endpoint to destory any type of Integration.
+    # @param id  ID
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
+    def delete_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: IntegrationsApi.delete ..."
+      end
+      # verify the required parameter 'id' is set
+      fail ArgumentError, "Missing the required parameter 'id' when calling IntegrationsApi.delete" if id.nil?
+      # resource path
+      local_var_path = "/api/v2/integrations/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Meta')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: IntegrationsApi#delete\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Disable a single Integration
+    # This will disable any type of Integration
     # @param id Integration ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @return [Meta]
+    def disable(id, opts = {})
+      data, _status_code, _headers = disable_with_http_info(id, opts)
+      return data
+    end
+
+    # Disable a single Integration
+    # This will disable any type of Integration
+    # @param id Integration ID
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
+    def disable_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: IntegrationsApi.disable ..."
+      end
+      # verify the required parameter 'id' is set
+      fail ArgumentError, "Missing the required parameter 'id' when calling IntegrationsApi.disable" if id.nil?
+      # resource path
+      local_var_path = "/api/v2/integrations/{id}/disable.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Meta')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: IntegrationsApi#disable\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get a list of Integrations
+    # This will return a list of every type of Integration.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, organization_id, name, service_type] Matching Searchable Attributes: [name, service_type]   Searchable Associations: [teams, signatures, custom_signatures] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, service, external_accounts, signatures, custom_signatures See Including Objects for more information.
+    # @return [PaginatedCollection]
+    def list(opts = {})
+      data, _status_code, _headers = list_with_http_info(opts)
+      return data
+    end
+
+    # Get a list of Integrations
+    # This will return a list of every type of Integration.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, organization_id, name, service_type] Matching Searchable Attributes: [name, service_type]   Searchable Associations: [teams, signatures, custom_signatures] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, service, external_accounts, signatures, custom_signatures See Including Objects for more information.
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: IntegrationsApi.list ..."
+      end
+      # resource path
+      local_var_path = "/api/v2/integrations.json_api".sub('{format}','json_api')
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'PaginatedCollection')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: IntegrationsApi#list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Show a single Integration
+    # This will return any type of Integration.
+    # @param id Integration ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, service, external_accounts, signatures, custom_signatures See Including Objects for more information.
     # @return [Integration]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
@@ -31,10 +195,10 @@ module ESP
     end
 
     # Show a single Integration
-    # 
+    # This will return any type of Integration.
     # @param id Integration ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, service, external_accounts, signatures, custom_signatures See Including Objects for more information.
     # @return [Array<(Integration, Fixnum, Hash)>] Integration data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -71,6 +235,59 @@ module ESP
         :return_type => 'Integration')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: IntegrationsApi#show\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Test an Integration
+    # This will test any type of Integration.
+    # @param id Integration ID
+    # @param [Hash] opts the optional parameters
+    # @return [Meta]
+    def test_notify(id, opts = {})
+      data, _status_code, _headers = test_notify_with_http_info(id, opts)
+      return data
+    end
+
+    # Test an Integration
+    # This will test any type of Integration.
+    # @param id Integration ID
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
+    def test_notify_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: IntegrationsApi.test_notify ..."
+      end
+      # verify the required parameter 'id' is set
+      fail ArgumentError, "Missing the required parameter 'id' when calling IntegrationsApi.test_notify" if id.nil?
+      # resource path
+      local_var_path = "/api/v2/integrations/{id}/test_notify.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Meta')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: IntegrationsApi#test_notify\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

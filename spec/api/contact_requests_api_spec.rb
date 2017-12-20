@@ -36,8 +36,9 @@ describe 'ContactRequestsApi' do
   # 
   # @param title Subject of your message
   # @param description Body of your message
-  # @param request_type Type of contact request. Supported values are support for support requests and feature for a feature request
+  # @param request_type Type of contact request. Valid values are support, feature
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
   # @return [ContactRequest]
   describe 'create test' do
     it "should work" do

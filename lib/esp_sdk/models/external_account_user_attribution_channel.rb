@@ -23,7 +23,7 @@ module ESP
     # If the channel is active
     attr_accessor :active
 
-    # The URL for the channel
+    # The URL for the channel.  It is only returned when first created.
     attr_accessor :url
 
 

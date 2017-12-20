@@ -4,17 +4,19 @@ All URIs are relative to https://api.evident.io
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](SubOrganizationsApi.md#create) | **POST** /api/v2/sub_organizations.json_api | Create a(n) SubOrganization
-[**destroy**](SubOrganizationsApi.md#destroy) | **DELETE** /api/v2/sub_organizations/{id}.json_api | Remove a(n) SubOrganization
-[**list**](SubOrganizationsApi.md#list) | **PUT** /api/v2/sub_organizations.json_api | Get a list of SubOrganizations
-[**show**](SubOrganizationsApi.md#show) | **GET** /api/v2/sub_organizations/{id}.json_api | Show a single SubOrganization
-[**update**](SubOrganizationsApi.md#update) | **PATCH** /api/v2/sub_organizations/{id}.json_api | Update a(n) SubOrganization
+[**create**](SubOrganizationsApi.md#create) | **POST** /api/v2/sub_organizations.json_api | Create a(n) Sub Organization
+[**delete**](SubOrganizationsApi.md#delete) | **DELETE** /api/v2/sub_organizations/{id}.json_api | Delete a(n) Sub Organization
+[**list**](SubOrganizationsApi.md#list) | **PUT** /api/v2/sub_organizations.json_api | Get a list of Sub Organizations
+[**show**](SubOrganizationsApi.md#show) | **GET** /api/v2/sub_organizations/{id}.json_api | Show a single Sub Organization
+[**update**](SubOrganizationsApi.md#update) | **PATCH** /api/v2/sub_organizations/{id}.json_api | Update a(n) Sub Organization
 
 
 # **create**
-> SubOrganization create(organization_id, name)
+> SubOrganization create(organization_id, name, opts)
 
-Create a(n) SubOrganization
+Create a(n) Sub Organization
+
+
 
 ### Example
 ```ruby
@@ -27,10 +29,13 @@ organization_id = 56 # Integer | The ID of the organization this sub organizatio
 
 name = "name_example" # String | Name of the sub organization
 
+opts = { 
+  include: "include_example" # String | Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
+}
 
 begin
-  #Create a(n) SubOrganization
-  result = api_instance.create(organization_id, name)
+  #Create a(n) Sub Organization
+  result = api_instance.create(organization_id, name, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling SubOrganizationsApi->create: #{e}"
@@ -43,6 +48,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization_id** | **Integer**| The ID of the organization this sub organization should belong to | 
  **name** | **String**| Name of the sub organization | 
+ **include** | **String**| Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -59,10 +65,12 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 
-# **destroy**
-> Meta destroy(id)
+# **delete**
+> Meta delete(id)
 
-Remove a(n) SubOrganization
+Delete a(n) Sub Organization
+
+
 
 ### Example
 ```ruby
@@ -71,15 +79,15 @@ require 'esp_sdk'
 
 api_instance = ESP::SubOrganizationsApi.new
 
-id = 56 # Integer | SubOrganization ID
+id = 56 # Integer |  ID
 
 
 begin
-  #Remove a(n) SubOrganization
-  result = api_instance.destroy(id)
+  #Delete a(n) Sub Organization
+  result = api_instance.delete(id)
   p result
 rescue ESP::ApiError => e
-  puts "Exception when calling SubOrganizationsApi->destroy: #{e}"
+  puts "Exception when calling SubOrganizationsApi->delete: #{e}"
 end
 ```
 
@@ -87,7 +95,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| SubOrganization ID | 
+ **id** | **Integer**|  ID | 
 
 ### Return type
 
@@ -107,7 +115,9 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 # **list**
 > PaginatedCollection list(opts)
 
-Get a list of SubOrganizations
+Get a list of Sub Organizations
+
+
 
 ### Example
 ```ruby
@@ -117,13 +127,13 @@ require 'esp_sdk'
 api_instance = ESP::SubOrganizationsApi.new
 
 opts = { 
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  See Searching Lists for more information.
-  include: "include_example", # String | Related objects that can be included in the response.  See Including Objects for more information.
-  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Association: [organization] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  include: "include_example" # String | Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
 }
 
 begin
-  #Get a list of SubOrganizations
+  #Get a list of Sub Organizations
   result = api_instance.list(opts)
   p result
 rescue ESP::ApiError => e
@@ -135,9 +145,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  See Searching Lists for more information. | [optional] 
- **include** | **String**| Related objects that can be included in the response.  See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Association: [organization] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
  **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
+ **include** | **String**| Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -157,7 +167,9 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 # **show**
 > SubOrganization show(id, opts)
 
-Show a single SubOrganization
+Show a single Sub Organization
+
+
 
 ### Example
 ```ruby
@@ -166,14 +178,14 @@ require 'esp_sdk'
 
 api_instance = ESP::SubOrganizationsApi.new
 
-id = 56 # Integer | SubOrganization ID
+id = 56 # Integer | Sub Organization ID
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response.  See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
 }
 
 begin
-  #Show a single SubOrganization
+  #Show a single Sub Organization
   result = api_instance.show(id, opts)
   p result
 rescue ESP::ApiError => e
@@ -185,8 +197,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| SubOrganization ID | 
- **include** | **String**| Related objects that can be included in the response.  See Including Objects for more information. | [optional] 
+ **id** | **Integer**| Sub Organization ID | 
+ **include** | **String**| Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -204,9 +216,11 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **update**
-> SubOrganization update(id, name)
+> SubOrganization update(id, opts)
 
-Update a(n) SubOrganization
+Update a(n) Sub Organization
+
+
 
 ### Example
 ```ruby
@@ -215,14 +229,16 @@ require 'esp_sdk'
 
 api_instance = ESP::SubOrganizationsApi.new
 
-id = 56 # Integer | SubOrganization ID
+id = 56 # Integer | Sub Organization ID
 
-name = "name_example" # String | Name of the sub organization
-
+opts = { 
+  name: "name_example", # String | Name of the sub organization
+  include: "include_example" # String | Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information.
+}
 
 begin
-  #Update a(n) SubOrganization
-  result = api_instance.update(id, name)
+  #Update a(n) Sub Organization
+  result = api_instance.update(id, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling SubOrganizationsApi->update: #{e}"
@@ -233,8 +249,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| SubOrganization ID | 
- **name** | **String**| Name of the sub organization | 
+ **id** | **Integer**| Sub Organization ID | 
+ **name** | **String**| Name of the sub organization | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  external_accounts, organization, teams See Including Objects for more information. | [optional] 
 
 ### Return type
 

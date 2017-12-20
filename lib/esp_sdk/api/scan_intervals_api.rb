@@ -19,24 +19,26 @@ module ESP
       @api_client = api_client
     end
 
-    # Create a(n) ScanInterval
+    # Create a(n) Scan Interval
     # 
     # @param external_account_id The ID of the external account this scan interval is for
     # @param interval The interval, in minutes, this service will be scanned
     # @param service_id The service ID for the scan interval
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @return [ScanInterval]
     def create(external_account_id, interval, service_id, opts = {})
       data, _status_code, _headers = create_with_http_info(external_account_id, interval, service_id, opts)
       return data
     end
 
-    # Create a(n) ScanInterval
+    # Create a(n) Scan Interval
     # 
     # @param external_account_id The ID of the external account this scan interval is for
     # @param interval The interval, in minutes, this service will be scanned
     # @param service_id The service ID for the scan interval
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @return [Array<(ScanInterval, Fixnum, Hash)>] ScanInterval data, response status code and response headers
     def create_with_http_info(external_account_id, interval, service_id, opts = {})
       if @api_client.config.debugging
@@ -53,6 +55,7 @@ module ESP
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -83,27 +86,27 @@ module ESP
       return data, status_code, headers
     end
 
-    # Remove a(n) ScanInterval
+    # Delete a(n) Scan Interval
     # 
-    # @param id ScanInterval ID
+    # @param id  ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
-    def destroy(id, opts = {})
-      data, _status_code, _headers = destroy_with_http_info(id, opts)
+    def delete(id, opts = {})
+      data, _status_code, _headers = delete_with_http_info(id, opts)
       return data
     end
 
-    # Remove a(n) ScanInterval
+    # Delete a(n) Scan Interval
     # 
-    # @param id ScanInterval ID
+    # @param id  ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
-    def destroy_with_http_info(id, opts = {})
+    def delete_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ScanIntervalsApi.destroy ..."
+        @api_client.config.logger.debug "Calling API: ScanIntervalsApi.delete ..."
       end
       # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling ScanIntervalsApi.destroy" if id.nil?
+      fail ArgumentError, "Missing the required parameter 'id' when calling ScanIntervalsApi.delete" if id.nil?
       # resource path
       local_var_path = "/api/v2/scan_intervals/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
@@ -131,36 +134,36 @@ module ESP
         :auth_names => auth_names,
         :return_type => 'Meta')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ScanIntervalsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: ScanIntervalsApi#delete\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Get a list of ScanIntervals
+    # Get a list of Scan Intervals
     # 
     # @param external_account_id The ID of the external account to retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @return [PaginatedCollection]
-    def list(external_account_id, opts = {})
-      data, _status_code, _headers = list_with_http_info(external_account_id, opts)
+    def list_for_external_account(external_account_id, opts = {})
+      data, _status_code, _headers = list_for_external_account_with_http_info(external_account_id, opts)
       return data
     end
 
-    # Get a list of ScanIntervals
+    # Get a list of Scan Intervals
     # 
     # @param external_account_id The ID of the external account to retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
-    def list_with_http_info(external_account_id, opts = {})
+    def list_for_external_account_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ScanIntervalsApi.list ..."
+        @api_client.config.logger.debug "Calling API: ScanIntervalsApi.list_for_external_account ..."
       end
       # verify the required parameter 'external_account_id' is set
-      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ScanIntervalsApi.list" if external_account_id.nil?
+      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ScanIntervalsApi.list_for_external_account" if external_account_id.nil?
       # resource path
       local_var_path = "/api/v2/external_accounts/{external_account_id}/scan_intervals.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s)
 
@@ -190,27 +193,27 @@ module ESP
         :auth_names => auth_names,
         :return_type => 'PaginatedCollection')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ScanIntervalsApi#list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: ScanIntervalsApi#list_for_external_account\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Show a single ScanInterval
+    # Show a single Scan Interval
     # 
-    # @param id ScanInterval ID
+    # @param id Scan Interval ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @return [ScanInterval]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single ScanInterval
+    # Show a single Scan Interval
     # 
-    # @param id ScanInterval ID
+    # @param id Scan Interval ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @return [Array<(ScanInterval, Fixnum, Hash)>] ScanInterval data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -251,44 +254,41 @@ module ESP
       return data, status_code, headers
     end
 
-    # Update a(n) ScanInterval
+    # Update a(n) Scan Interval
     # 
-    # @param id ScanInterval ID
-    # @param external_account_id The ID of the external account this scan interval is for
-    # @param interval The interval, in minutes, this service will be scanned
-    # @param service_id The service ID for the scan interval
+    # @param id Scan Interval ID
     # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :external_account_id The ID of the external account this scan interval is for
+    # @option opts [Integer] :interval The interval, in minutes, this service will be scanned
+    # @option opts [Integer] :service_id The service ID for the scan interval
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @return [ScanInterval]
-    def update(id, external_account_id, interval, service_id, opts = {})
-      data, _status_code, _headers = update_with_http_info(id, external_account_id, interval, service_id, opts)
+    def update(id, opts = {})
+      data, _status_code, _headers = update_with_http_info(id, opts)
       return data
     end
 
-    # Update a(n) ScanInterval
+    # Update a(n) Scan Interval
     # 
-    # @param id ScanInterval ID
-    # @param external_account_id The ID of the external account this scan interval is for
-    # @param interval The interval, in minutes, this service will be scanned
-    # @param service_id The service ID for the scan interval
+    # @param id Scan Interval ID
     # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :external_account_id The ID of the external account this scan interval is for
+    # @option opts [Integer] :interval The interval, in minutes, this service will be scanned
+    # @option opts [Integer] :service_id The service ID for the scan interval
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @return [Array<(ScanInterval, Fixnum, Hash)>] ScanInterval data, response status code and response headers
-    def update_with_http_info(id, external_account_id, interval, service_id, opts = {})
+    def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ScanIntervalsApi.update ..."
       end
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling ScanIntervalsApi.update" if id.nil?
-      # verify the required parameter 'external_account_id' is set
-      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ScanIntervalsApi.update" if external_account_id.nil?
-      # verify the required parameter 'interval' is set
-      fail ArgumentError, "Missing the required parameter 'interval' when calling ScanIntervalsApi.update" if interval.nil?
-      # verify the required parameter 'service_id' is set
-      fail ArgumentError, "Missing the required parameter 'service_id' when calling ScanIntervalsApi.update" if service_id.nil?
       # resource path
       local_var_path = "/api/v2/scan_intervals/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -299,9 +299,9 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["external_account_id"] = external_account_id
-      form_params["interval"] = interval
-      form_params["service_id"] = service_id
+      form_params["external_account_id"] = opts[:'external_account_id'] if !opts[:'external_account_id'].nil?
+      form_params["interval"] = opts[:'interval'] if !opts[:'interval'].nil?
+      form_params["service_id"] = opts[:'service_id'] if !opts[:'service_id'].nil?
 
       # http body (model)
       post_body = nil

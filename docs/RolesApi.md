@@ -13,6 +13,8 @@ Method | HTTP request | Description
 
 Get a list of Roles
 
+
+
 ### Example
 ```ruby
 # load the gem
@@ -21,7 +23,8 @@ require 'esp_sdk'
 api_instance = ESP::RolesApi.new
 
 opts = { 
-  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
 }
 
 begin
@@ -38,6 +41,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
+ **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -55,9 +59,11 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **show**
-> Role show(id)
+> Role show(id, opts)
 
 Show a single Role
+
+
 
 ### Example
 ```ruby
@@ -68,10 +74,13 @@ api_instance = ESP::RolesApi.new
 
 id = 56 # Integer | Role ID
 
+opts = { 
+  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
+}
 
 begin
   #Show a single Role
-  result = api_instance.show(id)
+  result = api_instance.show(id, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling RolesApi->show: #{e}"
@@ -83,6 +92,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Role ID | 
+ **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
 
 ### Return type
 

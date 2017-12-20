@@ -19,24 +19,24 @@ module ESP
       @api_client = api_client
     end
 
-    # Get a list of AuditLogs
+    # Get a list of Audit Logs
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, item_id, item_type] Matching Searchable Attribute: [item_type]  Sortable Attribute: [id] Searchable Associations: [user, organization] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  organization, user See Including Objects for more information.
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
       return data
     end
 
-    # Get a list of AuditLogs
+    # Get a list of Audit Logs
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, item_id, item_type] Matching Searchable Attribute: [item_type]  Sortable Attribute: [id] Searchable Associations: [user, organization] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  organization, user See Including Objects for more information.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -77,22 +77,22 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single AuditLog
+    # Show a single Audit Log
     # 
-    # @param id AuditLog ID
+    # @param id Audit Log ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, user See Including Objects for more information.
     # @return [AuditLog]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single AuditLog
+    # Show a single Audit Log
     # 
-    # @param id AuditLog ID
+    # @param id Audit Log ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, user See Including Objects for more information.
     # @return [Array<(AuditLog, Fixnum, Hash)>] AuditLog data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging

@@ -34,8 +34,14 @@ describe 'CustomSignaturesApi' do
   # unit tests for create
   # Create a(n) Custom Signature
   # 
-  # @param name Name
+  # @param identifier The identifier to use for the custom signature. Common format is AWS:- such as AWS:IAM-001
+  # @param name The name of the custom signature
+  # @param risk_level The risk-level of the problem identified by the custom signature. Valid values are low, medium, high
+  # @param external_account_ids The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run.
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :description The description of the custom signature that is displayed on alerts
+  # @option opts [String] :resolution Details for how to resolve this custom signature that is displayed on alerts
+  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
   # @return [CustomSignature]
   describe 'create test' do
     it "should work" do
@@ -43,13 +49,13 @@ describe 'CustomSignaturesApi' do
     end
   end
 
-  # unit tests for destroy
-  # Remove a(n) Custom Signature
+  # unit tests for delete
+  # Delete a(n) Custom Signature
   # 
-  # @param id Custom Signature Id
+  # @param id  ID
   # @param [Hash] opts the optional parameters
-  # @return [SuccessObject]
-  describe 'destroy test' do
+  # @return [Meta]
+  describe 'delete test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -59,9 +65,9 @@ describe 'CustomSignaturesApi' do
   # Get a list of Custom Signatures
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, teams, definitions, integrations] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-  # @option opts [String] :include Objects that can be included in the response:  organization,teams,definitions  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, name, identifier] Matching Searchable Attributes: [name, identifier]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, teams, definitions, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -72,9 +78,9 @@ describe 'CustomSignaturesApi' do
   # unit tests for show
   # Show a single Custom Signature
   # 
-  # @param id Custom Signature Id
+  # @param id Custom Signature ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  organization,teams,definitions  See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
   # @return [CustomSignature]
   describe 'show test' do
     it "should work" do
@@ -85,9 +91,15 @@ describe 'CustomSignaturesApi' do
   # unit tests for update
   # Update a(n) Custom Signature
   # 
-  # @param id Custom Signature Id
-  # @param name Name
+  # @param id Custom Signature ID
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :description The description of the custom signature that is displayed on alerts
+  # @option opts [String] :identifier The identifier to use for the custom signature. Common format is AWS:- such as AWS:IAM-001
+  # @option opts [String] :name The name of the custom signature
+  # @option opts [String] :resolution Details for how to resolve this custom signature that is displayed on alerts
+  # @option opts [String] :risk_level The risk-level of the problem identified by the custom signature. Valid values are low, medium, high
+  # @option opts [Array<Integer>] :external_account_ids The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
   # @return [CustomSignature]
   describe 'update test' do
     it "should work" do

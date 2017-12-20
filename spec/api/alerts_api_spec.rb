@@ -31,16 +31,44 @@ describe 'AlertsApi' do
     end
   end
 
-  # unit tests for list
-  # Get a list of Alerts
+  # unit tests for list_compliance_controls
+  # Get a list of Compliance Controls for an Alert
   # 
-  # @param report_id Id of the Report to Return Alerts For
+  # @param alert_id The ID of the alert the compliance controls belong to
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attribute: [id]  Limited Searchable Attributes: [signature_service_id_in, signature_risk_level_in, risk_level_in, risk_level_eq, resource_or_tag_like, suppressed, not_suppressed, signature_name_like, signature_identifier_like, external_account_id_in, external_account_id_eq, external_account_team_id_in, external_account_team_id_eq, region_id_in, region_id_eq, status_in, status_eq, cloud_trail_events_present, open_as_of, signature_id_in, signature_id_eq]   Example: filter: {name_eq: &#39;Bob&#39;}
-  # @option opts [String] :include Objects that can be included in the response:  external_account,region,signature,custom_signature,suppression,metadata,cloud_trail_events,tags,compliance_controls  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  compliance_standard, compliance_domain, signatures See Including Objects for more information.
   # @return [PaginatedCollection]
-  describe 'list test' do
+  describe 'list_compliance_controls test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_custom_compliance_controls
+  # Get a list of Custom Compliance Controls for an Alert
+  # 
+  # @param alert_id The ID of the alert the custom compliance controls belong to
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
+  # @return [PaginatedCollection]
+  describe 'list_custom_compliance_controls test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_for_report
+  # Get a list of Alerts for a Report
+  # 
+  # @param report_id ID of the Report to Return Alerts For
+  # @param [Hash] opts the optional parameters
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attribute: [id]  Limited Searchable Attributes: [signature_service_id_in, signature_risk_level_in, risk_level_in, risk_level_eq, resource_or_tag_cont, suppressed, not_suppressed, signature_name_cont, signature_identifier_cont, external_account_id_in, external_account_id_eq, external_account_team_id_in, external_account_team_id_eq, region_id_in, region_id_eq, status_in, status_eq, cloud_trail_events_present, open_as_of, signature_id_in, signature_id_eq, external_account_provider_eq]  
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  external_account, region, signature, custom_signature, suppression, metadata, cloud_trail_events, tags, compliance_controls, custom_compliance_controls See Including Objects for more information.
+  # @return [PaginatedCollection]
+  describe 'list_for_report test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -49,9 +77,9 @@ describe 'AlertsApi' do
   # unit tests for show
   # Show a single Alert
   # 
-  # @param id Alert Id
+  # @param id Alert ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  external_account,region,signature,custom_signature,suppression,metadata,cloud_trail_events,tags,compliance_controls  See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  external_account, region, signature, custom_signature, suppression, metadata, cloud_trail_events, tags, compliance_controls, custom_compliance_controls See Including Objects for more information.
   # @return [Alert]
   describe 'show test' do
     it "should work" do

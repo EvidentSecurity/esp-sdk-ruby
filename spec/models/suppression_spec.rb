@@ -55,13 +55,13 @@ describe 'Suppression' do
     end
   end
 
-  describe 'test attribute "status"' do
+  describe 'test attribute "suppression_type"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  describe 'test attribute "suppression_type"' do
+  describe 'test attribute "status"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -140,12 +140,6 @@ describe 'Suppression' do
   end
 
   describe 'test attribute "custom_signature_ids"' do
-    it 'should work' do
-       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "errors"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

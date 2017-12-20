@@ -36,6 +36,7 @@ describe 'MetadataApi' do
   # 
   # @param alert_id Alert Id
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [Metadata]
   describe 'for_alert test' do
     it "should work" do
@@ -46,8 +47,9 @@ describe 'MetadataApi' do
   # unit tests for show
   # Show a single Metadata
   # 
-  # @param id Metadata Id
+  # @param id Metadata ID
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [Metadata]
   describe 'show test' do
     it "should work" do

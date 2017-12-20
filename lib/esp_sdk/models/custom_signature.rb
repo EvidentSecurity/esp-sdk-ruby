@@ -50,6 +50,12 @@ module ESP
     # Associated Teams IDs
     attr_accessor :team_ids
 
+    # Associated External Accounts
+    attr_accessor :external_accounts
+
+    # Associated External Accounts IDs
+    attr_accessor :external_account_ids
+
     # Associated Definitions
     attr_accessor :definitions
 
@@ -72,6 +78,8 @@ module ESP
         :'organization_id' => :'organization_id',
         :'teams' => :'teams',
         :'team_ids' => :'team_ids',
+        :'external_accounts' => :'external_accounts',
+        :'external_account_ids' => :'external_account_ids',
         :'definitions' => :'definitions',
         :'definition_ids' => :'definition_ids'
       }
@@ -92,6 +100,8 @@ module ESP
         :'organization_id' => :'Integer',
         :'teams' => :'Array<Team>',
         :'team_ids' => :'Array<Integer>',
+        :'external_accounts' => :'Array<ExternalAccount>',
+        :'external_account_ids' => :'Array<Integer>',
         :'definitions' => :'Array<CustomSignatureDefinition>',
         :'definition_ids' => :'Array<Integer>'
       }
@@ -157,6 +167,18 @@ module ESP
         end
       end
 
+      if attributes.has_key?(:'external_accounts')
+        if (value = attributes[:'external_accounts']).is_a?(Array)
+          self.external_accounts = value
+        end
+      end
+
+      if attributes.has_key?(:'external_account_ids')
+        if (value = attributes[:'external_account_ids']).is_a?(Array)
+          self.external_account_ids = value
+        end
+      end
+
       if attributes.has_key?(:'definitions')
         if (value = attributes[:'definitions']).is_a?(Array)
           self.definitions = value
@@ -201,6 +223,8 @@ module ESP
           organization_id == o.organization_id &&
           teams == o.teams &&
           team_ids == o.team_ids &&
+          external_accounts == o.external_accounts &&
+          external_account_ids == o.external_account_ids &&
           definitions == o.definitions &&
           definition_ids == o.definition_ids
     end
@@ -214,7 +238,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, description, identifier, name, resolution, risk_level, updated_at, organization, organization_id, teams, team_ids, definitions, definition_ids].hash
+      [id, created_at, description, identifier, name, resolution, risk_level, updated_at, organization, organization_id, teams, team_ids, external_accounts, external_account_ids, definitions, definition_ids].hash
     end
 
     # Builds the object from hash

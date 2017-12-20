@@ -92,20 +92,19 @@ Please follow the [installation](#installation) procedure and then run the follo
 require 'esp_sdk'
 
 
-api_instance = ESP::AlertsApi.new
+api_instance = ESP::APIKeysApi.new
 
 opts = { 
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  See Searching Lists for more information.
-  include: "include_example", # String | Related objects that can be included in the response.  See Including Objects for more information.
-  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  name: "name_example", # String | The name of the API Key
+  include: "include_example" # String | Related objects that can be included in the response:  user See Including Objects for more information.
 }
 
 begin
-  #Get a list of Alerts
-  result = api_instance.list(opts)
+  #Create a(n) API Key
+  result = api_instance.create(opts)
   p result
 rescue ESP::ApiError => e
-  puts "Exception when calling AlertsApi->list: #{e}"
+  puts "Exception when calling APIKeysApi->create: #{e}"
 end
 
 ```
@@ -419,117 +418,189 @@ These attributes can be passed with the **sorts** key to sort the response.
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ESP::AlertsApi* | [**list**](docs/AlertsApi.md#list) | **PUT** /api/v2/alerts.json_api | Get a list of Alerts
-*ESP::AlertsApi* | [**list_for_report**](docs/AlertsApi.md#list_for_report) | **PUT** /api/v2/reports/{report_id}/alerts.json_api | Get a list of Alerts
+*ESP::APIKeysApi* | [**create**](docs/APIKeysApi.md#create) | **POST** /api/v2/api_keys.json_api | Create a(n) API Key
+*ESP::APIKeysApi* | [**delete**](docs/APIKeysApi.md#delete) | **DELETE** /api/v2/api_keys/{id}.json_api | Delete a(n) API Key
+*ESP::APIKeysApi* | [**list**](docs/APIKeysApi.md#list) | **GET** /api/v2/api_keys.json_api | Get a list of API Keys
+*ESP::APIKeysApi* | [**show**](docs/APIKeysApi.md#show) | **GET** /api/v2/api_keys/{id}.json_api | Show a single API Key
+*ESP::APIKeysApi* | [**update**](docs/APIKeysApi.md#update) | **PATCH** /api/v2/api_keys/{id}.json_api | Update a(n) API Key
+*ESP::AlertsApi* | [**list_compliance_controls**](docs/AlertsApi.md#list_compliance_controls) | **GET** /api/v2/alerts/{alert_id}/compliance_controls.json_api | Get a list of Compliance Controls for an Alert
+*ESP::AlertsApi* | [**list_custom_compliance_controls**](docs/AlertsApi.md#list_custom_compliance_controls) | **GET** /api/v2/alerts/{alert_id}/custom_compliance_controls.json_api | Get a list of Custom Compliance Controls for an Alert
+*ESP::AlertsApi* | [**list_for_report**](docs/AlertsApi.md#list_for_report) | **PUT** /api/v2/reports/{report_id}/alerts.json_api | Get a list of Alerts for a Report
 *ESP::AlertsApi* | [**show**](docs/AlertsApi.md#show) | **GET** /api/v2/alerts/{id}.json_api | Show a single Alert
-*ESP::AuditLogFileExportApi* | [**create**](docs/AuditLogFileExportApi.md#create) | **POST** /api/v2/audit_logs/export/files.json_api | Export an Audit Log File
-*ESP::AuditLogFileExportApi* | [**show**](docs/AuditLogFileExportApi.md#show) | **GET** /api/v2/audit_logs/export/files/{id}.json_api | Show a single AuditLogFile
-*ESP::AuditLogsApi* | [**list**](docs/AuditLogsApi.md#list) | **PUT** /api/v2/audit_logs.json_api | Get a list of AuditLogs
-*ESP::AuditLogsApi* | [**show**](docs/AuditLogsApi.md#show) | **GET** /api/v2/audit_logs/{id}.json_api | Show a single AuditLog
-*ESP::CloudTrailEventsApi* | [**list**](docs/CloudTrailEventsApi.md#list) | **GET** /api/v2/alerts/{alert_id}/cloud_trail_events.json_api | Get a list of CloudTrailEvents
-*ESP::CloudTrailEventsApi* | [**show**](docs/CloudTrailEventsApi.md#show) | **GET** /api/v2/cloud_trail_events/{id}.json_api | Show a single CloudTrailEvent
-*ESP::ComplianceControlsApi* | [**list**](docs/ComplianceControlsApi.md#list) | **PUT** /api/v2/compliance_controls.json_api | Get a list of ComplianceControls
-*ESP::ComplianceControlsApi* | [**show**](docs/ComplianceControlsApi.md#show) | **GET** /api/v2/compliance_controls/{id}.json_api | Show a single ComplianceControl
-*ESP::ComplianceDomainsApi* | [**list**](docs/ComplianceDomainsApi.md#list) | **PUT** /api/v2/compliance_domains.json_api | Get a list of ComplianceDomains
-*ESP::ComplianceDomainsApi* | [**show**](docs/ComplianceDomainsApi.md#show) | **GET** /api/v2/compliance_domains/{id}.json_api | Show a single ComplianceDomain
-*ESP::ComplianceStandardsApi* | [**list**](docs/ComplianceStandardsApi.md#list) | **PUT** /api/v2/compliance_standards.json_api | Get a list of ComplianceStandards
-*ESP::ComplianceStandardsApi* | [**show**](docs/ComplianceStandardsApi.md#show) | **GET** /api/v2/compliance_standards/{id}.json_api | Show a single ComplianceStandard
-*ESP::ContactRequestsApi* | [**create**](docs/ContactRequestsApi.md#create) | **POST** /api/v2/contact_requests.json_api | Create a(n) ContactRequest
-*ESP::CustomSignatureDefinitionsApi* | [**activate**](docs/CustomSignatureDefinitionsApi.md#activate) | **PATCH** /api/v2/custom_signature_definitions/{custom_signature_definition_id}/activate.json_api | A successful call to this API marks the definition for activation.  The definition will go into the 'validating' state and will be tested before activating. The definition must have a status of editable to be activated.
-*ESP::CustomSignatureDefinitionsApi* | [**archive**](docs/CustomSignatureDefinitionsApi.md#archive) | **PATCH** /api/v2/custom_signature_definitions/{custom_signature_definition_id}/archive.json_api | A successful call to this API archives and returns a specific custom signature definition identified by the id parameter. The definition must have a status of active to be archived.
-*ESP::CustomSignatureDefinitionsApi* | [**create**](docs/CustomSignatureDefinitionsApi.md#create) | **POST** /api/v2/custom_signature_definitions.json_api | Create a(n) CustomSignatureDefinition
-*ESP::CustomSignatureDefinitionsApi* | [**destroy**](docs/CustomSignatureDefinitionsApi.md#destroy) | **DELETE** /api/v2/custom_signature_definitions/{id}.json_api | Remove a(n) CustomSignatureDefinition
-*ESP::CustomSignatureDefinitionsApi* | [**list**](docs/CustomSignatureDefinitionsApi.md#list) | **PUT** /api/v2/custom_signature_definitions.json_api | Get a list of CustomSignatureDefinitions
-*ESP::CustomSignatureDefinitionsApi* | [**show**](docs/CustomSignatureDefinitionsApi.md#show) | **GET** /api/v2/custom_signature_definitions/{id}.json_api | Show a single CustomSignatureDefinition
-*ESP::CustomSignatureDefinitionsApi* | [**update**](docs/CustomSignatureDefinitionsApi.md#update) | **PATCH** /api/v2/custom_signature_definitions/{id}.json_api | Update a(n) CustomSignatureDefinition
-*ESP::CustomSignatureResultsApi* | [**alerts**](docs/CustomSignatureResultsApi.md#alerts) | **GET** /api/v2/custom_signature_results/{custom_signature_result_id}/alerts.json_api | Returns the alerts for a given result. Note that this format is slightly different than the standard alert format. A successful call to this API returns a list of alerts for the custom signature result identified by the custom_signature_result_id parameter.
-*ESP::CustomSignatureResultsApi* | [**create**](docs/CustomSignatureResultsApi.md#create) | **POST** /api/v2/custom_signature_results.json_api | Create a(n) CustomSignatureResult
-*ESP::CustomSignatureResultsApi* | [**list**](docs/CustomSignatureResultsApi.md#list) | **PUT** /api/v2/custom_signature_results.json_api | Get a list of CustomSignatureResults
-*ESP::CustomSignatureResultsApi* | [**show**](docs/CustomSignatureResultsApi.md#show) | **GET** /api/v2/custom_signature_results/{id}.json_api | Show a single CustomSignatureResult
-*ESP::CustomSignaturesApi* | [**create**](docs/CustomSignaturesApi.md#create) | **POST** /api/v2/custom_signatures.json_api | Create a(n) CustomSignature
-*ESP::CustomSignaturesApi* | [**destroy**](docs/CustomSignaturesApi.md#destroy) | **DELETE** /api/v2/custom_signatures/{id}.json_api | Remove a(n) CustomSignature
-*ESP::CustomSignaturesApi* | [**list**](docs/CustomSignaturesApi.md#list) | **PUT** /api/v2/custom_signatures.json_api | Get a list of CustomSignatures
-*ESP::CustomSignaturesApi* | [**show**](docs/CustomSignaturesApi.md#show) | **GET** /api/v2/custom_signatures/{id}.json_api | Show a single CustomSignature
-*ESP::CustomSignaturesApi* | [**update**](docs/CustomSignaturesApi.md#update) | **PATCH** /api/v2/custom_signatures/{id}.json_api | Update a(n) CustomSignature
-*ESP::ExternalAccountDisabledSignaturesApi* | [**create**](docs/ExternalAccountDisabledSignaturesApi.md#create) | **POST** /api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api | A successful call to this API will disable a signature for an external account.
-*ESP::ExternalAccountDisabledSignaturesApi* | [**destroy**](docs/ExternalAccountDisabledSignaturesApi.md#destroy) | **DELETE** /api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api | A successful call to this API will remove a signature from the disabled signature list on an external account.
-*ESP::ExternalAccountDisabledSignaturesApi* | [**list**](docs/ExternalAccountDisabledSignaturesApi.md#list) | **GET** /api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api | A successful call to this API returns all the disabled signatures of the associated external account, identified by the external_account_id parameter.
-*ESP::ExternalAccountDisabledSignaturesApi* | [**update**](docs/ExternalAccountDisabledSignaturesApi.md#update) | **PATCH** /api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api | A successful call to this API will update the disabled signatures on an external account.
-*ESP::ExternalAccountUserAttributionChannelsApi* | [**create**](docs/ExternalAccountUserAttributionChannelsApi.md#create) | **POST** /api/v2/external_accounts/{external_account_id}/user_attribution/channel.json_api | A successful call to this API will create a User Attribution Channel for an external account.
-*ESP::ExternalAccountUserAttributionChannelsApi* | [**destroy**](docs/ExternalAccountUserAttributionChannelsApi.md#destroy) | **DELETE** /api/v2/external_accounts/{external_account_id}/user_attribution/channel.json_api | A successful call to this API will remove the User Attribution Channel for an external account.
-*ESP::ExternalAccountUserAttributionChannelsApi* | [**show**](docs/ExternalAccountUserAttributionChannelsApi.md#show) | **GET** /api/v2/external_accounts/{external_account_id}/user_attribution/channel.json_api | A successful call to this API will show the User Attribution Channel of an external account.
-*ESP::ExternalAccountUserAttributionsApi* | [**update**](docs/ExternalAccountUserAttributionsApi.md#update) | **PATCH** /api/v2/external_accounts/{external_account_id}/user_attribution.json_api | A successful call to this API will update the user attributions on an external account.
-*ESP::ExternalAccountsApi* | [**create**](docs/ExternalAccountsApi.md#create) | **POST** /api/v2/external_accounts.json_api | Create a(n) ExternalAccount
-*ESP::ExternalAccountsApi* | [**destroy**](docs/ExternalAccountsApi.md#destroy) | **DELETE** /api/v2/external_accounts/{id}.json_api | Remove a(n) ExternalAccount
-*ESP::ExternalAccountsApi* | [**list**](docs/ExternalAccountsApi.md#list) | **PUT** /api/v2/external_accounts.json_api | Get a list of ExternalAccounts
-*ESP::ExternalAccountsApi* | [**show**](docs/ExternalAccountsApi.md#show) | **GET** /api/v2/external_accounts/{id}.json_api | Show a single ExternalAccount
-*ESP::ExternalAccountsApi* | [**update**](docs/ExternalAccountsApi.md#update) | **PATCH** /api/v2/external_accounts/{id}.json_api | Update a(n) ExternalAccount
+*ESP::AuditLogExportApi* | [**request_file**](docs/AuditLogExportApi.md#request_file) | **POST** /api/v2/audit_logs/export/files.json_api | Export an Audit Log File
+*ESP::AuditLogExportApi* | [**show_file_details**](docs/AuditLogExportApi.md#show_file_details) | **GET** /api/v2/audit_logs/export/files/{id}.json_api | Show a single Audit Log File
+*ESP::AuditLogsApi* | [**list**](docs/AuditLogsApi.md#list) | **PUT** /api/v2/audit_logs.json_api | Get a list of Audit Logs
+*ESP::AuditLogsApi* | [**show**](docs/AuditLogsApi.md#show) | **GET** /api/v2/audit_logs/{id}.json_api | Show a single Audit Log
+*ESP::AzureGroupsApi* | [**add_external_account**](docs/AzureGroupsApi.md#add_external_account) | **POST** /api/v2/azure_groups/{azure_group_id}/memberships.json_api | Add an External Account to an Azure Group
+*ESP::AzureGroupsApi* | [**create**](docs/AzureGroupsApi.md#create) | **POST** /api/v2/azure_groups.json_api | Create a(n) Azure Group
+*ESP::AzureGroupsApi* | [**delete**](docs/AzureGroupsApi.md#delete) | **DELETE** /api/v2/azure_groups/{id}.json_api | Delete a(n) Azure Group
+*ESP::AzureGroupsApi* | [**list**](docs/AzureGroupsApi.md#list) | **PUT** /api/v2/azure_groups.json_api | Get a list of Azure Groups
+*ESP::AzureGroupsApi* | [**remove_external_account**](docs/AzureGroupsApi.md#remove_external_account) | **DELETE** /api/v2/azure_groups/{azure_group_id}/memberships/{external_account_id}.json_api | Remove an External Account from an Azure Group
+*ESP::AzureGroupsApi* | [**show**](docs/AzureGroupsApi.md#show) | **GET** /api/v2/azure_groups/{id}.json_api | Show a single Azure Group
+*ESP::AzureGroupsApi* | [**update**](docs/AzureGroupsApi.md#update) | **PATCH** /api/v2/azure_groups/{id}.json_api | Update a(n) Azure Group
+*ESP::CloudTrailEventsApi* | [**list_for_alert**](docs/CloudTrailEventsApi.md#list_for_alert) | **GET** /api/v2/alerts/{alert_id}/cloud_trail_events.json_api | Get a list of Cloud Trail Events
+*ESP::CloudTrailEventsApi* | [**show**](docs/CloudTrailEventsApi.md#show) | **GET** /api/v2/cloud_trail_events/{id}.json_api | Show a single Cloud Trail Event
+*ESP::ComplianceControlsApi* | [**list**](docs/ComplianceControlsApi.md#list) | **PUT** /api/v2/compliance_controls.json_api | Get a list of Compliance Controls
+*ESP::ComplianceControlsApi* | [**list_signatures**](docs/ComplianceControlsApi.md#list_signatures) | **GET** /api/v2/compliance_controls/{compliance_control_id}/signatures.json_api | Get a list of Signatures for a Compliance Control
+*ESP::ComplianceControlsApi* | [**show**](docs/ComplianceControlsApi.md#show) | **GET** /api/v2/compliance_controls/{id}.json_api | Show a single Compliance Control
+*ESP::ComplianceDomainsApi* | [**list**](docs/ComplianceDomainsApi.md#list) | **PUT** /api/v2/compliance_domains.json_api | Get a list of Compliance Domains
+*ESP::ComplianceDomainsApi* | [**show**](docs/ComplianceDomainsApi.md#show) | **GET** /api/v2/compliance_domains/{id}.json_api | Show a single Compliance Domain
+*ESP::ComplianceStandardsApi* | [**list**](docs/ComplianceStandardsApi.md#list) | **PUT** /api/v2/compliance_standards.json_api | Get a list of Compliance Standards
+*ESP::ComplianceStandardsApi* | [**show**](docs/ComplianceStandardsApi.md#show) | **GET** /api/v2/compliance_standards/{id}.json_api | Show a single Compliance Standard
+*ESP::ContactRequestsApi* | [**create**](docs/ContactRequestsApi.md#create) | **POST** /api/v2/contact_requests.json_api | Create a(n) Contact Request
+*ESP::CustomComplianceControlsApi* | [**add_custom_signature**](docs/CustomComplianceControlsApi.md#add_custom_signature) | **POST** /api/v2/custom_compliance_controls/{custom_compliance_control_id}/custom_signatures.json_api | Add a Custom Signature to a Custom Compliance Control
+*ESP::CustomComplianceControlsApi* | [**add_signature**](docs/CustomComplianceControlsApi.md#add_signature) | **POST** /api/v2/custom_compliance_controls/{custom_compliance_control_id}/signatures.json_api | Add a Signature to a Custom Compliance Control
+*ESP::CustomComplianceControlsApi* | [**create**](docs/CustomComplianceControlsApi.md#create) | **POST** /api/v2/custom_compliance_controls.json_api | Create a(n) Custom Compliance Control
+*ESP::CustomComplianceControlsApi* | [**delete**](docs/CustomComplianceControlsApi.md#delete) | **DELETE** /api/v2/custom_compliance_controls/{id}.json_api | Delete a(n) Custom Compliance Control
+*ESP::CustomComplianceControlsApi* | [**list_custom_signatures**](docs/CustomComplianceControlsApi.md#list_custom_signatures) | **GET** /api/v2/custom_compliance_controls/{custom_compliance_control_id}/custom_signatures.json_api | Get a list of Custom Signatures for a Custom Compliance Control
+*ESP::CustomComplianceControlsApi* | [**list_signatures**](docs/CustomComplianceControlsApi.md#list_signatures) | **GET** /api/v2/custom_compliance_controls/{custom_compliance_control_id}/signatures.json_api | Get a list of Signatures for a Custom Compliance Control
+*ESP::CustomComplianceControlsApi* | [**remove_custom_signature**](docs/CustomComplianceControlsApi.md#remove_custom_signature) | **DELETE** /api/v2/custom_compliance_controls/{custom_compliance_control_id}/custom_signatures/{custom_signature_id}.json_api | Remove a Custom Signature from a Custom Compliance Control
+*ESP::CustomComplianceControlsApi* | [**remove_signature**](docs/CustomComplianceControlsApi.md#remove_signature) | **DELETE** /api/v2/custom_compliance_controls/{custom_compliance_control_id}/signatures/{signature_id}.json_api | Remove a Signature from a Custom Compliance Control
+*ESP::CustomComplianceControlsApi* | [**show**](docs/CustomComplianceControlsApi.md#show) | **GET** /api/v2/custom_compliance_controls/{id}.json_api | Show a single Custom Compliance Control
+*ESP::CustomComplianceControlsApi* | [**update**](docs/CustomComplianceControlsApi.md#update) | **PATCH** /api/v2/custom_compliance_controls/{id}.json_api | Update a(n) Custom Compliance Control
+*ESP::CustomComplianceDomainsApi* | [**create**](docs/CustomComplianceDomainsApi.md#create) | **POST** /api/v2/custom_compliance_domains.json_api | Create a(n) Custom Compliance Domain
+*ESP::CustomComplianceDomainsApi* | [**delete**](docs/CustomComplianceDomainsApi.md#delete) | **DELETE** /api/v2/custom_compliance_domains/{id}.json_api | Delete a(n) Custom Compliance Domain
+*ESP::CustomComplianceDomainsApi* | [**show**](docs/CustomComplianceDomainsApi.md#show) | **GET** /api/v2/custom_compliance_domains/{id}.json_api | Show a single Custom Compliance Domain
+*ESP::CustomComplianceDomainsApi* | [**update**](docs/CustomComplianceDomainsApi.md#update) | **PATCH** /api/v2/custom_compliance_domains/{id}.json_api | Update a(n) Custom Compliance Domain
+*ESP::CustomComplianceStandardsApi* | [**create**](docs/CustomComplianceStandardsApi.md#create) | **POST** /api/v2/custom_compliance_standards.json_api | Create a(n) Custom Compliance Standard
+*ESP::CustomComplianceStandardsApi* | [**delete**](docs/CustomComplianceStandardsApi.md#delete) | **DELETE** /api/v2/custom_compliance_standards/{id}.json_api | Delete a(n) Custom Compliance Standard
+*ESP::CustomComplianceStandardsApi* | [**show**](docs/CustomComplianceStandardsApi.md#show) | **GET** /api/v2/custom_compliance_standards/{id}.json_api | Show a single Custom Compliance Standard
+*ESP::CustomComplianceStandardsApi* | [**update**](docs/CustomComplianceStandardsApi.md#update) | **PATCH** /api/v2/custom_compliance_standards/{id}.json_api | Update a(n) Custom Compliance Standard
+*ESP::CustomSignatureDefinitionsApi* | [**activate**](docs/CustomSignatureDefinitionsApi.md#activate) | **PATCH** /api/v2/custom_signature_definitions/{custom_signature_definition_id}/activate.json_api | Activate a Custom Signature Definition
+*ESP::CustomSignatureDefinitionsApi* | [**archive**](docs/CustomSignatureDefinitionsApi.md#archive) | **PATCH** /api/v2/custom_signature_definitions/{custom_signature_definition_id}/archive.json_api | Archive a Custom Signature Definition
+*ESP::CustomSignatureDefinitionsApi* | [**create**](docs/CustomSignatureDefinitionsApi.md#create) | **POST** /api/v2/custom_signature_definitions.json_api | Create a(n) Custom Signature Definition
+*ESP::CustomSignatureDefinitionsApi* | [**delete**](docs/CustomSignatureDefinitionsApi.md#delete) | **DELETE** /api/v2/custom_signature_definitions/{id}.json_api | Delete a(n) Custom Signature Definition
+*ESP::CustomSignatureDefinitionsApi* | [**list**](docs/CustomSignatureDefinitionsApi.md#list) | **PUT** /api/v2/custom_signature_definitions.json_api | Get a list of Custom Signature Definitions
+*ESP::CustomSignatureDefinitionsApi* | [**show**](docs/CustomSignatureDefinitionsApi.md#show) | **GET** /api/v2/custom_signature_definitions/{id}.json_api | Show a single Custom Signature Definition
+*ESP::CustomSignatureDefinitionsApi* | [**update**](docs/CustomSignatureDefinitionsApi.md#update) | **PATCH** /api/v2/custom_signature_definitions/{id}.json_api | Update a(n) Custom Signature Definition
+*ESP::CustomSignatureResultsApi* | [**create**](docs/CustomSignatureResultsApi.md#create) | **POST** /api/v2/custom_signature_results.json_api | Create a(n) Custom Signature Result
+*ESP::CustomSignatureResultsApi* | [**list**](docs/CustomSignatureResultsApi.md#list) | **PUT** /api/v2/custom_signature_results.json_api | Get a list of Custom Signature Results
+*ESP::CustomSignatureResultsApi* | [**list_alerts**](docs/CustomSignatureResultsApi.md#list_alerts) | **GET** /api/v2/custom_signature_results/{custom_signature_result_id}/alerts.json_api | Returns the Alerts for a given Custom Signature Result
+*ESP::CustomSignatureResultsApi* | [**show**](docs/CustomSignatureResultsApi.md#show) | **GET** /api/v2/custom_signature_results/{id}.json_api | Show a single Custom Signature Result
+*ESP::CustomSignaturesApi* | [**create**](docs/CustomSignaturesApi.md#create) | **POST** /api/v2/custom_signatures.json_api | Create a(n) Custom Signature
+*ESP::CustomSignaturesApi* | [**delete**](docs/CustomSignaturesApi.md#delete) | **DELETE** /api/v2/custom_signatures/{id}.json_api | Delete a(n) Custom Signature
+*ESP::CustomSignaturesApi* | [**list**](docs/CustomSignaturesApi.md#list) | **PUT** /api/v2/custom_signatures.json_api | Get a list of Custom Signatures
+*ESP::CustomSignaturesApi* | [**show**](docs/CustomSignaturesApi.md#show) | **GET** /api/v2/custom_signatures/{id}.json_api | Show a single Custom Signature
+*ESP::CustomSignaturesApi* | [**update**](docs/CustomSignaturesApi.md#update) | **PATCH** /api/v2/custom_signatures/{id}.json_api | Update a(n) Custom Signature
+*ESP::ExternalAccountsApi* | [**add_compliance_standard**](docs/ExternalAccountsApi.md#add_compliance_standard) | **POST** /api/v2/external_accounts/{external_account_id}/compliance_standards.json_api | Add a compliance standard to an external account
+*ESP::ExternalAccountsApi* | [**add_custom_compliance_standard**](docs/ExternalAccountsApi.md#add_custom_compliance_standard) | **POST** /api/v2/external_accounts/{external_account_id}/custom_compliance_standards.json_api | Add a custom compliance standard to an external account
+*ESP::ExternalAccountsApi* | [**add_disabled_signature**](docs/ExternalAccountsApi.md#add_disabled_signature) | **POST** /api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api | Disable a signature for an external account
+*ESP::ExternalAccountsApi* | [**delete**](docs/ExternalAccountsApi.md#delete) | **DELETE** /api/v2/external_accounts/{id}.json_api | Delete a(n) External Account
+*ESP::ExternalAccountsApi* | [**list**](docs/ExternalAccountsApi.md#list) | **PUT** /api/v2/external_accounts.json_api | Get a list of External Accounts
+*ESP::ExternalAccountsApi* | [**list_compliance_standards**](docs/ExternalAccountsApi.md#list_compliance_standards) | **GET** /api/v2/external_accounts/{external_account_id}/compliance_standards.json_api | Get a list of compliance standards for an external account
+*ESP::ExternalAccountsApi* | [**list_custom_compliance_standards**](docs/ExternalAccountsApi.md#list_custom_compliance_standards) | **GET** /api/v2/external_accounts/{external_account_id}/custom_compliance_standards.json_api | Get a list of custom compliance standards for an external account
+*ESP::ExternalAccountsApi* | [**list_disabled_signatures**](docs/ExternalAccountsApi.md#list_disabled_signatures) | **PUT** /api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api | Get a list all the disabled signatures for an external account
+*ESP::ExternalAccountsApi* | [**remove_compliance_standard**](docs/ExternalAccountsApi.md#remove_compliance_standard) | **DELETE** /api/v2/external_accounts/{external_account_id}/compliance_standards/{compliance_standard_id}.json_api | Remove a compliance standard from an external account
+*ESP::ExternalAccountsApi* | [**remove_custom_compliance_standard**](docs/ExternalAccountsApi.md#remove_custom_compliance_standard) | **DELETE** /api/v2/external_accounts/{external_account_id}/custom_compliance_standards/{custom_compliance_standard_id}.json_api | Remove a custom compliance standard from an external account
+*ESP::ExternalAccountsApi* | [**remove_disabled_signature**](docs/ExternalAccountsApi.md#remove_disabled_signature) | **DELETE** /api/v2/external_accounts/{external_account_id}/disabled_signatures/{signature_id}.json_api | Re-enable a signature for an external account
+*ESP::ExternalAccountsApi* | [**show**](docs/ExternalAccountsApi.md#show) | **GET** /api/v2/external_accounts/{id}.json_api | Show a single External Account
+*ESP::ExternalAccountsAmazonApi* | [**create**](docs/ExternalAccountsAmazonApi.md#create) | **POST** /api/v2/external_accounts/amazon.json_api | Create an Amazon External Account
+*ESP::ExternalAccountsAmazonApi* | [**show**](docs/ExternalAccountsAmazonApi.md#show) | **GET** /api/v2/external_accounts/{external_account_id}/amazon.json_api | Show an Amazon External Account
+*ESP::ExternalAccountsAmazonApi* | [**update**](docs/ExternalAccountsAmazonApi.md#update) | **PATCH** /api/v2/external_accounts/{external_account_id}/amazon.json_api | Update an Amazon External Account
+*ESP::ExternalAccountsAzureApi* | [**create**](docs/ExternalAccountsAzureApi.md#create) | **POST** /api/v2/external_accounts/azure.json_api | Create an Azure External Account
+*ESP::ExternalAccountsAzureApi* | [**reset_url**](docs/ExternalAccountsAzureApi.md#reset_url) | **PATCH** /api/v2/external_accounts/{external_account_id}/azure/log_url.json_api | Reset Log URL for an Azure External Account
+*ESP::ExternalAccountsAzureApi* | [**show**](docs/ExternalAccountsAzureApi.md#show) | **GET** /api/v2/external_accounts/{external_account_id}/azure.json_api | Show an Azure External Account
+*ESP::ExternalAccountsAzureApi* | [**update**](docs/ExternalAccountsAzureApi.md#update) | **PATCH** /api/v2/external_accounts/{external_account_id}/azure.json_api | Update an Azure External Account
+*ESP::IntegrationsApi* | [**delete**](docs/IntegrationsApi.md#delete) | **DELETE** /api/v2/integrations/{id}.json_api | Delete a(n) Integration
+*ESP::IntegrationsApi* | [**disable**](docs/IntegrationsApi.md#disable) | **PATCH** /api/v2/integrations/{id}/disable.json_api | Disable a single Integration
+*ESP::IntegrationsApi* | [**list**](docs/IntegrationsApi.md#list) | **PUT** /api/v2/integrations.json_api | Get a list of Integrations
 *ESP::IntegrationsApi* | [**show**](docs/IntegrationsApi.md#show) | **GET** /api/v2/integrations/{id}.json_api | Show a single Integration
+*ESP::IntegrationsApi* | [**test_notify**](docs/IntegrationsApi.md#test_notify) | **POST** /api/v2/integrations/{id}/test_notify.json_api | Test an Integration
+*ESP::IntegrationsAmazonSNSApi* | [**create**](docs/IntegrationsAmazonSNSApi.md#create) | **POST** /api/v2/integrations/amazon_sns.json_api | Create an Amazon SNS Integration
+*ESP::IntegrationsAmazonSNSApi* | [**show**](docs/IntegrationsAmazonSNSApi.md#show) | **GET** /api/v2/integrations/{integration_id}/amazon_sns.json_api | Show a single Amazon SNS Integration
+*ESP::IntegrationsAmazonSNSApi* | [**update**](docs/IntegrationsAmazonSNSApi.md#update) | **PATCH** /api/v2/integrations/{integration_id}/amazon_sns.json_api | Update an Amazon SNS Integration
+*ESP::IntegrationsHipchatApi* | [**create**](docs/IntegrationsHipchatApi.md#create) | **POST** /api/v2/integrations/hipchat.json_api | Create a Hipchat Integration
+*ESP::IntegrationsHipchatApi* | [**show**](docs/IntegrationsHipchatApi.md#show) | **GET** /api/v2/integrations/{integration_id}/hipchat.json_api | Show a single Hipchat Integration
+*ESP::IntegrationsHipchatApi* | [**update**](docs/IntegrationsHipchatApi.md#update) | **PATCH** /api/v2/integrations/{integration_id}/hipchat.json_api | Update a Hipchat Integration
+*ESP::IntegrationsJiraApi* | [**create**](docs/IntegrationsJiraApi.md#create) | **POST** /api/v2/integrations/jira.json_api | Create a JIRA Integration
+*ESP::IntegrationsJiraApi* | [**show**](docs/IntegrationsJiraApi.md#show) | **GET** /api/v2/integrations/{integration_id}/jira.json_api | Show a single Jira Integration
+*ESP::IntegrationsJiraApi* | [**update**](docs/IntegrationsJiraApi.md#update) | **PATCH** /api/v2/integrations/{integration_id}/jira.json_api | Update a JIRA Integration
+*ESP::IntegrationsPagerDutyApi* | [**create**](docs/IntegrationsPagerDutyApi.md#create) | **POST** /api/v2/integrations/pager_duty.json_api | Create a Pager Duty Integration
+*ESP::IntegrationsPagerDutyApi* | [**show**](docs/IntegrationsPagerDutyApi.md#show) | **GET** /api/v2/integrations/{integration_id}/pager_duty.json_api | Show a single Pager Duty Integration
+*ESP::IntegrationsPagerDutyApi* | [**update**](docs/IntegrationsPagerDutyApi.md#update) | **PATCH** /api/v2/integrations/{integration_id}/pager_duty.json_api | Update a Pager Duty Integration
+*ESP::IntegrationsServiceNowApi* | [**create**](docs/IntegrationsServiceNowApi.md#create) | **POST** /api/v2/integrations/servicenow.json_api | Create a ServiceNow Integration
+*ESP::IntegrationsServiceNowApi* | [**show**](docs/IntegrationsServiceNowApi.md#show) | **GET** /api/v2/integrations/{integration_id}/servicenow.json_api | Show a single ServiceNow Integration
+*ESP::IntegrationsServiceNowApi* | [**update**](docs/IntegrationsServiceNowApi.md#update) | **PATCH** /api/v2/integrations/{integration_id}/servicenow.json_api | Update a ServiceNow Integration
+*ESP::IntegrationsSlackApi* | [**create**](docs/IntegrationsSlackApi.md#create) | **POST** /api/v2/integrations/slack.json_api | Create a Slack Integration
+*ESP::IntegrationsSlackApi* | [**show**](docs/IntegrationsSlackApi.md#show) | **GET** /api/v2/integrations/{integration_id}/slack.json_api | Show a single Slack Integration
+*ESP::IntegrationsSlackApi* | [**update**](docs/IntegrationsSlackApi.md#update) | **PATCH** /api/v2/integrations/{integration_id}/slack.json_api | Update a Slack Integration
+*ESP::IntegrationsWebhookApi* | [**create**](docs/IntegrationsWebhookApi.md#create) | **POST** /api/v2/integrations/webhook.json_api | Create a Webhook Integration
+*ESP::IntegrationsWebhookApi* | [**show**](docs/IntegrationsWebhookApi.md#show) | **GET** /api/v2/integrations/{integration_id}/webhook.json_api | Show a single Webhook Integration
+*ESP::IntegrationsWebhookApi* | [**update**](docs/IntegrationsWebhookApi.md#update) | **PATCH** /api/v2/integrations/{integration_id}/webhook.json_api | Update a Webhook Integration
 *ESP::MetadataApi* | [**for_alert**](docs/MetadataApi.md#for_alert) | **GET** /api/v2/alerts/{alert_id}/metadata.json_api | Show the metadata for an alert
 *ESP::MetadataApi* | [**show**](docs/MetadataApi.md#show) | **GET** /api/v2/metadata/{id}.json_api | Show a single Metadata
 *ESP::OrganizationsApi* | [**list**](docs/OrganizationsApi.md#list) | **PUT** /api/v2/organizations.json_api | Get a list of Organizations
+*ESP::OrganizationsApi* | [**list_compliance_standards**](docs/OrganizationsApi.md#list_compliance_standards) | **GET** /api/v2/organizations/{organization_id}/compliance_standards.json_api | Get a list of compliance standards for an organization
 *ESP::OrganizationsApi* | [**show**](docs/OrganizationsApi.md#show) | **GET** /api/v2/organizations/{id}.json_api | Show a single Organization
 *ESP::OrganizationsApi* | [**update**](docs/OrganizationsApi.md#update) | **PATCH** /api/v2/organizations/{id}.json_api | Update a(n) Organization
+*ESP::PlansApi* | [**list**](docs/PlansApi.md#list) | **GET** /api/v2/plans.json_api | Get a list of Plans
+*ESP::PlansApi* | [**show**](docs/PlansApi.md#show) | **GET** /api/v2/plans/{id}.json_api | Show a single Plan
 *ESP::RegionsApi* | [**list**](docs/RegionsApi.md#list) | **PUT** /api/v2/regions.json_api | Get a list of Regions
 *ESP::RegionsApi* | [**show**](docs/RegionsApi.md#show) | **GET** /api/v2/regions/{id}.json_api | Show a single Region
-*ESP::ReportIntegrationsApi* | [**create**](docs/ReportIntegrationsApi.md#create) | **POST** /api/v2/reports/export/integrations.json_api | Export all alerts on reports to an integration
+*ESP::ReportExportApi* | [**request_file**](docs/ReportExportApi.md#request_file) | **POST** /api/v2/reports/export/files.json_api | Export all alerts for a set of reports to a file
+*ESP::ReportExportApi* | [**send_to_integration**](docs/ReportExportApi.md#send_to_integration) | **POST** /api/v2/reports/export/integrations.json_api | Export all alerts on reports to an integration
+*ESP::ReportExportApi* | [**show_file_details**](docs/ReportExportApi.md#show_file_details) | **GET** /api/v2/reports/export/files/{id}.json_api | Show a single Exported Report
 *ESP::ReportsApi* | [**create**](docs/ReportsApi.md#create) | **POST** /api/v2/reports.json_api | Create a(n) Report
 *ESP::ReportsApi* | [**list**](docs/ReportsApi.md#list) | **PUT** /api/v2/reports.json_api | Get a list of Reports
 *ESP::ReportsApi* | [**show**](docs/ReportsApi.md#show) | **GET** /api/v2/reports/{id}.json_api | Show a single Report
 *ESP::RolesApi* | [**list**](docs/RolesApi.md#list) | **GET** /api/v2/roles.json_api | Get a list of Roles
 *ESP::RolesApi* | [**show**](docs/RolesApi.md#show) | **GET** /api/v2/roles/{id}.json_api | Show a single Role
-*ESP::ScanIntervalsApi* | [**create**](docs/ScanIntervalsApi.md#create) | **POST** /api/v2/scan_intervals.json_api | Create a(n) ScanInterval
-*ESP::ScanIntervalsApi* | [**destroy**](docs/ScanIntervalsApi.md#destroy) | **DELETE** /api/v2/scan_intervals/{id}.json_api | Remove a(n) ScanInterval
-*ESP::ScanIntervalsApi* | [**list**](docs/ScanIntervalsApi.md#list) | **GET** /api/v2/external_accounts/{external_account_id}/scan_intervals.json_api | Get a list of ScanIntervals
-*ESP::ScanIntervalsApi* | [**show**](docs/ScanIntervalsApi.md#show) | **GET** /api/v2/scan_intervals/{id}.json_api | Show a single ScanInterval
-*ESP::ScanIntervalsApi* | [**update**](docs/ScanIntervalsApi.md#update) | **PATCH** /api/v2/scan_intervals/{id}.json_api | Update a(n) ScanInterval
+*ESP::ScanIntervalsApi* | [**create**](docs/ScanIntervalsApi.md#create) | **POST** /api/v2/scan_intervals.json_api | Create a(n) Scan Interval
+*ESP::ScanIntervalsApi* | [**delete**](docs/ScanIntervalsApi.md#delete) | **DELETE** /api/v2/scan_intervals/{id}.json_api | Delete a(n) Scan Interval
+*ESP::ScanIntervalsApi* | [**list_for_external_account**](docs/ScanIntervalsApi.md#list_for_external_account) | **GET** /api/v2/external_accounts/{external_account_id}/scan_intervals.json_api | Get a list of Scan Intervals
+*ESP::ScanIntervalsApi* | [**show**](docs/ScanIntervalsApi.md#show) | **GET** /api/v2/scan_intervals/{id}.json_api | Show a single Scan Interval
+*ESP::ScanIntervalsApi* | [**update**](docs/ScanIntervalsApi.md#update) | **PATCH** /api/v2/scan_intervals/{id}.json_api | Update a(n) Scan Interval
 *ESP::ServicesApi* | [**list**](docs/ServicesApi.md#list) | **PUT** /api/v2/services.json_api | Get a list of Services
 *ESP::ServicesApi* | [**show**](docs/ServicesApi.md#show) | **GET** /api/v2/services/{id}.json_api | Show a single Service
-*ESP::SignatureCustomRiskLevelsApi* | [**create**](docs/SignatureCustomRiskLevelsApi.md#create) | **POST** /api/v2/signature_custom_risk_levels.json_api | Create a(n) SignatureCustomRiskLevel
-*ESP::SignatureCustomRiskLevelsApi* | [**destroy**](docs/SignatureCustomRiskLevelsApi.md#destroy) | **DELETE** /api/v2/signature_custom_risk_levels/{id}.json_api | Remove a(n) SignatureCustomRiskLevel
-*ESP::SignatureCustomRiskLevelsApi* | [**list**](docs/SignatureCustomRiskLevelsApi.md#list) | **GET** /api/v2/external_accounts/{external_account_id}/signature_custom_risk_levels.json_api | Get a list of SignatureCustomRiskLevels
-*ESP::SignatureCustomRiskLevelsApi* | [**show**](docs/SignatureCustomRiskLevelsApi.md#show) | **GET** /api/v2/signature_custom_risk_levels/{id}.json_api | Show a single SignatureCustomRiskLevel
-*ESP::SignatureCustomRiskLevelsApi* | [**update**](docs/SignatureCustomRiskLevelsApi.md#update) | **PATCH** /api/v2/signature_custom_risk_levels/{id}.json_api | Update a(n) SignatureCustomRiskLevel
 *ESP::SignaturesApi* | [**list**](docs/SignaturesApi.md#list) | **PUT** /api/v2/signatures.json_api | Get a list of Signatures
+*ESP::SignaturesApi* | [**list_disabled_external_accounts**](docs/SignaturesApi.md#list_disabled_external_accounts) | **GET** /api/v2/signatures/{signature_id}/disabled_external_accounts.json_api | Get a list of disabled External Accounts for a signature
+*ESP::SignaturesApi* | [**list_with_custom_risk_level_for_external_account**](docs/SignaturesApi.md#list_with_custom_risk_level_for_external_account) | **PUT** /api/v2/external_accounts/{external_account_id}/signature_custom_risk_levels.json_api | Get A list of Signatures with default and custom risk levels for an External Account
+*ESP::SignaturesApi* | [**remove_custom_risk_level_for_external_account**](docs/SignaturesApi.md#remove_custom_risk_level_for_external_account) | **DELETE** /api/v2/external_accounts/{external_account_id}/signature_custom_risk_levels/{signature_id}.json_api | Remove a custom risk level to a Signature for an External Account
+*ESP::SignaturesApi* | [**set_custom_risk_level_for_external_account**](docs/SignaturesApi.md#set_custom_risk_level_for_external_account) | **POST** /api/v2/external_accounts/{external_account_id}/signature_custom_risk_levels.json_api | Add a custom risk level to a Signature for an External Account
 *ESP::SignaturesApi* | [**show**](docs/SignaturesApi.md#show) | **GET** /api/v2/signatures/{id}.json_api | Show a single Signature
-*ESP::StatsApi* | [**for_report**](docs/StatsApi.md#for_report) | **GET** /api/v2/reports/{report_id}/stats.json_api | A successful call to this API returns all the stats of all the alerts for a report identified by the report_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all regions for the selected hour.
-*ESP::StatsApi* | [**latest_for_teams**](docs/StatsApi.md#latest_for_teams) | **PUT** /api/v2/stats/latest_for_teams.json_api | A successful call to this API returns all the stats for the most recent report of each team accessible by the given API key
-*ESP::StatsApi* | [**list_stat_compliance_controls_for_stat**](docs/StatsApi.md#list_stat_compliance_controls_for_stat) | **GET** /api/v2/stats/{stat_id}/compliance_controls.json_api | A successful call to this API returns all the stats of all the compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all compliance controls for the selected hour.
-*ESP::StatsApi* | [**list_stat_custom_compliance_controls_for_stat**](docs/StatsApi.md#list_stat_custom_compliance_controls_for_stat) | **GET** /api/v2/stats/{stat_id}/custom_compliance_controls.json_api | A successful call to this API returns all the stats of all the custom compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom compliance controls for the selected hour.
-*ESP::StatsApi* | [**list_stat_custom_signatures_for_stat**](docs/StatsApi.md#list_stat_custom_signatures_for_stat) | **GET** /api/v2/stats/{stat_id}/custom_signatures.json_api | A successful call to this API returns all the stats of all the custom signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom_signatures for the selected hour.
-*ESP::StatsApi* | [**list_stat_regions_for_stat**](docs/StatsApi.md#list_stat_regions_for_stat) | **GET** /api/v2/stats/{stat_id}/regions.json_api | A successful call to this API returns all the stats of all the regions for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all regions for the selected hour.
-*ESP::StatsApi* | [**list_stat_services_for_stat**](docs/StatsApi.md#list_stat_services_for_stat) | **GET** /api/v2/stats/{stat_id}/services.json_api | A successful call to this API returns all the stats of all the services for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from services contained in all services for the selected hour.
-*ESP::StatsApi* | [**list_stat_signatures_for_stat**](docs/StatsApi.md#list_stat_signatures_for_stat) | **GET** /api/v2/stats/{stat_id}/signatures.json_api | A successful call to this API returns all the stats of all the signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all signatures for the selected hour.
+*ESP::SignaturesApi* | [**update_custom_risk_level_for_external_account**](docs/SignaturesApi.md#update_custom_risk_level_for_external_account) | **PATCH** /api/v2/external_accounts/{external_account_id}/signature_custom_risk_levels/{signature_id}.json_api | Update a Signature's custom risk level for an External Account
+*ESP::StatComplianceControlsApi* | [**list_for_stat**](docs/StatComplianceControlsApi.md#list_for_stat) | **GET** /api/v2/stats/{stat_id}/compliance_controls.json_api | Stats for compliance controls
+*ESP::StatComplianceControlsApi* | [**show**](docs/StatComplianceControlsApi.md#show) | **GET** /api/v2/stats/compliance_controls/{id}.json_api | Show a single Stat Compliance Control
+*ESP::StatCustomComplianceControlsApi* | [**list_for_stat**](docs/StatCustomComplianceControlsApi.md#list_for_stat) | **GET** /api/v2/stats/{stat_id}/custom_compliance_controls.json_api | Stats for custom compliance controls
+*ESP::StatCustomComplianceControlsApi* | [**show**](docs/StatCustomComplianceControlsApi.md#show) | **GET** /api/v2/stats/custom_compliance_controls/{id}.json_api | Show a single Stat Custom Compliance Control
+*ESP::StatCustomSignaturesApi* | [**list_for_stat**](docs/StatCustomSignaturesApi.md#list_for_stat) | **GET** /api/v2/stats/{stat_id}/custom_signatures.json_api | Stats for custom signatures
+*ESP::StatCustomSignaturesApi* | [**show**](docs/StatCustomSignaturesApi.md#show) | **GET** /api/v2/stats/custom_signatures/{id}.json_api | Show a single Stat Custom Signature
+*ESP::StatRegionsApi* | [**list_for_stat**](docs/StatRegionsApi.md#list_for_stat) | **GET** /api/v2/stats/{stat_id}/regions.json_api | Get a list of stats for regions
+*ESP::StatRegionsApi* | [**show**](docs/StatRegionsApi.md#show) | **GET** /api/v2/stats/regions/{id}.json_api | Show a single Stat Region
+*ESP::StatServicesApi* | [**list_for_stat**](docs/StatServicesApi.md#list_for_stat) | **GET** /api/v2/stats/{stat_id}/services.json_api | Get a list of stats for services
+*ESP::StatServicesApi* | [**show**](docs/StatServicesApi.md#show) | **GET** /api/v2/stats/services/{id}.json_api | Show a single Stat Service
+*ESP::StatSignaturesApi* | [**list_for_stat**](docs/StatSignaturesApi.md#list_for_stat) | **GET** /api/v2/stats/{stat_id}/signatures.json_api | Get a list of stats for signatures
+*ESP::StatSignaturesApi* | [**show**](docs/StatSignaturesApi.md#show) | **GET** /api/v2/stats/signatures/{id}.json_api | Show a single Stat Signature
+*ESP::StatsApi* | [**for_report**](docs/StatsApi.md#for_report) | **GET** /api/v2/reports/{report_id}/stats.json_api | Stats for a report
+*ESP::StatsApi* | [**latest_for_teams**](docs/StatsApi.md#latest_for_teams) | **PUT** /api/v2/stats/latest_for_teams.json_api | Stats for teams
 *ESP::StatsApi* | [**show**](docs/StatsApi.md#show) | **GET** /api/v2/stats/{id}.json_api | Show a single Stat
-*ESP::StatsApi* | [**show_stat_compliance_control**](docs/StatsApi.md#show_stat_compliance_control) | **GET** /api/v2/stats/compliance_controls/{id}.json_api | Show a single StatComplianceControl
-*ESP::StatsApi* | [**show_stat_custom_compliance_control**](docs/StatsApi.md#show_stat_custom_compliance_control) | **GET** /api/v2/stats/custom_compliance_controls/{id}.json_api | Show a single StatCustomComplianceControl
-*ESP::StatsApi* | [**show_stat_custom_signature**](docs/StatsApi.md#show_stat_custom_signature) | **GET** /api/v2/stats/custom_signatures/{id}.json_api | Show a single StatCustomSignature
-*ESP::StatsApi* | [**show_stat_region**](docs/StatsApi.md#show_stat_region) | **GET** /api/v2/stats/regions/{id}.json_api | Show a single StatRegion
-*ESP::StatsApi* | [**show_stat_service**](docs/StatsApi.md#show_stat_service) | **GET** /api/v2/stats/services/{id}.json_api | Show a single StatService
-*ESP::StatsApi* | [**show_stat_signature**](docs/StatsApi.md#show_stat_signature) | **GET** /api/v2/stats/signatures/{id}.json_api | Show a single StatSignature
-*ESP::SubOrganizationsApi* | [**create**](docs/SubOrganizationsApi.md#create) | **POST** /api/v2/sub_organizations.json_api | Create a(n) SubOrganization
-*ESP::SubOrganizationsApi* | [**destroy**](docs/SubOrganizationsApi.md#destroy) | **DELETE** /api/v2/sub_organizations/{id}.json_api | Remove a(n) SubOrganization
-*ESP::SubOrganizationsApi* | [**list**](docs/SubOrganizationsApi.md#list) | **PUT** /api/v2/sub_organizations.json_api | Get a list of SubOrganizations
-*ESP::SubOrganizationsApi* | [**show**](docs/SubOrganizationsApi.md#show) | **GET** /api/v2/sub_organizations/{id}.json_api | Show a single SubOrganization
-*ESP::SubOrganizationsApi* | [**update**](docs/SubOrganizationsApi.md#update) | **PATCH** /api/v2/sub_organizations/{id}.json_api | Update a(n) SubOrganization
-*ESP::SuppressionsApi* | [**deactivate**](docs/SuppressionsApi.md#deactivate) | **PATCH** /api/v2/suppressions/{id}/deactivate.json_api | A successful call to this API will deactivate a suppression identified by the id parameter.
+*ESP::SubOrganizationsApi* | [**create**](docs/SubOrganizationsApi.md#create) | **POST** /api/v2/sub_organizations.json_api | Create a(n) Sub Organization
+*ESP::SubOrganizationsApi* | [**delete**](docs/SubOrganizationsApi.md#delete) | **DELETE** /api/v2/sub_organizations/{id}.json_api | Delete a(n) Sub Organization
+*ESP::SubOrganizationsApi* | [**list**](docs/SubOrganizationsApi.md#list) | **PUT** /api/v2/sub_organizations.json_api | Get a list of Sub Organizations
+*ESP::SubOrganizationsApi* | [**show**](docs/SubOrganizationsApi.md#show) | **GET** /api/v2/sub_organizations/{id}.json_api | Show a single Sub Organization
+*ESP::SubOrganizationsApi* | [**update**](docs/SubOrganizationsApi.md#update) | **PATCH** /api/v2/sub_organizations/{id}.json_api | Update a(n) Sub Organization
+*ESP::SubscriptionsApi* | [**show**](docs/SubscriptionsApi.md#show) | **GET** /api/v2/subscriptions/{id}.json_api | Show a single Subscription
+*ESP::SuppressionsApi* | [**deactivate**](docs/SuppressionsApi.md#deactivate) | **PATCH** /api/v2/suppressions/{id}/deactivate.json_api | Deactivate a suppression
 *ESP::SuppressionsApi* | [**list**](docs/SuppressionsApi.md#list) | **PUT** /api/v2/suppressions.json_api | Get a list of Suppressions
 *ESP::SuppressionsApi* | [**show**](docs/SuppressionsApi.md#show) | **GET** /api/v2/suppressions/{id}.json_api | Show a single Suppression
-*ESP::SuppressionsApi* | [**suppress_region**](docs/SuppressionsApi.md#suppress_region) | **POST** /api/v2/suppressions/regions.json_api | A successful call to this API creates a new region suppression for the supplied regions. The body of the request must contain a json api compliant hash of attributes with type suppression/regions.
-*ESP::SuppressionsApi* | [**suppress_region_from_alert**](docs/SuppressionsApi.md#suppress_region_from_alert) | **POST** /api/v2/suppressions/alert/{alert_id}/regions.json_api | A successful call to this API creates a new signature suppression based on the supplied alert_id. The body of the request must contain a json api compliant hash of attributes with type suppression/regions.
-*ESP::SuppressionsApi* | [**suppress_signature**](docs/SuppressionsApi.md#suppress_signature) | **POST** /api/v2/suppressions/signatures.json_api | A successful call to this API creates a new signature suppression for the supplied signature_ids or custom_signature_ids. The body of the request must contain a json API compliant hash of attributes with type suppression/signatures.
-*ESP::SuppressionsApi* | [**suppress_signature_from_alert**](docs/SuppressionsApi.md#suppress_signature_from_alert) | **POST** /api/v2/suppressions/alert/{alert_id}/signatures.json_api | A successful call to this API creates a new signature suppression based on the supplied alert_id. The body of the request must contain a json api compliant hash of attributes with type suppression/signatures.
-*ESP::SuppressionsApi* | [**suppress_unique_identifier_from_alert**](docs/SuppressionsApi.md#suppress_unique_identifier_from_alert) | **POST** /api/v2/suppressions/alert/{alert_id}/unique_identifiers.json_api | A successful call to this API creates a new unique identifier suppression based on the supplied alert_id. The body of the request must contain a json api compliant hash of attributes with type suppression/unique_identifier.
-*ESP::TagsApi* | [**list**](docs/TagsApi.md#list) | **GET** /api/v2/alerts/{alert_id}/tags.json_api | Get a list of Tags
+*ESP::SuppressionsApi* | [**suppress_region**](docs/SuppressionsApi.md#suppress_region) | **POST** /api/v2/suppressions/regions.json_api | Creates a region suppression
+*ESP::SuppressionsApi* | [**suppress_region_from_alert**](docs/SuppressionsApi.md#suppress_region_from_alert) | **POST** /api/v2/suppressions/alert/{alert_id}/regions.json_api | Creates a region suppression from an alert
+*ESP::SuppressionsApi* | [**suppress_signature**](docs/SuppressionsApi.md#suppress_signature) | **POST** /api/v2/suppressions/signatures.json_api | Creates a signature suppression
+*ESP::SuppressionsApi* | [**suppress_signature_from_alert**](docs/SuppressionsApi.md#suppress_signature_from_alert) | **POST** /api/v2/suppressions/alert/{alert_id}/signatures.json_api | Creates a signature suppression from an alert
+*ESP::SuppressionsApi* | [**suppress_unique_identifier_from_alert**](docs/SuppressionsApi.md#suppress_unique_identifier_from_alert) | **POST** /api/v2/suppressions/alert/{alert_id}/unique_identifiers.json_api | Creates a unique identifier suppression from an alert
+*ESP::TagsApi* | [**list_for_alert**](docs/TagsApi.md#list_for_alert) | **GET** /api/v2/alerts/{alert_id}/tags.json_api | Get a list of Tags
 *ESP::TagsApi* | [**show**](docs/TagsApi.md#show) | **GET** /api/v2/tags/{id}.json_api | Show a single Tag
 *ESP::TeamsApi* | [**create**](docs/TeamsApi.md#create) | **POST** /api/v2/teams.json_api | Create a(n) Team
-*ESP::TeamsApi* | [**destroy**](docs/TeamsApi.md#destroy) | **DELETE** /api/v2/teams/{id}.json_api | Remove a(n) Team
+*ESP::TeamsApi* | [**delete**](docs/TeamsApi.md#delete) | **DELETE** /api/v2/teams/{id}.json_api | Delete a(n) Team
 *ESP::TeamsApi* | [**list**](docs/TeamsApi.md#list) | **PUT** /api/v2/teams.json_api | Get a list of Teams
 *ESP::TeamsApi* | [**show**](docs/TeamsApi.md#show) | **GET** /api/v2/teams/{id}.json_api | Show a single Team
 *ESP::TeamsApi* | [**update**](docs/TeamsApi.md#update) | **PATCH** /api/v2/teams/{id}.json_api | Update a(n) Team
-*ESP::TimeZonesApi* | [**list**](docs/TimeZonesApi.md#list) | **GET** /api/v2/time_zones.json_api | A successful call to this API returns a list of time zones.
+*ESP::UserAttributionsApi* | [**add_channel**](docs/UserAttributionsApi.md#add_channel) | **POST** /api/v2/external_accounts/{external_account_id}/user_attribution/channel.json_api | Create a User Attribution Channel for an external account
+*ESP::UserAttributionsApi* | [**remove_channel**](docs/UserAttributionsApi.md#remove_channel) | **DELETE** /api/v2/external_accounts/{external_account_id}/user_attribution/channel.json_api | Remove the User Attribution Channel for an external account
+*ESP::UserAttributionsApi* | [**show_channel**](docs/UserAttributionsApi.md#show_channel) | **GET** /api/v2/external_accounts/{external_account_id}/user_attribution/channel.json_api | Show the User Attribution Channel of an external account
+*ESP::UserAttributionsApi* | [**update**](docs/UserAttributionsApi.md#update) | **PATCH** /api/v2/external_accounts/{external_account_id}/user_attribution.json_api | Update the user attributions on an external account
 *ESP::UsersApi* | [**create**](docs/UsersApi.md#create) | **POST** /api/v2/users.json_api | Create a(n) User
-*ESP::UsersApi* | [**destroy**](docs/UsersApi.md#destroy) | **DELETE** /api/v2/users/{id}.json_api | Remove a(n) User
+*ESP::UsersApi* | [**delete**](docs/UsersApi.md#delete) | **DELETE** /api/v2/users/{id}.json_api | Delete a(n) User
 *ESP::UsersApi* | [**list**](docs/UsersApi.md#list) | **PUT** /api/v2/users.json_api | Get a list of Users
 *ESP::UsersApi* | [**show**](docs/UsersApi.md#show) | **GET** /api/v2/users/{id}.json_api | Show a single User
 *ESP::UsersApi* | [**update**](docs/UsersApi.md#update) | **PATCH** /api/v2/users/{id}.json_api | Update a(n) User
@@ -537,32 +608,47 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [ESP::APIKey](docs/APIKey.md)
  - [ESP::Alert](docs/Alert.md)
  - [ESP::AuditLog](docs/AuditLog.md)
  - [ESP::AuditLogFile](docs/AuditLogFile.md)
+ - [ESP::AzureGroup](docs/AzureGroup.md)
  - [ESP::CloudTrailEvent](docs/CloudTrailEvent.md)
  - [ESP::ComplianceControl](docs/ComplianceControl.md)
  - [ESP::ComplianceDomain](docs/ComplianceDomain.md)
  - [ESP::ComplianceStandard](docs/ComplianceStandard.md)
  - [ESP::ContactRequest](docs/ContactRequest.md)
+ - [ESP::CustomComplianceControl](docs/CustomComplianceControl.md)
+ - [ESP::CustomComplianceDomain](docs/CustomComplianceDomain.md)
+ - [ESP::CustomComplianceStandard](docs/CustomComplianceStandard.md)
  - [ESP::CustomSignature](docs/CustomSignature.md)
  - [ESP::CustomSignatureDefinition](docs/CustomSignatureDefinition.md)
  - [ESP::CustomSignatureResult](docs/CustomSignatureResult.md)
  - [ESP::CustomSignatureResultAlert](docs/CustomSignatureResultAlert.md)
+ - [ESP::ExportedReport](docs/ExportedReport.md)
  - [ESP::ExternalAccount](docs/ExternalAccount.md)
+ - [ESP::ExternalAccountAmazonIAM](docs/ExternalAccountAmazonIAM.md)
+ - [ESP::ExternalAccountAzure](docs/ExternalAccountAzure.md)
  - [ESP::ExternalAccountUserAttributionChannel](docs/ExternalAccountUserAttributionChannel.md)
  - [ESP::Integration](docs/Integration.md)
+ - [ESP::IntegrationAmazonSns](docs/IntegrationAmazonSns.md)
+ - [ESP::IntegrationHipchat](docs/IntegrationHipchat.md)
+ - [ESP::IntegrationJira](docs/IntegrationJira.md)
+ - [ESP::IntegrationPagerDuty](docs/IntegrationPagerDuty.md)
+ - [ESP::IntegrationServicenow](docs/IntegrationServicenow.md)
+ - [ESP::IntegrationSlack](docs/IntegrationSlack.md)
+ - [ESP::IntegrationWebhook](docs/IntegrationWebhook.md)
  - [ESP::Meta](docs/Meta.md)
  - [ESP::Metadata](docs/Metadata.md)
  - [ESP::Organization](docs/Organization.md)
  - [ESP::PaginatedCollection](docs/PaginatedCollection.md)
+ - [ESP::Plan](docs/Plan.md)
  - [ESP::Region](docs/Region.md)
  - [ESP::Report](docs/Report.md)
  - [ESP::Role](docs/Role.md)
  - [ESP::ScanInterval](docs/ScanInterval.md)
  - [ESP::Service](docs/Service.md)
  - [ESP::Signature](docs/Signature.md)
- - [ESP::SignatureCustomRiskLevel](docs/SignatureCustomRiskLevel.md)
  - [ESP::Stat](docs/Stat.md)
  - [ESP::StatComplianceControl](docs/StatComplianceControl.md)
  - [ESP::StatCustomComplianceControl](docs/StatCustomComplianceControl.md)
@@ -571,10 +657,10 @@ Class | Method | HTTP request | Description
  - [ESP::StatService](docs/StatService.md)
  - [ESP::StatSignature](docs/StatSignature.md)
  - [ESP::SubOrganization](docs/SubOrganization.md)
+ - [ESP::Subscription](docs/Subscription.md)
  - [ESP::Suppression](docs/Suppression.md)
  - [ESP::Tag](docs/Tag.md)
  - [ESP::Team](docs/Team.md)
- - [ESP::TimeZone](docs/TimeZone.md)
  - [ESP::User](docs/User.md)
 
 

@@ -4,14 +4,16 @@ All URIs are relative to https://api.evident.io
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list**](ComplianceStandardsApi.md#list) | **PUT** /api/v2/compliance_standards.json_api | Get a list of ComplianceStandards
-[**show**](ComplianceStandardsApi.md#show) | **GET** /api/v2/compliance_standards/{id}.json_api | Show a single ComplianceStandard
+[**list**](ComplianceStandardsApi.md#list) | **PUT** /api/v2/compliance_standards.json_api | Get a list of Compliance Standards
+[**show**](ComplianceStandardsApi.md#show) | **GET** /api/v2/compliance_standards/{id}.json_api | Show a single Compliance Standard
 
 
 # **list**
 > PaginatedCollection list(opts)
 
-Get a list of ComplianceStandards
+Get a list of Compliance Standards
+
+
 
 ### Example
 ```ruby
@@ -21,13 +23,13 @@ require 'esp_sdk'
 api_instance = ESP::ComplianceStandardsApi.new
 
 opts = { 
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  See Searching Lists for more information.
-  include: "include_example", # String | Related objects that can be included in the response.  See Including Objects for more information.
-  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [compliance_controls, organizations] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  include: "include_example" # String | Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
 }
 
 begin
-  #Get a list of ComplianceStandards
+  #Get a list of Compliance Standards
   result = api_instance.list(opts)
   p result
 rescue ESP::ApiError => e
@@ -39,9 +41,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  See Searching Lists for more information. | [optional] 
- **include** | **String**| Related objects that can be included in the response.  See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [compliance_controls, organizations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
  **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
+ **include** | **String**| Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -61,7 +63,9 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 # **show**
 > ComplianceStandard show(id, opts)
 
-Show a single ComplianceStandard
+Show a single Compliance Standard
+
+
 
 ### Example
 ```ruby
@@ -70,14 +74,14 @@ require 'esp_sdk'
 
 api_instance = ESP::ComplianceStandardsApi.new
 
-id = 56 # Integer | ComplianceStandard ID
+id = 56 # Integer | Compliance Standard ID
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response.  See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
 }
 
 begin
-  #Show a single ComplianceStandard
+  #Show a single Compliance Standard
   result = api_instance.show(id, opts)
   p result
 rescue ESP::ApiError => e
@@ -89,8 +93,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| ComplianceStandard ID | 
- **include** | **String**| Related objects that can be included in the response.  See Including Objects for more information. | [optional] 
+ **id** | **Integer**| Compliance Standard ID | 
+ **include** | **String**| Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information. | [optional] 
 
 ### Return type
 

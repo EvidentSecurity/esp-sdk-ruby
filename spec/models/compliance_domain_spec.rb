@@ -37,7 +37,7 @@ describe 'ComplianceDomain' do
     end
   end
 
-  describe 'test attribute "created_at"' do
+  describe 'test attribute "identifier"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -49,7 +49,7 @@ describe 'ComplianceDomain' do
     end
   end
 
-  describe 'test attribute "identifier"' do
+  describe 'test attribute "created_at"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -86,12 +86,6 @@ describe 'ComplianceDomain' do
   end
 
   describe 'test attribute "compliance_control_ids"' do
-    it 'should work' do
-       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "errors"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

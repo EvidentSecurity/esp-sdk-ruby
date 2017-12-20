@@ -19,39 +19,94 @@ module ESP
       @api_client = api_client
     end
 
-    # Create a(n) ExternalAccount
+    # Add a compliance standard to an external account
     # 
-    # @param team_id The ID of the team the external account will belong to
-    # @param arn Amazon Resource Name for the IAM role
-    # @param external_id External Identifier set on the role
+    # @param external_account_id The ID of the external account this compliance standard belongs to
+    # @param compliance_standard_id The ID of the compliance standard that belongs to this external account
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name Name
-    # @return [ExternalAccount]
-    def create(team_id, arn, external_id, opts = {})
-      data, _status_code, _headers = create_with_http_info(team_id, arn, external_id, opts)
+    # @option opts [String] :include Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
+    # @return [ComplianceStandard]
+    def add_compliance_standard(external_account_id, compliance_standard_id, opts = {})
+      data, _status_code, _headers = add_compliance_standard_with_http_info(external_account_id, compliance_standard_id, opts)
       return data
     end
 
-    # Create a(n) ExternalAccount
+    # Add a compliance standard to an external account
     # 
-    # @param team_id The ID of the team the external account will belong to
-    # @param arn Amazon Resource Name for the IAM role
-    # @param external_id External Identifier set on the role
+    # @param external_account_id The ID of the external account this compliance standard belongs to
+    # @param compliance_standard_id The ID of the compliance standard that belongs to this external account
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name Name
-    # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
-    def create_with_http_info(team_id, arn, external_id, opts = {})
+    # @option opts [String] :include Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
+    # @return [Array<(ComplianceStandard, Fixnum, Hash)>] ComplianceStandard data, response status code and response headers
+    def add_compliance_standard_with_http_info(external_account_id, compliance_standard_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.create ..."
+        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.add_compliance_standard ..."
       end
-      # verify the required parameter 'team_id' is set
-      fail ArgumentError, "Missing the required parameter 'team_id' when calling ExternalAccountsApi.create" if team_id.nil?
-      # verify the required parameter 'arn' is set
-      fail ArgumentError, "Missing the required parameter 'arn' when calling ExternalAccountsApi.create" if arn.nil?
-      # verify the required parameter 'external_id' is set
-      fail ArgumentError, "Missing the required parameter 'external_id' when calling ExternalAccountsApi.create" if external_id.nil?
+      # verify the required parameter 'external_account_id' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ExternalAccountsApi.add_compliance_standard" if external_account_id.nil?
+      # verify the required parameter 'compliance_standard_id' is set
+      fail ArgumentError, "Missing the required parameter 'compliance_standard_id' when calling ExternalAccountsApi.add_compliance_standard" if compliance_standard_id.nil?
       # resource path
-      local_var_path = "/api/v2/external_accounts.json_api".sub('{format}','json_api')
+      local_var_path = "/api/v2/external_accounts/{external_account_id}/compliance_standards.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["compliance_standard_id"] = compliance_standard_id
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'ComplianceStandard')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ExternalAccountsApi#add_compliance_standard\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Add a custom compliance standard to an external account
+    # 
+    # @param external_account_id The ID of the external account this custom compliance standard belongs to
+    # @param custom_compliance_standard_id The ID of the custom compliance standard that belongs to this external account
+    # @param [Hash] opts the optional parameters
+    # @return [Meta]
+    def add_custom_compliance_standard(external_account_id, custom_compliance_standard_id, opts = {})
+      data, _status_code, _headers = add_custom_compliance_standard_with_http_info(external_account_id, custom_compliance_standard_id, opts)
+      return data
+    end
+
+    # Add a custom compliance standard to an external account
+    # 
+    # @param external_account_id The ID of the external account this custom compliance standard belongs to
+    # @param custom_compliance_standard_id The ID of the custom compliance standard that belongs to this external account
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
+    def add_custom_compliance_standard_with_http_info(external_account_id, custom_compliance_standard_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.add_custom_compliance_standard ..."
+      end
+      # verify the required parameter 'external_account_id' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ExternalAccountsApi.add_custom_compliance_standard" if external_account_id.nil?
+      # verify the required parameter 'custom_compliance_standard_id' is set
+      fail ArgumentError, "Missing the required parameter 'custom_compliance_standard_id' when calling ExternalAccountsApi.add_custom_compliance_standard" if custom_compliance_standard_id.nil?
+      # resource path
+      local_var_path = "/api/v2/external_accounts/{external_account_id}/custom_compliance_standards.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s)
 
       # query parameters
       query_params = {}
@@ -65,10 +120,7 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["team_id"] = team_id
-      form_params["arn"] = arn
-      form_params["external_id"] = external_id
-      form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
+      form_params["custom_compliance_standard_id"] = custom_compliance_standard_id
 
       # http body (model)
       post_body = nil
@@ -79,34 +131,95 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ExternalAccount')
+        :return_type => 'Meta')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ExternalAccountsApi#create\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: ExternalAccountsApi#add_custom_compliance_standard\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Remove a(n) ExternalAccount
+    # Disable a signature for an external account
     # 
-    # @param id ExternalAccount ID
+    # @param external_account_id The ID of the external account to disable a signature on
+    # @param signature_id The ID of the signature to disable
     # @param [Hash] opts the optional parameters
-    # @return [Meta]
-    def destroy(id, opts = {})
-      data, _status_code, _headers = destroy_with_http_info(id, opts)
+    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @return [Signature]
+    def add_disabled_signature(external_account_id, signature_id, opts = {})
+      data, _status_code, _headers = add_disabled_signature_with_http_info(external_account_id, signature_id, opts)
       return data
     end
 
-    # Remove a(n) ExternalAccount
+    # Disable a signature for an external account
     # 
-    # @param id ExternalAccount ID
+    # @param external_account_id The ID of the external account to disable a signature on
+    # @param signature_id The ID of the signature to disable
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @return [Array<(Signature, Fixnum, Hash)>] Signature data, response status code and response headers
+    def add_disabled_signature_with_http_info(external_account_id, signature_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.add_disabled_signature ..."
+      end
+      # verify the required parameter 'external_account_id' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ExternalAccountsApi.add_disabled_signature" if external_account_id.nil?
+      # verify the required parameter 'signature_id' is set
+      fail ArgumentError, "Missing the required parameter 'signature_id' when calling ExternalAccountsApi.add_disabled_signature" if signature_id.nil?
+      # resource path
+      local_var_path = "/api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["signature_id"] = signature_id
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Signature')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ExternalAccountsApi#add_disabled_signature\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Delete a(n) External Account
+    # 
+    # @param id  ID
+    # @param [Hash] opts the optional parameters
+    # @return [Meta]
+    def delete(id, opts = {})
+      data, _status_code, _headers = delete_with_http_info(id, opts)
+      return data
+    end
+
+    # Delete a(n) External Account
+    # 
+    # @param id  ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
-    def destroy_with_http_info(id, opts = {})
+    def delete_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.destroy ..."
+        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.delete ..."
       end
       # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling ExternalAccountsApi.destroy" if id.nil?
+      fail ArgumentError, "Missing the required parameter 'id' when calling ExternalAccountsApi.delete" if id.nil?
       # resource path
       local_var_path = "/api/v2/external_accounts/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
@@ -134,29 +247,29 @@ module ESP
         :auth_names => auth_names,
         :return_type => 'Meta')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ExternalAccountsApi#destroy\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: ExternalAccountsApi#delete\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # Get a list of ExternalAccounts
+    # Get a list of External Accounts
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
       return data
     end
 
-    # Get a list of ExternalAccounts
+    # Get a list of External Accounts
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  See Searching Lists for more information.
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -197,22 +310,373 @@ module ESP
       return data, status_code, headers
     end
 
-    # Show a single ExternalAccount
+    # Get a list of compliance standards for an external account
     # 
-    # @param id ExternalAccount ID
+    # @param external_account_id The ID of the external account this compliance standard belongs to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
+    # @return [PaginatedCollection]
+    def list_compliance_standards(external_account_id, opts = {})
+      data, _status_code, _headers = list_compliance_standards_with_http_info(external_account_id, opts)
+      return data
+    end
+
+    # Get a list of compliance standards for an external account
+    # 
+    # @param external_account_id The ID of the external account this compliance standard belongs to
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_compliance_standards_with_http_info(external_account_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.list_compliance_standards ..."
+      end
+      # verify the required parameter 'external_account_id' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ExternalAccountsApi.list_compliance_standards" if external_account_id.nil?
+      # resource path
+      local_var_path = "/api/v2/external_accounts/{external_account_id}/compliance_standards.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'PaginatedCollection')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ExternalAccountsApi#list_compliance_standards\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get a list of custom compliance standards for an external account
+    # 
+    # @param external_account_id The ID of the external account this custom compliance standard belongs to
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
+    # @return [PaginatedCollection]
+    def list_custom_compliance_standards(external_account_id, opts = {})
+      data, _status_code, _headers = list_custom_compliance_standards_with_http_info(external_account_id, opts)
+      return data
+    end
+
+    # Get a list of custom compliance standards for an external account
+    # 
+    # @param external_account_id The ID of the external account this custom compliance standard belongs to
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_custom_compliance_standards_with_http_info(external_account_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.list_custom_compliance_standards ..."
+      end
+      # verify the required parameter 'external_account_id' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ExternalAccountsApi.list_custom_compliance_standards" if external_account_id.nil?
+      # resource path
+      local_var_path = "/api/v2/external_accounts/{external_account_id}/custom_compliance_standards.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'PaginatedCollection')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ExternalAccountsApi#list_custom_compliance_standards\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get a list all the disabled signatures for an external account
+    # 
+    # @param external_account_id The ID of the external account to retrieve the disabled signatures for
+    # @param [Hash] opts the optional parameters
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
+    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @return [PaginatedCollection]
+    def list_disabled_signatures(external_account_id, opts = {})
+      data, _status_code, _headers = list_disabled_signatures_with_http_info(external_account_id, opts)
+      return data
+    end
+
+    # Get a list all the disabled signatures for an external account
+    # 
+    # @param external_account_id The ID of the external account to retrieve the disabled signatures for
+    # @param [Hash] opts the optional parameters
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_disabled_signatures_with_http_info(external_account_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.list_disabled_signatures ..."
+      end
+      # verify the required parameter 'external_account_id' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ExternalAccountsApi.list_disabled_signatures" if external_account_id.nil?
+      # resource path
+      local_var_path = "/api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'PaginatedCollection')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ExternalAccountsApi#list_disabled_signatures\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Remove a compliance standard from an external account
+    # 
+    # @param external_account_id The ID of the external account this compliance standard belongs to
+    # @param compliance_standard_id The ID of the compliance standard that belongs to this external account
+    # @param [Hash] opts the optional parameters
+    # @return [Meta]
+    def remove_compliance_standard(external_account_id, compliance_standard_id, opts = {})
+      data, _status_code, _headers = remove_compliance_standard_with_http_info(external_account_id, compliance_standard_id, opts)
+      return data
+    end
+
+    # Remove a compliance standard from an external account
+    # 
+    # @param external_account_id The ID of the external account this compliance standard belongs to
+    # @param compliance_standard_id The ID of the compliance standard that belongs to this external account
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
+    def remove_compliance_standard_with_http_info(external_account_id, compliance_standard_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.remove_compliance_standard ..."
+      end
+      # verify the required parameter 'external_account_id' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ExternalAccountsApi.remove_compliance_standard" if external_account_id.nil?
+      # verify the required parameter 'compliance_standard_id' is set
+      fail ArgumentError, "Missing the required parameter 'compliance_standard_id' when calling ExternalAccountsApi.remove_compliance_standard" if compliance_standard_id.nil?
+      # resource path
+      local_var_path = "/api/v2/external_accounts/{external_account_id}/compliance_standards/{compliance_standard_id}.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s).sub('{' + 'compliance_standard_id' + '}', compliance_standard_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Meta')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ExternalAccountsApi#remove_compliance_standard\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Remove a custom compliance standard from an external account
+    # 
+    # @param external_account_id The ID of the external account this custom compliance standard belongs to
+    # @param custom_compliance_standard_id The ID of the custom compliance standard that belongs to this external account
+    # @param [Hash] opts the optional parameters
+    # @return [Meta]
+    def remove_custom_compliance_standard(external_account_id, custom_compliance_standard_id, opts = {})
+      data, _status_code, _headers = remove_custom_compliance_standard_with_http_info(external_account_id, custom_compliance_standard_id, opts)
+      return data
+    end
+
+    # Remove a custom compliance standard from an external account
+    # 
+    # @param external_account_id The ID of the external account this custom compliance standard belongs to
+    # @param custom_compliance_standard_id The ID of the custom compliance standard that belongs to this external account
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
+    def remove_custom_compliance_standard_with_http_info(external_account_id, custom_compliance_standard_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.remove_custom_compliance_standard ..."
+      end
+      # verify the required parameter 'external_account_id' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ExternalAccountsApi.remove_custom_compliance_standard" if external_account_id.nil?
+      # verify the required parameter 'custom_compliance_standard_id' is set
+      fail ArgumentError, "Missing the required parameter 'custom_compliance_standard_id' when calling ExternalAccountsApi.remove_custom_compliance_standard" if custom_compliance_standard_id.nil?
+      # resource path
+      local_var_path = "/api/v2/external_accounts/{external_account_id}/custom_compliance_standards/{custom_compliance_standard_id}.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s).sub('{' + 'custom_compliance_standard_id' + '}', custom_compliance_standard_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Meta')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ExternalAccountsApi#remove_custom_compliance_standard\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Re-enable a signature for an external account
+    # 
+    # @param external_account_id The ID of the external account to enable a signature on
+    # @param signature_id The ID of the signature to enable
+    # @param [Hash] opts the optional parameters
+    # @return [Meta]
+    def remove_disabled_signature(external_account_id, signature_id, opts = {})
+      data, _status_code, _headers = remove_disabled_signature_with_http_info(external_account_id, signature_id, opts)
+      return data
+    end
+
+    # Re-enable a signature for an external account
+    # 
+    # @param external_account_id The ID of the external account to enable a signature on
+    # @param signature_id The ID of the signature to enable
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
+    def remove_disabled_signature_with_http_info(external_account_id, signature_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.remove_disabled_signature ..."
+      end
+      # verify the required parameter 'external_account_id' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ExternalAccountsApi.remove_disabled_signature" if external_account_id.nil?
+      # verify the required parameter 'signature_id' is set
+      fail ArgumentError, "Missing the required parameter 'signature_id' when calling ExternalAccountsApi.remove_disabled_signature" if signature_id.nil?
+      # resource path
+      local_var_path = "/api/v2/external_accounts/{external_account_id}/disabled_signatures/{signature_id}.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s).sub('{' + 'signature_id' + '}', signature_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Meta')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ExternalAccountsApi#remove_disabled_signature\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Show a single External Account
+    # 
+    # @param id External Account ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
     # @return [ExternalAccount]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
     end
 
-    # Show a single ExternalAccount
+    # Show a single External Account
     # 
-    # @param id ExternalAccount ID
+    # @param id External Account ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response.  See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
     # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -249,67 +713,6 @@ module ESP
         :return_type => 'ExternalAccount')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ExternalAccountsApi#show\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Update a(n) ExternalAccount
-    # 
-    # @param id ExternalAccount ID
-    # @param team_id The ID of the team the external account will belong to
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :name Name
-    # @return [ExternalAccount]
-    def update(id, team_id, opts = {})
-      data, _status_code, _headers = update_with_http_info(id, team_id, opts)
-      return data
-    end
-
-    # Update a(n) ExternalAccount
-    # 
-    # @param id ExternalAccount ID
-    # @param team_id The ID of the team the external account will belong to
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :name Name
-    # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
-    def update_with_http_info(id, team_id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ExternalAccountsApi.update ..."
-      end
-      # verify the required parameter 'id' is set
-      fail ArgumentError, "Missing the required parameter 'id' when calling ExternalAccountsApi.update" if id.nil?
-      # verify the required parameter 'team_id' is set
-      fail ArgumentError, "Missing the required parameter 'team_id' when calling ExternalAccountsApi.update" if team_id.nil?
-      # resource path
-      local_var_path = "/api/v2/external_accounts/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = {}
-      form_params["team_id"] = team_id
-      form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
-
-      # http body (model)
-      post_body = nil
-      auth_names = []
-      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'ExternalAccount')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ExternalAccountsApi#update\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

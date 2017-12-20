@@ -31,28 +31,54 @@ describe 'ExternalAccountsApi' do
     end
   end
 
-  # unit tests for create
-  # Create a(n) External Account
+  # unit tests for add_compliance_standard
+  # Add a compliance standard to an external account
   # 
-  # @param team_id Team Id
-  # @param arn ARN
-  # @param external_id External Id
+  # @param external_account_id The ID of the external account this compliance standard belongs to
+  # @param compliance_standard_id The ID of the compliance standard that belongs to this external account
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :name Name
-  # @return [ExternalAccount]
-  describe 'create test' do
+  # @option opts [String] :include Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
+  # @return [ComplianceStandard]
+  describe 'add_compliance_standard test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
   end
 
-  # unit tests for destroy
-  # Remove a(n) External Account
+  # unit tests for add_custom_compliance_standard
+  # Add a custom compliance standard to an external account
   # 
-  # @param id External Account Id
+  # @param external_account_id The ID of the external account this custom compliance standard belongs to
+  # @param custom_compliance_standard_id The ID of the custom compliance standard that belongs to this external account
   # @param [Hash] opts the optional parameters
-  # @return [SuccessObject]
-  describe 'destroy test' do
+  # @return [Meta]
+  describe 'add_custom_compliance_standard test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for add_disabled_signature
+  # Disable a signature for an external account
+  # 
+  # @param external_account_id The ID of the external account to disable a signature on
+  # @param signature_id The ID of the signature to disable
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+  # @return [Signature]
+  describe 'add_disabled_signature test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for delete
+  # Delete a(n) External Account
+  # 
+  # @param id  ID
+  # @param [Hash] opts the optional parameters
+  # @return [Meta]
+  describe 'delete test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -62,11 +88,93 @@ describe 'ExternalAccountsApi' do
   # Get a list of External Accounts
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, disabled_signatures] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-  # @option opts [String] :include Objects that can be included in the response:  organization,sub_organization,team,scan_intervals,disabled_signatures,credentials  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
   # @return [PaginatedCollection]
   describe 'list test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_compliance_standards
+  # Get a list of compliance standards for an external account
+  # 
+  # @param external_account_id The ID of the external account this compliance standard belongs to
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
+  # @return [PaginatedCollection]
+  describe 'list_compliance_standards test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_custom_compliance_standards
+  # Get a list of custom compliance standards for an external account
+  # 
+  # @param external_account_id The ID of the external account this custom compliance standard belongs to
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
+  # @return [PaginatedCollection]
+  describe 'list_custom_compliance_standards test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_disabled_signatures
+  # Get a list all the disabled signatures for an external account
+  # 
+  # @param external_account_id The ID of the external account to retrieve the disabled signatures for
+  # @param [Hash] opts the optional parameters
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+  # @return [PaginatedCollection]
+  describe 'list_disabled_signatures test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for remove_compliance_standard
+  # Remove a compliance standard from an external account
+  # 
+  # @param external_account_id The ID of the external account this compliance standard belongs to
+  # @param compliance_standard_id The ID of the compliance standard that belongs to this external account
+  # @param [Hash] opts the optional parameters
+  # @return [Meta]
+  describe 'remove_compliance_standard test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for remove_custom_compliance_standard
+  # Remove a custom compliance standard from an external account
+  # 
+  # @param external_account_id The ID of the external account this custom compliance standard belongs to
+  # @param custom_compliance_standard_id The ID of the custom compliance standard that belongs to this external account
+  # @param [Hash] opts the optional parameters
+  # @return [Meta]
+  describe 'remove_custom_compliance_standard test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for remove_disabled_signature
+  # Re-enable a signature for an external account
+  # 
+  # @param external_account_id The ID of the external account to enable a signature on
+  # @param signature_id The ID of the signature to enable
+  # @param [Hash] opts the optional parameters
+  # @return [Meta]
+  describe 'remove_disabled_signature test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -75,28 +183,11 @@ describe 'ExternalAccountsApi' do
   # unit tests for show
   # Show a single External Account
   # 
-  # @param id External Account Id
+  # @param id External Account ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  organization,sub_organization,team,scan_intervals,disabled_signatures,credentials  See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
   # @return [ExternalAccount]
   describe 'show test' do
-    it "should work" do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for update
-  # Update a(n) External Account
-  # 
-  # @param id External Account Id
-  # @param arn ARN
-  # @param external_id External Id
-  # @param sub_organization_id Sub Organization Id
-  # @param team_id Team Id
-  # @param [Hash] opts the optional parameters
-  # @option opts [String] :name Name
-  # @return [ExternalAccount]
-  describe 'update test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

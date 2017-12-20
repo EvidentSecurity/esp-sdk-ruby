@@ -35,9 +35,9 @@ describe 'AuditLogsApi' do
   # Get a list of Audit Logs
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, item_id, item_type] Matching Searchable Attribute: [item_type]   Searchable Associations: [user, organization] See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Searching on Relationships for more information. See Searching Lists for more information. Example: filter: {name_eq: &#39;Bob&#39;}
-  # @option opts [String] :include Objects that can be included in the response:  organization,user  See Including Objects for more information.
-  # @option opts [Hash<String, String>] :page Page Number and Page Size.  Example: page: {number: 1, size: 20}
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, item_id, item_type] Matching Searchable Attribute: [item_type]  Sortable Attribute: [id] Searchable Associations: [user, organization] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
+  # @option opts [String] :include Related objects that can be included in the response:  organization, user See Including Objects for more information.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -48,9 +48,9 @@ describe 'AuditLogsApi' do
   # unit tests for show
   # Show a single Audit Log
   # 
-  # @param id Audit Log Id
+  # @param id Audit Log ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Objects that can be included in the response:  organization,user  See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, user See Including Objects for more information.
   # @return [AuditLog]
   describe 'show test' do
     it "should work" do
