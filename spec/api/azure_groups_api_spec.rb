@@ -37,7 +37,7 @@ describe 'AzureGroupsApi' do
   # @param azure_group_id The ID of the Azure group associated with this memberhsip
   # @param external_account_id The ID of the External Account associated with this memberhsip
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
   # @return [ExternalAccount]
   describe 'add_external_account test' do
     it "should work" do
@@ -61,7 +61,7 @@ describe 'AzureGroupsApi' do
   # unit tests for delete
   # Delete a(n) Azure Group
   # 
-  # @param id  ID
+  # @param id Azure Group ID
   # @param [Hash] opts the optional parameters
   # @return [Meta]
   describe 'delete test' do
@@ -74,9 +74,9 @@ describe 'AzureGroupsApi' do
   # Get a list of Azure Groups
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [organization, external_accounts] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
   # @option opts [String] :include Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information.
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [organization, external_accounts] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -115,8 +115,8 @@ describe 'AzureGroupsApi' do
   # 
   # @param id Azure Group ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :name Name
   # @option opts [String] :include Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information.
+  # @option opts [String] :name Name
   # @return [AzureGroup]
   describe 'update test' do
     it "should work" do

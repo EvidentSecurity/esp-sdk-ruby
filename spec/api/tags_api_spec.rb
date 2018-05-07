@@ -36,8 +36,7 @@ describe 'TagsApi' do
   # 
   # @param alert_id The ID of the alert to list tags for
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list_for_alert test' do
     it "should work" do
@@ -50,7 +49,6 @@ describe 'TagsApi' do
   # 
   # @param id Tag ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [Tag]
   describe 'show test' do
     it "should work" do

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> IntegrationAmazonSns create(arn, external_id, topic, name, external_account_ids, opts)
+> IntegrationAmazonSns create(arn, external_account_ids, external_id, name, topic, opts)
 
 Create an Amazon SNS Integration
 
@@ -25,29 +25,29 @@ api_instance = ESP::IntegrationsAmazonSNSApi.new
 
 arn = "arn_example" # String | The role arn for accessing the SNS topic
 
-external_id = "external_id_example" # String | The external ID for the IAM role
+external_account_ids = [56] # Array<Integer> | External accounts for integration
 
-topic = "topic_example" # String | The SNS topic arn
+external_id = "external_id_example" # String | The external ID for the IAM role
 
 name = "name_example" # String | Name of the integration
 
-external_account_ids = [56] # Array<Integer> | External accounts for integration
+topic = "topic_example" # String | The SNS topic arn
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  region, integration See Including Objects for more information.
   all_high_risk: true, # BOOLEAN | Send all high risk alerts
-  all_medium_risk: true, # BOOLEAN | Send all medium risk alerts
   all_low_risk: true, # BOOLEAN | Send all low risk alerts
+  all_medium_risk: true, # BOOLEAN | Send all medium risk alerts
+  custom_signature_ids: [56], # Array<Integer> | Custom signatures for integration
   send_updates: true, # BOOLEAN | This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
   send_when_suppressed: true, # BOOLEAN | Send notifications for suppressed alerts
   signature_ids: [56], # Array<Integer> | Signatures for integration
-  statuses: ["statuses_example"], # Array<String> | Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-  custom_signature_ids: [56], # Array<Integer> | Custom signatures for integration
-  include: "include_example" # String | Related objects that can be included in the response:  region, integration See Including Objects for more information.
+  statuses: ["statuses_example"] # Array<String> | Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
 }
 
 begin
   #Create an Amazon SNS Integration
-  result = api_instance.create(arn, external_id, topic, name, external_account_ids, opts)
+  result = api_instance.create(arn, external_account_ids, external_id, name, topic, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling IntegrationsAmazonSNSApi->create: #{e}"
@@ -59,19 +59,19 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **arn** | **String**| The role arn for accessing the SNS topic | 
- **external_id** | **String**| The external ID for the IAM role | 
- **topic** | **String**| The SNS topic arn | 
- **name** | **String**| Name of the integration | 
  **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| External accounts for integration | 
+ **external_id** | **String**| The external ID for the IAM role | 
+ **name** | **String**| Name of the integration | 
+ **topic** | **String**| The SNS topic arn | 
+ **include** | **String**| Related objects that can be included in the response:  region, integration See Including Objects for more information. | [optional] 
  **all_high_risk** | **BOOLEAN**| Send all high risk alerts | [optional] 
- **all_medium_risk** | **BOOLEAN**| Send all medium risk alerts | [optional] 
  **all_low_risk** | **BOOLEAN**| Send all low risk alerts | [optional] 
+ **all_medium_risk** | **BOOLEAN**| Send all medium risk alerts | [optional] 
+ **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Custom signatures for integration | [optional] 
  **send_updates** | **BOOLEAN**| This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons. | [optional] 
  **send_when_suppressed** | **BOOLEAN**| Send notifications for suppressed alerts | [optional] 
  **signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Signatures for integration | [optional] 
  **statuses** | [**Array&lt;String&gt;**](String.md)| Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info | [optional] 
- **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Custom signatures for integration | [optional] 
- **include** | **String**| Related objects that can be included in the response:  region, integration See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -156,20 +156,20 @@ api_instance = ESP::IntegrationsAmazonSNSApi.new
 integration_id = 56 # Integer | The ID of the integration
 
 opts = { 
-  arn: "arn_example", # String | The role arn for accessing the SNS topic
-  external_id: "external_id_example", # String | The external ID for the IAM role
-  topic: "topic_example", # String | The SNS topic arn
-  name: "name_example", # String | Name of the integration
+  include: "include_example", # String | Related objects that can be included in the response:  region, integration See Including Objects for more information.
   all_high_risk: true, # BOOLEAN | Send all high risk alerts
-  all_medium_risk: true, # BOOLEAN | Send all medium risk alerts
   all_low_risk: true, # BOOLEAN | Send all low risk alerts
+  all_medium_risk: true, # BOOLEAN | Send all medium risk alerts
+  arn: "arn_example", # String | The role arn for accessing the SNS topic
+  custom_signature_ids: [56], # Array<Integer> | Custom signatures for integration
+  external_account_ids: [56], # Array<Integer> | External accounts for integration
+  external_id: "external_id_example", # String | The external ID for the IAM role
+  name: "name_example", # String | Name of the integration
   send_updates: true, # BOOLEAN | This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
   send_when_suppressed: true, # BOOLEAN | Send notifications for suppressed alerts
   signature_ids: [56], # Array<Integer> | Signatures for integration
   statuses: ["statuses_example"], # Array<String> | Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-  external_account_ids: [56], # Array<Integer> | External accounts for integration
-  custom_signature_ids: [56], # Array<Integer> | Custom signatures for integration
-  include: "include_example" # String | Related objects that can be included in the response:  region, integration See Including Objects for more information.
+  topic: "topic_example" # String | The SNS topic arn
 }
 
 begin
@@ -186,20 +186,20 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **integration_id** | **Integer**| The ID of the integration | 
- **arn** | **String**| The role arn for accessing the SNS topic | [optional] 
- **external_id** | **String**| The external ID for the IAM role | [optional] 
- **topic** | **String**| The SNS topic arn | [optional] 
- **name** | **String**| Name of the integration | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  region, integration See Including Objects for more information. | [optional] 
  **all_high_risk** | **BOOLEAN**| Send all high risk alerts | [optional] 
- **all_medium_risk** | **BOOLEAN**| Send all medium risk alerts | [optional] 
  **all_low_risk** | **BOOLEAN**| Send all low risk alerts | [optional] 
+ **all_medium_risk** | **BOOLEAN**| Send all medium risk alerts | [optional] 
+ **arn** | **String**| The role arn for accessing the SNS topic | [optional] 
+ **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Custom signatures for integration | [optional] 
+ **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| External accounts for integration | [optional] 
+ **external_id** | **String**| The external ID for the IAM role | [optional] 
+ **name** | **String**| Name of the integration | [optional] 
  **send_updates** | **BOOLEAN**| This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons. | [optional] 
  **send_when_suppressed** | **BOOLEAN**| Send notifications for suppressed alerts | [optional] 
  **signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Signatures for integration | [optional] 
  **statuses** | [**Array&lt;String&gt;**](String.md)| Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info | [optional] 
- **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| External accounts for integration | [optional] 
- **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Custom signatures for integration | [optional] 
- **include** | **String**| Related objects that can be included in the response:  region, integration See Including Objects for more information. | [optional] 
+ **topic** | **String**| The SNS topic arn | [optional] 
 
 ### Return type
 

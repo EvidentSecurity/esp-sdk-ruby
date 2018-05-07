@@ -53,7 +53,7 @@ describe ESP::ApiClient do
       allow(api_client).to receive(:build_request).and_return(Typhoeus::Request.new('/api/v2/sub_organizations.json', method: 'put'))
       stub_request(:put, %r{sub_organizations})
 
-      ESP::SubOrganizationsApi.new(api_client).create(3,'Evident')
+      ESP::SubOrganizationsApi.new(api_client).create('Evident', 3)
 
       expect(api_client).to have_received(:build_request).with(:POST, "/api/v2/sub_organizations.json_api", hash_including(:body => { data: { attributes: { 'organization_id' => 3, 'name' => 'Evident' } } }))
     end

@@ -23,8 +23,7 @@ module ESP
     # 
     # @param alert_id The ID of the alert to list tags for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list_for_alert(alert_id, opts = {})
       data, _status_code, _headers = list_for_alert_with_http_info(alert_id, opts)
@@ -35,8 +34,7 @@ module ESP
     # 
     # @param alert_id The ID of the alert to list tags for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_for_alert_with_http_info(alert_id, opts = {})
       if @api_client.config.debugging
@@ -49,7 +47,6 @@ module ESP
 
       # query parameters
       query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -82,7 +79,6 @@ module ESP
     # 
     # @param id Tag ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [Tag]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
@@ -93,7 +89,6 @@ module ESP
     # 
     # @param id Tag ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [Array<(Tag, Fixnum, Hash)>] Tag data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -106,7 +101,6 @@ module ESP
 
       # query parameters
       query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}

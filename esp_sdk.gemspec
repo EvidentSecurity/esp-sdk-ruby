@@ -31,7 +31,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'webmock'
-  s.add_development_dependency 'factory_girl'
 
   s.files         = `find *`.split("\n").uniq.sort.select{|f| !f.empty? }
   s.test_files    = `find spec/*`.split("\n")

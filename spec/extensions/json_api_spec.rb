@@ -8,11 +8,11 @@ describe ESP::JsonApi do
         parsed_json = JSON.parse(json)
         stub_request(:get, %r{alerts/1.json*}).to_return(headers: {}, body: json)
 
-        alert = ESP::AlertsApi.new.show(1, include: 'external_account.team.organization,region,signature')
+        alert = ESP::AlertsApi.new.show(1, include: 'external_account.team.sub_organization,region,signature')
 
         expect(parsed_json['included'].detect {|e| e['type'] == 'external_accounts'}['id']).to eq(alert.external_account.id.to_s)
         expect(parsed_json['included'].detect {|e| e['type'] == 'teams'}['id']).to eq(alert.external_account.team.id.to_s)
-        expect(parsed_json['included'].detect {|e| e['type'] == 'organizations'}['id']).to eq(alert.external_account.team.organization.id.to_s)
+        expect(parsed_json['included'].detect {|e| e['type'] == 'sub_organizations'}['id']).to eq(alert.external_account.team.sub_organization.id.to_s)
         expect(parsed_json['included'].detect {|e| e['type'] == 'regions'}['id']).to eq(alert.region.id.to_s)
         expect(parsed_json['included'].detect {|e| e['type'] == 'signatures'}['id']).to eq(alert.signature.id.to_s)
       end
@@ -27,8 +27,6 @@ describe ESP::JsonApi do
         expect(parsed_json['included'].detect {|e| e['type'] == 'external_accounts'}['id']).to eq(alert.external_account_id.to_s)
         expect(parsed_json['included'].detect {|e| e['type'] == 'regions'}['id']).to eq(alert.region_id.to_s)
         expect(parsed_json['included'].detect {|e| e['type'] == 'signatures'}['id']).to eq(alert.signature_id.to_s)
-        expect(alert.tag_ids).to include(parsed_json['included'].detect {|e| e['type'] == 'tags'}['id'].to_i)
-        expect(alert.cloud_trail_event_ids).to include(parsed_json['included'].detect {|e| e['type'] == 'cloud_trail_events'}['id'].to_i)
 
         # nested objects too
         expect(parsed_json['included'].detect {|e| e['type'] == 'external_accounts'}['relationships']['team']['data']['id']).to eq(alert.external_account.team_id.to_s)
@@ -44,7 +42,6 @@ describe ESP::JsonApi do
         expect(alert.external_account_id).not_to be_nil
         expect(alert.region_id).not_to be_nil
         expect(alert.signature_id).not_to be_nil
-        expect(alert.tag_ids).not_to be_nil
         expect(alert.external_account.team_id).not_to be_nil
       end
     end

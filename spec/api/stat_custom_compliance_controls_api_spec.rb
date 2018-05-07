@@ -32,12 +32,13 @@ describe 'StatCustomComplianceControlsApi' do
   end
 
   # unit tests for list_for_stat
-  # Stats for custom compliance controls
-  # A successful call to this API returns all the stats of all the custom compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom compliance controls for the selected hour.
-  # @param stat_id The ID of the stat to retrieve custom compliance control stats for
+  # Statistics for custom compliance controls
+  # A successful call to this API returns all the statistics of all the custom compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom compliance controls for the selected hour.
+  # @param stat_id The ID of the stat to retrieve custom compliance control statistics for
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
   # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_control, stat See Including Objects for more information.
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [stat_id, type_id]    
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list_for_stat test' do
     it "should work" do

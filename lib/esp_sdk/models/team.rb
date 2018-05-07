@@ -38,12 +38,6 @@ module ESP
     # Associated External Accounts IDs
     attr_accessor :external_account_ids
 
-    # Associated Organization
-    attr_accessor :organization
-
-    # Associated Organization ID
-    attr_accessor :organization_id
-
     # Associated Sub Organization
     attr_accessor :sub_organization
 
@@ -62,8 +56,6 @@ module ESP
         :'custom_signature_ids' => :'custom_signature_ids',
         :'external_accounts' => :'external_accounts',
         :'external_account_ids' => :'external_account_ids',
-        :'organization' => :'organization',
-        :'organization_id' => :'organization_id',
         :'sub_organization' => :'sub_organization',
         :'sub_organization_id' => :'sub_organization_id'
       }
@@ -80,8 +72,6 @@ module ESP
         :'custom_signature_ids' => :'Array<Integer>',
         :'external_accounts' => :'Array<ExternalAccount>',
         :'external_account_ids' => :'Array<Integer>',
-        :'organization' => :'Organization',
-        :'organization_id' => :'Integer',
         :'sub_organization' => :'SubOrganization',
         :'sub_organization_id' => :'Integer'
       }
@@ -135,14 +125,6 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'organization')
-        self.organization = attributes[:'organization']
-      end
-
-      if attributes.has_key?(:'organization_id')
-        self.organization_id = attributes[:'organization_id']
-      end
-
       if attributes.has_key?(:'sub_organization')
         self.sub_organization = attributes[:'sub_organization']
       end
@@ -179,8 +161,6 @@ module ESP
           custom_signature_ids == o.custom_signature_ids &&
           external_accounts == o.external_accounts &&
           external_account_ids == o.external_account_ids &&
-          organization == o.organization &&
-          organization_id == o.organization_id &&
           sub_organization == o.sub_organization &&
           sub_organization_id == o.sub_organization_id
     end
@@ -194,7 +174,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, created_at, updated_at, custom_signatures, custom_signature_ids, external_accounts, external_account_ids, organization, organization_id, sub_organization, sub_organization_id].hash
+      [id, name, created_at, updated_at, custom_signatures, custom_signature_ids, external_accounts, external_account_ids, sub_organization, sub_organization_id].hash
     end
 
     # Builds the object from hash

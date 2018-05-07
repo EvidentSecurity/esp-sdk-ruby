@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> CustomSignature create(identifier, name, risk_level, external_account_ids, opts)
+> CustomSignature create(external_account_ids, identifier, name, risk_level, opts)
 
 Create a(n) Custom Signature
 
@@ -25,23 +25,23 @@ require 'esp_sdk'
 
 api_instance = ESP::CustomSignaturesApi.new
 
+external_account_ids = [56] # Array<Integer> | The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run.
+
 identifier = "identifier_example" # String | The identifier to use for the custom signature. Common format is AWS:- such as AWS:IAM-001
 
 name = "name_example" # String | The name of the custom signature
 
 risk_level = "risk_level_example" # String | The risk-level of the problem identified by the custom signature. Valid values are low, medium, high
 
-external_account_ids = [56] # Array<Integer> | The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run.
-
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
   description: "description_example", # String | The description of the custom signature that is displayed on alerts
-  resolution: "resolution_example", # String | Details for how to resolve this custom signature that is displayed on alerts
-  include: "include_example" # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+  resolution: "resolution_example" # String | Details for how to resolve this custom signature that is displayed on alerts
 }
 
 begin
   #Create a(n) Custom Signature
-  result = api_instance.create(identifier, name, risk_level, external_account_ids, opts)
+  result = api_instance.create(external_account_ids, identifier, name, risk_level, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling CustomSignaturesApi->create: #{e}"
@@ -52,13 +52,13 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run. | 
  **identifier** | **String**| The identifier to use for the custom signature. Common format is AWS:- such as AWS:IAM-001 | 
  **name** | **String**| The name of the custom signature | 
  **risk_level** | **String**| The risk-level of the problem identified by the custom signature. Valid values are low, medium, high | 
- **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run. | 
+ **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information. | [optional] 
  **description** | **String**| The description of the custom signature that is displayed on alerts | [optional] 
  **resolution** | **String**| Details for how to resolve this custom signature that is displayed on alerts | [optional] 
- **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -89,7 +89,7 @@ require 'esp_sdk'
 
 api_instance = ESP::CustomSignaturesApi.new
 
-id = 56 # Integer |  ID
+id = 56 # Integer | Custom Signature ID
 
 
 begin
@@ -105,7 +105,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**|  ID | 
+ **id** | **Integer**| Custom Signature ID | 
 
 ### Return type
 
@@ -137,9 +137,9 @@ require 'esp_sdk'
 api_instance = ESP::CustomSignaturesApi.new
 
 opts = { 
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, name, identifier] Matching Searchable Attributes: [name, identifier]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, teams, definitions, integrations] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, name, identifier] Matching Searchable Attributes: [name, identifier]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, teams, definitions, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -155,9 +155,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, name, identifier] Matching Searchable Attributes: [name, identifier]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, teams, definitions, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
- **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, name, identifier] Matching Searchable Attributes: [name, identifier]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, teams, definitions, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -191,7 +191,7 @@ api_instance = ESP::CustomSignaturesApi.new
 id = 56 # Integer | Custom Signature ID
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
 }
 
 begin
@@ -208,7 +208,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Custom Signature ID | 
- **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -242,13 +242,13 @@ api_instance = ESP::CustomSignaturesApi.new
 id = 56 # Integer | Custom Signature ID
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
   description: "description_example", # String | The description of the custom signature that is displayed on alerts
+  external_account_ids: [56], # Array<Integer> | The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run.
   identifier: "identifier_example", # String | The identifier to use for the custom signature. Common format is AWS:- such as AWS:IAM-001
   name: "name_example", # String | The name of the custom signature
   resolution: "resolution_example", # String | Details for how to resolve this custom signature that is displayed on alerts
-  risk_level: "risk_level_example", # String | The risk-level of the problem identified by the custom signature. Valid values are low, medium, high
-  external_account_ids: [56], # Array<Integer> | The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run.
-  include: "include_example" # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+  risk_level: "risk_level_example" # String | The risk-level of the problem identified by the custom signature. Valid values are low, medium, high
 }
 
 begin
@@ -265,13 +265,13 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Custom Signature ID | 
+ **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information. | [optional] 
  **description** | **String**| The description of the custom signature that is displayed on alerts | [optional] 
+ **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run. | [optional] 
  **identifier** | **String**| The identifier to use for the custom signature. Common format is AWS:- such as AWS:IAM-001 | [optional] 
  **name** | **String**| The name of the custom signature | [optional] 
  **resolution** | **String**| Details for how to resolve this custom signature that is displayed on alerts | [optional] 
  **risk_level** | **String**| The risk-level of the problem identified by the custom signature. Valid values are low, medium, high | [optional] 
- **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| The external account IDs this custom signature should run for. If no accounts are selected the custom signature will not be run. | [optional] 
- **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information. | [optional] 
 
 ### Return type
 

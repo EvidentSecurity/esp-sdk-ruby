@@ -4,16 +4,16 @@ All URIs are relative to https://api.evident.io
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_for_stat**](StatComplianceControlsApi.md#list_for_stat) | **GET** /api/v2/stats/{stat_id}/compliance_controls.json_api | Stats for compliance controls
+[**list_for_stat**](StatComplianceControlsApi.md#list_for_stat) | **GET** /api/v2/stats/{stat_id}/compliance_controls.json_api | Statistics for compliance controls
 [**show**](StatComplianceControlsApi.md#show) | **GET** /api/v2/stats/compliance_controls/{id}.json_api | Show a single Stat Compliance Control
 
 
 # **list_for_stat**
 > PaginatedCollection list_for_stat(stat_id, opts)
 
-Stats for compliance controls
+Statistics for compliance controls
 
-A successful call to this API returns all the stats of all the compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all compliance controls for the selected hour.
+A successful call to this API returns all the statistics of all the compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all compliance controls for the selected hour.
 
 ### Example
 ```ruby
@@ -22,15 +22,16 @@ require 'esp_sdk'
 
 api_instance = ESP::StatComplianceControlsApi.new
 
-stat_id = 56 # Integer | The ID of the stat to retrieve compliance control stats for
+stat_id = 56 # Integer | The ID of the stat to retrieve compliance control statistics for
 
 opts = { 
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  compliance_control, stat See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  compliance_control, stat See Including Objects for more information.
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [stat_id, type_id]    
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
-  #Stats for compliance controls
+  #Statistics for compliance controls
   result = api_instance.list_for_stat(stat_id, opts)
   p result
 rescue ESP::ApiError => e
@@ -42,9 +43,10 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **stat_id** | **Integer**| The ID of the stat to retrieve compliance control stats for | 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
+ **stat_id** | **Integer**| The ID of the stat to retrieve compliance control statistics for | 
  **include** | **String**| Related objects that can be included in the response:  compliance_control, stat See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [stat_id, type_id]     | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 

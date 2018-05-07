@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Export an Audit Log File
 
-An email will be sent to the user(having organization level access) requesting creation once the file is ready for download. The file will have all audit logs for the organization in CSV format.  The URL and filename in the response will be blank on create but will be present in the response on the show endpoint once the export has been generated.
+An email will be sent to the user (having organization level access) requesting creation once the file is ready for download. The file will have all audit logs for the organization in CSV format.  The URL and filename in the response will be blank on create but will be present in the response on the show endpoint once the export has been generated.
 
 ### Example
 ```ruby
@@ -61,7 +61,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 Show a single Audit Log File
 
-The URL returned will expire and will no longer work after the expiration
+The URL returned will expire and will no longer work after the expiration.
 
 ### Example
 ```ruby

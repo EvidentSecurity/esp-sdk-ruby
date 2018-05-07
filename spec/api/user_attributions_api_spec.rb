@@ -36,7 +36,6 @@ describe 'UserAttributionsApi' do
   # URL will only be returned in this response and will not be accessible again.
   # @param external_account_id The ID of the external account to create a User Attribution Channel for
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [ExternalAccountUserAttributionChannel]
   describe 'add_channel test' do
     it "should work" do
@@ -61,7 +60,6 @@ describe 'UserAttributionsApi' do
   # The channel url will not be returned.
   # @param external_account_id The ID of the external account to show the user attribution channel for
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [ExternalAccountUserAttributionChannel]
   describe 'show_channel test' do
     it "should work" do
@@ -74,8 +72,8 @@ describe 'UserAttributionsApi' do
   # 
   # @param external_account_id The ID of the external account to update the user attributions of
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
   # @option opts [String] :cloudtrail_name The name of the cloudetrail associated with the user attribution.
-  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
   # @return [ExternalAccount]
   describe 'update test' do
     it "should work" do

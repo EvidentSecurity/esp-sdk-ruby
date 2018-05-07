@@ -21,31 +21,29 @@ module ESP
 
     # Create a(n) Contact Request
     # 
-    # @param title Subject of your message
     # @param description Body of your message
     # @param request_type Type of contact request. Valid values are support, feature
+    # @param title Subject of your message
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @return [ContactRequest]
-    def create(title, description, request_type, opts = {})
-      data, _status_code, _headers = create_with_http_info(title, description, request_type, opts)
+    def create(description, request_type, title, opts = {})
+      data, _status_code, _headers = create_with_http_info(description, request_type, title, opts)
       return data
     end
 
     # Create a(n) Contact Request
     # 
-    # @param title Subject of your message
     # @param description Body of your message
     # @param request_type Type of contact request. Valid values are support, feature
+    # @param title Subject of your message
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @return [Array<(ContactRequest, Fixnum, Hash)>] ContactRequest data, response status code and response headers
-    def create_with_http_info(title, description, request_type, opts = {})
+    def create_with_http_info(description, request_type, title, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ContactRequestsApi.create ..."
       end
-      # verify the required parameter 'title' is set
-      fail ArgumentError, "Missing the required parameter 'title' when calling ContactRequestsApi.create" if title.nil?
       # verify the required parameter 'description' is set
       fail ArgumentError, "Missing the required parameter 'description' when calling ContactRequestsApi.create" if description.nil?
       # verify the required parameter 'request_type' is set
@@ -54,6 +52,8 @@ module ESP
       unless ['support', 'feature'].include?(request_type)
         fail ArgumentError, "invalid value for 'request_type', must be one of support, feature"
       end
+      # verify the required parameter 'title' is set
+      fail ArgumentError, "Missing the required parameter 'title' when calling ContactRequestsApi.create" if title.nil?
       # resource path
       local_var_path = "/api/v2/contact_requests.json_api".sub('{format}','json_api')
 
@@ -70,9 +70,9 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["title"] = title
       form_params["description"] = description
       form_params["request_type"] = request_type
+      form_params["title"] = title
 
       # http body (model)
       post_body = nil

@@ -103,7 +103,13 @@ describe 'Signature' do
     end
   end
 
-  describe 'test attribute "disabled_external_accounts_id"' do
+  describe 'test attribute "suppressions"' do
+    it 'should work' do
+       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "suppression_ids"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

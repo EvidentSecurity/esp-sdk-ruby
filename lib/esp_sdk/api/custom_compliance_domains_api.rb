@@ -21,35 +21,35 @@ module ESP
 
     # Create a(n) Custom Compliance Domain
     # 
-    # @param identifier The identifier of this custom domain
     # @param custom_compliance_standard_id The ID of the Custom Compliance Standard this custom domain belongs to
+    # @param identifier The identifier of this custom domain
     # @param name Name
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :position The position of this custom domain within the custom standard
     # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
+    # @option opts [Integer] :position The position of this custom domain within the custom standard
     # @return [CustomComplianceDomain]
-    def create(identifier, custom_compliance_standard_id, name, opts = {})
-      data, _status_code, _headers = create_with_http_info(identifier, custom_compliance_standard_id, name, opts)
+    def create(custom_compliance_standard_id, identifier, name, opts = {})
+      data, _status_code, _headers = create_with_http_info(custom_compliance_standard_id, identifier, name, opts)
       return data
     end
 
     # Create a(n) Custom Compliance Domain
     # 
-    # @param identifier The identifier of this custom domain
     # @param custom_compliance_standard_id The ID of the Custom Compliance Standard this custom domain belongs to
+    # @param identifier The identifier of this custom domain
     # @param name Name
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :position The position of this custom domain within the custom standard
     # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
+    # @option opts [Integer] :position The position of this custom domain within the custom standard
     # @return [Array<(CustomComplianceDomain, Fixnum, Hash)>] CustomComplianceDomain data, response status code and response headers
-    def create_with_http_info(identifier, custom_compliance_standard_id, name, opts = {})
+    def create_with_http_info(custom_compliance_standard_id, identifier, name, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: CustomComplianceDomainsApi.create ..."
       end
-      # verify the required parameter 'identifier' is set
-      fail ArgumentError, "Missing the required parameter 'identifier' when calling CustomComplianceDomainsApi.create" if identifier.nil?
       # verify the required parameter 'custom_compliance_standard_id' is set
       fail ArgumentError, "Missing the required parameter 'custom_compliance_standard_id' when calling CustomComplianceDomainsApi.create" if custom_compliance_standard_id.nil?
+      # verify the required parameter 'identifier' is set
+      fail ArgumentError, "Missing the required parameter 'identifier' when calling CustomComplianceDomainsApi.create" if identifier.nil?
       # verify the required parameter 'name' is set
       fail ArgumentError, "Missing the required parameter 'name' when calling CustomComplianceDomainsApi.create" if name.nil?
       # resource path
@@ -68,8 +68,8 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["identifier"] = identifier
       form_params["custom_compliance_standard_id"] = custom_compliance_standard_id
+      form_params["identifier"] = identifier
       form_params["name"] = name
       form_params["position"] = opts[:'position'] if !opts[:'position'].nil?
 
@@ -91,7 +91,7 @@ module ESP
 
     # Delete a(n) Custom Compliance Domain
     # 
-    # @param id  ID
+    # @param id Custom Compliance Domain ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
     def delete(id, opts = {})
@@ -101,7 +101,7 @@ module ESP
 
     # Delete a(n) Custom Compliance Domain
     # 
-    # @param id  ID
+    # @param id Custom Compliance Domain ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def delete_with_http_info(id, opts = {})
@@ -202,11 +202,11 @@ module ESP
     # 
     # @param id Custom Compliance Domain ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :identifier The identifier of this custom domain
+    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
     # @option opts [Integer] :custom_compliance_standard_id The ID of the Custom Compliance Standard this custom domain belongs to
+    # @option opts [String] :identifier The identifier of this custom domain
     # @option opts [String] :name Name
     # @option opts [Integer] :position The position of this custom domain within the custom standard
-    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
     # @return [CustomComplianceDomain]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
@@ -217,11 +217,11 @@ module ESP
     # 
     # @param id Custom Compliance Domain ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :identifier The identifier of this custom domain
+    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
     # @option opts [Integer] :custom_compliance_standard_id The ID of the Custom Compliance Standard this custom domain belongs to
+    # @option opts [String] :identifier The identifier of this custom domain
     # @option opts [String] :name Name
     # @option opts [Integer] :position The position of this custom domain within the custom standard
-    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
     # @return [Array<(CustomComplianceDomain, Fixnum, Hash)>] CustomComplianceDomain data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -245,8 +245,8 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["identifier"] = opts[:'identifier'] if !opts[:'identifier'].nil?
       form_params["custom_compliance_standard_id"] = opts[:'custom_compliance_standard_id'] if !opts[:'custom_compliance_standard_id'].nil?
+      form_params["identifier"] = opts[:'identifier'] if !opts[:'identifier'].nil?
       form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
       form_params["position"] = opts[:'position'] if !opts[:'position'].nil?
 

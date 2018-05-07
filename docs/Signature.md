@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **service** | [**Service**](Service.md) | Associated Service | [optional] 
 **service_id** | **Integer** | Associated Service ID | [optional] 
 **disabled_external_accounts** | [**ExternalAccount**](ExternalAccount.md) | Associated Disabled External Accounts | [optional] 
-**disabled_external_accounts_id** | **Integer** | Associated Disabled External Accounts ID | [optional] 
+**suppressions** | [**Array&lt;Suppression&gt;**](Suppression.md) | Associated Suppressions | [optional] 
+**suppression_ids** | **Array&lt;Integer&gt;** | Associated Suppressions IDs | [optional] 
 
 

@@ -34,12 +34,12 @@ describe 'CustomComplianceDomainsApi' do
   # unit tests for create
   # Create a(n) Custom Compliance Domain
   # 
-  # @param identifier The identifier of this custom domain
   # @param custom_compliance_standard_id The ID of the Custom Compliance Standard this custom domain belongs to
+  # @param identifier The identifier of this custom domain
   # @param name Name
   # @param [Hash] opts the optional parameters
-  # @option opts [Integer] :position The position of this custom domain within the custom standard
   # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
+  # @option opts [Integer] :position The position of this custom domain within the custom standard
   # @return [CustomComplianceDomain]
   describe 'create test' do
     it "should work" do
@@ -50,7 +50,7 @@ describe 'CustomComplianceDomainsApi' do
   # unit tests for delete
   # Delete a(n) Custom Compliance Domain
   # 
-  # @param id  ID
+  # @param id Custom Compliance Domain ID
   # @param [Hash] opts the optional parameters
   # @return [Meta]
   describe 'delete test' do
@@ -77,11 +77,11 @@ describe 'CustomComplianceDomainsApi' do
   # 
   # @param id Custom Compliance Domain ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :identifier The identifier of this custom domain
+  # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
   # @option opts [Integer] :custom_compliance_standard_id The ID of the Custom Compliance Standard this custom domain belongs to
+  # @option opts [String] :identifier The identifier of this custom domain
   # @option opts [String] :name Name
   # @option opts [Integer] :position The position of this custom domain within the custom standard
-  # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
   # @return [CustomComplianceDomain]
   describe 'update test' do
     it "should work" do

@@ -35,8 +35,8 @@ describe 'APIKeysApi' do
   # Create a(n) API Key
   # The secret key will only be returned once when the key is first created
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :name The name of the API Key
   # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+  # @option opts [String] :name The name of the API Key
   # @return [APIKey]
   describe 'create test' do
     it "should work" do
@@ -47,7 +47,7 @@ describe 'APIKeysApi' do
   # unit tests for delete
   # Delete a(n) API Key
   # 
-  # @param id  ID
+  # @param id API Key ID
   # @param [Hash] opts the optional parameters
   # @return [Meta]
   describe 'delete test' do
@@ -60,8 +60,8 @@ describe 'APIKeysApi' do
   # Get a list of API Keys
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
   # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -87,8 +87,8 @@ describe 'APIKeysApi' do
   # 
   # @param id API Key ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :name The name of the API Key
   # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+  # @option opts [String] :name The name of the API Key
   # @return [APIKey]
   describe 'update test' do
     it "should work" do

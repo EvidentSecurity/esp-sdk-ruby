@@ -73,7 +73,7 @@ describe 'CustomSignatureDefinitionsApi' do
   # unit tests for delete
   # Delete a(n) Custom Signature Definition
   # 
-  # @param id  ID
+  # @param id Custom Signature Definition ID
   # @param [Hash] opts the optional parameters
   # @return [Meta]
   describe 'delete test' do
@@ -86,9 +86,9 @@ describe 'CustomSignatureDefinitionsApi' do
   # Get a list of Custom Signature Definitions
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, language, status, version_number]    Searchable Association: [custom_signature] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
   # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, language, status, version_number]    Searchable Association: [custom_signature] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -114,9 +114,9 @@ describe 'CustomSignatureDefinitionsApi' do
   # 
   # @param id Custom Signature Definition ID
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
   # @option opts [String] :code The code for this definition
   # @option opts [String] :language The language of the definition. Valid values are ruby, javascript
-  # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
   # @return [CustomSignatureDefinition]
   describe 'update test' do
     it "should work" do

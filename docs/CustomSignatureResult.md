@@ -17,6 +17,5 @@ Name | Type | Description | Notes
 **definition** | [**CustomSignatureDefinition**](CustomSignatureDefinition.md) | Associated Definition | [optional] 
 **definition_id** | **Integer** | Associated Definition ID | [optional] 
 **alerts** | [**Array&lt;Alert&gt;**](Alert.md) | Associated Alerts | [optional] 
-**alert_ids** | **Array&lt;Integer&gt;** | Associated Alerts IDs | [optional] 
 
 

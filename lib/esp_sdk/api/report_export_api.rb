@@ -21,37 +21,37 @@ module ESP
 
     # Export all alerts for a set of reports to a file
     # <p>An email will be sent to the calling user once the file is ready for download.</p> <p>The URL and filename attributes will be blank on create. When exporting is complete these attributes will be filled in and can be viewed using the show action.</p>
-    # @param requested_format The file format of the export. Valid values are csv, json, pdf
     # @param report_ids An array of report IDs to export alerts for
+    # @param requested_format The file format of the export. Valid values are csv, json, pdf
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
     # @return [ExportedReport]
-    def request_file(requested_format, report_ids, opts = {})
-      data, _status_code, _headers = request_file_with_http_info(requested_format, report_ids, opts)
+    def request_file(report_ids, requested_format, opts = {})
+      data, _status_code, _headers = request_file_with_http_info(report_ids, requested_format, opts)
       return data
     end
 
     # Export all alerts for a set of reports to a file
     # &lt;p&gt;An email will be sent to the calling user once the file is ready for download.&lt;/p&gt; &lt;p&gt;The URL and filename attributes will be blank on create. When exporting is complete these attributes will be filled in and can be viewed using the show action.&lt;/p&gt;
-    # @param requested_format The file format of the export. Valid values are csv, json, pdf
     # @param report_ids An array of report IDs to export alerts for
+    # @param requested_format The file format of the export. Valid values are csv, json, pdf
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
     # @return [Array<(ExportedReport, Fixnum, Hash)>] ExportedReport data, response status code and response headers
-    def request_file_with_http_info(requested_format, report_ids, opts = {})
+    def request_file_with_http_info(report_ids, requested_format, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ReportExportApi.request_file ..."
       end
+      # verify the required parameter 'report_ids' is set
+      fail ArgumentError, "Missing the required parameter 'report_ids' when calling ReportExportApi.request_file" if report_ids.nil?
       # verify the required parameter 'requested_format' is set
       fail ArgumentError, "Missing the required parameter 'requested_format' when calling ReportExportApi.request_file" if requested_format.nil?
       # verify enum value
       unless ['csv', 'json', 'pdf'].include?(requested_format)
         fail ArgumentError, "invalid value for 'requested_format', must be one of csv, json, pdf"
       end
-      # verify the required parameter 'report_ids' is set
-      fail ArgumentError, "Missing the required parameter 'report_ids' when calling ReportExportApi.request_file" if report_ids.nil?
       # resource path
       local_var_path = "/api/v2/reports/export/files.json_api".sub('{format}','json_api')
 
@@ -68,8 +68,8 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["requested_format"] = requested_format
       form_params["report_ids"] = @api_client.build_collection_param(report_ids, :multi)
+      form_params["requested_format"] = requested_format
       form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
 
       # http body (model)
@@ -90,31 +90,31 @@ module ESP
 
     # Export all alerts on reports to an integration
     # 
-    # @param report_ids An array of report IDs
     # @param integration_id The ID of the integration to send the alerts to
+    # @param report_ids An array of report IDs
     # @param [Hash] opts the optional parameters
     # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
     # @return [Meta]
-    def send_to_integration(report_ids, integration_id, opts = {})
-      data, _status_code, _headers = send_to_integration_with_http_info(report_ids, integration_id, opts)
+    def send_to_integration(integration_id, report_ids, opts = {})
+      data, _status_code, _headers = send_to_integration_with_http_info(integration_id, report_ids, opts)
       return data
     end
 
     # Export all alerts on reports to an integration
     # 
-    # @param report_ids An array of report IDs
     # @param integration_id The ID of the integration to send the alerts to
+    # @param report_ids An array of report IDs
     # @param [Hash] opts the optional parameters
     # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
-    def send_to_integration_with_http_info(report_ids, integration_id, opts = {})
+    def send_to_integration_with_http_info(integration_id, report_ids, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ReportExportApi.send_to_integration ..."
       end
-      # verify the required parameter 'report_ids' is set
-      fail ArgumentError, "Missing the required parameter 'report_ids' when calling ReportExportApi.send_to_integration" if report_ids.nil?
       # verify the required parameter 'integration_id' is set
       fail ArgumentError, "Missing the required parameter 'integration_id' when calling ReportExportApi.send_to_integration" if integration_id.nil?
+      # verify the required parameter 'report_ids' is set
+      fail ArgumentError, "Missing the required parameter 'report_ids' when calling ReportExportApi.send_to_integration" if report_ids.nil?
       # resource path
       local_var_path = "/api/v2/reports/export/integrations.json_api".sub('{format}','json_api')
 
@@ -130,8 +130,8 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["report_ids"] = @api_client.build_collection_param(report_ids, :multi)
       form_params["integration_id"] = integration_id
+      form_params["report_ids"] = @api_client.build_collection_param(report_ids, :multi)
       form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
 
       # http body (model)

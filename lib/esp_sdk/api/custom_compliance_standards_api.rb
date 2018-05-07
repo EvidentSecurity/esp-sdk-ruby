@@ -21,31 +21,31 @@ module ESP
 
     # Create a(n) Custom Compliance Standard
     # 
-    # @param name Name
     # @param description The description for this Compliance Standard
+    # @param name Name
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
     # @return [CustomComplianceStandard]
-    def create(name, description, opts = {})
-      data, _status_code, _headers = create_with_http_info(name, description, opts)
+    def create(description, name, opts = {})
+      data, _status_code, _headers = create_with_http_info(description, name, opts)
       return data
     end
 
     # Create a(n) Custom Compliance Standard
     # 
-    # @param name Name
     # @param description The description for this Compliance Standard
+    # @param name Name
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
     # @return [Array<(CustomComplianceStandard, Fixnum, Hash)>] CustomComplianceStandard data, response status code and response headers
-    def create_with_http_info(name, description, opts = {})
+    def create_with_http_info(description, name, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: CustomComplianceStandardsApi.create ..."
       end
-      # verify the required parameter 'name' is set
-      fail ArgumentError, "Missing the required parameter 'name' when calling CustomComplianceStandardsApi.create" if name.nil?
       # verify the required parameter 'description' is set
       fail ArgumentError, "Missing the required parameter 'description' when calling CustomComplianceStandardsApi.create" if description.nil?
+      # verify the required parameter 'name' is set
+      fail ArgumentError, "Missing the required parameter 'name' when calling CustomComplianceStandardsApi.create" if name.nil?
       # resource path
       local_var_path = "/api/v2/custom_compliance_standards.json_api".sub('{format}','json_api')
 
@@ -62,8 +62,8 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["name"] = name
       form_params["description"] = description
+      form_params["name"] = name
 
       # http body (model)
       post_body = nil
@@ -83,7 +83,7 @@ module ESP
 
     # Delete a(n) Custom Compliance Standard
     # 
-    # @param id  ID
+    # @param id Custom Compliance Standard ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
     def delete(id, opts = {})
@@ -93,7 +93,7 @@ module ESP
 
     # Delete a(n) Custom Compliance Standard
     # 
-    # @param id  ID
+    # @param id Custom Compliance Standard ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def delete_with_http_info(id, opts = {})
@@ -194,9 +194,9 @@ module ESP
     # 
     # @param id Custom Compliance Standard ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name Name
-    # @option opts [String] :description The description for this Compliance Standard
     # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
+    # @option opts [String] :description The description for this Compliance Standard
+    # @option opts [String] :name Name
     # @return [CustomComplianceStandard]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
@@ -207,9 +207,9 @@ module ESP
     # 
     # @param id Custom Compliance Standard ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name Name
-    # @option opts [String] :description The description for this Compliance Standard
     # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
+    # @option opts [String] :description The description for this Compliance Standard
+    # @option opts [String] :name Name
     # @return [Array<(CustomComplianceStandard, Fixnum, Hash)>] CustomComplianceStandard data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -233,8 +233,8 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
       form_params["description"] = opts[:'description'] if !opts[:'description'].nil?
+      form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
 
       # http body (model)
       post_body = nil

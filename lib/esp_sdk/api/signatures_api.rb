@@ -22,9 +22,9 @@ module ESP
     # Get a list of Signatures
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -34,9 +34,9 @@ module ESP
     # Get a list of Signatures
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -79,29 +79,33 @@ module ESP
 
     # Get a list of disabled External Accounts for a signature
     # 
+    # @param signature_id The ID of the signature to get the list of disabled external accounts for
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
-    def list_disabled_external_accounts(opts = {})
-      data, _status_code, _headers = list_disabled_external_accounts_with_http_info(opts)
+    def list_disabled_external_accounts(signature_id, opts = {})
+      data, _status_code, _headers = list_disabled_external_accounts_with_http_info(signature_id, opts)
       return data
     end
 
     # Get a list of disabled External Accounts for a signature
     # 
+    # @param signature_id The ID of the signature to get the list of disabled external accounts for
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
-    def list_disabled_external_accounts_with_http_info(opts = {})
+    def list_disabled_external_accounts_with_http_info(signature_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: SignaturesApi.list_disabled_external_accounts ..."
       end
+      # verify the required parameter 'signature_id' is set
+      fail ArgumentError, "Missing the required parameter 'signature_id' when calling SignaturesApi.list_disabled_external_accounts" if signature_id.nil?
       # resource path
-      local_var_path = "/api/v2/signatures/{signature_id}/disabled_external_accounts.json_api".sub('{format}','json_api')
+      local_var_path = "/api/v2/signatures/{signature_id}/disabled_external_accounts.json_api".sub('{format}','json_api').sub('{' + 'signature_id' + '}', signature_id.to_s)
 
       # query parameters
       query_params = {}
@@ -139,9 +143,9 @@ module ESP
     # Return only signatures that have a custom risk level set by searching with `filter:{custom_risk_level_present: 1}`
     # @param external_account_id The ID of the external account to retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [custom_risk_level_present, service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [custom_risk_level_present, service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list_with_custom_risk_level_for_external_account(external_account_id, opts = {})
       data, _status_code, _headers = list_with_custom_risk_level_for_external_account_with_http_info(external_account_id, opts)
@@ -152,9 +156,9 @@ module ESP
     # Return only signatures that have a custom risk level set by searching with &#x60;filter:{custom_risk_level_present: 1}&#x60;
     # @param external_account_id The ID of the external account to retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [custom_risk_level_present, service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [custom_risk_level_present, service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_custom_risk_level_for_external_account_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
@@ -178,8 +182,8 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
       form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
 
       # http body (model)
       post_body = nil
@@ -257,38 +261,38 @@ module ESP
     # Add a custom risk level to a Signature for an External Account
     # 
     # @param external_account_id The ID of the external account this signature custom risk level is for
-    # @param signature_id The signature ID this signature custom risk level is for
     # @param risk_level The custom risk-level of the problem identified by the signature for this external_account. Valid values are low, medium, high
+    # @param signature_id The signature ID this signature custom risk level is for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
     # @return [Signature]
-    def set_custom_risk_level_for_external_account(external_account_id, signature_id, risk_level, opts = {})
-      data, _status_code, _headers = set_custom_risk_level_for_external_account_with_http_info(external_account_id, signature_id, risk_level, opts)
+    def set_custom_risk_level_for_external_account(external_account_id, risk_level, signature_id, opts = {})
+      data, _status_code, _headers = set_custom_risk_level_for_external_account_with_http_info(external_account_id, risk_level, signature_id, opts)
       return data
     end
 
     # Add a custom risk level to a Signature for an External Account
     # 
     # @param external_account_id The ID of the external account this signature custom risk level is for
-    # @param signature_id The signature ID this signature custom risk level is for
     # @param risk_level The custom risk-level of the problem identified by the signature for this external_account. Valid values are low, medium, high
+    # @param signature_id The signature ID this signature custom risk level is for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
     # @return [Array<(Signature, Fixnum, Hash)>] Signature data, response status code and response headers
-    def set_custom_risk_level_for_external_account_with_http_info(external_account_id, signature_id, risk_level, opts = {})
+    def set_custom_risk_level_for_external_account_with_http_info(external_account_id, risk_level, signature_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: SignaturesApi.set_custom_risk_level_for_external_account ..."
       end
       # verify the required parameter 'external_account_id' is set
       fail ArgumentError, "Missing the required parameter 'external_account_id' when calling SignaturesApi.set_custom_risk_level_for_external_account" if external_account_id.nil?
-      # verify the required parameter 'signature_id' is set
-      fail ArgumentError, "Missing the required parameter 'signature_id' when calling SignaturesApi.set_custom_risk_level_for_external_account" if signature_id.nil?
       # verify the required parameter 'risk_level' is set
       fail ArgumentError, "Missing the required parameter 'risk_level' when calling SignaturesApi.set_custom_risk_level_for_external_account" if risk_level.nil?
       # verify enum value
       unless ['low', 'medium', 'high'].include?(risk_level)
         fail ArgumentError, "invalid value for 'risk_level', must be one of low, medium, high"
       end
+      # verify the required parameter 'signature_id' is set
+      fail ArgumentError, "Missing the required parameter 'signature_id' when calling SignaturesApi.set_custom_risk_level_for_external_account" if signature_id.nil?
       # resource path
       local_var_path = "/api/v2/external_accounts/{external_account_id}/signature_custom_risk_levels.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s)
 
@@ -305,8 +309,8 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["signature_id"] = signature_id
       form_params["risk_level"] = risk_level
+      form_params["signature_id"] = signature_id
 
       # http body (model)
       post_body = nil
@@ -328,7 +332,7 @@ module ESP
     # 
     # @param id Signature ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
     # @return [Signature]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
@@ -339,7 +343,7 @@ module ESP
     # 
     # @param id Signature ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
     # @return [Array<(Signature, Fixnum, Hash)>] Signature data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -385,8 +389,8 @@ module ESP
     # @param external_account_id The ID of the external account this signature custom risk level is for
     # @param signature_id The signature ID this signature custom risk level is for
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
     # @option opts [String] :risk_level The custom risk-level of the problem identified by the signature for this external_account. Valid values are low, medium, high
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
     # @return [Signature]
     def update_custom_risk_level_for_external_account(external_account_id, signature_id, opts = {})
       data, _status_code, _headers = update_custom_risk_level_for_external_account_with_http_info(external_account_id, signature_id, opts)
@@ -398,8 +402,8 @@ module ESP
     # @param external_account_id The ID of the external account this signature custom risk level is for
     # @param signature_id The signature ID this signature custom risk level is for
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
     # @option opts [String] :risk_level The custom risk-level of the problem identified by the signature for this external_account. Valid values are low, medium, high
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
     # @return [Array<(Signature, Fixnum, Hash)>] Signature data, response status code and response headers
     def update_custom_risk_level_for_external_account_with_http_info(external_account_id, signature_id, opts = {})
       if @api_client.config.debugging

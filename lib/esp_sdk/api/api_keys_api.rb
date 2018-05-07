@@ -22,8 +22,8 @@ module ESP
     # Create a(n) API Key
     # The secret key will only be returned once when the key is first created
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name The name of the API Key
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+    # @option opts [String] :name The name of the API Key
     # @return [APIKey]
     def create(opts = {})
       data, _status_code, _headers = create_with_http_info(opts)
@@ -33,8 +33,8 @@ module ESP
     # Create a(n) API Key
     # The secret key will only be returned once when the key is first created
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name The name of the API Key
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+    # @option opts [String] :name The name of the API Key
     # @return [Array<(APIKey, Fixnum, Hash)>] APIKey data, response status code and response headers
     def create_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -76,7 +76,7 @@ module ESP
 
     # Delete a(n) API Key
     # 
-    # @param id  ID
+    # @param id API Key ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
     def delete(id, opts = {})
@@ -86,7 +86,7 @@ module ESP
 
     # Delete a(n) API Key
     # 
-    # @param id  ID
+    # @param id API Key ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def delete_with_http_info(id, opts = {})
@@ -130,8 +130,8 @@ module ESP
     # Get a list of API Keys
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -141,8 +141,8 @@ module ESP
     # Get a list of API Keys
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -242,8 +242,8 @@ module ESP
     # 
     # @param id API Key ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name The name of the API Key
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+    # @option opts [String] :name The name of the API Key
     # @return [APIKey]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
@@ -254,8 +254,8 @@ module ESP
     # 
     # @param id API Key ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name The name of the API Key
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+    # @option opts [String] :name The name of the API Key
     # @return [Array<(APIKey, Fixnum, Hash)>] APIKey data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging

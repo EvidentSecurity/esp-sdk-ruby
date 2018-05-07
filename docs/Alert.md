@@ -25,14 +25,9 @@ Name | Type | Description | Notes
 **suppression** | [**Suppression**](Suppression.md) | Associated Suppression | [optional] 
 **suppression_id** | **Integer** | Associated Suppression ID | [optional] 
 **metadata** | [**Metadata**](Metadata.md) | Associated Metadata | [optional] 
-**metadata_id** | **Integer** | Associated Metadata ID | [optional] 
-**cloud_trail_events** | [**Array&lt;CloudTrailEvent&gt;**](CloudTrailEvent.md) | Associated Cloud Trail Events | [optional] 
-**cloud_trail_event_ids** | **Array&lt;Integer&gt;** | Associated Cloud Trail Events IDs | [optional] 
+**attribution** | [**Attribution**](Attribution.md) | Associated Attribution | [optional] 
 **tags** | [**Array&lt;Tag&gt;**](Tag.md) | Associated Tags | [optional] 
-**tag_ids** | **Array&lt;Integer&gt;** | Associated Tags IDs | [optional] 
 **compliance_controls** | [**Array&lt;ComplianceControl&gt;**](ComplianceControl.md) | Associated Compliance Controls | [optional] 
-**compliance_control_ids** | **Array&lt;Integer&gt;** | Associated Compliance Controls IDs | [optional] 
 **custom_compliance_controls** | [**Array&lt;CustomComplianceControl&gt;**](CustomComplianceControl.md) | Associated Custom Compliance Controls | [optional] 
-**custom_compliance_control_ids** | **Array&lt;Integer&gt;** | Associated Custom Compliance Controls IDs | [optional] 
 
 

@@ -38,6 +38,7 @@ describe 'TeamsApi' do
   # @param sub_organization_id The ID of the sub organization to attach this team to
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+  # @option opts [Integer] :report_interval The interval period in hours for Evident.io to run reports
   # @return [Team]
   describe 'create test' do
     it "should work" do
@@ -48,7 +49,7 @@ describe 'TeamsApi' do
   # unit tests for delete
   # Delete a(n) Team
   # 
-  # @param id  ID
+  # @param id Team ID
   # @param [Hash] opts the optional parameters
   # @return [Meta]
   describe 'delete test' do
@@ -61,9 +62,9 @@ describe 'TeamsApi' do
   # Get a list of Teams
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
   # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -89,8 +90,9 @@ describe 'TeamsApi' do
   # 
   # @param id Team ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :name Name of the team
   # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+  # @option opts [String] :name Name of the team
+  # @option opts [Integer] :report_interval The interval period in hours for Evident.io to run reports
   # @return [Team]
   describe 'update test' do
     it "should work" do

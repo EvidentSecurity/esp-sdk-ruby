@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **created_at** | **DateTime** | ISO 8601 timestamp when the resource was created | [optional] 
 **reason** | **String** | The reason for the suppresion | [optional] 
 **resource** | **String** | The resource string this suppression will suppress alerts for | [optional] 
-**suppression_type** | **String** | Type of suppression. | [optional] 
 **status** | **String** | The status of this suppresion. Valid values are active, inactive | [optional] 
 **updated_at** | **DateTime** | ISO 8601 timestamp when the resource was updated | [optional] 
 **organization** | [**Organization**](Organization.md) | Associated Organization | [optional] 

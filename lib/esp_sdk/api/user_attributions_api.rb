@@ -23,7 +23,6 @@ module ESP
     # URL will only be returned in this response and will not be accessible again.
     # @param external_account_id The ID of the external account to create a User Attribution Channel for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [ExternalAccountUserAttributionChannel]
     def add_channel(external_account_id, opts = {})
       data, _status_code, _headers = add_channel_with_http_info(external_account_id, opts)
@@ -34,7 +33,6 @@ module ESP
     # URL will only be returned in this response and will not be accessible again.
     # @param external_account_id The ID of the external account to create a User Attribution Channel for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [Array<(ExternalAccountUserAttributionChannel, Fixnum, Hash)>] ExternalAccountUserAttributionChannel data, response status code and response headers
     def add_channel_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
@@ -47,7 +45,6 @@ module ESP
 
       # query parameters
       query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -132,7 +129,6 @@ module ESP
     # The channel url will not be returned.
     # @param external_account_id The ID of the external account to show the user attribution channel for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [ExternalAccountUserAttributionChannel]
     def show_channel(external_account_id, opts = {})
       data, _status_code, _headers = show_channel_with_http_info(external_account_id, opts)
@@ -143,7 +139,6 @@ module ESP
     # The channel url will not be returned.
     # @param external_account_id The ID of the external account to show the user attribution channel for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
     # @return [Array<(ExternalAccountUserAttributionChannel, Fixnum, Hash)>] ExternalAccountUserAttributionChannel data, response status code and response headers
     def show_channel_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
@@ -156,7 +151,6 @@ module ESP
 
       # query parameters
       query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -188,8 +182,8 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to update the user attributions of
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
     # @option opts [String] :cloudtrail_name The name of the cloudetrail associated with the user attribution.
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
     # @return [ExternalAccount]
     def update(external_account_id, opts = {})
       data, _status_code, _headers = update_with_http_info(external_account_id, opts)
@@ -200,8 +194,8 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to update the user attributions of
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
     # @option opts [String] :cloudtrail_name The name of the cloudetrail associated with the user attribution.
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
     # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
     def update_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging

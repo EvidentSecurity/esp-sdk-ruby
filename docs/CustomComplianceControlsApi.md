@@ -35,7 +35,7 @@ custom_compliance_control_id = 56 # Integer | The ID of the Custom Compliance Co
 custom_signature_id = 56 # Integer | The ID of the custom signature that belongs to this custom control
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
 }
 
 begin
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **custom_compliance_control_id** | **Integer**| The ID of the Custom Compliance Control this custom signature belongs to | 
  **custom_signature_id** | **Integer**| The ID of the custom signature that belongs to this custom control | 
- **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -89,7 +89,7 @@ custom_compliance_control_id = 56 # Integer | The ID of the Custom Compliance Co
 signature_id = 56 # Integer | The ID of the signature that belongs to this custom control
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:  service See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
 }
 
 begin
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **custom_compliance_control_id** | **Integer**| The ID of the Custom Compliance Control this signature belongs to | 
  **signature_id** | **Integer**| The ID of the signature that belongs to this custom control | 
- **include** | **String**| Related objects that can be included in the response:  service See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  service, suppressions See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -125,7 +125,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **create**
-> CustomComplianceControl create(identifier, custom_compliance_domain_id, name, opts)
+> CustomComplianceControl create(custom_compliance_domain_id, identifier, name, opts)
 
 Create a(n) Custom Compliance Control
 
@@ -138,23 +138,23 @@ require 'esp_sdk'
 
 api_instance = ESP::CustomComplianceControlsApi.new
 
-identifier = "identifier_example" # String | The identifier of this custom control
-
 custom_compliance_domain_id = 56 # Integer | The ID of the Custom Compliance Domain this custom control belongs to
+
+identifier = "identifier_example" # String | The identifier of this custom control
 
 name = "name_example" # String | Name
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
+  custom_signature_ids: [56], # Array<Integer> | An array of custom signatures identified by custom_signature_id that belong to this custom control
   description: "description_example", # String | The description for this custom control
   position: 56, # Integer | The position of this custom control within the custom domain
-  signature_ids: [56], # Array<Integer> | An array of signatures identified by signature_id that belong to this custom control
-  custom_signature_ids: [56], # Array<Integer> | An array of custom signatures identified by custom_signature_id that belong to this custom control
-  include: "include_example" # String | Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
+  signature_ids: [56] # Array<Integer> | An array of signatures identified by signature_id that belong to this custom control
 }
 
 begin
   #Create a(n) Custom Compliance Control
-  result = api_instance.create(identifier, custom_compliance_domain_id, name, opts)
+  result = api_instance.create(custom_compliance_domain_id, identifier, name, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling CustomComplianceControlsApi->create: #{e}"
@@ -165,14 +165,14 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **identifier** | **String**| The identifier of this custom control | 
  **custom_compliance_domain_id** | **Integer**| The ID of the Custom Compliance Domain this custom control belongs to | 
+ **identifier** | **String**| The identifier of this custom control | 
  **name** | **String**| Name | 
+ **include** | **String**| Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information. | [optional] 
+ **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| An array of custom signatures identified by custom_signature_id that belong to this custom control | [optional] 
  **description** | **String**| The description for this custom control | [optional] 
  **position** | **Integer**| The position of this custom control within the custom domain | [optional] 
  **signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| An array of signatures identified by signature_id that belong to this custom control | [optional] 
- **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| An array of custom signatures identified by custom_signature_id that belong to this custom control | [optional] 
- **include** | **String**| Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -203,7 +203,7 @@ require 'esp_sdk'
 
 api_instance = ESP::CustomComplianceControlsApi.new
 
-id = 56 # Integer |  ID
+id = 56 # Integer | Custom Compliance Control ID
 
 
 begin
@@ -219,7 +219,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**|  ID | 
+ **id** | **Integer**| Custom Compliance Control ID | 
 
 ### Return type
 
@@ -253,8 +253,8 @@ api_instance = ESP::CustomComplianceControlsApi.new
 custom_compliance_control_id = 56 # Integer | The ID of the Custom Compliance Control this custom signature belongs to
 
 opts = { 
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -271,8 +271,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **custom_compliance_control_id** | **Integer**| The ID of the Custom Compliance Control this custom signature belongs to | 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
- **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -306,8 +306,8 @@ api_instance = ESP::CustomComplianceControlsApi.new
 custom_compliance_control_id = 56 # Integer | The ID of the Custom Compliance Control this signature belongs to
 
 opts = { 
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  service See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -324,8 +324,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **custom_compliance_control_id** | **Integer**| The ID of the Custom Compliance Control this signature belongs to | 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
- **include** | **String**| Related objects that can be included in the response:  service See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  service, suppressions See Including Objects for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -510,14 +510,14 @@ api_instance = ESP::CustomComplianceControlsApi.new
 id = 56 # Integer | Custom Compliance Control ID
 
 opts = { 
-  identifier: "identifier_example", # String | The identifier of this custom control
+  include: "include_example", # String | Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
   custom_compliance_domain_id: 56, # Integer | The ID of the Custom Compliance Domain this custom control belongs to
+  custom_signature_ids: [56], # Array<Integer> | An array of custom signatures identified by custom_signature_id that belong to this custom control
   description: "description_example", # String | The description for this custom control
+  identifier: "identifier_example", # String | The identifier of this custom control
   name: "name_example", # String | Name
   position: 56, # Integer | The position of this custom control within the custom domain
-  signature_ids: [56], # Array<Integer> | An array of signatures identified by signature_id that belong to this custom control
-  custom_signature_ids: [56], # Array<Integer> | An array of custom signatures identified by custom_signature_id that belong to this custom control
-  include: "include_example" # String | Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
+  signature_ids: [56] # Array<Integer> | An array of signatures identified by signature_id that belong to this custom control
 }
 
 begin
@@ -534,14 +534,14 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Custom Compliance Control ID | 
- **identifier** | **String**| The identifier of this custom control | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information. | [optional] 
  **custom_compliance_domain_id** | **Integer**| The ID of the Custom Compliance Domain this custom control belongs to | [optional] 
+ **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| An array of custom signatures identified by custom_signature_id that belong to this custom control | [optional] 
  **description** | **String**| The description for this custom control | [optional] 
+ **identifier** | **String**| The identifier of this custom control | [optional] 
  **name** | **String**| Name | [optional] 
  **position** | **Integer**| The position of this custom control within the custom domain | [optional] 
  **signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| An array of signatures identified by signature_id that belong to this custom control | [optional] 
- **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| An array of custom signatures identified by custom_signature_id that belong to this custom control | [optional] 
- **include** | **String**| Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information. | [optional] 
 
 ### Return type
 

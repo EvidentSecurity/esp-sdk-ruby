@@ -34,11 +34,11 @@ describe 'ReportExportApi' do
   # unit tests for request_file
   # Export all alerts for a set of reports to a file
   # &lt;p&gt;An email will be sent to the calling user once the file is ready for download.&lt;/p&gt; &lt;p&gt;The URL and filename attributes will be blank on create. When exporting is complete these attributes will be filled in and can be viewed using the show action.&lt;/p&gt;
-  # @param requested_format The file format of the export. Valid values are csv, json, pdf
   # @param report_ids An array of report IDs to export alerts for
+  # @param requested_format The file format of the export. Valid values are csv, json, pdf
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
   # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
+  # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
   # @return [ExportedReport]
   describe 'request_file test' do
     it "should work" do
@@ -49,8 +49,8 @@ describe 'ReportExportApi' do
   # unit tests for send_to_integration
   # Export all alerts on reports to an integration
   # 
-  # @param report_ids An array of report IDs
   # @param integration_id The ID of the integration to send the alerts to
+  # @param report_ids An array of report IDs
   # @param [Hash] opts the optional parameters
   # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
   # @return [Meta]

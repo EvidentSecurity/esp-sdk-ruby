@@ -35,8 +35,7 @@ describe 'RolesApi' do
   # Get a list of Roles
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -49,7 +48,6 @@ describe 'RolesApi' do
   # 
   # @param id Role ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [Role]
   describe 'show test' do
     it "should work" do

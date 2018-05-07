@@ -25,6 +25,7 @@ module ESP
     # @param sub_organization_id The ID of the sub organization to attach this team to
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+    # @option opts [Integer] :report_interval The interval period in hours for Evident.io to run reports
     # @return [Team]
     def create(name, sub_organization_id, opts = {})
       data, _status_code, _headers = create_with_http_info(name, sub_organization_id, opts)
@@ -37,6 +38,7 @@ module ESP
     # @param sub_organization_id The ID of the sub organization to attach this team to
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+    # @option opts [Integer] :report_interval The interval period in hours for Evident.io to run reports
     # @return [Array<(Team, Fixnum, Hash)>] Team data, response status code and response headers
     def create_with_http_info(name, sub_organization_id, opts = {})
       if @api_client.config.debugging
@@ -64,6 +66,7 @@ module ESP
       form_params = {}
       form_params["name"] = name
       form_params["sub_organization_id"] = sub_organization_id
+      form_params["report_interval"] = opts[:'report_interval'] if !opts[:'report_interval'].nil?
 
       # http body (model)
       post_body = nil
@@ -83,7 +86,7 @@ module ESP
 
     # Delete a(n) Team
     # 
-    # @param id  ID
+    # @param id Team ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
     def delete(id, opts = {})
@@ -93,7 +96,7 @@ module ESP
 
     # Delete a(n) Team
     # 
-    # @param id  ID
+    # @param id Team ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def delete_with_http_info(id, opts = {})
@@ -137,9 +140,9 @@ module ESP
     # Get a list of Teams
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -149,9 +152,9 @@ module ESP
     # Get a list of Teams
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -252,8 +255,9 @@ module ESP
     # 
     # @param id Team ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name Name of the team
     # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+    # @option opts [String] :name Name of the team
+    # @option opts [Integer] :report_interval The interval period in hours for Evident.io to run reports
     # @return [Team]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
@@ -264,8 +268,9 @@ module ESP
     # 
     # @param id Team ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name Name of the team
     # @option opts [String] :include Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+    # @option opts [String] :name Name of the team
+    # @option opts [Integer] :report_interval The interval period in hours for Evident.io to run reports
     # @return [Array<(Team, Fixnum, Hash)>] Team data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -290,6 +295,7 @@ module ESP
       # form parameters
       form_params = {}
       form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
+      form_params["report_interval"] = opts[:'report_interval'] if !opts[:'report_interval'].nil?
 
       # http body (model)
       post_body = nil

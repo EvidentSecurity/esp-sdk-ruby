@@ -15,6 +15,5 @@ Name | Type | Description | Notes
 **compliance_domain** | [**ComplianceDomain**](ComplianceDomain.md) | Associated Compliance Domain | [optional] 
 **compliance_domain_id** | **Integer** | Associated Compliance Domain ID | [optional] 
 **signatures** | [**Array&lt;Signature&gt;**](Signature.md) | Associated Signatures | [optional] 
-**signature_ids** | **Array&lt;Integer&gt;** | Associated Signatures IDs | [optional] 
 
 

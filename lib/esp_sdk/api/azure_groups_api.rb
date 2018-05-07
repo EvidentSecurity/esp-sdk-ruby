@@ -24,7 +24,7 @@ module ESP
     # @param azure_group_id The ID of the Azure group associated with this memberhsip
     # @param external_account_id The ID of the External Account associated with this memberhsip
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
     # @return [ExternalAccount]
     def add_external_account(azure_group_id, external_account_id, opts = {})
       data, _status_code, _headers = add_external_account_with_http_info(azure_group_id, external_account_id, opts)
@@ -36,7 +36,7 @@ module ESP
     # @param azure_group_id The ID of the Azure group associated with this memberhsip
     # @param external_account_id The ID of the External Account associated with this memberhsip
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
     # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
     def add_external_account_with_http_info(azure_group_id, external_account_id, opts = {})
       if @api_client.config.debugging
@@ -139,7 +139,7 @@ module ESP
 
     # Delete a(n) Azure Group
     # 
-    # @param id  ID
+    # @param id Azure Group ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
     def delete(id, opts = {})
@@ -149,7 +149,7 @@ module ESP
 
     # Delete a(n) Azure Group
     # 
-    # @param id  ID
+    # @param id Azure Group ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def delete_with_http_info(id, opts = {})
@@ -193,9 +193,9 @@ module ESP
     # Get a list of Azure Groups
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [organization, external_accounts] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @option opts [String] :include Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [organization, external_accounts] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -205,9 +205,9 @@ module ESP
     # Get a list of Azure Groups
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [organization, external_accounts] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @option opts [String] :include Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [organization, external_accounts] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -365,8 +365,8 @@ module ESP
     # 
     # @param id Azure Group ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name Name
     # @option opts [String] :include Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information.
+    # @option opts [String] :name Name
     # @return [AzureGroup]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
@@ -377,8 +377,8 @@ module ESP
     # 
     # @param id Azure Group ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :name Name
     # @option opts [String] :include Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information.
+    # @option opts [String] :name Name
     # @return [Array<(AzureGroup, Fixnum, Hash)>] AzureGroup data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging

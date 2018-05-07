@@ -44,12 +44,6 @@ module ESP
     # Associated Organization ID
     attr_accessor :organization_id
 
-    # Associated Teams
-    attr_accessor :teams
-
-    # Associated Teams IDs
-    attr_accessor :team_ids
-
     # Associated External Accounts
     attr_accessor :external_accounts
 
@@ -61,6 +55,12 @@ module ESP
 
     # Associated Definitions IDs
     attr_accessor :definition_ids
+
+    # Associated Suppressions
+    attr_accessor :suppressions
+
+    # Associated Suppressions IDs
+    attr_accessor :suppression_ids
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -76,12 +76,12 @@ module ESP
         :'updated_at' => :'updated_at',
         :'organization' => :'organization',
         :'organization_id' => :'organization_id',
-        :'teams' => :'teams',
-        :'team_ids' => :'team_ids',
         :'external_accounts' => :'external_accounts',
         :'external_account_ids' => :'external_account_ids',
         :'definitions' => :'definitions',
-        :'definition_ids' => :'definition_ids'
+        :'definition_ids' => :'definition_ids',
+        :'suppressions' => :'suppressions',
+        :'suppression_ids' => :'suppression_ids'
       }
     end
 
@@ -98,12 +98,12 @@ module ESP
         :'updated_at' => :'DateTime',
         :'organization' => :'Organization',
         :'organization_id' => :'Integer',
-        :'teams' => :'Array<Team>',
-        :'team_ids' => :'Array<Integer>',
         :'external_accounts' => :'Array<ExternalAccount>',
         :'external_account_ids' => :'Array<Integer>',
         :'definitions' => :'Array<CustomSignatureDefinition>',
-        :'definition_ids' => :'Array<Integer>'
+        :'definition_ids' => :'Array<Integer>',
+        :'suppressions' => :'Array<Suppression>',
+        :'suppression_ids' => :'Array<Integer>'
       }
     end
 
@@ -155,18 +155,6 @@ module ESP
         self.organization_id = attributes[:'organization_id']
       end
 
-      if attributes.has_key?(:'teams')
-        if (value = attributes[:'teams']).is_a?(Array)
-          self.teams = value
-        end
-      end
-
-      if attributes.has_key?(:'team_ids')
-        if (value = attributes[:'team_ids']).is_a?(Array)
-          self.team_ids = value
-        end
-      end
-
       if attributes.has_key?(:'external_accounts')
         if (value = attributes[:'external_accounts']).is_a?(Array)
           self.external_accounts = value
@@ -188,6 +176,18 @@ module ESP
       if attributes.has_key?(:'definition_ids')
         if (value = attributes[:'definition_ids']).is_a?(Array)
           self.definition_ids = value
+        end
+      end
+
+      if attributes.has_key?(:'suppressions')
+        if (value = attributes[:'suppressions']).is_a?(Array)
+          self.suppressions = value
+        end
+      end
+
+      if attributes.has_key?(:'suppression_ids')
+        if (value = attributes[:'suppression_ids']).is_a?(Array)
+          self.suppression_ids = value
         end
       end
 
@@ -221,12 +221,12 @@ module ESP
           updated_at == o.updated_at &&
           organization == o.organization &&
           organization_id == o.organization_id &&
-          teams == o.teams &&
-          team_ids == o.team_ids &&
           external_accounts == o.external_accounts &&
           external_account_ids == o.external_account_ids &&
           definitions == o.definitions &&
-          definition_ids == o.definition_ids
+          definition_ids == o.definition_ids &&
+          suppressions == o.suppressions &&
+          suppression_ids == o.suppression_ids
     end
 
     # @see the `==` method
@@ -238,7 +238,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, description, identifier, name, resolution, risk_level, updated_at, organization, organization_id, teams, team_ids, external_accounts, external_account_ids, definitions, definition_ids].hash
+      [id, created_at, description, identifier, name, resolution, risk_level, updated_at, organization, organization_id, external_accounts, external_account_ids, definitions, definition_ids, suppressions, suppression_ids].hash
     end
 
     # Builds the object from hash

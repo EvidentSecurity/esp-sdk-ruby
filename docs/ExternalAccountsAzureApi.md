@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> ExternalAccountAzure create(subscription_id, client_id, tenant_id, app_key, name, team_id)
+> ExternalAccountAzure create(app_key, client_id, name, subscription_id, team_id, tenant_id)
 
 Create an Azure External Account
 
@@ -24,22 +24,22 @@ require 'esp_sdk'
 
 api_instance = ESP::ExternalAccountsAzureApi.new
 
-subscription_id = "subscription_id_example" # String | Azure subscription ID
+app_key = "app_key_example" # String | Azure app key
 
 client_id = "client_id_example" # String | Azure client ID
 
-tenant_id = "tenant_id_example" # String | Azure tenant ID
-
-app_key = "app_key_example" # String | Azure app key
-
 name = "name_example" # String | Name
 
+subscription_id = "subscription_id_example" # String | Azure subscription ID
+
 team_id = 56 # Integer | The ID of the team the external account belongs to
+
+tenant_id = "tenant_id_example" # String | Azure tenant ID
 
 
 begin
   #Create an Azure External Account
-  result = api_instance.create(subscription_id, client_id, tenant_id, app_key, name, team_id)
+  result = api_instance.create(app_key, client_id, name, subscription_id, team_id, tenant_id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling ExternalAccountsAzureApi->create: #{e}"
@@ -50,12 +50,12 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscription_id** | **String**| Azure subscription ID | 
- **client_id** | **String**| Azure client ID | 
- **tenant_id** | **String**| Azure tenant ID | 
  **app_key** | **String**| Azure app key | 
+ **client_id** | **String**| Azure client ID | 
  **name** | **String**| Name | 
+ **subscription_id** | **String**| Azure subscription ID | 
  **team_id** | **Integer**| The ID of the team the external account belongs to | 
+ **tenant_id** | **String**| Azure tenant ID | 
 
 ### Return type
 
@@ -187,12 +187,12 @@ api_instance = ESP::ExternalAccountsAzureApi.new
 external_account_id = 56 # Integer | The ID of the external account to update an Azure credential for
 
 opts = { 
-  subscription_id: "subscription_id_example", # String | Azure subscription ID
-  client_id: "client_id_example", # String | Azure client ID
-  tenant_id: "tenant_id_example", # String | Azure tenant ID
   app_key: "app_key_example", # String | Azure app key
+  client_id: "client_id_example", # String | Azure client ID
   name: "name_example", # String | Name
-  team_id: 56 # Integer | The ID of the team the external account belongs to
+  subscription_id: "subscription_id_example", # String | Azure subscription ID
+  team_id: 56, # Integer | The ID of the team the external account belongs to
+  tenant_id: "tenant_id_example" # String | Azure tenant ID
 }
 
 begin
@@ -209,12 +209,12 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account to update an Azure credential for | 
- **subscription_id** | **String**| Azure subscription ID | [optional] 
- **client_id** | **String**| Azure client ID | [optional] 
- **tenant_id** | **String**| Azure tenant ID | [optional] 
  **app_key** | **String**| Azure app key | [optional] 
+ **client_id** | **String**| Azure client ID | [optional] 
  **name** | **String**| Name | [optional] 
+ **subscription_id** | **String**| Azure subscription ID | [optional] 
  **team_id** | **Integer**| The ID of the team the external account belongs to | [optional] 
+ **tenant_id** | **String**| Azure tenant ID | [optional] 
 
 ### Return type
 

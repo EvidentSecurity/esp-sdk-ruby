@@ -32,7 +32,7 @@ azure_group_id = 56 # Integer | The ID of the Azure group associated with this m
 external_account_id = 56 # Integer | The ID of the External Account associated with this memberhsip
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
 }
 
 begin
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **azure_group_id** | **Integer**| The ID of the Azure group associated with this memberhsip | 
  **external_account_id** | **Integer**| The ID of the External Account associated with this memberhsip | 
- **include** | **String**| Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -132,7 +132,7 @@ require 'esp_sdk'
 
 api_instance = ESP::AzureGroupsApi.new
 
-id = 56 # Integer |  ID
+id = 56 # Integer | Azure Group ID
 
 
 begin
@@ -148,7 +148,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**|  ID | 
+ **id** | **Integer**| Azure Group ID | 
 
 ### Return type
 
@@ -180,9 +180,9 @@ require 'esp_sdk'
 api_instance = ESP::AzureGroupsApi.new
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information.
   filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [organization, external_accounts] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -198,9 +198,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [organization, external_accounts] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
  **include** | **String**| Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [organization, external_accounts] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -335,8 +335,8 @@ api_instance = ESP::AzureGroupsApi.new
 id = 56 # Integer | Azure Group ID
 
 opts = { 
-  name: "name_example", # String | Name
-  include: "include_example" # String | Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information.
+  name: "name_example" # String | Name
 }
 
 begin
@@ -353,8 +353,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Azure Group ID | 
- **name** | **String**| Name | [optional] 
  **include** | **String**| Related objects that can be included in the response:  organization, external_accounts See Including Objects for more information. | [optional] 
+ **name** | **String**| Name | [optional] 
 
 ### Return type
 

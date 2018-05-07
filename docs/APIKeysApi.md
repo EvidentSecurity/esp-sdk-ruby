@@ -26,8 +26,8 @@ require 'esp_sdk'
 api_instance = ESP::APIKeysApi.new
 
 opts = { 
-  name: "name_example", # String | The name of the API Key
-  include: "include_example" # String | Related objects that can be included in the response:  user See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  user See Including Objects for more information.
+  name: "name_example" # String | The name of the API Key
 }
 
 begin
@@ -43,8 +43,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| The name of the API Key | [optional] 
  **include** | **String**| Related objects that can be included in the response:  user See Including Objects for more information. | [optional] 
+ **name** | **String**| The name of the API Key | [optional] 
 
 ### Return type
 
@@ -75,7 +75,7 @@ require 'esp_sdk'
 
 api_instance = ESP::APIKeysApi.new
 
-id = 56 # Integer |  ID
+id = 56 # Integer | API Key ID
 
 
 begin
@@ -91,7 +91,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**|  ID | 
+ **id** | **Integer**| API Key ID | 
 
 ### Return type
 
@@ -123,8 +123,8 @@ require 'esp_sdk'
 api_instance = ESP::APIKeysApi.new
 
 opts = { 
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  user See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  user See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -140,8 +140,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
  **include** | **String**| Related objects that can be included in the response:  user See Including Objects for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -226,8 +226,8 @@ api_instance = ESP::APIKeysApi.new
 id = 56 # Integer | API Key ID
 
 opts = { 
-  name: "name_example", # String | The name of the API Key
-  include: "include_example" # String | Related objects that can be included in the response:  user See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  user See Including Objects for more information.
+  name: "name_example" # String | The name of the API Key
 }
 
 begin
@@ -244,8 +244,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| API Key ID | 
- **name** | **String**| The name of the API Key | [optional] 
  **include** | **String**| Related objects that can be included in the response:  user See Including Objects for more information. | [optional] 
+ **name** | **String**| The name of the API Key | [optional] 
 
 ### Return type
 

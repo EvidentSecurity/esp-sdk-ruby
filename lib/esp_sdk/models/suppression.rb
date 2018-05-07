@@ -26,9 +26,6 @@ module ESP
     # The resource string this suppression will suppress alerts for
     attr_accessor :resource
 
-    # Type of suppression.
-    attr_accessor :suppression_type
-
     # The status of this suppresion. Valid values are active, inactive
     attr_accessor :status
 
@@ -79,7 +76,6 @@ module ESP
         :'created_at' => :'created_at',
         :'reason' => :'reason',
         :'resource' => :'resource',
-        :'suppression_type' => :'suppression_type',
         :'status' => :'status',
         :'updated_at' => :'updated_at',
         :'organization' => :'organization',
@@ -104,7 +100,6 @@ module ESP
         :'created_at' => :'DateTime',
         :'reason' => :'String',
         :'resource' => :'String',
-        :'suppression_type' => :'String',
         :'status' => :'String',
         :'updated_at' => :'DateTime',
         :'organization' => :'Organization',
@@ -144,10 +139,6 @@ module ESP
 
       if attributes.has_key?(:'resource')
         self.resource = attributes[:'resource']
-      end
-
-      if attributes.has_key?(:'suppression_type')
-        self.suppression_type = attributes[:'suppression_type']
       end
 
       if attributes.has_key?(:'status')
@@ -246,7 +237,6 @@ module ESP
           created_at == o.created_at &&
           reason == o.reason &&
           resource == o.resource &&
-          suppression_type == o.suppression_type &&
           status == o.status &&
           updated_at == o.updated_at &&
           organization == o.organization &&
@@ -272,7 +262,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, reason, resource, suppression_type, status, updated_at, organization, organization_id, created_by, created_by_id, regions, region_ids, external_accounts, external_account_ids, signatures, signature_ids, custom_signatures, custom_signature_ids].hash
+      [id, created_at, reason, resource, status, updated_at, organization, organization_id, created_by, created_by_id, regions, region_ids, external_accounts, external_account_ids, signatures, signature_ids, custom_signatures, custom_signature_ids].hash
     end
 
     # Builds the object from hash

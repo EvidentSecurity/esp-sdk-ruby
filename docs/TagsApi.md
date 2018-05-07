@@ -25,8 +25,7 @@ api_instance = ESP::TagsApi.new
 alert_id = 56 # Integer | The ID of the alert to list tags for
 
 opts = { 
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -43,8 +42,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **alert_id** | **Integer**| The ID of the alert to list tags for | 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
- **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -62,7 +60,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **show**
-> Tag show(id, opts)
+> Tag show(id)
 
 Show a single Tag
 
@@ -77,13 +75,10 @@ api_instance = ESP::TagsApi.new
 
 id = 56 # Integer | Tag ID
 
-opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
-}
 
 begin
   #Show a single Tag
-  result = api_instance.show(id, opts)
+  result = api_instance.show(id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling TagsApi->show: #{e}"
@@ -95,7 +90,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Tag ID | 
- **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
 
 ### Return type
 

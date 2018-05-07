@@ -50,9 +50,6 @@ module ESP
     # Associated Signatures
     attr_accessor :signatures
 
-    # Associated Signatures IDs
-    attr_accessor :signature_ids
-
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -68,8 +65,7 @@ module ESP
         :'compliance_standard_id' => :'compliance_standard_id',
         :'compliance_domain' => :'compliance_domain',
         :'compliance_domain_id' => :'compliance_domain_id',
-        :'signatures' => :'signatures',
-        :'signature_ids' => :'signature_ids'
+        :'signatures' => :'signatures'
       }
     end
 
@@ -87,8 +83,7 @@ module ESP
         :'compliance_standard_id' => :'Integer',
         :'compliance_domain' => :'ComplianceDomain',
         :'compliance_domain_id' => :'Integer',
-        :'signatures' => :'Array<Signature>',
-        :'signature_ids' => :'Array<Integer>'
+        :'signatures' => :'Array<Signature>'
       }
     end
 
@@ -150,12 +145,6 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'signature_ids')
-        if (value = attributes[:'signature_ids']).is_a?(Array)
-          self.signature_ids = value
-        end
-      end
-
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -187,8 +176,7 @@ module ESP
           compliance_standard_id == o.compliance_standard_id &&
           compliance_domain == o.compliance_domain &&
           compliance_domain_id == o.compliance_domain_id &&
-          signatures == o.signatures &&
-          signature_ids == o.signature_ids
+          signatures == o.signatures
     end
 
     # @see the `==` method
@@ -200,7 +188,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, name, identifier, description, updated_at, position, compliance_standard, compliance_standard_id, compliance_domain, compliance_domain_id, signatures, signature_ids].hash
+      [id, created_at, name, identifier, description, updated_at, position, compliance_standard, compliance_standard_id, compliance_domain, compliance_domain_id, signatures].hash
     end
 
     # Builds the object from hash

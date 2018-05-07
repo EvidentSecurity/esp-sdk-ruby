@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **for_alert**
-> Metadata for_alert(alert_id, opts)
+> Metadata for_alert(alert_id)
 
 Show the metadata for an alert
 
@@ -24,13 +24,10 @@ api_instance = ESP::MetadataApi.new
 
 alert_id = 56 # Integer | Alert Id
 
-opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
-}
 
 begin
   #Show the metadata for an alert
-  result = api_instance.for_alert(alert_id, opts)
+  result = api_instance.for_alert(alert_id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling MetadataApi->for_alert: #{e}"
@@ -42,7 +39,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **alert_id** | **Integer**| Alert Id | 
- **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -60,7 +56,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **show**
-> Metadata show(id, opts)
+> Metadata show(id)
 
 Show a single Metadata
 
@@ -75,13 +71,10 @@ api_instance = ESP::MetadataApi.new
 
 id = 56 # Integer | Metadata ID
 
-opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
-}
 
 begin
   #Show a single Metadata
-  result = api_instance.show(id, opts)
+  result = api_instance.show(id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling MetadataApi->show: #{e}"
@@ -93,7 +86,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Metadata ID | 
- **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
 
 ### Return type
 

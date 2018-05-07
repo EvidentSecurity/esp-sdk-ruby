@@ -190,7 +190,7 @@ module ESP
 
     # Delete a(n) Custom Signature Definition
     # 
-    # @param id  ID
+    # @param id Custom Signature Definition ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
     def delete(id, opts = {})
@@ -200,7 +200,7 @@ module ESP
 
     # Delete a(n) Custom Signature Definition
     # 
-    # @param id  ID
+    # @param id Custom Signature Definition ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def delete_with_http_info(id, opts = {})
@@ -244,9 +244,9 @@ module ESP
     # Get a list of Custom Signature Definitions
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, language, status, version_number]    Searchable Association: [custom_signature] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, language, status, version_number]    Searchable Association: [custom_signature] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -256,9 +256,9 @@ module ESP
     # Get a list of Custom Signature Definitions
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, language, status, version_number]    Searchable Association: [custom_signature] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, language, status, version_number]    Searchable Association: [custom_signature] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -359,9 +359,9 @@ module ESP
     # 
     # @param id Custom Signature Definition ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @option opts [String] :code The code for this definition
     # @option opts [String] :language The language of the definition. Valid values are ruby, javascript
-    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [CustomSignatureDefinition]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
@@ -372,9 +372,9 @@ module ESP
     # 
     # @param id Custom Signature Definition ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @option opts [String] :code The code for this definition
     # @option opts [String] :language The language of the definition. Valid values are ruby, javascript
-    # @option opts [String] :include Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
     # @return [Array<(CustomSignatureDefinition, Fixnum, Hash)>] CustomSignatureDefinition data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging

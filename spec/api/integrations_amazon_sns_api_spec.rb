@@ -35,20 +35,20 @@ describe 'IntegrationsAmazonSNSApi' do
   # Create an Amazon SNS Integration
   # 
   # @param arn The role arn for accessing the SNS topic
-  # @param external_id The external ID for the IAM role
-  # @param topic The SNS topic arn
-  # @param name Name of the integration
   # @param external_account_ids External accounts for integration
+  # @param external_id The external ID for the IAM role
+  # @param name Name of the integration
+  # @param topic The SNS topic arn
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
   # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
-  # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
   # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
+  # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
+  # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
   # @option opts [BOOLEAN] :send_updates This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
   # @option opts [BOOLEAN] :send_when_suppressed Send notifications for suppressed alerts
   # @option opts [Array<Integer>] :signature_ids Signatures for integration
   # @option opts [Array<String>] :statuses Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-  # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
-  # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
   # @return [IntegrationAmazonSns]
   describe 'create test' do
     it "should work" do
@@ -74,20 +74,20 @@ describe 'IntegrationsAmazonSNSApi' do
   # 
   # @param integration_id The ID of the integration
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :arn The role arn for accessing the SNS topic
-  # @option opts [String] :external_id The external ID for the IAM role
-  # @option opts [String] :topic The SNS topic arn
-  # @option opts [String] :name Name of the integration
+  # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
   # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
-  # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
   # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
+  # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
+  # @option opts [String] :arn The role arn for accessing the SNS topic
+  # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
+  # @option opts [Array<Integer>] :external_account_ids External accounts for integration
+  # @option opts [String] :external_id The external ID for the IAM role
+  # @option opts [String] :name Name of the integration
   # @option opts [BOOLEAN] :send_updates This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
   # @option opts [BOOLEAN] :send_when_suppressed Send notifications for suppressed alerts
   # @option opts [Array<Integer>] :signature_ids Signatures for integration
   # @option opts [Array<String>] :statuses Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-  # @option opts [Array<Integer>] :external_account_ids External accounts for integration
-  # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
-  # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
+  # @option opts [String] :topic The SNS topic arn
   # @return [IntegrationAmazonSns]
   describe 'update test' do
     it "should work" do
