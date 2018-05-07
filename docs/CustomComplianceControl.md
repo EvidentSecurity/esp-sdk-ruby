@@ -15,8 +15,6 @@ Name | Type | Description | Notes
 **custom_compliance_domain** | [**CustomComplianceDomain**](CustomComplianceDomain.md) | Associated Custom Compliance Domain | [optional] 
 **custom_compliance_domain_id** | **Integer** | Associated Custom Compliance Domain ID | [optional] 
 **signatures** | [**Array&lt;Signature&gt;**](Signature.md) | Associated Signatures | [optional] 
-**signature_ids** | **Array&lt;Integer&gt;** | Associated Signatures IDs | [optional] 
 **custom_signatures** | [**Array&lt;CustomSignature&gt;**](CustomSignature.md) | Associated Custom Signatures | [optional] 
-**custom_signature_ids** | **Array&lt;Integer&gt;** | Associated Custom Signatures IDs | [optional] 
 
 

@@ -24,8 +24,7 @@ api_instance = ESP::RegionsApi.new
 
 opts = { 
   filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, code, name] Matching Searchable Attributes: [code, name] Limited Searchable Attribute: [provider_eq]  Searchable Association: [suppressions] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -42,8 +41,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, code, name] Matching Searchable Attributes: [code, name] Limited Searchable Attribute: [provider_eq]  Searchable Association: [suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
- **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -61,7 +59,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **show**
-> Region show(id, opts)
+> Region show(id)
 
 Show a single Region
 
@@ -76,13 +74,10 @@ api_instance = ESP::RegionsApi.new
 
 id = 56 # Integer | Region ID
 
-opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
-}
 
 begin
   #Show a single Region
-  result = api_instance.show(id, opts)
+  result = api_instance.show(id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling RegionsApi->show: #{e}"
@@ -94,7 +89,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Region ID | 
- **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
 
 ### Return type
 

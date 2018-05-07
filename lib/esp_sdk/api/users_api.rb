@@ -21,47 +21,47 @@ module ESP
 
     # Create a(n) User
     # 
+    # @param email The email of the user
     # @param first_name The first name of the user
     # @param last_name The last name of the user
-    # @param email The email of the user
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :role_id The ID of the role of the user
-    # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to
-    # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
     # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :phone The phone number of the user
+    # @option opts [Integer] :role_id The ID of the role of the user. Only a manager can set or modify the role id.
+    # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to. Only a manager can set or modify the sub organization ids.
+    # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to. Only a manager can set or modify the team ids.
     # @option opts [String] :time_zone The time zone of the user. See Time Zones for a list of valid time zones
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
     # @return [User]
-    def create(first_name, last_name, email, opts = {})
-      data, _status_code, _headers = create_with_http_info(first_name, last_name, email, opts)
+    def create(email, first_name, last_name, opts = {})
+      data, _status_code, _headers = create_with_http_info(email, first_name, last_name, opts)
       return data
     end
 
     # Create a(n) User
     # 
+    # @param email The email of the user
     # @param first_name The first name of the user
     # @param last_name The last name of the user
-    # @param email The email of the user
     # @param [Hash] opts the optional parameters
-    # @option opts [Integer] :role_id The ID of the role of the user
-    # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to
-    # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
     # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :phone The phone number of the user
+    # @option opts [Integer] :role_id The ID of the role of the user. Only a manager can set or modify the role id.
+    # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to. Only a manager can set or modify the sub organization ids.
+    # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to. Only a manager can set or modify the team ids.
     # @option opts [String] :time_zone The time zone of the user. See Time Zones for a list of valid time zones
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
-    def create_with_http_info(first_name, last_name, email, opts = {})
+    def create_with_http_info(email, first_name, last_name, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: UsersApi.create ..."
       end
+      # verify the required parameter 'email' is set
+      fail ArgumentError, "Missing the required parameter 'email' when calling UsersApi.create" if email.nil?
       # verify the required parameter 'first_name' is set
       fail ArgumentError, "Missing the required parameter 'first_name' when calling UsersApi.create" if first_name.nil?
       # verify the required parameter 'last_name' is set
       fail ArgumentError, "Missing the required parameter 'last_name' when calling UsersApi.create" if last_name.nil?
-      # verify the required parameter 'email' is set
-      fail ArgumentError, "Missing the required parameter 'email' when calling UsersApi.create" if email.nil?
       # resource path
       local_var_path = "/api/v2/users.json_api".sub('{format}','json_api')
 
@@ -78,14 +78,14 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["email"] = email
       form_params["first_name"] = first_name
       form_params["last_name"] = last_name
-      form_params["email"] = email
+      form_params["disable_daily_emails"] = opts[:'disable_daily_emails'] if !opts[:'disable_daily_emails'].nil?
+      form_params["phone"] = opts[:'phone'] if !opts[:'phone'].nil?
       form_params["role_id"] = opts[:'role_id'] if !opts[:'role_id'].nil?
       form_params["sub_organization_ids"] = @api_client.build_collection_param(opts[:'sub_organization_ids'], :multi) if !opts[:'sub_organization_ids'].nil?
       form_params["team_ids"] = @api_client.build_collection_param(opts[:'team_ids'], :multi) if !opts[:'team_ids'].nil?
-      form_params["disable_daily_emails"] = opts[:'disable_daily_emails'] if !opts[:'disable_daily_emails'].nil?
-      form_params["phone"] = opts[:'phone'] if !opts[:'phone'].nil?
       form_params["time_zone"] = opts[:'time_zone'] if !opts[:'time_zone'].nil?
 
       # http body (model)
@@ -106,7 +106,7 @@ module ESP
 
     # Delete a(n) User
     # The users current password is required when deleting yourself.
-    # @param id  ID
+    # @param id User ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :current_password The user&#39;s currently stored password
     # @return [Meta]
@@ -117,7 +117,7 @@ module ESP
 
     # Delete a(n) User
     # The users current password is required when deleting yourself.
-    # @param id  ID
+    # @param id User ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :current_password The user&#39;s currently stored password
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
@@ -163,9 +163,9 @@ module ESP
     # Get a list of Users
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -175,9 +175,9 @@ module ESP
     # Get a list of Users
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -278,16 +278,15 @@ module ESP
     # 
     # @param id User ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+    # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :first_name The first name of the user
     # @option opts [String] :last_name The last name of the user
-    # @option opts [String] :email The email of the user
-    # @option opts [Integer] :role_id The ID of the role of the user
-    # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to
-    # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to
-    # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :phone The phone number of the user
+    # @option opts [Integer] :role_id The ID of the role of the user. Only a manager can set or modify the role id.
+    # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to. Only a manager can set or modify the sub organization ids.
+    # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to. Only a manager can set or modify the team ids.
     # @option opts [String] :time_zone The time zone of the user. See Time Zones for a list of valid time zones
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
     # @return [User]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
@@ -298,16 +297,15 @@ module ESP
     # 
     # @param id User ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+    # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :first_name The first name of the user
     # @option opts [String] :last_name The last name of the user
-    # @option opts [String] :email The email of the user
-    # @option opts [Integer] :role_id The ID of the role of the user
-    # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to
-    # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to
-    # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :phone The phone number of the user
+    # @option opts [Integer] :role_id The ID of the role of the user. Only a manager can set or modify the role id.
+    # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to. Only a manager can set or modify the sub organization ids.
+    # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to. Only a manager can set or modify the team ids.
     # @option opts [String] :time_zone The time zone of the user. See Time Zones for a list of valid time zones
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
     # @return [Array<(User, Fixnum, Hash)>] User data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -331,14 +329,13 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["disable_daily_emails"] = opts[:'disable_daily_emails'] if !opts[:'disable_daily_emails'].nil?
       form_params["first_name"] = opts[:'first_name'] if !opts[:'first_name'].nil?
       form_params["last_name"] = opts[:'last_name'] if !opts[:'last_name'].nil?
-      form_params["email"] = opts[:'email'] if !opts[:'email'].nil?
+      form_params["phone"] = opts[:'phone'] if !opts[:'phone'].nil?
       form_params["role_id"] = opts[:'role_id'] if !opts[:'role_id'].nil?
       form_params["sub_organization_ids"] = @api_client.build_collection_param(opts[:'sub_organization_ids'], :multi) if !opts[:'sub_organization_ids'].nil?
       form_params["team_ids"] = @api_client.build_collection_param(opts[:'team_ids'], :multi) if !opts[:'team_ids'].nil?
-      form_params["disable_daily_emails"] = opts[:'disable_daily_emails'] if !opts[:'disable_daily_emails'].nil?
-      form_params["phone"] = opts[:'phone'] if !opts[:'phone'].nil?
       form_params["time_zone"] = opts[:'time_zone'] if !opts[:'time_zone'].nil?
 
       # http body (model)

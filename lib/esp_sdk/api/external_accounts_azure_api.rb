@@ -21,45 +21,45 @@ module ESP
 
     # Create an Azure External Account
     # The channel_url will only be returned in this response and will not be accessible again. The related external_account object will be returned with the response.
-    # @param subscription_id Azure subscription ID
-    # @param client_id Azure client ID
-    # @param tenant_id Azure tenant ID
     # @param app_key Azure app key
+    # @param client_id Azure client ID
     # @param name Name
+    # @param subscription_id Azure subscription ID
     # @param team_id The ID of the team the external account belongs to
+    # @param tenant_id Azure tenant ID
     # @param [Hash] opts the optional parameters
     # @return [ExternalAccountAzure]
-    def create(subscription_id, client_id, tenant_id, app_key, name, team_id, opts = {})
-      data, _status_code, _headers = create_with_http_info(subscription_id, client_id, tenant_id, app_key, name, team_id, opts)
+    def create(app_key, client_id, name, subscription_id, team_id, tenant_id, opts = {})
+      data, _status_code, _headers = create_with_http_info(app_key, client_id, name, subscription_id, team_id, tenant_id, opts)
       return data
     end
 
     # Create an Azure External Account
     # The channel_url will only be returned in this response and will not be accessible again. The related external_account object will be returned with the response.
-    # @param subscription_id Azure subscription ID
-    # @param client_id Azure client ID
-    # @param tenant_id Azure tenant ID
     # @param app_key Azure app key
+    # @param client_id Azure client ID
     # @param name Name
+    # @param subscription_id Azure subscription ID
     # @param team_id The ID of the team the external account belongs to
+    # @param tenant_id Azure tenant ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(ExternalAccountAzure, Fixnum, Hash)>] ExternalAccountAzure data, response status code and response headers
-    def create_with_http_info(subscription_id, client_id, tenant_id, app_key, name, team_id, opts = {})
+    def create_with_http_info(app_key, client_id, name, subscription_id, team_id, tenant_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalAccountsAzureApi.create ..."
       end
-      # verify the required parameter 'subscription_id' is set
-      fail ArgumentError, "Missing the required parameter 'subscription_id' when calling ExternalAccountsAzureApi.create" if subscription_id.nil?
-      # verify the required parameter 'client_id' is set
-      fail ArgumentError, "Missing the required parameter 'client_id' when calling ExternalAccountsAzureApi.create" if client_id.nil?
-      # verify the required parameter 'tenant_id' is set
-      fail ArgumentError, "Missing the required parameter 'tenant_id' when calling ExternalAccountsAzureApi.create" if tenant_id.nil?
       # verify the required parameter 'app_key' is set
       fail ArgumentError, "Missing the required parameter 'app_key' when calling ExternalAccountsAzureApi.create" if app_key.nil?
+      # verify the required parameter 'client_id' is set
+      fail ArgumentError, "Missing the required parameter 'client_id' when calling ExternalAccountsAzureApi.create" if client_id.nil?
       # verify the required parameter 'name' is set
       fail ArgumentError, "Missing the required parameter 'name' when calling ExternalAccountsAzureApi.create" if name.nil?
+      # verify the required parameter 'subscription_id' is set
+      fail ArgumentError, "Missing the required parameter 'subscription_id' when calling ExternalAccountsAzureApi.create" if subscription_id.nil?
       # verify the required parameter 'team_id' is set
       fail ArgumentError, "Missing the required parameter 'team_id' when calling ExternalAccountsAzureApi.create" if team_id.nil?
+      # verify the required parameter 'tenant_id' is set
+      fail ArgumentError, "Missing the required parameter 'tenant_id' when calling ExternalAccountsAzureApi.create" if tenant_id.nil?
       # resource path
       local_var_path = "/api/v2/external_accounts/azure.json_api".sub('{format}','json_api')
 
@@ -75,12 +75,12 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["subscription_id"] = subscription_id
-      form_params["client_id"] = client_id
-      form_params["tenant_id"] = tenant_id
       form_params["app_key"] = app_key
+      form_params["client_id"] = client_id
       form_params["name"] = name
+      form_params["subscription_id"] = subscription_id
       form_params["team_id"] = team_id
+      form_params["tenant_id"] = tenant_id
 
       # http body (model)
       post_body = nil
@@ -211,12 +211,12 @@ module ESP
     #  The related external_account object will be returned with the response.
     # @param external_account_id The ID of the external account to update an Azure credential for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :subscription_id Azure subscription ID
-    # @option opts [String] :client_id Azure client ID
-    # @option opts [String] :tenant_id Azure tenant ID
     # @option opts [String] :app_key Azure app key
+    # @option opts [String] :client_id Azure client ID
     # @option opts [String] :name Name
+    # @option opts [String] :subscription_id Azure subscription ID
     # @option opts [Integer] :team_id The ID of the team the external account belongs to
+    # @option opts [String] :tenant_id Azure tenant ID
     # @return [ExternalAccountAzure]
     def update(external_account_id, opts = {})
       data, _status_code, _headers = update_with_http_info(external_account_id, opts)
@@ -227,12 +227,12 @@ module ESP
     #  The related external_account object will be returned with the response.
     # @param external_account_id The ID of the external account to update an Azure credential for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :subscription_id Azure subscription ID
-    # @option opts [String] :client_id Azure client ID
-    # @option opts [String] :tenant_id Azure tenant ID
     # @option opts [String] :app_key Azure app key
+    # @option opts [String] :client_id Azure client ID
     # @option opts [String] :name Name
+    # @option opts [String] :subscription_id Azure subscription ID
     # @option opts [Integer] :team_id The ID of the team the external account belongs to
+    # @option opts [String] :tenant_id Azure tenant ID
     # @return [Array<(ExternalAccountAzure, Fixnum, Hash)>] ExternalAccountAzure data, response status code and response headers
     def update_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
@@ -255,12 +255,12 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["subscription_id"] = opts[:'subscription_id'] if !opts[:'subscription_id'].nil?
-      form_params["client_id"] = opts[:'client_id'] if !opts[:'client_id'].nil?
-      form_params["tenant_id"] = opts[:'tenant_id'] if !opts[:'tenant_id'].nil?
       form_params["app_key"] = opts[:'app_key'] if !opts[:'app_key'].nil?
+      form_params["client_id"] = opts[:'client_id'] if !opts[:'client_id'].nil?
       form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
+      form_params["subscription_id"] = opts[:'subscription_id'] if !opts[:'subscription_id'].nil?
       form_params["team_id"] = opts[:'team_id'] if !opts[:'team_id'].nil?
+      form_params["tenant_id"] = opts[:'tenant_id'] if !opts[:'tenant_id'].nil?
 
       # http body (model)
       post_body = nil

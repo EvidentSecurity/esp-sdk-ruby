@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> IntegrationPagerDuty create(api_key, name, external_account_ids, opts)
+> IntegrationPagerDuty create(api_key, external_account_ids, name, opts)
 
 Create a Pager Duty Integration
 
@@ -25,25 +25,25 @@ api_instance = ESP::IntegrationsPagerDutyApi.new
 
 api_key = "api_key_example" # String | The API Key for the PagerDuty Integration
 
-name = "name_example" # String | Name of the integration
-
 external_account_ids = [56] # Array<Integer> | External accounts for integration
 
+name = "name_example" # String | Name of the integration
+
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  integration See Including Objects for more information.
   all_high_risk: true, # BOOLEAN | Send all high risk alerts
-  all_medium_risk: true, # BOOLEAN | Send all medium risk alerts
   all_low_risk: true, # BOOLEAN | Send all low risk alerts
+  all_medium_risk: true, # BOOLEAN | Send all medium risk alerts
+  custom_signature_ids: [56], # Array<Integer> | Custom signatures for integration
   send_updates: true, # BOOLEAN | This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
   send_when_suppressed: true, # BOOLEAN | Send notifications for suppressed alerts
   signature_ids: [56], # Array<Integer> | Signatures for integration
-  statuses: ["statuses_example"], # Array<String> | Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-  custom_signature_ids: [56], # Array<Integer> | Custom signatures for integration
-  include: "include_example" # String | Related objects that can be included in the response:  integration See Including Objects for more information.
+  statuses: ["statuses_example"] # Array<String> | Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
 }
 
 begin
   #Create a Pager Duty Integration
-  result = api_instance.create(api_key, name, external_account_ids, opts)
+  result = api_instance.create(api_key, external_account_ids, name, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling IntegrationsPagerDutyApi->create: #{e}"
@@ -55,17 +55,17 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **api_key** | **String**| The API Key for the PagerDuty Integration | 
- **name** | **String**| Name of the integration | 
  **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| External accounts for integration | 
+ **name** | **String**| Name of the integration | 
+ **include** | **String**| Related objects that can be included in the response:  integration See Including Objects for more information. | [optional] 
  **all_high_risk** | **BOOLEAN**| Send all high risk alerts | [optional] 
- **all_medium_risk** | **BOOLEAN**| Send all medium risk alerts | [optional] 
  **all_low_risk** | **BOOLEAN**| Send all low risk alerts | [optional] 
+ **all_medium_risk** | **BOOLEAN**| Send all medium risk alerts | [optional] 
+ **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Custom signatures for integration | [optional] 
  **send_updates** | **BOOLEAN**| This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons. | [optional] 
  **send_when_suppressed** | **BOOLEAN**| Send notifications for suppressed alerts | [optional] 
  **signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Signatures for integration | [optional] 
  **statuses** | [**Array&lt;String&gt;**](String.md)| Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info | [optional] 
- **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Custom signatures for integration | [optional] 
- **include** | **String**| Related objects that can be included in the response:  integration See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -150,18 +150,18 @@ api_instance = ESP::IntegrationsPagerDutyApi.new
 integration_id = 56 # Integer | The ID of the integration
 
 opts = { 
-  api_key: "api_key_example", # String | The API Key for the PagerDuty Integration
-  name: "name_example", # String | Name of the integration
+  include: "include_example", # String | Related objects that can be included in the response:  integration See Including Objects for more information.
   all_high_risk: true, # BOOLEAN | Send all high risk alerts
-  all_medium_risk: true, # BOOLEAN | Send all medium risk alerts
   all_low_risk: true, # BOOLEAN | Send all low risk alerts
+  all_medium_risk: true, # BOOLEAN | Send all medium risk alerts
+  api_key: "api_key_example", # String | The API Key for the PagerDuty Integration
+  custom_signature_ids: [56], # Array<Integer> | Custom signatures for integration
+  external_account_ids: [56], # Array<Integer> | External accounts for integration
+  name: "name_example", # String | Name of the integration
   send_updates: true, # BOOLEAN | This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
   send_when_suppressed: true, # BOOLEAN | Send notifications for suppressed alerts
   signature_ids: [56], # Array<Integer> | Signatures for integration
-  statuses: ["statuses_example"], # Array<String> | Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-  external_account_ids: [56], # Array<Integer> | External accounts for integration
-  custom_signature_ids: [56], # Array<Integer> | Custom signatures for integration
-  include: "include_example" # String | Related objects that can be included in the response:  integration See Including Objects for more information.
+  statuses: ["statuses_example"] # Array<String> | Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
 }
 
 begin
@@ -178,18 +178,18 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **integration_id** | **Integer**| The ID of the integration | 
- **api_key** | **String**| The API Key for the PagerDuty Integration | [optional] 
- **name** | **String**| Name of the integration | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  integration See Including Objects for more information. | [optional] 
  **all_high_risk** | **BOOLEAN**| Send all high risk alerts | [optional] 
- **all_medium_risk** | **BOOLEAN**| Send all medium risk alerts | [optional] 
  **all_low_risk** | **BOOLEAN**| Send all low risk alerts | [optional] 
+ **all_medium_risk** | **BOOLEAN**| Send all medium risk alerts | [optional] 
+ **api_key** | **String**| The API Key for the PagerDuty Integration | [optional] 
+ **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Custom signatures for integration | [optional] 
+ **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| External accounts for integration | [optional] 
+ **name** | **String**| Name of the integration | [optional] 
  **send_updates** | **BOOLEAN**| This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons. | [optional] 
  **send_when_suppressed** | **BOOLEAN**| Send notifications for suppressed alerts | [optional] 
  **signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Signatures for integration | [optional] 
  **statuses** | [**Array&lt;String&gt;**](String.md)| Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info | [optional] 
- **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| External accounts for integration | [optional] 
- **custom_signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| Custom signatures for integration | [optional] 
- **include** | **String**| Related objects that can be included in the response:  integration See Including Objects for more information. | [optional] 
 
 ### Return type
 

@@ -34,23 +34,23 @@ describe 'IntegrationsJiraApi' do
   # unit tests for create
   # Create a JIRA Integration
   # 
-  # @param url The host and port portion of the Jira REST API URL
-  # @param project_key The designated Key for your Jira project
-  # @param issue_type The Issue Type for ESP Alerts
-  # @param username A username to access the Jira project
-  # @param password A password to access the JIRA project
-  # @param name Name of the integration
   # @param external_account_ids External accounts for integration
+  # @param issue_type The Issue Type for ESP Alerts
+  # @param name Name of the integration
+  # @param password A password to access the JIRA project
+  # @param project_key The designated Key for your Jira project
+  # @param url The host and port portion of the Jira REST API URL
+  # @param username A username to access the Jira project
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  integration See Including Objects for more information.
   # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
-  # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
   # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
+  # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
+  # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
   # @option opts [BOOLEAN] :send_updates This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
   # @option opts [BOOLEAN] :send_when_suppressed Send notifications for suppressed alerts
   # @option opts [Array<Integer>] :signature_ids Signatures for integration
   # @option opts [Array<String>] :statuses Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-  # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
-  # @option opts [String] :include Related objects that can be included in the response:  integration See Including Objects for more information.
   # @return [IntegrationJira]
   describe 'create test' do
     it "should work" do
@@ -76,22 +76,22 @@ describe 'IntegrationsJiraApi' do
   # 
   # @param integration_id The ID of the integration
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :url The host and port portion of the Jira REST API URL
-  # @option opts [String] :project_key The designated Key for your Jira project
-  # @option opts [String] :issue_type The Issue Type for ESP Alerts
-  # @option opts [String] :username A username to access the Jira project
-  # @option opts [String] :password A password to access the JIRA project
-  # @option opts [String] :name Name of the integration
+  # @option opts [String] :include Related objects that can be included in the response:  integration See Including Objects for more information.
   # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
-  # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
   # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
+  # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
+  # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
+  # @option opts [Array<Integer>] :external_account_ids External accounts for integration
+  # @option opts [String] :issue_type The Issue Type for ESP Alerts
+  # @option opts [String] :name Name of the integration
+  # @option opts [String] :password A password to access the JIRA project
+  # @option opts [String] :project_key The designated Key for your Jira project
   # @option opts [BOOLEAN] :send_updates This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
   # @option opts [BOOLEAN] :send_when_suppressed Send notifications for suppressed alerts
   # @option opts [Array<Integer>] :signature_ids Signatures for integration
   # @option opts [Array<String>] :statuses Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-  # @option opts [Array<Integer>] :external_account_ids External accounts for integration
-  # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
-  # @option opts [String] :include Related objects that can be included in the response:  integration See Including Objects for more information.
+  # @option opts [String] :url The host and port portion of the Jira REST API URL
+  # @option opts [String] :username A username to access the Jira project
   # @return [IntegrationJira]
   describe 'update test' do
     it "should work" do

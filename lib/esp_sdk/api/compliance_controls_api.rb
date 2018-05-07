@@ -22,9 +22,9 @@ module ESP
     # Get a list of Compliance Controls
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, identifier, name] Matching Searchable Attributes: [identifier, name]  Sortable Attributes: [id, identifier, name, position] Searchable Associations: [compliance_standard, compliance_domain] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @option opts [String] :include Related objects that can be included in the response:  compliance_standard, compliance_domain, signatures See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, identifier, name] Matching Searchable Attributes: [identifier, name]  Sortable Attributes: [id, identifier, name, position] Searchable Associations: [compliance_standard, compliance_domain] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -34,9 +34,9 @@ module ESP
     # Get a list of Compliance Controls
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, identifier, name] Matching Searchable Attributes: [identifier, name]  Sortable Attributes: [id, identifier, name, position] Searchable Associations: [compliance_standard, compliance_domain] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @option opts [String] :include Related objects that can be included in the response:  compliance_standard, compliance_domain, signatures See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, identifier, name] Matching Searchable Attributes: [identifier, name]  Sortable Attributes: [id, identifier, name, position] Searchable Associations: [compliance_standard, compliance_domain] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -81,8 +81,8 @@ module ESP
     # The compliance standard must be paid for to view signatures for a control on that standard.
     # @param compliance_control_id The ID of the Compliance Control this signature belongs to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list_signatures(compliance_control_id, opts = {})
       data, _status_code, _headers = list_signatures_with_http_info(compliance_control_id, opts)
@@ -93,8 +93,8 @@ module ESP
     # The compliance standard must be paid for to view signatures for a control on that standard.
     # @param compliance_control_id The ID of the Compliance Control this signature belongs to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_signatures_with_http_info(compliance_control_id, opts = {})
       if @api_client.config.debugging

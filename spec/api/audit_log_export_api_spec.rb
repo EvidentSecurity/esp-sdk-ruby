@@ -33,7 +33,7 @@ describe 'AuditLogExportApi' do
 
   # unit tests for request_file
   # Export an Audit Log File
-  # An email will be sent to the user(having organization level access) requesting creation once the file is ready for download. The file will have all audit logs for the organization in CSV format.  The URL and filename in the response will be blank on create but will be present in the response on the show endpoint once the export has been generated.
+  # An email will be sent to the user (having organization level access) requesting creation once the file is ready for download. The file will have all audit logs for the organization in CSV format.  The URL and filename in the response will be blank on create but will be present in the response on the show endpoint once the export has been generated.
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  organization, user See Including Objects for more information.
   # @return [AuditLogFile]
@@ -45,7 +45,7 @@ describe 'AuditLogExportApi' do
 
   # unit tests for show_file_details
   # Show a single Audit Log File
-  # The URL returned will expire and will no longer work after the expiration
+  # The URL returned will expire and will no longer work after the expiration.
   # @param id Audit Log File ID
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  organization, user See Including Objects for more information.

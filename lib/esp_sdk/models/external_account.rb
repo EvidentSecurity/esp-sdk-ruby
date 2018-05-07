@@ -38,26 +38,20 @@ module ESP
     # Associated Scan Intervals
     attr_accessor :scan_intervals
 
-    # Associated Scan Intervals IDs
-    attr_accessor :scan_interval_ids
-
     # Associated Disabled Signatures
     attr_accessor :disabled_signatures
 
-    # Associated Disabled Signatures IDs
-    attr_accessor :disabled_signature_ids
+    # Associated Suppressions
+    attr_accessor :suppressions
+
+    # Associated Suppressions IDs
+    attr_accessor :suppression_ids
 
     # Associated Azure Group
     attr_accessor :azure_group
 
-    # Associated Azure Group ID
-    attr_accessor :azure_group_id
-
     # Associated Credentials
     attr_accessor :credentials
-
-    # Associated Credentials ID
-    attr_accessor :credentials_id
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -71,13 +65,11 @@ module ESP
         :'team' => :'team',
         :'team_id' => :'team_id',
         :'scan_intervals' => :'scan_intervals',
-        :'scan_interval_ids' => :'scan_interval_ids',
         :'disabled_signatures' => :'disabled_signatures',
-        :'disabled_signature_ids' => :'disabled_signature_ids',
+        :'suppressions' => :'suppressions',
+        :'suppression_ids' => :'suppression_ids',
         :'azure_group' => :'azure_group',
-        :'azure_group_id' => :'azure_group_id',
-        :'credentials' => :'credentials',
-        :'credentials_id' => :'credentials_id'
+        :'credentials' => :'credentials'
       }
     end
 
@@ -92,13 +84,11 @@ module ESP
         :'team' => :'Team',
         :'team_id' => :'Integer',
         :'scan_intervals' => :'Array<ScanInterval>',
-        :'scan_interval_ids' => :'Array<Integer>',
         :'disabled_signatures' => :'Array<Signature>',
-        :'disabled_signature_ids' => :'Array<Integer>',
+        :'suppressions' => :'Array<Suppression>',
+        :'suppression_ids' => :'Array<Integer>',
         :'azure_group' => :'AzureGroup',
-        :'azure_group_id' => :'Integer',
-        :'credentials' => :'ExternalAccountAmazonIAM',
-        :'credentials_id' => :'Integer'
+        :'credentials' => :'ExternalAccountAmazonIAM'
       }
     end
 
@@ -144,21 +134,21 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'scan_interval_ids')
-        if (value = attributes[:'scan_interval_ids']).is_a?(Array)
-          self.scan_interval_ids = value
-        end
-      end
-
       if attributes.has_key?(:'disabled_signatures')
         if (value = attributes[:'disabled_signatures']).is_a?(Array)
           self.disabled_signatures = value
         end
       end
 
-      if attributes.has_key?(:'disabled_signature_ids')
-        if (value = attributes[:'disabled_signature_ids']).is_a?(Array)
-          self.disabled_signature_ids = value
+      if attributes.has_key?(:'suppressions')
+        if (value = attributes[:'suppressions']).is_a?(Array)
+          self.suppressions = value
+        end
+      end
+
+      if attributes.has_key?(:'suppression_ids')
+        if (value = attributes[:'suppression_ids']).is_a?(Array)
+          self.suppression_ids = value
         end
       end
 
@@ -166,16 +156,8 @@ module ESP
         self.azure_group = attributes[:'azure_group']
       end
 
-      if attributes.has_key?(:'azure_group_id')
-        self.azure_group_id = attributes[:'azure_group_id']
-      end
-
       if attributes.has_key?(:'credentials')
         self.credentials = attributes[:'credentials']
-      end
-
-      if attributes.has_key?(:'credentials_id')
-        self.credentials_id = attributes[:'credentials_id']
       end
 
     end
@@ -206,13 +188,11 @@ module ESP
           team == o.team &&
           team_id == o.team_id &&
           scan_intervals == o.scan_intervals &&
-          scan_interval_ids == o.scan_interval_ids &&
           disabled_signatures == o.disabled_signatures &&
-          disabled_signature_ids == o.disabled_signature_ids &&
+          suppressions == o.suppressions &&
+          suppression_ids == o.suppression_ids &&
           azure_group == o.azure_group &&
-          azure_group_id == o.azure_group_id &&
-          credentials == o.credentials &&
-          credentials_id == o.credentials_id
+          credentials == o.credentials
     end
 
     # @see the `==` method
@@ -224,7 +204,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, name, updated_at, provider, team, team_id, scan_intervals, scan_interval_ids, disabled_signatures, disabled_signature_ids, azure_group, azure_group_id, credentials, credentials_id].hash
+      [id, created_at, name, updated_at, provider, team, team_id, scan_intervals, disabled_signatures, suppressions, suppression_ids, azure_group, credentials].hash
     end
 
     # Builds the object from hash

@@ -28,9 +28,9 @@ require 'esp_sdk'
 api_instance = ESP::SignaturesApi.new
 
 opts = { 
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  service See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -46,9 +46,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
- **include** | **String**| Related objects that can be included in the response:  service See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  service, suppressions See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -66,7 +66,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **list_disabled_external_accounts**
-> PaginatedCollection list_disabled_external_accounts(opts)
+> PaginatedCollection list_disabled_external_accounts(signature_id, opts)
 
 Get a list of disabled External Accounts for a signature
 
@@ -79,15 +79,17 @@ require 'esp_sdk'
 
 api_instance = ESP::SignaturesApi.new
 
+signature_id = 56 # Integer | The ID of the signature to get the list of disabled external accounts for
+
 opts = { 
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures, suppressions] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
   #Get a list of disabled External Accounts for a signature
-  result = api_instance.list_disabled_external_accounts(opts)
+  result = api_instance.list_disabled_external_accounts(signature_id, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling SignaturesApi->list_disabled_external_accounts: #{e}"
@@ -98,9 +100,10 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
- **include** | **String**| Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information. | [optional] 
+ **signature_id** | **Integer**| The ID of the signature to get the list of disabled external accounts for | 
+ **include** | **String**| Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -134,9 +137,9 @@ api_instance = ESP::SignaturesApi.new
 external_account_id = 56 # Integer | The ID of the external account to retrieve
 
 opts = { 
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example", # String | Related objects that can be included in the response:  service See Including Objects for more information.
-  filter: {'key' => "filter_example"} # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [custom_risk_level_present, service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [custom_risk_level_present, service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -153,9 +156,9 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account to retrieve | 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
- **include** | **String**| Related objects that can be included in the response:  service See Including Objects for more information. | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [custom_risk_level_present, service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  service, suppressions See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [custom_risk_level_present, service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -223,7 +226,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **set_custom_risk_level_for_external_account**
-> Signature set_custom_risk_level_for_external_account(external_account_id, signature_id, risk_level, opts)
+> Signature set_custom_risk_level_for_external_account(external_account_id, risk_level, signature_id, opts)
 
 Add a custom risk level to a Signature for an External Account
 
@@ -238,17 +241,17 @@ api_instance = ESP::SignaturesApi.new
 
 external_account_id = 56 # Integer | The ID of the external account this signature custom risk level is for
 
-signature_id = 56 # Integer | The signature ID this signature custom risk level is for
-
 risk_level = "risk_level_example" # String | The custom risk-level of the problem identified by the signature for this external_account. Valid values are low, medium, high
 
+signature_id = 56 # Integer | The signature ID this signature custom risk level is for
+
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:  service See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
 }
 
 begin
   #Add a custom risk level to a Signature for an External Account
-  result = api_instance.set_custom_risk_level_for_external_account(external_account_id, signature_id, risk_level, opts)
+  result = api_instance.set_custom_risk_level_for_external_account(external_account_id, risk_level, signature_id, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling SignaturesApi->set_custom_risk_level_for_external_account: #{e}"
@@ -260,9 +263,9 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account this signature custom risk level is for | 
- **signature_id** | **Integer**| The signature ID this signature custom risk level is for | 
  **risk_level** | **String**| The custom risk-level of the problem identified by the signature for this external_account. Valid values are low, medium, high | 
- **include** | **String**| Related objects that can be included in the response:  service See Including Objects for more information. | [optional] 
+ **signature_id** | **Integer**| The signature ID this signature custom risk level is for | 
+ **include** | **String**| Related objects that can be included in the response:  service, suppressions See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -296,7 +299,7 @@ api_instance = ESP::SignaturesApi.new
 id = 56 # Integer | Signature ID
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:  service See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
 }
 
 begin
@@ -313,7 +316,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Signature ID | 
- **include** | **String**| Related objects that can be included in the response:  service See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  service, suppressions See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -349,8 +352,8 @@ external_account_id = 56 # Integer | The ID of the external account this signatu
 signature_id = 56 # Integer | The signature ID this signature custom risk level is for
 
 opts = { 
-  risk_level: "risk_level_example", # String | The custom risk-level of the problem identified by the signature for this external_account. Valid values are low, medium, high
-  include: "include_example" # String | Related objects that can be included in the response:  service See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+  risk_level: "risk_level_example" # String | The custom risk-level of the problem identified by the signature for this external_account. Valid values are low, medium, high
 }
 
 begin
@@ -368,8 +371,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account this signature custom risk level is for | 
  **signature_id** | **Integer**| The signature ID this signature custom risk level is for | 
+ **include** | **String**| Related objects that can be included in the response:  service, suppressions See Including Objects for more information. | [optional] 
  **risk_level** | **String**| The custom risk-level of the problem identified by the signature for this external_account. Valid values are low, medium, high | [optional] 
- **include** | **String**| Related objects that can be included in the response:  service See Including Objects for more information. | [optional] 
 
 ### Return type
 

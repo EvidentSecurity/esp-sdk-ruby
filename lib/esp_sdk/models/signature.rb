@@ -50,8 +50,11 @@ module ESP
     # Associated Disabled External Accounts
     attr_accessor :disabled_external_accounts
 
-    # Associated Disabled External Accounts ID
-    attr_accessor :disabled_external_accounts_id
+    # Associated Suppressions
+    attr_accessor :suppressions
+
+    # Associated Suppressions IDs
+    attr_accessor :suppression_ids
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -69,7 +72,8 @@ module ESP
         :'service' => :'service',
         :'service_id' => :'service_id',
         :'disabled_external_accounts' => :'disabled_external_accounts',
-        :'disabled_external_accounts_id' => :'disabled_external_accounts_id'
+        :'suppressions' => :'suppressions',
+        :'suppression_ids' => :'suppression_ids'
       }
     end
 
@@ -88,7 +92,8 @@ module ESP
         :'service' => :'Service',
         :'service_id' => :'Integer',
         :'disabled_external_accounts' => :'ExternalAccount',
-        :'disabled_external_accounts_id' => :'Integer'
+        :'suppressions' => :'Array<Suppression>',
+        :'suppression_ids' => :'Array<Integer>'
       }
     end
 
@@ -148,8 +153,16 @@ module ESP
         self.disabled_external_accounts = attributes[:'disabled_external_accounts']
       end
 
-      if attributes.has_key?(:'disabled_external_accounts_id')
-        self.disabled_external_accounts_id = attributes[:'disabled_external_accounts_id']
+      if attributes.has_key?(:'suppressions')
+        if (value = attributes[:'suppressions']).is_a?(Array)
+          self.suppressions = value
+        end
+      end
+
+      if attributes.has_key?(:'suppression_ids')
+        if (value = attributes[:'suppression_ids']).is_a?(Array)
+          self.suppression_ids = value
+        end
       end
 
     end
@@ -184,7 +197,8 @@ module ESP
           service == o.service &&
           service_id == o.service_id &&
           disabled_external_accounts == o.disabled_external_accounts &&
-          disabled_external_accounts_id == o.disabled_external_accounts_id
+          suppressions == o.suppressions &&
+          suppression_ids == o.suppression_ids
     end
 
     # @see the `==` method
@@ -196,7 +210,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, description, identifier, name, resolution, risk_level, updated_at, custom_risk_level, service, service_id, disabled_external_accounts, disabled_external_accounts_id].hash
+      [id, created_at, description, identifier, name, resolution, risk_level, updated_at, custom_risk_level, service, service_id, disabled_external_accounts, suppressions, suppression_ids].hash
     end
 
     # Builds the object from hash

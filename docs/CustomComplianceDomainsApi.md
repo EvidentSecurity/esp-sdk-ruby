@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> CustomComplianceDomain create(identifier, custom_compliance_standard_id, name, opts)
+> CustomComplianceDomain create(custom_compliance_standard_id, identifier, name, opts)
 
 Create a(n) Custom Compliance Domain
 
@@ -24,20 +24,20 @@ require 'esp_sdk'
 
 api_instance = ESP::CustomComplianceDomainsApi.new
 
-identifier = "identifier_example" # String | The identifier of this custom domain
-
 custom_compliance_standard_id = 56 # Integer | The ID of the Custom Compliance Standard this custom domain belongs to
+
+identifier = "identifier_example" # String | The identifier of this custom domain
 
 name = "name_example" # String | Name
 
 opts = { 
-  position: 56, # Integer | The position of this custom domain within the custom standard
-  include: "include_example" # String | Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
+  position: 56 # Integer | The position of this custom domain within the custom standard
 }
 
 begin
   #Create a(n) Custom Compliance Domain
-  result = api_instance.create(identifier, custom_compliance_standard_id, name, opts)
+  result = api_instance.create(custom_compliance_standard_id, identifier, name, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling CustomComplianceDomainsApi->create: #{e}"
@@ -48,11 +48,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **identifier** | **String**| The identifier of this custom domain | 
  **custom_compliance_standard_id** | **Integer**| The ID of the Custom Compliance Standard this custom domain belongs to | 
+ **identifier** | **String**| The identifier of this custom domain | 
  **name** | **String**| Name | 
- **position** | **Integer**| The position of this custom domain within the custom standard | [optional] 
  **include** | **String**| Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information. | [optional] 
+ **position** | **Integer**| The position of this custom domain within the custom standard | [optional] 
 
 ### Return type
 
@@ -83,7 +83,7 @@ require 'esp_sdk'
 
 api_instance = ESP::CustomComplianceDomainsApi.new
 
-id = 56 # Integer |  ID
+id = 56 # Integer | Custom Compliance Domain ID
 
 
 begin
@@ -99,7 +99,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**|  ID | 
+ **id** | **Integer**| Custom Compliance Domain ID | 
 
 ### Return type
 
@@ -184,11 +184,11 @@ api_instance = ESP::CustomComplianceDomainsApi.new
 id = 56 # Integer | Custom Compliance Domain ID
 
 opts = { 
-  identifier: "identifier_example", # String | The identifier of this custom domain
+  include: "include_example", # String | Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
   custom_compliance_standard_id: 56, # Integer | The ID of the Custom Compliance Standard this custom domain belongs to
+  identifier: "identifier_example", # String | The identifier of this custom domain
   name: "name_example", # String | Name
-  position: 56, # Integer | The position of this custom domain within the custom standard
-  include: "include_example" # String | Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information.
+  position: 56 # Integer | The position of this custom domain within the custom standard
 }
 
 begin
@@ -205,11 +205,11 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Custom Compliance Domain ID | 
- **identifier** | **String**| The identifier of this custom domain | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information. | [optional] 
  **custom_compliance_standard_id** | **Integer**| The ID of the Custom Compliance Standard this custom domain belongs to | [optional] 
+ **identifier** | **String**| The identifier of this custom domain | [optional] 
  **name** | **String**| Name | [optional] 
  **position** | **Integer**| The position of this custom domain within the custom standard | [optional] 
- **include** | **String**| Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_controls See Including Objects for more information. | [optional] 
 
 ### Return type
 

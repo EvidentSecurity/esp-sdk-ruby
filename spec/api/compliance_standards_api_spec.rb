@@ -35,9 +35,9 @@ describe 'ComplianceStandardsApi' do
   # Get a list of Compliance Standards
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [compliance_controls, organizations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
   # @option opts [String] :include Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [id, name] Searchable Associations: [compliance_controls, organizations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do

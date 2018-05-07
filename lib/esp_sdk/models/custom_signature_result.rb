@@ -56,9 +56,6 @@ module ESP
     # Associated Alerts
     attr_accessor :alerts
 
-    # Associated Alerts IDs
-    attr_accessor :alert_ids
-
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -76,8 +73,7 @@ module ESP
         :'region_id' => :'region_id',
         :'definition' => :'definition',
         :'definition_id' => :'definition_id',
-        :'alerts' => :'alerts',
-        :'alert_ids' => :'alert_ids'
+        :'alerts' => :'alerts'
       }
     end
 
@@ -97,8 +93,7 @@ module ESP
         :'region_id' => :'Integer',
         :'definition' => :'CustomSignatureDefinition',
         :'definition_id' => :'Integer',
-        :'alerts' => :'Array<Alert>',
-        :'alert_ids' => :'Array<Integer>'
+        :'alerts' => :'Array<Alert>'
       }
     end
 
@@ -170,12 +165,6 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'alert_ids')
-        if (value = attributes[:'alert_ids']).is_a?(Array)
-          self.alert_ids = value
-        end
-      end
-
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -209,8 +198,7 @@ module ESP
           region_id == o.region_id &&
           definition == o.definition &&
           definition_id == o.definition_id &&
-          alerts == o.alerts &&
-          alert_ids == o.alert_ids
+          alerts == o.alerts
     end
 
     # @see the `==` method
@@ -222,7 +210,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, code, language, status, updated_at, error_messages, external_account, external_account_id, region, region_id, definition, definition_id, alerts, alert_ids].hash
+      [id, created_at, code, language, status, updated_at, error_messages, external_account, external_account_id, region, region_id, definition, definition_id, alerts].hash
     end
 
     # Builds the object from hash

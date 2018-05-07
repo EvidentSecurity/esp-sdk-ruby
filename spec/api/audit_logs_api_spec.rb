@@ -35,9 +35,9 @@ describe 'AuditLogsApi' do
   # Get a list of Audit Logs
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, item_id, item_type] Matching Searchable Attribute: [item_type]  Sortable Attribute: [id] Searchable Associations: [user, organization] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
   # @option opts [String] :include Related objects that can be included in the response:  organization, user See Including Objects for more information.
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, item_id, item_type] Matching Searchable Attribute: [item_type]  Sortable Attribute: [id] Searchable Associations: [user, organization] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do

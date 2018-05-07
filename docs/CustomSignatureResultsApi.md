@@ -33,9 +33,9 @@ external_account_id = 56 # Integer | ID of the external account the code should 
 language = "language_example" # String | The language of the definition. Valid values are ruby, javascript
 
 opts = { 
-  region_id: 56, # Integer | ID of the region the code should run for.  Required if region is not supplied.
+  include: "include_example", # String | Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information.
   region: "region_example", # String | Code of the region the result code should run for. Ex: us-east-1. This can be sent instead of region_id
-  include: "include_example" # String | Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information.
+  region_id: 56 # Integer | ID of the region the code should run for.  Required if region is not supplied.
 }
 
 begin
@@ -55,9 +55,9 @@ Name | Type | Description  | Notes
  **custom_signature_definition_id** | **Integer**| ID of the custom signature definition this result belongs to | 
  **external_account_id** | **Integer**| ID of the external account the code should run for | 
  **language** | **String**| The language of the definition. Valid values are ruby, javascript | 
- **region_id** | **Integer**| ID of the region the code should run for.  Required if region is not supplied. | [optional] 
- **region** | **String**| Code of the region the result code should run for. Ex: us-east-1. This can be sent instead of region_id | [optional] 
  **include** | **String**| Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information. | [optional] 
+ **region** | **String**| Code of the region the result code should run for. Ex: us-east-1. This can be sent instead of region_id | [optional] 
+ **region_id** | **Integer**| ID of the region the code should run for.  Required if region is not supplied. | [optional] 
 
 ### Return type
 
@@ -89,9 +89,9 @@ require 'esp_sdk'
 api_instance = ESP::CustomSignatureResultsApi.new
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information.
   filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, language, status]   Sortable Attribute: [id] Searchable Associations: [definition, region, external_account] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -107,9 +107,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, language, status]   Sortable Attribute: [id] Searchable Associations: [definition, region, external_account] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
  **include** | **String**| Related objects that can be included in the response:  external_account, region, definition See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, language, status]   Sortable Attribute: [id] Searchable Associations: [definition, region, external_account] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -143,8 +143,8 @@ api_instance = ESP::CustomSignatureResultsApi.new
 custom_signature_result_id = 56 # Integer | Custom Signature Result ID
 
 opts = { 
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  external_account, region, custom_signature See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  external_account, region, custom_signature See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -161,8 +161,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **custom_signature_result_id** | **Integer**| Custom Signature Result ID | 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
  **include** | **String**| Related objects that can be included in the response:  external_account, region, custom_signature See Including Objects for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 

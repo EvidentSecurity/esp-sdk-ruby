@@ -49,7 +49,7 @@ describe 'ScanIntervalsApi' do
   # unit tests for delete
   # Delete a(n) Scan Interval
   # 
-  # @param id  ID
+  # @param id Scan Interval ID
   # @param [Hash] opts the optional parameters
   # @return [Meta]
   describe 'delete test' do
@@ -63,8 +63,8 @@ describe 'ScanIntervalsApi' do
   # 
   # @param external_account_id The ID of the external account to retrieve
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
   # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list_for_external_account test' do
     it "should work" do
@@ -90,10 +90,10 @@ describe 'ScanIntervalsApi' do
   # 
   # @param id Scan Interval ID
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
   # @option opts [Integer] :external_account_id The ID of the external account this scan interval is for
   # @option opts [Integer] :interval The interval, in minutes, this service will be scanned
   # @option opts [Integer] :service_id The service ID for the scan interval
-  # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
   # @return [ScanInterval]
   describe 'update test' do
     it "should work" do

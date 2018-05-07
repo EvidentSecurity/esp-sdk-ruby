@@ -37,7 +37,7 @@ describe 'CustomComplianceControlsApi' do
   # @param custom_compliance_control_id The ID of the Custom Compliance Control this custom signature belongs to
   # @param custom_signature_id The ID of the custom signature that belongs to this custom control
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
   # @return [CustomSignature]
   describe 'add_custom_signature test' do
     it "should work" do
@@ -51,7 +51,7 @@ describe 'CustomComplianceControlsApi' do
   # @param custom_compliance_control_id The ID of the Custom Compliance Control this signature belongs to
   # @param signature_id The ID of the signature that belongs to this custom control
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
   # @return [Signature]
   describe 'add_signature test' do
     it "should work" do
@@ -62,15 +62,15 @@ describe 'CustomComplianceControlsApi' do
   # unit tests for create
   # Create a(n) Custom Compliance Control
   # 
-  # @param identifier The identifier of this custom control
   # @param custom_compliance_domain_id The ID of the Custom Compliance Domain this custom control belongs to
+  # @param identifier The identifier of this custom control
   # @param name Name
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
+  # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
   # @option opts [String] :description The description for this custom control
   # @option opts [Integer] :position The position of this custom control within the custom domain
   # @option opts [Array<Integer>] :signature_ids An array of signatures identified by signature_id that belong to this custom control
-  # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
-  # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
   # @return [CustomComplianceControl]
   describe 'create test' do
     it "should work" do
@@ -81,7 +81,7 @@ describe 'CustomComplianceControlsApi' do
   # unit tests for delete
   # Delete a(n) Custom Compliance Control
   # 
-  # @param id  ID
+  # @param id Custom Compliance Control ID
   # @param [Hash] opts the optional parameters
   # @return [Meta]
   describe 'delete test' do
@@ -95,8 +95,8 @@ describe 'CustomComplianceControlsApi' do
   # 
   # @param custom_compliance_control_id The ID of the Custom Compliance Control this custom signature belongs to
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list_custom_signatures test' do
     it "should work" do
@@ -109,8 +109,8 @@ describe 'CustomComplianceControlsApi' do
   # 
   # @param custom_compliance_control_id The ID of the Custom Compliance Control this signature belongs to
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list_signatures test' do
     it "should work" do
@@ -162,14 +162,14 @@ describe 'CustomComplianceControlsApi' do
   # 
   # @param id Custom Compliance Control ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :identifier The identifier of this custom control
+  # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
   # @option opts [Integer] :custom_compliance_domain_id The ID of the Custom Compliance Domain this custom control belongs to
+  # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
   # @option opts [String] :description The description for this custom control
+  # @option opts [String] :identifier The identifier of this custom control
   # @option opts [String] :name Name
   # @option opts [Integer] :position The position of this custom control within the custom domain
   # @option opts [Array<Integer>] :signature_ids An array of signatures identified by signature_id that belong to this custom control
-  # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
-  # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
   # @return [CustomComplianceControl]
   describe 'update test' do
     it "should work" do

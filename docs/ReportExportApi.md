@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **request_file**
-> ExportedReport request_file(requested_format, report_ids, opts)
+> ExportedReport request_file(report_ids, requested_format, opts)
 
 Export all alerts for a set of reports to a file
 
@@ -23,18 +23,18 @@ require 'esp_sdk'
 
 api_instance = ESP::ReportExportApi.new
 
-requested_format = "requested_format_example" # String | The file format of the export. Valid values are csv, json, pdf
-
 report_ids = [56] # Array<Integer> | An array of report IDs to export alerts for
 
+requested_format = "requested_format_example" # String | The file format of the export. Valid values are csv, json, pdf
+
 opts = { 
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Params used to filter the alerts that will be exported
-  include: "include_example" # String | Related objects that can be included in the response:  user See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  user See Including Objects for more information.
+  filter: {'key' => "filter_example"} # Hash<String, String> | Params used to filter the alerts that will be exported
 }
 
 begin
   #Export all alerts for a set of reports to a file
-  result = api_instance.request_file(requested_format, report_ids, opts)
+  result = api_instance.request_file(report_ids, requested_format, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling ReportExportApi->request_file: #{e}"
@@ -45,10 +45,10 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requested_format** | **String**| The file format of the export. Valid values are csv, json, pdf | 
  **report_ids** | [**Array&lt;Integer&gt;**](Integer.md)| An array of report IDs to export alerts for | 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Params used to filter the alerts that will be exported | [optional] 
+ **requested_format** | **String**| The file format of the export. Valid values are csv, json, pdf | 
  **include** | **String**| Related objects that can be included in the response:  user See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Params used to filter the alerts that will be exported | [optional] 
 
 ### Return type
 
@@ -66,7 +66,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **send_to_integration**
-> Meta send_to_integration(report_ids, integration_id, opts)
+> Meta send_to_integration(integration_id, report_ids, opts)
 
 Export all alerts on reports to an integration
 
@@ -79,9 +79,9 @@ require 'esp_sdk'
 
 api_instance = ESP::ReportExportApi.new
 
-report_ids = [56] # Array<Integer> | An array of report IDs
-
 integration_id = 56 # Integer | The ID of the integration to send the alerts to
+
+report_ids = [56] # Array<Integer> | An array of report IDs
 
 opts = { 
   filter: {'key' => "filter_example"} # Hash<String, String> | Params used to filter the alerts that will be exported
@@ -89,7 +89,7 @@ opts = {
 
 begin
   #Export all alerts on reports to an integration
-  result = api_instance.send_to_integration(report_ids, integration_id, opts)
+  result = api_instance.send_to_integration(integration_id, report_ids, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling ReportExportApi->send_to_integration: #{e}"
@@ -100,8 +100,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **report_ids** | [**Array&lt;Integer&gt;**](Integer.md)| An array of report IDs | 
  **integration_id** | **Integer**| The ID of the integration to send the alerts to | 
+ **report_ids** | [**Array&lt;Integer&gt;**](Integer.md)| An array of report IDs | 
  **filter** | [**Hash&lt;String, String&gt;**](String.md)| Params used to filter the alerts that will be exported | [optional] 
 
 ### Return type

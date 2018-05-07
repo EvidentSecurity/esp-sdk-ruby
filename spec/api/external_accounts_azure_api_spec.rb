@@ -34,12 +34,12 @@ describe 'ExternalAccountsAzureApi' do
   # unit tests for create
   # Create an Azure External Account
   # The channel_url will only be returned in this response and will not be accessible again. The related external_account object will be returned with the response.
-  # @param subscription_id Azure subscription ID
-  # @param client_id Azure client ID
-  # @param tenant_id Azure tenant ID
   # @param app_key Azure app key
+  # @param client_id Azure client ID
   # @param name Name
+  # @param subscription_id Azure subscription ID
   # @param team_id The ID of the team the external account belongs to
+  # @param tenant_id Azure tenant ID
   # @param [Hash] opts the optional parameters
   # @return [ExternalAccountAzure]
   describe 'create test' do
@@ -78,12 +78,12 @@ describe 'ExternalAccountsAzureApi' do
   #  The related external_account object will be returned with the response.
   # @param external_account_id The ID of the external account to update an Azure credential for
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :subscription_id Azure subscription ID
-  # @option opts [String] :client_id Azure client ID
-  # @option opts [String] :tenant_id Azure tenant ID
   # @option opts [String] :app_key Azure app key
+  # @option opts [String] :client_id Azure client ID
   # @option opts [String] :name Name
+  # @option opts [String] :subscription_id Azure subscription ID
   # @option opts [Integer] :team_id The ID of the team the external account belongs to
+  # @option opts [String] :tenant_id Azure tenant ID
   # @return [ExternalAccountAzure]
   describe 'update test' do
     it "should work" do

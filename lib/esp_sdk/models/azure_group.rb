@@ -38,9 +38,6 @@ module ESP
     # Associated External Accounts
     attr_accessor :external_accounts
 
-    # Associated External Accounts IDs
-    attr_accessor :external_account_ids
-
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -52,8 +49,7 @@ module ESP
         :'url' => :'url',
         :'organization' => :'organization',
         :'organization_id' => :'organization_id',
-        :'external_accounts' => :'external_accounts',
-        :'external_account_ids' => :'external_account_ids'
+        :'external_accounts' => :'external_accounts'
       }
     end
 
@@ -67,8 +63,7 @@ module ESP
         :'url' => :'String',
         :'organization' => :'Organization',
         :'organization_id' => :'Integer',
-        :'external_accounts' => :'Array<ExternalAccount>',
-        :'external_account_ids' => :'Array<Integer>'
+        :'external_accounts' => :'Array<ExternalAccount>'
       }
     end
 
@@ -114,12 +109,6 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'external_account_ids')
-        if (value = attributes[:'external_account_ids']).is_a?(Array)
-          self.external_account_ids = value
-        end
-      end
-
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -147,8 +136,7 @@ module ESP
           url == o.url &&
           organization == o.organization &&
           organization_id == o.organization_id &&
-          external_accounts == o.external_accounts &&
-          external_account_ids == o.external_account_ids
+          external_accounts == o.external_accounts
     end
 
     # @see the `==` method
@@ -160,7 +148,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, created_at, updated_at, url, organization, organization_id, external_accounts, external_account_ids].hash
+      [id, name, created_at, updated_at, url, organization, organization_id, external_accounts].hash
     end
 
     # Builds the object from hash

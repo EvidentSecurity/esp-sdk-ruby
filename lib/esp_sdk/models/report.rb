@@ -26,24 +26,6 @@ module ESP
     # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
 
-    # Associated Organization
-    attr_accessor :organization
-
-    # Associated Organization ID
-    attr_accessor :organization_id
-
-    # Associated Sub Organization
-    attr_accessor :sub_organization
-
-    # Associated Sub Organization ID
-    attr_accessor :sub_organization_id
-
-    # Associated Team
-    attr_accessor :team
-
-    # Associated Team ID
-    attr_accessor :team_id
-
     # Associated External Account
     attr_accessor :external_account
 
@@ -53,14 +35,8 @@ module ESP
     # Associated Alerts
     attr_accessor :alerts
 
-    # Associated Alerts IDs
-    attr_accessor :alert_ids
-
     # Associated Stat
     attr_accessor :stat
-
-    # Associated Stat ID
-    attr_accessor :stat_id
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -70,18 +46,10 @@ module ESP
         :'created_at' => :'created_at',
         :'status' => :'status',
         :'updated_at' => :'updated_at',
-        :'organization' => :'organization',
-        :'organization_id' => :'organization_id',
-        :'sub_organization' => :'sub_organization',
-        :'sub_organization_id' => :'sub_organization_id',
-        :'team' => :'team',
-        :'team_id' => :'team_id',
         :'external_account' => :'external_account',
         :'external_account_id' => :'external_account_id',
         :'alerts' => :'alerts',
-        :'alert_ids' => :'alert_ids',
-        :'stat' => :'stat',
-        :'stat_id' => :'stat_id'
+        :'stat' => :'stat'
       }
     end
 
@@ -92,18 +60,10 @@ module ESP
         :'created_at' => :'DateTime',
         :'status' => :'String',
         :'updated_at' => :'DateTime',
-        :'organization' => :'Organization',
-        :'organization_id' => :'Integer',
-        :'sub_organization' => :'SubOrganization',
-        :'sub_organization_id' => :'Integer',
-        :'team' => :'Team',
-        :'team_id' => :'Integer',
         :'external_account' => :'ExternalAccount',
         :'external_account_id' => :'Integer',
         :'alerts' => :'Array<Alert>',
-        :'alert_ids' => :'Array<Integer>',
-        :'stat' => :'Stat',
-        :'stat_id' => :'Integer'
+        :'stat' => :'Stat'
       }
     end
 
@@ -131,30 +91,6 @@ module ESP
         self.updated_at = attributes[:'updated_at']
       end
 
-      if attributes.has_key?(:'organization')
-        self.organization = attributes[:'organization']
-      end
-
-      if attributes.has_key?(:'organization_id')
-        self.organization_id = attributes[:'organization_id']
-      end
-
-      if attributes.has_key?(:'sub_organization')
-        self.sub_organization = attributes[:'sub_organization']
-      end
-
-      if attributes.has_key?(:'sub_organization_id')
-        self.sub_organization_id = attributes[:'sub_organization_id']
-      end
-
-      if attributes.has_key?(:'team')
-        self.team = attributes[:'team']
-      end
-
-      if attributes.has_key?(:'team_id')
-        self.team_id = attributes[:'team_id']
-      end
-
       if attributes.has_key?(:'external_account')
         self.external_account = attributes[:'external_account']
       end
@@ -169,18 +105,8 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'alert_ids')
-        if (value = attributes[:'alert_ids']).is_a?(Array)
-          self.alert_ids = value
-        end
-      end
-
       if attributes.has_key?(:'stat')
         self.stat = attributes[:'stat']
-      end
-
-      if attributes.has_key?(:'stat_id')
-        self.stat_id = attributes[:'stat_id']
       end
 
     end
@@ -207,18 +133,10 @@ module ESP
           created_at == o.created_at &&
           status == o.status &&
           updated_at == o.updated_at &&
-          organization == o.organization &&
-          organization_id == o.organization_id &&
-          sub_organization == o.sub_organization &&
-          sub_organization_id == o.sub_organization_id &&
-          team == o.team &&
-          team_id == o.team_id &&
           external_account == o.external_account &&
           external_account_id == o.external_account_id &&
           alerts == o.alerts &&
-          alert_ids == o.alert_ids &&
-          stat == o.stat &&
-          stat_id == o.stat_id
+          stat == o.stat
     end
 
     # @see the `==` method
@@ -230,7 +148,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, status, updated_at, organization, organization_id, sub_organization, sub_organization_id, team, team_id, external_account, external_account_id, alerts, alert_ids, stat, stat_id].hash
+      [id, created_at, status, updated_at, external_account, external_account_id, alerts, stat].hash
     end
 
     # Builds the object from hash

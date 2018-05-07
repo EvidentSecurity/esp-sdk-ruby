@@ -34,9 +34,9 @@ describe 'ContactRequestsApi' do
   # unit tests for create
   # Create a(n) Contact Request
   # 
-  # @param title Subject of your message
   # @param description Body of your message
   # @param request_type Type of contact request. Valid values are support, feature
+  # @param title Subject of your message
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
   # @return [ContactRequest]

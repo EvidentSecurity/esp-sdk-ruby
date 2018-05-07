@@ -88,7 +88,7 @@ module ESP
 
     # Delete a(n) Scan Interval
     # 
-    # @param id  ID
+    # @param id Scan Interval ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
     def delete(id, opts = {})
@@ -98,7 +98,7 @@ module ESP
 
     # Delete a(n) Scan Interval
     # 
-    # @param id  ID
+    # @param id Scan Interval ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def delete_with_http_info(id, opts = {})
@@ -143,8 +143,8 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list_for_external_account(external_account_id, opts = {})
       data, _status_code, _headers = list_for_external_account_with_http_info(external_account_id, opts)
@@ -155,8 +155,8 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to retrieve
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_for_external_account_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
@@ -258,10 +258,10 @@ module ESP
     # 
     # @param id Scan Interval ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @option opts [Integer] :external_account_id The ID of the external account this scan interval is for
     # @option opts [Integer] :interval The interval, in minutes, this service will be scanned
     # @option opts [Integer] :service_id The service ID for the scan interval
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @return [ScanInterval]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
@@ -272,10 +272,10 @@ module ESP
     # 
     # @param id Scan Interval ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @option opts [Integer] :external_account_id The ID of the external account this scan interval is for
     # @option opts [Integer] :interval The interval, in minutes, this service will be scanned
     # @option opts [Integer] :service_id The service ID for the scan interval
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, service See Including Objects for more information.
     # @return [Array<(ScanInterval, Fixnum, Hash)>] ScanInterval data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging

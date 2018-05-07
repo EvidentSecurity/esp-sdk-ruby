@@ -24,7 +24,7 @@ module ESP
     # @param custom_compliance_control_id The ID of the Custom Compliance Control this custom signature belongs to
     # @param custom_signature_id The ID of the custom signature that belongs to this custom control
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
     # @return [CustomSignature]
     def add_custom_signature(custom_compliance_control_id, custom_signature_id, opts = {})
       data, _status_code, _headers = add_custom_signature_with_http_info(custom_compliance_control_id, custom_signature_id, opts)
@@ -36,7 +36,7 @@ module ESP
     # @param custom_compliance_control_id The ID of the Custom Compliance Control this custom signature belongs to
     # @param custom_signature_id The ID of the custom signature that belongs to this custom control
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
     # @return [Array<(CustomSignature, Fixnum, Hash)>] CustomSignature data, response status code and response headers
     def add_custom_signature_with_http_info(custom_compliance_control_id, custom_signature_id, opts = {})
       if @api_client.config.debugging
@@ -85,7 +85,7 @@ module ESP
     # @param custom_compliance_control_id The ID of the Custom Compliance Control this signature belongs to
     # @param signature_id The ID of the signature that belongs to this custom control
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
     # @return [Signature]
     def add_signature(custom_compliance_control_id, signature_id, opts = {})
       data, _status_code, _headers = add_signature_with_http_info(custom_compliance_control_id, signature_id, opts)
@@ -97,7 +97,7 @@ module ESP
     # @param custom_compliance_control_id The ID of the Custom Compliance Control this signature belongs to
     # @param signature_id The ID of the signature that belongs to this custom control
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
     # @return [Array<(Signature, Fixnum, Hash)>] Signature data, response status code and response headers
     def add_signature_with_http_info(custom_compliance_control_id, signature_id, opts = {})
       if @api_client.config.debugging
@@ -143,41 +143,41 @@ module ESP
 
     # Create a(n) Custom Compliance Control
     # 
-    # @param identifier The identifier of this custom control
     # @param custom_compliance_domain_id The ID of the Custom Compliance Domain this custom control belongs to
+    # @param identifier The identifier of this custom control
     # @param name Name
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
+    # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
     # @option opts [String] :description The description for this custom control
     # @option opts [Integer] :position The position of this custom control within the custom domain
     # @option opts [Array<Integer>] :signature_ids An array of signatures identified by signature_id that belong to this custom control
-    # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
-    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
     # @return [CustomComplianceControl]
-    def create(identifier, custom_compliance_domain_id, name, opts = {})
-      data, _status_code, _headers = create_with_http_info(identifier, custom_compliance_domain_id, name, opts)
+    def create(custom_compliance_domain_id, identifier, name, opts = {})
+      data, _status_code, _headers = create_with_http_info(custom_compliance_domain_id, identifier, name, opts)
       return data
     end
 
     # Create a(n) Custom Compliance Control
     # 
-    # @param identifier The identifier of this custom control
     # @param custom_compliance_domain_id The ID of the Custom Compliance Domain this custom control belongs to
+    # @param identifier The identifier of this custom control
     # @param name Name
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
+    # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
     # @option opts [String] :description The description for this custom control
     # @option opts [Integer] :position The position of this custom control within the custom domain
     # @option opts [Array<Integer>] :signature_ids An array of signatures identified by signature_id that belong to this custom control
-    # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
-    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
     # @return [Array<(CustomComplianceControl, Fixnum, Hash)>] CustomComplianceControl data, response status code and response headers
-    def create_with_http_info(identifier, custom_compliance_domain_id, name, opts = {})
+    def create_with_http_info(custom_compliance_domain_id, identifier, name, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: CustomComplianceControlsApi.create ..."
       end
-      # verify the required parameter 'identifier' is set
-      fail ArgumentError, "Missing the required parameter 'identifier' when calling CustomComplianceControlsApi.create" if identifier.nil?
       # verify the required parameter 'custom_compliance_domain_id' is set
       fail ArgumentError, "Missing the required parameter 'custom_compliance_domain_id' when calling CustomComplianceControlsApi.create" if custom_compliance_domain_id.nil?
+      # verify the required parameter 'identifier' is set
+      fail ArgumentError, "Missing the required parameter 'identifier' when calling CustomComplianceControlsApi.create" if identifier.nil?
       # verify the required parameter 'name' is set
       fail ArgumentError, "Missing the required parameter 'name' when calling CustomComplianceControlsApi.create" if name.nil?
       # resource path
@@ -196,13 +196,13 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["identifier"] = identifier
       form_params["custom_compliance_domain_id"] = custom_compliance_domain_id
+      form_params["identifier"] = identifier
       form_params["name"] = name
+      form_params["custom_signature_ids"] = @api_client.build_collection_param(opts[:'custom_signature_ids'], :multi) if !opts[:'custom_signature_ids'].nil?
       form_params["description"] = opts[:'description'] if !opts[:'description'].nil?
       form_params["position"] = opts[:'position'] if !opts[:'position'].nil?
       form_params["signature_ids"] = @api_client.build_collection_param(opts[:'signature_ids'], :multi) if !opts[:'signature_ids'].nil?
-      form_params["custom_signature_ids"] = @api_client.build_collection_param(opts[:'custom_signature_ids'], :multi) if !opts[:'custom_signature_ids'].nil?
 
       # http body (model)
       post_body = nil
@@ -222,7 +222,7 @@ module ESP
 
     # Delete a(n) Custom Compliance Control
     # 
-    # @param id  ID
+    # @param id Custom Compliance Control ID
     # @param [Hash] opts the optional parameters
     # @return [Meta]
     def delete(id, opts = {})
@@ -232,7 +232,7 @@ module ESP
 
     # Delete a(n) Custom Compliance Control
     # 
-    # @param id  ID
+    # @param id Custom Compliance Control ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
     def delete_with_http_info(id, opts = {})
@@ -277,8 +277,8 @@ module ESP
     # 
     # @param custom_compliance_control_id The ID of the Custom Compliance Control this custom signature belongs to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list_custom_signatures(custom_compliance_control_id, opts = {})
       data, _status_code, _headers = list_custom_signatures_with_http_info(custom_compliance_control_id, opts)
@@ -289,8 +289,8 @@ module ESP
     # 
     # @param custom_compliance_control_id The ID of the Custom Compliance Control this custom signature belongs to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_custom_signatures_with_http_info(custom_compliance_control_id, opts = {})
       if @api_client.config.debugging
@@ -336,8 +336,8 @@ module ESP
     # 
     # @param custom_compliance_control_id The ID of the Custom Compliance Control this signature belongs to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list_signatures(custom_compliance_control_id, opts = {})
       data, _status_code, _headers = list_signatures_with_http_info(custom_compliance_control_id, opts)
@@ -348,8 +348,8 @@ module ESP
     # 
     # @param custom_compliance_control_id The ID of the Custom Compliance Control this signature belongs to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-    # @option opts [String] :include Related objects that can be included in the response:  service See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_signatures_with_http_info(custom_compliance_control_id, opts = {})
       if @api_client.config.debugging
@@ -565,14 +565,14 @@ module ESP
     # 
     # @param id Custom Compliance Control ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :identifier The identifier of this custom control
+    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
     # @option opts [Integer] :custom_compliance_domain_id The ID of the Custom Compliance Domain this custom control belongs to
+    # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
     # @option opts [String] :description The description for this custom control
+    # @option opts [String] :identifier The identifier of this custom control
     # @option opts [String] :name Name
     # @option opts [Integer] :position The position of this custom control within the custom domain
     # @option opts [Array<Integer>] :signature_ids An array of signatures identified by signature_id that belong to this custom control
-    # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
-    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
     # @return [CustomComplianceControl]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
@@ -583,14 +583,14 @@ module ESP
     # 
     # @param id Custom Compliance Control ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :identifier The identifier of this custom control
+    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
     # @option opts [Integer] :custom_compliance_domain_id The ID of the Custom Compliance Domain this custom control belongs to
+    # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
     # @option opts [String] :description The description for this custom control
+    # @option opts [String] :identifier The identifier of this custom control
     # @option opts [String] :name Name
     # @option opts [Integer] :position The position of this custom control within the custom domain
     # @option opts [Array<Integer>] :signature_ids An array of signatures identified by signature_id that belong to this custom control
-    # @option opts [Array<Integer>] :custom_signature_ids An array of custom signatures identified by custom_signature_id that belong to this custom control
-    # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_standard, custom_compliance_domain, signatures, custom_signatures See Including Objects for more information.
     # @return [Array<(CustomComplianceControl, Fixnum, Hash)>] CustomComplianceControl data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -614,13 +614,13 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["identifier"] = opts[:'identifier'] if !opts[:'identifier'].nil?
       form_params["custom_compliance_domain_id"] = opts[:'custom_compliance_domain_id'] if !opts[:'custom_compliance_domain_id'].nil?
+      form_params["custom_signature_ids"] = @api_client.build_collection_param(opts[:'custom_signature_ids'], :multi) if !opts[:'custom_signature_ids'].nil?
       form_params["description"] = opts[:'description'] if !opts[:'description'].nil?
+      form_params["identifier"] = opts[:'identifier'] if !opts[:'identifier'].nil?
       form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
       form_params["position"] = opts[:'position'] if !opts[:'position'].nil?
       form_params["signature_ids"] = @api_client.build_collection_param(opts[:'signature_ids'], :multi) if !opts[:'signature_ids'].nil?
-      form_params["custom_signature_ids"] = @api_client.build_collection_param(opts[:'custom_signature_ids'], :multi) if !opts[:'custom_signature_ids'].nil?
 
       # http body (model)
       post_body = nil

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **add_channel**
-> ExternalAccountUserAttributionChannel add_channel(external_account_id, opts)
+> ExternalAccountUserAttributionChannel add_channel(external_account_id)
 
 Create a User Attribution Channel for an external account
 
@@ -26,13 +26,10 @@ api_instance = ESP::UserAttributionsApi.new
 
 external_account_id = 56 # Integer | The ID of the external account to create a User Attribution Channel for
 
-opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
-}
 
 begin
   #Create a User Attribution Channel for an external account
-  result = api_instance.add_channel(external_account_id, opts)
+  result = api_instance.add_channel(external_account_id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling UserAttributionsApi->add_channel: #{e}"
@@ -44,7 +41,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account to create a User Attribution Channel for | 
- **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -109,7 +105,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **show_channel**
-> ExternalAccountUserAttributionChannel show_channel(external_account_id, opts)
+> ExternalAccountUserAttributionChannel show_channel(external_account_id)
 
 Show the User Attribution Channel of an external account
 
@@ -124,13 +120,10 @@ api_instance = ESP::UserAttributionsApi.new
 
 external_account_id = 56 # Integer | The ID of the external account to show the user attribution channel for
 
-opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
-}
 
 begin
   #Show the User Attribution Channel of an external account
-  result = api_instance.show_channel(external_account_id, opts)
+  result = api_instance.show_channel(external_account_id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling UserAttributionsApi->show_channel: #{e}"
@@ -142,7 +135,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account to show the user attribution channel for | 
- **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -176,8 +168,8 @@ api_instance = ESP::UserAttributionsApi.new
 external_account_id = 56 # Integer | The ID of the external account to update the user attributions of
 
 opts = { 
-  cloudtrail_name: "cloudtrail_name_example", # String | The name of the cloudetrail associated with the user attribution.
-  include: "include_example" # String | Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+  cloudtrail_name: "cloudtrail_name_example" # String | The name of the cloudetrail associated with the user attribution.
 }
 
 begin
@@ -194,8 +186,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account to update the user attributions of | 
+ **include** | **String**| Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information. | [optional] 
  **cloudtrail_name** | **String**| The name of the cloudetrail associated with the user attribution. | [optional] 
- **include** | **String**| Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, azure_group, credentials See Including Objects for more information. | [optional] 
 
 ### Return type
 

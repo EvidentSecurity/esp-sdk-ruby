@@ -82,7 +82,7 @@ require 'esp_sdk'
 
 api_instance = ESP::ScanIntervalsApi.new
 
-id = 56 # Integer |  ID
+id = 56 # Integer | Scan Interval ID
 
 
 begin
@@ -98,7 +98,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**|  ID | 
+ **id** | **Integer**| Scan Interval ID | 
 
 ### Return type
 
@@ -132,8 +132,8 @@ api_instance = ESP::ScanIntervalsApi.new
 external_account_id = 56 # Integer | The ID of the external account to retrieve
 
 opts = { 
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  external_account, service See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  external_account, service See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -150,8 +150,8 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account to retrieve | 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
  **include** | **String**| Related objects that can be included in the response:  external_account, service See Including Objects for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -236,10 +236,10 @@ api_instance = ESP::ScanIntervalsApi.new
 id = 56 # Integer | Scan Interval ID
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  external_account, service See Including Objects for more information.
   external_account_id: 56, # Integer | The ID of the external account this scan interval is for
   interval: 56, # Integer | The interval, in minutes, this service will be scanned
-  service_id: 56, # Integer | The service ID for the scan interval
-  include: "include_example" # String | Related objects that can be included in the response:  external_account, service See Including Objects for more information.
+  service_id: 56 # Integer | The service ID for the scan interval
 }
 
 begin
@@ -256,10 +256,10 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Scan Interval ID | 
+ **include** | **String**| Related objects that can be included in the response:  external_account, service See Including Objects for more information. | [optional] 
  **external_account_id** | **Integer**| The ID of the external account this scan interval is for | [optional] 
  **interval** | **Integer**| The interval, in minutes, this service will be scanned | [optional] 
  **service_id** | **Integer**| The service ID for the scan interval | [optional] 
- **include** | **String**| Related objects that can be included in the response:  external_account, service See Including Objects for more information. | [optional] 
 
 ### Return type
 

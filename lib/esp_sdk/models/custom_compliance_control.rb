@@ -50,14 +50,8 @@ module ESP
     # Associated Signatures
     attr_accessor :signatures
 
-    # Associated Signatures IDs
-    attr_accessor :signature_ids
-
     # Associated Custom Signatures
     attr_accessor :custom_signatures
-
-    # Associated Custom Signatures IDs
-    attr_accessor :custom_signature_ids
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -75,9 +69,7 @@ module ESP
         :'custom_compliance_domain' => :'custom_compliance_domain',
         :'custom_compliance_domain_id' => :'custom_compliance_domain_id',
         :'signatures' => :'signatures',
-        :'signature_ids' => :'signature_ids',
-        :'custom_signatures' => :'custom_signatures',
-        :'custom_signature_ids' => :'custom_signature_ids'
+        :'custom_signatures' => :'custom_signatures'
       }
     end
 
@@ -96,9 +88,7 @@ module ESP
         :'custom_compliance_domain' => :'CustomComplianceDomain',
         :'custom_compliance_domain_id' => :'Integer',
         :'signatures' => :'Array<Signature>',
-        :'signature_ids' => :'Array<Integer>',
-        :'custom_signatures' => :'Array<CustomSignature>',
-        :'custom_signature_ids' => :'Array<Integer>'
+        :'custom_signatures' => :'Array<CustomSignature>'
       }
     end
 
@@ -160,21 +150,9 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'signature_ids')
-        if (value = attributes[:'signature_ids']).is_a?(Array)
-          self.signature_ids = value
-        end
-      end
-
       if attributes.has_key?(:'custom_signatures')
         if (value = attributes[:'custom_signatures']).is_a?(Array)
           self.custom_signatures = value
-        end
-      end
-
-      if attributes.has_key?(:'custom_signature_ids')
-        if (value = attributes[:'custom_signature_ids']).is_a?(Array)
-          self.custom_signature_ids = value
         end
       end
 
@@ -210,9 +188,7 @@ module ESP
           custom_compliance_domain == o.custom_compliance_domain &&
           custom_compliance_domain_id == o.custom_compliance_domain_id &&
           signatures == o.signatures &&
-          signature_ids == o.signature_ids &&
-          custom_signatures == o.custom_signatures &&
-          custom_signature_ids == o.custom_signature_ids
+          custom_signatures == o.custom_signatures
     end
 
     # @see the `==` method
@@ -224,7 +200,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, identifier, description, created_at, updated_at, position, custom_compliance_standard, custom_compliance_standard_id, custom_compliance_domain, custom_compliance_domain_id, signatures, signature_ids, custom_signatures, custom_signature_ids].hash
+      [id, name, identifier, description, created_at, updated_at, position, custom_compliance_standard, custom_compliance_standard_id, custom_compliance_domain, custom_compliance_domain_id, signatures, custom_signatures].hash
     end
 
     # Builds the object from hash

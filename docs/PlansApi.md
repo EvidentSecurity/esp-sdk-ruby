@@ -23,8 +23,7 @@ require 'esp_sdk'
 api_instance = ESP::PlansApi.new
 
 opts = { 
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -40,8 +39,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
- **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -59,7 +57,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **show**
-> Plan show(id, opts)
+> Plan show(id)
 
 Show a single Plan
 
@@ -74,13 +72,10 @@ api_instance = ESP::PlansApi.new
 
 id = 56 # Integer | Plan ID
 
-opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:   See Including Objects for more information.
-}
 
 begin
   #Show a single Plan
-  result = api_instance.show(id, opts)
+  result = api_instance.show(id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling PlansApi->show: #{e}"
@@ -92,7 +87,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Plan ID | 
- **include** | **String**| Related objects that can be included in the response:   See Including Objects for more information. | [optional] 
 
 ### Return type
 

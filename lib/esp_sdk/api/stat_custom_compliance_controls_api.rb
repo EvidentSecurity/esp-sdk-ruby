@@ -19,24 +19,26 @@ module ESP
       @api_client = api_client
     end
 
-    # Stats for custom compliance controls
-    # A successful call to this API returns all the stats of all the custom compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom compliance controls for the selected hour.
-    # @param stat_id The ID of the stat to retrieve custom compliance control stats for
+    # Statistics for custom compliance controls
+    # A successful call to this API returns all the statistics of all the custom compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom compliance controls for the selected hour.
+    # @param stat_id The ID of the stat to retrieve custom compliance control statistics for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_control, stat See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [stat_id, type_id]    
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list_for_stat(stat_id, opts = {})
       data, _status_code, _headers = list_for_stat_with_http_info(stat_id, opts)
       return data
     end
 
-    # Stats for custom compliance controls
-    # A successful call to this API returns all the stats of all the custom compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom compliance controls for the selected hour.
-    # @param stat_id The ID of the stat to retrieve custom compliance control stats for
+    # Statistics for custom compliance controls
+    # A successful call to this API returns all the statistics of all the custom compliance controls for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom compliance controls for the selected hour.
+    # @param stat_id The ID of the stat to retrieve custom compliance control statistics for
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_control, stat See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [stat_id, type_id]    
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_for_stat_with_http_info(stat_id, opts = {})
       if @api_client.config.debugging
@@ -60,6 +62,7 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
       form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
 
       # http body (model)

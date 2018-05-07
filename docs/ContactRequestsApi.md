@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> ContactRequest create(title, description, request_type, opts)
+> ContactRequest create(description, request_type, title, opts)
 
 Create a(n) Contact Request
 
@@ -21,11 +21,11 @@ require 'esp_sdk'
 
 api_instance = ESP::ContactRequestsApi.new
 
-title = "title_example" # String | Subject of your message
-
 description = "description_example" # String | Body of your message
 
 request_type = "request_type_example" # String | Type of contact request. Valid values are support, feature
+
+title = "title_example" # String | Subject of your message
 
 opts = { 
   include: "include_example" # String | Related objects that can be included in the response:  user See Including Objects for more information.
@@ -33,7 +33,7 @@ opts = {
 
 begin
   #Create a(n) Contact Request
-  result = api_instance.create(title, description, request_type, opts)
+  result = api_instance.create(description, request_type, title, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling ContactRequestsApi->create: #{e}"
@@ -44,9 +44,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **title** | **String**| Subject of your message | 
  **description** | **String**| Body of your message | 
  **request_type** | **String**| Type of contact request. Valid values are support, feature | 
+ **title** | **String**| Subject of your message | 
  **include** | **String**| Related objects that can be included in the response:  user See Including Objects for more information. | [optional] 
 
 ### Return type

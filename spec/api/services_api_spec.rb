@@ -36,8 +36,7 @@ describe 'ServicesApi' do
   # 
   # @param [Hash] opts the optional parameters
   # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name, policy_name] Matching Searchable Attributes: [name, policy_name] Limited Searchable Attribute: [provider_eq]  
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -50,7 +49,6 @@ describe 'ServicesApi' do
   # 
   # @param id Service ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:   See Including Objects for more information.
   # @return [Service]
   describe 'show test' do
     it "should work" do

@@ -180,7 +180,7 @@ require 'esp_sdk'
 
 api_instance = ESP::CustomSignatureDefinitionsApi.new
 
-id = 56 # Integer |  ID
+id = 56 # Integer | Custom Signature Definition ID
 
 
 begin
@@ -196,7 +196,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**|  ID | 
+ **id** | **Integer**| Custom Signature Definition ID | 
 
 ### Return type
 
@@ -228,9 +228,9 @@ require 'esp_sdk'
 api_instance = ESP::CustomSignatureDefinitionsApi.new
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
   filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, language, status, version_number]    Searchable Association: [custom_signature] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -246,9 +246,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, language, status, version_number]    Searchable Association: [custom_signature] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
  **include** | **String**| Related objects that can be included in the response:  custom_signature, results See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, language, status, version_number]    Searchable Association: [custom_signature] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -333,9 +333,9 @@ api_instance = ESP::CustomSignatureDefinitionsApi.new
 id = 56 # Integer | Custom Signature Definition ID
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
   code: "code_example", # String | The code for this definition
-  language: "language_example", # String | The language of the definition. Valid values are ruby, javascript
-  include: "include_example" # String | Related objects that can be included in the response:  custom_signature, results See Including Objects for more information.
+  language: "language_example" # String | The language of the definition. Valid values are ruby, javascript
 }
 
 begin
@@ -352,9 +352,9 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Custom Signature Definition ID | 
+ **include** | **String**| Related objects that can be included in the response:  custom_signature, results See Including Objects for more information. | [optional] 
  **code** | **String**| The code for this definition | [optional] 
  **language** | **String**| The language of the definition. Valid values are ruby, javascript | [optional] 
- **include** | **String**| Related objects that can be included in the response:  custom_signature, results See Including Objects for more information. | [optional] 
 
 ### Return type
 

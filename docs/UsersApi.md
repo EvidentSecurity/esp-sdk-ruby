@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> User create(first_name, last_name, email, opts)
+> User create(email, first_name, last_name, opts)
 
 Create a(n) User
 
@@ -25,25 +25,25 @@ require 'esp_sdk'
 
 api_instance = ESP::UsersApi.new
 
+email = "email_example" # String | The email of the user
+
 first_name = "first_name_example" # String | The first name of the user
 
 last_name = "last_name_example" # String | The last name of the user
 
-email = "email_example" # String | The email of the user
-
 opts = { 
-  role_id: 56, # Integer | The ID of the role of the user
-  sub_organization_ids: [56], # Array<Integer> | A list of sub organization IDs that the user should have access to
-  team_ids: [56], # Array<Integer> | A list of team IDs that the user should have access to
+  include: "include_example", # String | Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
   disable_daily_emails: true, # BOOLEAN | Specifies whether the daily emails should be turned off or not
   phone: "phone_example", # String | The phone number of the user
-  time_zone: "time_zone_example", # String | The time zone of the user. See Time Zones for a list of valid time zones
-  include: "include_example" # String | Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+  role_id: 56, # Integer | The ID of the role of the user. Only a manager can set or modify the role id.
+  sub_organization_ids: [56], # Array<Integer> | A list of sub organization IDs that the user should have access to. Only a manager can set or modify the sub organization ids.
+  team_ids: [56], # Array<Integer> | A list of team IDs that the user should have access to. Only a manager can set or modify the team ids.
+  time_zone: "time_zone_example" # String | The time zone of the user. See Time Zones for a list of valid time zones
 }
 
 begin
   #Create a(n) User
-  result = api_instance.create(first_name, last_name, email, opts)
+  result = api_instance.create(email, first_name, last_name, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling UsersApi->create: #{e}"
@@ -54,16 +54,16 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **email** | **String**| The email of the user | 
  **first_name** | **String**| The first name of the user | 
  **last_name** | **String**| The last name of the user | 
- **email** | **String**| The email of the user | 
- **role_id** | **Integer**| The ID of the role of the user | [optional] 
- **sub_organization_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of sub organization IDs that the user should have access to | [optional] 
- **team_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of team IDs that the user should have access to | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information. | [optional] 
  **disable_daily_emails** | **BOOLEAN**| Specifies whether the daily emails should be turned off or not | [optional] 
  **phone** | **String**| The phone number of the user | [optional] 
+ **role_id** | **Integer**| The ID of the role of the user. Only a manager can set or modify the role id. | [optional] 
+ **sub_organization_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of sub organization IDs that the user should have access to. Only a manager can set or modify the sub organization ids. | [optional] 
+ **team_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of team IDs that the user should have access to. Only a manager can set or modify the team ids. | [optional] 
  **time_zone** | **String**| The time zone of the user. See Time Zones for a list of valid time zones | [optional] 
- **include** | **String**| Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -94,7 +94,7 @@ require 'esp_sdk'
 
 api_instance = ESP::UsersApi.new
 
-id = 56 # Integer |  ID
+id = 56 # Integer | User ID
 
 opts = { 
   current_password: "current_password_example" # String | The user's currently stored password
@@ -113,7 +113,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**|  ID | 
+ **id** | **Integer**| User ID | 
  **current_password** | **String**| The user&#39;s currently stored password | [optional] 
 
 ### Return type
@@ -146,9 +146,9 @@ require 'esp_sdk'
 api_instance = ESP::UsersApi.new
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
   filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -164,9 +164,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
  **include** | **String**| Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -251,16 +251,15 @@ api_instance = ESP::UsersApi.new
 id = 56 # Integer | User ID
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+  disable_daily_emails: true, # BOOLEAN | Specifies whether the daily emails should be turned off or not
   first_name: "first_name_example", # String | The first name of the user
   last_name: "last_name_example", # String | The last name of the user
-  email: "email_example", # String | The email of the user
-  role_id: 56, # Integer | The ID of the role of the user
-  sub_organization_ids: [56], # Array<Integer> | A list of sub organization IDs that the user should have access to
-  team_ids: [56], # Array<Integer> | A list of team IDs that the user should have access to
-  disable_daily_emails: true, # BOOLEAN | Specifies whether the daily emails should be turned off or not
   phone: "phone_example", # String | The phone number of the user
-  time_zone: "time_zone_example", # String | The time zone of the user. See Time Zones for a list of valid time zones
-  include: "include_example" # String | Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+  role_id: 56, # Integer | The ID of the role of the user. Only a manager can set or modify the role id.
+  sub_organization_ids: [56], # Array<Integer> | A list of sub organization IDs that the user should have access to. Only a manager can set or modify the sub organization ids.
+  team_ids: [56], # Array<Integer> | A list of team IDs that the user should have access to. Only a manager can set or modify the team ids.
+  time_zone: "time_zone_example" # String | The time zone of the user. See Time Zones for a list of valid time zones
 }
 
 begin
@@ -277,16 +276,15 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| User ID | 
+ **include** | **String**| Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information. | [optional] 
+ **disable_daily_emails** | **BOOLEAN**| Specifies whether the daily emails should be turned off or not | [optional] 
  **first_name** | **String**| The first name of the user | [optional] 
  **last_name** | **String**| The last name of the user | [optional] 
- **email** | **String**| The email of the user | [optional] 
- **role_id** | **Integer**| The ID of the role of the user | [optional] 
- **sub_organization_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of sub organization IDs that the user should have access to | [optional] 
- **team_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of team IDs that the user should have access to | [optional] 
- **disable_daily_emails** | **BOOLEAN**| Specifies whether the daily emails should be turned off or not | [optional] 
  **phone** | **String**| The phone number of the user | [optional] 
+ **role_id** | **Integer**| The ID of the role of the user. Only a manager can set or modify the role id. | [optional] 
+ **sub_organization_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of sub organization IDs that the user should have access to. Only a manager can set or modify the sub organization ids. | [optional] 
+ **team_ids** | [**Array&lt;Integer&gt;**](Integer.md)| A list of team IDs that the user should have access to. Only a manager can set or modify the team ids. | [optional] 
  **time_zone** | **String**| The time zone of the user. See Time Zones for a list of valid time zones | [optional] 
- **include** | **String**| Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information. | [optional] 
 
 ### Return type
 

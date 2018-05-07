@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> CustomComplianceStandard create(name, description, opts)
+> CustomComplianceStandard create(description, name, opts)
 
 Create a(n) Custom Compliance Standard
 
@@ -24,9 +24,9 @@ require 'esp_sdk'
 
 api_instance = ESP::CustomComplianceStandardsApi.new
 
-name = "name_example" # String | Name
-
 description = "description_example" # String | The description for this Compliance Standard
+
+name = "name_example" # String | Name
 
 opts = { 
   include: "include_example" # String | Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
@@ -34,7 +34,7 @@ opts = {
 
 begin
   #Create a(n) Custom Compliance Standard
-  result = api_instance.create(name, description, opts)
+  result = api_instance.create(description, name, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling CustomComplianceStandardsApi->create: #{e}"
@@ -45,8 +45,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **String**| Name | 
  **description** | **String**| The description for this Compliance Standard | 
+ **name** | **String**| Name | 
  **include** | **String**| Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information. | [optional] 
 
 ### Return type
@@ -78,7 +78,7 @@ require 'esp_sdk'
 
 api_instance = ESP::CustomComplianceStandardsApi.new
 
-id = 56 # Integer |  ID
+id = 56 # Integer | Custom Compliance Standard ID
 
 
 begin
@@ -94,7 +94,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**|  ID | 
+ **id** | **Integer**| Custom Compliance Standard ID | 
 
 ### Return type
 
@@ -179,9 +179,9 @@ api_instance = ESP::CustomComplianceStandardsApi.new
 id = 56 # Integer | Custom Compliance Standard ID
 
 opts = { 
-  name: "name_example", # String | Name
+  include: "include_example", # String | Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
   description: "description_example", # String | The description for this Compliance Standard
-  include: "include_example" # String | Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
+  name: "name_example" # String | Name
 }
 
 begin
@@ -198,9 +198,9 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Custom Compliance Standard ID | 
- **name** | **String**| Name | [optional] 
- **description** | **String**| The description for this Compliance Standard | [optional] 
  **include** | **String**| Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information. | [optional] 
+ **description** | **String**| The description for this Compliance Standard | [optional] 
+ **name** | **String**| Name | [optional] 
 
 ### Return type
 

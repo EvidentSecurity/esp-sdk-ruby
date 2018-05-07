@@ -23,9 +23,6 @@ module ESP
     # Amazon Resource Name for the IAM role
     attr_accessor :arn
 
-    # Cloudtrail Name
-    attr_accessor :cloudtrail_name
-
     # External Identifier set on the role
     attr_accessor :external_id
 
@@ -38,9 +35,6 @@ module ESP
     # Associated External Account
     attr_accessor :external_account
 
-    # Associated External Account ID
-    attr_accessor :external_account_id
-
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -48,12 +42,10 @@ module ESP
         :'id' => :'id',
         :'account' => :'account',
         :'arn' => :'arn',
-        :'cloudtrail_name' => :'cloudtrail_name',
         :'external_id' => :'external_id',
         :'created_at' => :'created_at',
         :'updated_at' => :'updated_at',
-        :'external_account' => :'external_account',
-        :'external_account_id' => :'external_account_id'
+        :'external_account' => :'external_account'
       }
     end
 
@@ -63,12 +55,10 @@ module ESP
         :'id' => :'Integer',
         :'account' => :'String',
         :'arn' => :'String',
-        :'cloudtrail_name' => :'String',
         :'external_id' => :'String',
         :'created_at' => :'DateTime',
         :'updated_at' => :'DateTime',
-        :'external_account' => :'ExternalAccount',
-        :'external_account_id' => :'Integer'
+        :'external_account' => :'ExternalAccount'
       }
     end
 
@@ -92,10 +82,6 @@ module ESP
         self.arn = attributes[:'arn']
       end
 
-      if attributes.has_key?(:'cloudtrail_name')
-        self.cloudtrail_name = attributes[:'cloudtrail_name']
-      end
-
       if attributes.has_key?(:'external_id')
         self.external_id = attributes[:'external_id']
       end
@@ -110,10 +96,6 @@ module ESP
 
       if attributes.has_key?(:'external_account')
         self.external_account = attributes[:'external_account']
-      end
-
-      if attributes.has_key?(:'external_account_id')
-        self.external_account_id = attributes[:'external_account_id']
       end
 
     end
@@ -139,12 +121,10 @@ module ESP
           id == o.id &&
           account == o.account &&
           arn == o.arn &&
-          cloudtrail_name == o.cloudtrail_name &&
           external_id == o.external_id &&
           created_at == o.created_at &&
           updated_at == o.updated_at &&
-          external_account == o.external_account &&
-          external_account_id == o.external_account_id
+          external_account == o.external_account
     end
 
     # @see the `==` method
@@ -156,7 +136,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, account, arn, cloudtrail_name, external_id, created_at, updated_at, external_account, external_account_id].hash
+      [id, account, arn, external_id, created_at, updated_at, external_account].hash
     end
 
     # Builds the object from hash

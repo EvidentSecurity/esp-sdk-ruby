@@ -80,32 +80,17 @@ module ESP
     # Associated Metadata
     attr_accessor :metadata
 
-    # Associated Metadata ID
-    attr_accessor :metadata_id
-
-    # Associated Cloud Trail Events
-    attr_accessor :cloud_trail_events
-
-    # Associated Cloud Trail Events IDs
-    attr_accessor :cloud_trail_event_ids
+    # Associated Attribution
+    attr_accessor :attribution
 
     # Associated Tags
     attr_accessor :tags
 
-    # Associated Tags IDs
-    attr_accessor :tag_ids
-
     # Associated Compliance Controls
     attr_accessor :compliance_controls
 
-    # Associated Compliance Controls IDs
-    attr_accessor :compliance_control_ids
-
     # Associated Custom Compliance Controls
     attr_accessor :custom_compliance_controls
-
-    # Associated Custom Compliance Controls IDs
-    attr_accessor :custom_compliance_control_ids
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -133,15 +118,10 @@ module ESP
         :'suppression' => :'suppression',
         :'suppression_id' => :'suppression_id',
         :'metadata' => :'metadata',
-        :'metadata_id' => :'metadata_id',
-        :'cloud_trail_events' => :'cloud_trail_events',
-        :'cloud_trail_event_ids' => :'cloud_trail_event_ids',
+        :'attribution' => :'attribution',
         :'tags' => :'tags',
-        :'tag_ids' => :'tag_ids',
         :'compliance_controls' => :'compliance_controls',
-        :'compliance_control_ids' => :'compliance_control_ids',
-        :'custom_compliance_controls' => :'custom_compliance_controls',
-        :'custom_compliance_control_ids' => :'custom_compliance_control_ids'
+        :'custom_compliance_controls' => :'custom_compliance_controls'
       }
     end
 
@@ -170,15 +150,10 @@ module ESP
         :'suppression' => :'Suppression',
         :'suppression_id' => :'Integer',
         :'metadata' => :'Metadata',
-        :'metadata_id' => :'Integer',
-        :'cloud_trail_events' => :'Array<CloudTrailEvent>',
-        :'cloud_trail_event_ids' => :'Array<Integer>',
+        :'attribution' => :'Attribution',
         :'tags' => :'Array<Tag>',
-        :'tag_ids' => :'Array<Integer>',
         :'compliance_controls' => :'Array<ComplianceControl>',
-        :'compliance_control_ids' => :'Array<Integer>',
-        :'custom_compliance_controls' => :'Array<CustomComplianceControl>',
-        :'custom_compliance_control_ids' => :'Array<Integer>'
+        :'custom_compliance_controls' => :'Array<CustomComplianceControl>'
       }
     end
 
@@ -278,31 +253,13 @@ module ESP
         self.metadata = attributes[:'metadata']
       end
 
-      if attributes.has_key?(:'metadata_id')
-        self.metadata_id = attributes[:'metadata_id']
-      end
-
-      if attributes.has_key?(:'cloud_trail_events')
-        if (value = attributes[:'cloud_trail_events']).is_a?(Array)
-          self.cloud_trail_events = value
-        end
-      end
-
-      if attributes.has_key?(:'cloud_trail_event_ids')
-        if (value = attributes[:'cloud_trail_event_ids']).is_a?(Array)
-          self.cloud_trail_event_ids = value
-        end
+      if attributes.has_key?(:'attribution')
+        self.attribution = attributes[:'attribution']
       end
 
       if attributes.has_key?(:'tags')
         if (value = attributes[:'tags']).is_a?(Array)
           self.tags = value
-        end
-      end
-
-      if attributes.has_key?(:'tag_ids')
-        if (value = attributes[:'tag_ids']).is_a?(Array)
-          self.tag_ids = value
         end
       end
 
@@ -312,21 +269,9 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'compliance_control_ids')
-        if (value = attributes[:'compliance_control_ids']).is_a?(Array)
-          self.compliance_control_ids = value
-        end
-      end
-
       if attributes.has_key?(:'custom_compliance_controls')
         if (value = attributes[:'custom_compliance_controls']).is_a?(Array)
           self.custom_compliance_controls = value
-        end
-      end
-
-      if attributes.has_key?(:'custom_compliance_control_ids')
-        if (value = attributes[:'custom_compliance_control_ids']).is_a?(Array)
-          self.custom_compliance_control_ids = value
         end
       end
 
@@ -372,15 +317,10 @@ module ESP
           suppression == o.suppression &&
           suppression_id == o.suppression_id &&
           metadata == o.metadata &&
-          metadata_id == o.metadata_id &&
-          cloud_trail_events == o.cloud_trail_events &&
-          cloud_trail_event_ids == o.cloud_trail_event_ids &&
+          attribution == o.attribution &&
           tags == o.tags &&
-          tag_ids == o.tag_ids &&
           compliance_controls == o.compliance_controls &&
-          compliance_control_ids == o.compliance_control_ids &&
-          custom_compliance_controls == o.custom_compliance_controls &&
-          custom_compliance_control_ids == o.custom_compliance_control_ids
+          custom_compliance_controls == o.custom_compliance_controls
     end
 
     # @see the `==` method
@@ -392,7 +332,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, status, risk_level, resource, ended_reason, replaced_by_id, replaced_by_status, updated_at, started_at, ended_at, external_account, external_account_id, region, region_id, signature, signature_id, custom_signature, custom_signature_id, suppression, suppression_id, metadata, metadata_id, cloud_trail_events, cloud_trail_event_ids, tags, tag_ids, compliance_controls, compliance_control_ids, custom_compliance_controls, custom_compliance_control_ids].hash
+      [id, created_at, status, risk_level, resource, ended_reason, replaced_by_id, replaced_by_status, updated_at, started_at, ended_at, external_account, external_account_id, region, region_id, signature, signature_id, custom_signature, custom_signature_id, suppression, suppression_id, metadata, attribution, tags, compliance_controls, custom_compliance_controls].hash
     end
 
     # Builds the object from hash

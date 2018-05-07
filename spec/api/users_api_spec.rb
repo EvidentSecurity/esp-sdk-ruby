@@ -34,17 +34,17 @@ describe 'UsersApi' do
   # unit tests for create
   # Create a(n) User
   # 
+  # @param email The email of the user
   # @param first_name The first name of the user
   # @param last_name The last name of the user
-  # @param email The email of the user
   # @param [Hash] opts the optional parameters
-  # @option opts [Integer] :role_id The ID of the role of the user
-  # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to
-  # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to
+  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
   # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
   # @option opts [String] :phone The phone number of the user
+  # @option opts [Integer] :role_id The ID of the role of the user. Only a manager can set or modify the role id.
+  # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to. Only a manager can set or modify the sub organization ids.
+  # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to. Only a manager can set or modify the team ids.
   # @option opts [String] :time_zone The time zone of the user. See Time Zones for a list of valid time zones
-  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
   # @return [User]
   describe 'create test' do
     it "should work" do
@@ -55,7 +55,7 @@ describe 'UsersApi' do
   # unit tests for delete
   # Delete a(n) User
   # The users current password is required when deleting yourself.
-  # @param id  ID
+  # @param id User ID
   # @param [Hash] opts the optional parameters
   # @option opts [String] :current_password The user&#39;s currently stored password
   # @return [Meta]
@@ -69,9 +69,9 @@ describe 'UsersApi' do
   # Get a list of Users
   # 
   # @param [Hash] opts the optional parameters
-  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
   # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, email] Matching Searchable Attribute: [email]  Sortable Attributes: [email, current_sign_in_at, updated_at, created_at, id] Searchable Associations: [role, organization, sub_organizations, teams] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list test' do
     it "should work" do
@@ -97,16 +97,15 @@ describe 'UsersApi' do
   # 
   # @param id User ID
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+  # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
   # @option opts [String] :first_name The first name of the user
   # @option opts [String] :last_name The last name of the user
-  # @option opts [String] :email The email of the user
-  # @option opts [Integer] :role_id The ID of the role of the user
-  # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to
-  # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to
-  # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
   # @option opts [String] :phone The phone number of the user
+  # @option opts [Integer] :role_id The ID of the role of the user. Only a manager can set or modify the role id.
+  # @option opts [Array<Integer>] :sub_organization_ids A list of sub organization IDs that the user should have access to. Only a manager can set or modify the sub organization ids.
+  # @option opts [Array<Integer>] :team_ids A list of team IDs that the user should have access to. Only a manager can set or modify the team ids.
   # @option opts [String] :time_zone The time zone of the user. See Time Zones for a list of valid time zones
-  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
   # @return [User]
   describe 'update test' do
     it "should work" do

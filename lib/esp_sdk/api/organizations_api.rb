@@ -22,9 +22,9 @@ module ESP
     # Get a list of Organizations
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] 
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @option opts [String] :include Related objects that can be included in the response:  subscription, custom_signatures, external_accounts, sub_organizations, teams, users, compliance_standards, integrations See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] 
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
       data, _status_code, _headers = list_with_http_info(opts)
@@ -34,9 +34,9 @@ module ESP
     # Get a list of Organizations
     # 
     # @param [Hash] opts the optional parameters
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] 
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @option opts [String] :include Related objects that can be included in the response:  subscription, custom_signatures, external_accounts, sub_organizations, teams, users, compliance_standards, integrations See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] 
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -81,8 +81,8 @@ module ESP
     # 
     # @param organization_id The ID of the organization this compliance standard belongs to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page (default to {:number=>1,+:size=>20})
     # @option opts [String] :include Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list_compliance_standards(organization_id, opts = {})
       data, _status_code, _headers = list_compliance_standards_with_http_info(organization_id, opts)
@@ -93,8 +93,8 @@ module ESP
     # 
     # @param organization_id The ID of the organization this compliance standard belongs to
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
     # @option opts [String] :include Related objects that can be included in the response:  compliance_domains, compliance_controls See Including Objects for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_compliance_standards_with_http_info(organization_id, opts = {})
       if @api_client.config.debugging
@@ -196,9 +196,9 @@ module ESP
     # 
     # @param id Organization ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  subscription, custom_signatures, external_accounts, sub_organizations, teams, users, compliance_standards, integrations See Including Objects for more information.
     # @option opts [String] :name Name of the organization
     # @option opts [BOOLEAN] :require_mfa Whether or not users for this organization are required to enable Multi Factor Authentication
-    # @option opts [String] :include Related objects that can be included in the response:  subscription, custom_signatures, external_accounts, sub_organizations, teams, users, compliance_standards, integrations See Including Objects for more information.
     # @return [Organization]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
@@ -209,9 +209,9 @@ module ESP
     # 
     # @param id Organization ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  subscription, custom_signatures, external_accounts, sub_organizations, teams, users, compliance_standards, integrations See Including Objects for more information.
     # @option opts [String] :name Name of the organization
     # @option opts [BOOLEAN] :require_mfa Whether or not users for this organization are required to enable Multi Factor Authentication
-    # @option opts [String] :include Related objects that can be included in the response:  subscription, custom_signatures, external_accounts, sub_organizations, teams, users, compliance_standards, integrations See Including Objects for more information.
     # @return [Array<(Organization, Fixnum, Hash)>] Organization data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging

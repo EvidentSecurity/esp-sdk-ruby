@@ -30,7 +30,8 @@ name = "name_example" # String | Name of the team
 sub_organization_id = 56 # Integer | The ID of the sub organization to attach this team to
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+  report_interval: 56 # Integer | The interval period in hours for Evident.io to run reports
 }
 
 begin
@@ -49,6 +50,7 @@ Name | Type | Description  | Notes
  **name** | **String**| Name of the team | 
  **sub_organization_id** | **Integer**| The ID of the sub organization to attach this team to | 
  **include** | **String**| Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information. | [optional] 
+ **report_interval** | **Integer**| The interval period in hours for Evident.io to run reports | [optional] 
 
 ### Return type
 
@@ -79,7 +81,7 @@ require 'esp_sdk'
 
 api_instance = ESP::TeamsApi.new
 
-id = 56 # Integer |  ID
+id = 56 # Integer | Team ID
 
 
 begin
@@ -95,7 +97,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**|  ID | 
+ **id** | **Integer**| Team ID | 
 
 ### Return type
 
@@ -127,9 +129,9 @@ require 'esp_sdk'
 api_instance = ESP::TeamsApi.new
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
   filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
@@ -145,9 +147,9 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
  **include** | **String**| Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, name] Matching Searchable Attribute: [name]  Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, custom_signatures, integrations] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 
@@ -232,8 +234,9 @@ api_instance = ESP::TeamsApi.new
 id = 56 # Integer | Team ID
 
 opts = { 
+  include: "include_example", # String | Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
   name: "name_example", # String | Name of the team
-  include: "include_example" # String | Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information.
+  report_interval: 56 # Integer | The interval period in hours for Evident.io to run reports
 }
 
 begin
@@ -250,8 +253,9 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Team ID | 
- **name** | **String**| Name of the team | [optional] 
  **include** | **String**| Related objects that can be included in the response:  custom_signatures, external_accounts, organization, sub_organization See Including Objects for more information. | [optional] 
+ **name** | **String**| Name of the team | [optional] 
+ **report_interval** | **Integer**| The interval period in hours for Evident.io to run reports | [optional] 
 
 ### Return type
 

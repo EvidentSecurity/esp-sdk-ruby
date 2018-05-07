@@ -22,58 +22,58 @@ module ESP
     # Create an Amazon SNS Integration
     # 
     # @param arn The role arn for accessing the SNS topic
-    # @param external_id The external ID for the IAM role
-    # @param topic The SNS topic arn
-    # @param name Name of the integration
     # @param external_account_ids External accounts for integration
+    # @param external_id The external ID for the IAM role
+    # @param name Name of the integration
+    # @param topic The SNS topic arn
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
     # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
-    # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
     # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
+    # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
+    # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
     # @option opts [BOOLEAN] :send_updates This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
     # @option opts [BOOLEAN] :send_when_suppressed Send notifications for suppressed alerts
     # @option opts [Array<Integer>] :signature_ids Signatures for integration
     # @option opts [Array<String>] :statuses Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-    # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
-    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
     # @return [IntegrationAmazonSns]
-    def create(arn, external_id, topic, name, external_account_ids, opts = {})
-      data, _status_code, _headers = create_with_http_info(arn, external_id, topic, name, external_account_ids, opts)
+    def create(arn, external_account_ids, external_id, name, topic, opts = {})
+      data, _status_code, _headers = create_with_http_info(arn, external_account_ids, external_id, name, topic, opts)
       return data
     end
 
     # Create an Amazon SNS Integration
     # 
     # @param arn The role arn for accessing the SNS topic
-    # @param external_id The external ID for the IAM role
-    # @param topic The SNS topic arn
-    # @param name Name of the integration
     # @param external_account_ids External accounts for integration
+    # @param external_id The external ID for the IAM role
+    # @param name Name of the integration
+    # @param topic The SNS topic arn
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
     # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
-    # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
     # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
+    # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
+    # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
     # @option opts [BOOLEAN] :send_updates This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
     # @option opts [BOOLEAN] :send_when_suppressed Send notifications for suppressed alerts
     # @option opts [Array<Integer>] :signature_ids Signatures for integration
     # @option opts [Array<String>] :statuses Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-    # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
-    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
     # @return [Array<(IntegrationAmazonSns, Fixnum, Hash)>] IntegrationAmazonSns data, response status code and response headers
-    def create_with_http_info(arn, external_id, topic, name, external_account_ids, opts = {})
+    def create_with_http_info(arn, external_account_ids, external_id, name, topic, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: IntegrationsAmazonSNSApi.create ..."
       end
       # verify the required parameter 'arn' is set
       fail ArgumentError, "Missing the required parameter 'arn' when calling IntegrationsAmazonSNSApi.create" if arn.nil?
-      # verify the required parameter 'external_id' is set
-      fail ArgumentError, "Missing the required parameter 'external_id' when calling IntegrationsAmazonSNSApi.create" if external_id.nil?
-      # verify the required parameter 'topic' is set
-      fail ArgumentError, "Missing the required parameter 'topic' when calling IntegrationsAmazonSNSApi.create" if topic.nil?
-      # verify the required parameter 'name' is set
-      fail ArgumentError, "Missing the required parameter 'name' when calling IntegrationsAmazonSNSApi.create" if name.nil?
       # verify the required parameter 'external_account_ids' is set
       fail ArgumentError, "Missing the required parameter 'external_account_ids' when calling IntegrationsAmazonSNSApi.create" if external_account_ids.nil?
+      # verify the required parameter 'external_id' is set
+      fail ArgumentError, "Missing the required parameter 'external_id' when calling IntegrationsAmazonSNSApi.create" if external_id.nil?
+      # verify the required parameter 'name' is set
+      fail ArgumentError, "Missing the required parameter 'name' when calling IntegrationsAmazonSNSApi.create" if name.nil?
+      # verify the required parameter 'topic' is set
+      fail ArgumentError, "Missing the required parameter 'topic' when calling IntegrationsAmazonSNSApi.create" if topic.nil?
       # resource path
       local_var_path = "/api/v2/integrations/amazon_sns.json_api".sub('{format}','json_api')
 
@@ -91,18 +91,18 @@ module ESP
       # form parameters
       form_params = {}
       form_params["arn"] = arn
-      form_params["external_id"] = external_id
-      form_params["topic"] = topic
-      form_params["name"] = name
       form_params["external_account_ids"] = @api_client.build_collection_param(external_account_ids, :multi)
+      form_params["external_id"] = external_id
+      form_params["name"] = name
+      form_params["topic"] = topic
       form_params["all_high_risk"] = opts[:'all_high_risk'] if !opts[:'all_high_risk'].nil?
-      form_params["all_medium_risk"] = opts[:'all_medium_risk'] if !opts[:'all_medium_risk'].nil?
       form_params["all_low_risk"] = opts[:'all_low_risk'] if !opts[:'all_low_risk'].nil?
+      form_params["all_medium_risk"] = opts[:'all_medium_risk'] if !opts[:'all_medium_risk'].nil?
+      form_params["custom_signature_ids"] = @api_client.build_collection_param(opts[:'custom_signature_ids'], :multi) if !opts[:'custom_signature_ids'].nil?
       form_params["send_updates"] = opts[:'send_updates'] if !opts[:'send_updates'].nil?
       form_params["send_when_suppressed"] = opts[:'send_when_suppressed'] if !opts[:'send_when_suppressed'].nil?
       form_params["signature_ids"] = @api_client.build_collection_param(opts[:'signature_ids'], :multi) if !opts[:'signature_ids'].nil?
       form_params["statuses"] = @api_client.build_collection_param(opts[:'statuses'], :multi) if !opts[:'statuses'].nil?
-      form_params["custom_signature_ids"] = @api_client.build_collection_param(opts[:'custom_signature_ids'], :multi) if !opts[:'custom_signature_ids'].nil?
 
       # http body (model)
       post_body = nil
@@ -180,20 +180,20 @@ module ESP
     # 
     # @param integration_id The ID of the integration
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :arn The role arn for accessing the SNS topic
-    # @option opts [String] :external_id The external ID for the IAM role
-    # @option opts [String] :topic The SNS topic arn
-    # @option opts [String] :name Name of the integration
+    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
     # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
-    # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
     # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
+    # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
+    # @option opts [String] :arn The role arn for accessing the SNS topic
+    # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
+    # @option opts [Array<Integer>] :external_account_ids External accounts for integration
+    # @option opts [String] :external_id The external ID for the IAM role
+    # @option opts [String] :name Name of the integration
     # @option opts [BOOLEAN] :send_updates This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
     # @option opts [BOOLEAN] :send_when_suppressed Send notifications for suppressed alerts
     # @option opts [Array<Integer>] :signature_ids Signatures for integration
     # @option opts [Array<String>] :statuses Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-    # @option opts [Array<Integer>] :external_account_ids External accounts for integration
-    # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
-    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
+    # @option opts [String] :topic The SNS topic arn
     # @return [IntegrationAmazonSns]
     def update(integration_id, opts = {})
       data, _status_code, _headers = update_with_http_info(integration_id, opts)
@@ -204,20 +204,20 @@ module ESP
     # 
     # @param integration_id The ID of the integration
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :arn The role arn for accessing the SNS topic
-    # @option opts [String] :external_id The external ID for the IAM role
-    # @option opts [String] :topic The SNS topic arn
-    # @option opts [String] :name Name of the integration
+    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
     # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
-    # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
     # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
+    # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
+    # @option opts [String] :arn The role arn for accessing the SNS topic
+    # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
+    # @option opts [Array<Integer>] :external_account_ids External accounts for integration
+    # @option opts [String] :external_id The external ID for the IAM role
+    # @option opts [String] :name Name of the integration
     # @option opts [BOOLEAN] :send_updates This feature enables the integration to send alerts when they are updated. When disabled, alerts will only be sent when they are initially created. When enabled, alerts will additionally be sent when a change is made such as the alert ending. An alert may end for multiple reasons.
     # @option opts [BOOLEAN] :send_when_suppressed Send notifications for suppressed alerts
     # @option opts [Array<Integer>] :signature_ids Signatures for integration
     # @option opts [Array<String>] :statuses Only send alerts that have the status in this list. Valid values are fail, warn, error, pass, info
-    # @option opts [Array<Integer>] :external_account_ids External accounts for integration
-    # @option opts [Array<Integer>] :custom_signature_ids Custom signatures for integration
-    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
+    # @option opts [String] :topic The SNS topic arn
     # @return [Array<(IntegrationAmazonSns, Fixnum, Hash)>] IntegrationAmazonSns data, response status code and response headers
     def update_with_http_info(integration_id, opts = {})
       if @api_client.config.debugging
@@ -241,19 +241,19 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["arn"] = opts[:'arn'] if !opts[:'arn'].nil?
-      form_params["external_id"] = opts[:'external_id'] if !opts[:'external_id'].nil?
-      form_params["topic"] = opts[:'topic'] if !opts[:'topic'].nil?
-      form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
       form_params["all_high_risk"] = opts[:'all_high_risk'] if !opts[:'all_high_risk'].nil?
-      form_params["all_medium_risk"] = opts[:'all_medium_risk'] if !opts[:'all_medium_risk'].nil?
       form_params["all_low_risk"] = opts[:'all_low_risk'] if !opts[:'all_low_risk'].nil?
+      form_params["all_medium_risk"] = opts[:'all_medium_risk'] if !opts[:'all_medium_risk'].nil?
+      form_params["arn"] = opts[:'arn'] if !opts[:'arn'].nil?
+      form_params["custom_signature_ids"] = @api_client.build_collection_param(opts[:'custom_signature_ids'], :multi) if !opts[:'custom_signature_ids'].nil?
+      form_params["external_account_ids"] = @api_client.build_collection_param(opts[:'external_account_ids'], :multi) if !opts[:'external_account_ids'].nil?
+      form_params["external_id"] = opts[:'external_id'] if !opts[:'external_id'].nil?
+      form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
       form_params["send_updates"] = opts[:'send_updates'] if !opts[:'send_updates'].nil?
       form_params["send_when_suppressed"] = opts[:'send_when_suppressed'] if !opts[:'send_when_suppressed'].nil?
       form_params["signature_ids"] = @api_client.build_collection_param(opts[:'signature_ids'], :multi) if !opts[:'signature_ids'].nil?
       form_params["statuses"] = @api_client.build_collection_param(opts[:'statuses'], :multi) if !opts[:'statuses'].nil?
-      form_params["external_account_ids"] = @api_client.build_collection_param(opts[:'external_account_ids'], :multi) if !opts[:'external_account_ids'].nil?
-      form_params["custom_signature_ids"] = @api_client.build_collection_param(opts[:'custom_signature_ids'], :multi) if !opts[:'custom_signature_ids'].nil?
+      form_params["topic"] = opts[:'topic'] if !opts[:'topic'].nil?
 
       # http body (model)
       post_body = nil

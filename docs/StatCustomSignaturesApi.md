@@ -4,16 +4,16 @@ All URIs are relative to https://api.evident.io
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_for_stat**](StatCustomSignaturesApi.md#list_for_stat) | **GET** /api/v2/stats/{stat_id}/custom_signatures.json_api | Stats for custom signatures
+[**list_for_stat**](StatCustomSignaturesApi.md#list_for_stat) | **GET** /api/v2/stats/{stat_id}/custom_signatures.json_api | Statistics for custom signatures
 [**show**](StatCustomSignaturesApi.md#show) | **GET** /api/v2/stats/custom_signatures/{id}.json_api | Show a single Stat Custom Signature
 
 
 # **list_for_stat**
 > PaginatedCollection list_for_stat(stat_id, opts)
 
-Stats for custom signatures
+Statistics for custom signatures
 
-A successful call to this API returns all the stats of all the custom signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom_signatures for the selected hour.
+A successful call to this API returns all the statistics of all the custom signatures for a report identified by the stat_id parameter. Said report contains all statistics for this alert triggered from signatures contained in all custom_signatures for the selected hour.
 
 ### Example
 ```ruby
@@ -22,15 +22,16 @@ require 'esp_sdk'
 
 api_instance = ESP::StatCustomSignaturesApi.new
 
-stat_id = 56 # Integer | The ID of the stat to retrieve custom signature stats for
+stat_id = 56 # Integer | The ID of the stat to retrieve custom signature statistics for
 
 opts = { 
-  page: "{:number=>1,+:size=>20}", # String | Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page
-  include: "include_example" # String | Related objects that can be included in the response:  custom_signature, stat See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  custom_signature, stat See Including Objects for more information.
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [stat_id, type_id]    
+  page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
 begin
-  #Stats for custom signatures
+  #Statistics for custom signatures
   result = api_instance.list_for_stat(stat_id, opts)
   p result
 rescue ESP::ApiError => e
@@ -42,9 +43,10 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **stat_id** | **Integer**| The ID of the stat to retrieve custom signature stats for | 
- **page** | **String**| Page Number and Page Size.  number is the page number of the collection to return, size is the number of items to return per page | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
+ **stat_id** | **Integer**| The ID of the stat to retrieve custom signature statistics for | 
  **include** | **String**| Related objects that can be included in the response:  custom_signature, stat See Including Objects for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [stat_id, type_id]     | [optional] 
+ **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
 

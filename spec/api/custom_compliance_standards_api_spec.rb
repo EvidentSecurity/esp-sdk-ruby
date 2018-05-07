@@ -34,8 +34,8 @@ describe 'CustomComplianceStandardsApi' do
   # unit tests for create
   # Create a(n) Custom Compliance Standard
   # 
-  # @param name Name
   # @param description The description for this Compliance Standard
+  # @param name Name
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
   # @return [CustomComplianceStandard]
@@ -48,7 +48,7 @@ describe 'CustomComplianceStandardsApi' do
   # unit tests for delete
   # Delete a(n) Custom Compliance Standard
   # 
-  # @param id  ID
+  # @param id Custom Compliance Standard ID
   # @param [Hash] opts the optional parameters
   # @return [Meta]
   describe 'delete test' do
@@ -75,9 +75,9 @@ describe 'CustomComplianceStandardsApi' do
   # 
   # @param id Custom Compliance Standard ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :name Name
-  # @option opts [String] :description The description for this Compliance Standard
   # @option opts [String] :include Related objects that can be included in the response:  custom_compliance_domains, custom_compliance_controls See Including Objects for more information.
+  # @option opts [String] :description The description for this Compliance Standard
+  # @option opts [String] :name Name
   # @return [CustomComplianceStandard]
   describe 'update test' do
     it "should work" do

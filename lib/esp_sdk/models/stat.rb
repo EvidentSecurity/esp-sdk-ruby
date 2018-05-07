@@ -278,38 +278,20 @@ module ESP
     # Associated Regions
     attr_accessor :regions
 
-    # Associated Regions IDs
-    attr_accessor :region_ids
-
     # Associated Services
     attr_accessor :services
-
-    # Associated Services IDs
-    attr_accessor :service_ids
 
     # Associated Signatures
     attr_accessor :signatures
 
-    # Associated Signatures IDs
-    attr_accessor :signature_ids
-
     # Associated Custom Signatures
     attr_accessor :custom_signatures
-
-    # Associated Custom Signatures IDs
-    attr_accessor :custom_signature_ids
 
     # Associated Custom Compliance Controls
     attr_accessor :custom_compliance_controls
 
-    # Associated Custom Compliance Controls IDs
-    attr_accessor :custom_compliance_control_ids
-
     # Associated Compliance Controls
     attr_accessor :compliance_controls
-
-    # Associated Compliance Controls IDs
-    attr_accessor :compliance_control_ids
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -403,17 +385,11 @@ module ESP
         :'report' => :'report',
         :'report_id' => :'report_id',
         :'regions' => :'regions',
-        :'region_ids' => :'region_ids',
         :'services' => :'services',
-        :'service_ids' => :'service_ids',
         :'signatures' => :'signatures',
-        :'signature_ids' => :'signature_ids',
         :'custom_signatures' => :'custom_signatures',
-        :'custom_signature_ids' => :'custom_signature_ids',
         :'custom_compliance_controls' => :'custom_compliance_controls',
-        :'custom_compliance_control_ids' => :'custom_compliance_control_ids',
-        :'compliance_controls' => :'compliance_controls',
-        :'compliance_control_ids' => :'compliance_control_ids'
+        :'compliance_controls' => :'compliance_controls'
       }
     end
 
@@ -508,17 +484,11 @@ module ESP
         :'report' => :'Report',
         :'report_id' => :'Integer',
         :'regions' => :'Array<StatRegion>',
-        :'region_ids' => :'Array<Integer>',
         :'services' => :'Array<StatService>',
-        :'service_ids' => :'Array<Integer>',
         :'signatures' => :'Array<StatSignature>',
-        :'signature_ids' => :'Array<Integer>',
         :'custom_signatures' => :'Array<StatCustomSignature>',
-        :'custom_signature_ids' => :'Array<Integer>',
         :'custom_compliance_controls' => :'Array<StatCustomComplianceControl>',
-        :'custom_compliance_control_ids' => :'Array<Integer>',
-        :'compliance_controls' => :'Array<StatComplianceControl>',
-        :'compliance_control_ids' => :'Array<Integer>'
+        :'compliance_controls' => :'Array<StatComplianceControl>'
       }
     end
 
@@ -884,21 +854,9 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'region_ids')
-        if (value = attributes[:'region_ids']).is_a?(Array)
-          self.region_ids = value
-        end
-      end
-
       if attributes.has_key?(:'services')
         if (value = attributes[:'services']).is_a?(Array)
           self.services = value
-        end
-      end
-
-      if attributes.has_key?(:'service_ids')
-        if (value = attributes[:'service_ids']).is_a?(Array)
-          self.service_ids = value
         end
       end
 
@@ -908,21 +866,9 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'signature_ids')
-        if (value = attributes[:'signature_ids']).is_a?(Array)
-          self.signature_ids = value
-        end
-      end
-
       if attributes.has_key?(:'custom_signatures')
         if (value = attributes[:'custom_signatures']).is_a?(Array)
           self.custom_signatures = value
-        end
-      end
-
-      if attributes.has_key?(:'custom_signature_ids')
-        if (value = attributes[:'custom_signature_ids']).is_a?(Array)
-          self.custom_signature_ids = value
         end
       end
 
@@ -932,21 +878,9 @@ module ESP
         end
       end
 
-      if attributes.has_key?(:'custom_compliance_control_ids')
-        if (value = attributes[:'custom_compliance_control_ids']).is_a?(Array)
-          self.custom_compliance_control_ids = value
-        end
-      end
-
       if attributes.has_key?(:'compliance_controls')
         if (value = attributes[:'compliance_controls']).is_a?(Array)
           self.compliance_controls = value
-        end
-      end
-
-      if attributes.has_key?(:'compliance_control_ids')
-        if (value = attributes[:'compliance_control_ids']).is_a?(Array)
-          self.compliance_control_ids = value
         end
       end
 
@@ -1058,17 +992,11 @@ module ESP
           report == o.report &&
           report_id == o.report_id &&
           regions == o.regions &&
-          region_ids == o.region_ids &&
           services == o.services &&
-          service_ids == o.service_ids &&
           signatures == o.signatures &&
-          signature_ids == o.signature_ids &&
           custom_signatures == o.custom_signatures &&
-          custom_signature_ids == o.custom_signature_ids &&
           custom_compliance_controls == o.custom_compliance_controls &&
-          custom_compliance_control_ids == o.custom_compliance_control_ids &&
-          compliance_controls == o.compliance_controls &&
-          compliance_control_ids == o.compliance_control_ids
+          compliance_controls == o.compliance_controls
     end
 
     # @see the `==` method
@@ -1080,7 +1008,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, new_1h_high_pass, new_1d_high_pass, new_1w_high_pass, old_high_pass, new_1h_high_fail, new_1d_high_fail, new_1w_high_fail, old_high_fail, new_1h_high_warn, new_1d_high_warn, new_1w_high_warn, old_high_warn, new_1h_high_error, new_1d_high_error, new_1w_high_error, old_high_error, new_1h_medium_pass, new_1d_medium_pass, new_1w_medium_pass, old_medium_pass, new_1h_medium_fail, new_1d_medium_fail, new_1w_medium_fail, old_medium_fail, new_1h_medium_warn, new_1d_medium_warn, new_1w_medium_warn, old_medium_warn, new_1h_medium_error, new_1d_medium_error, new_1w_medium_error, old_medium_error, new_1h_low_pass, new_1d_low_pass, new_1w_low_pass, old_low_pass, new_1h_low_fail, new_1d_low_fail, new_1w_low_fail, old_low_fail, new_1h_low_warn, new_1d_low_warn, new_1w_low_warn, old_low_warn, new_1h_low_error, new_1d_low_error, new_1w_low_error, old_low_error, suppressed_high_pass, suppressed_high_fail, suppressed_high_warn, suppressed_high_error, suppressed_medium_pass, suppressed_medium_fail, suppressed_medium_warn, suppressed_medium_error, suppressed_low_pass, suppressed_low_fail, suppressed_low_warn, suppressed_low_error, new_1h_high_info, new_1d_high_info, new_1w_high_info, old_high_info, new_1h_medium_info, new_1d_medium_info, new_1w_medium_info, old_medium_info, new_1h_low_info, new_1d_low_info, new_1w_low_info, old_low_info, suppressed_high_info, suppressed_medium_info, suppressed_low_info, total_fail, total_warn, total_error, total_pass, total_info, total_low, total_medium, total_high, created_at, report, report_id, regions, region_ids, services, service_ids, signatures, signature_ids, custom_signatures, custom_signature_ids, custom_compliance_controls, custom_compliance_control_ids, compliance_controls, compliance_control_ids].hash
+      [id, new_1h_high_pass, new_1d_high_pass, new_1w_high_pass, old_high_pass, new_1h_high_fail, new_1d_high_fail, new_1w_high_fail, old_high_fail, new_1h_high_warn, new_1d_high_warn, new_1w_high_warn, old_high_warn, new_1h_high_error, new_1d_high_error, new_1w_high_error, old_high_error, new_1h_medium_pass, new_1d_medium_pass, new_1w_medium_pass, old_medium_pass, new_1h_medium_fail, new_1d_medium_fail, new_1w_medium_fail, old_medium_fail, new_1h_medium_warn, new_1d_medium_warn, new_1w_medium_warn, old_medium_warn, new_1h_medium_error, new_1d_medium_error, new_1w_medium_error, old_medium_error, new_1h_low_pass, new_1d_low_pass, new_1w_low_pass, old_low_pass, new_1h_low_fail, new_1d_low_fail, new_1w_low_fail, old_low_fail, new_1h_low_warn, new_1d_low_warn, new_1w_low_warn, old_low_warn, new_1h_low_error, new_1d_low_error, new_1w_low_error, old_low_error, suppressed_high_pass, suppressed_high_fail, suppressed_high_warn, suppressed_high_error, suppressed_medium_pass, suppressed_medium_fail, suppressed_medium_warn, suppressed_medium_error, suppressed_low_pass, suppressed_low_fail, suppressed_low_warn, suppressed_low_error, new_1h_high_info, new_1d_high_info, new_1w_high_info, old_high_info, new_1h_medium_info, new_1d_medium_info, new_1w_medium_info, old_medium_info, new_1h_low_info, new_1d_low_info, new_1w_low_info, old_low_info, suppressed_high_info, suppressed_medium_info, suppressed_low_info, total_fail, total_warn, total_error, total_pass, total_info, total_low, total_medium, total_high, created_at, report, report_id, regions, services, signatures, custom_signatures, custom_compliance_controls, compliance_controls].hash
     end
 
     # Builds the object from hash
