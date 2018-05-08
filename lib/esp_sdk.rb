@@ -17,8 +17,8 @@ require 'esp_sdk/configuration'
 
 # Models
 require 'esp_sdk/extensions/base_object'
-require 'esp_sdk/models/api_key'
 require 'esp_sdk/models/alert'
+require 'esp_sdk/models/api_key'
 require 'esp_sdk/models/attribution'
 require 'esp_sdk/models/audit_log'
 require 'esp_sdk/models/audit_log_file'

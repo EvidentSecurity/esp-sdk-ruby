@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> ExternalAccountAmazonIAM create(arn, external_id, name, team_id)
+> ExternalAccountAmazonIam create(arn, external_id, name, team_id)
 
 Create an Amazon External Account
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAccountAmazonIAM**](ExternalAccountAmazonIAM.md)
+[**ExternalAccountAmazonIam**](ExternalAccountAmazonIam.md)
 
 ### Authorization
 
@@ -66,7 +66,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **show**
-> ExternalAccountAmazonIAM show(external_account_id, opts)
+> ExternalAccountAmazonIam show(external_account_id, opts)
 
 Show an Amazon External Account
 
@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAccountAmazonIAM**](ExternalAccountAmazonIAM.md)
+[**ExternalAccountAmazonIam**](ExternalAccountAmazonIam.md)
 
 ### Authorization
 
@@ -117,7 +117,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **update**
-> ExternalAccountAmazonIAM update(external_account_id, opts)
+> ExternalAccountAmazonIam update(external_account_id, opts)
 
 Update an Amazon External Account
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ExternalAccountAmazonIAM**](ExternalAccountAmazonIAM.md)
+[**ExternalAccountAmazonIam**](ExternalAccountAmazonIam.md)
 
 ### Authorization
 

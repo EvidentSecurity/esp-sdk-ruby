@@ -39,7 +39,7 @@ describe 'ExternalAccountsAmazonApi' do
   # @param name Name
   # @param team_id The ID of the team the external account belongs to
   # @param [Hash] opts the optional parameters
-  # @return [ExternalAccountAmazonIAM]
+  # @return [ExternalAccountAmazonIam]
   describe 'create test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -52,7 +52,7 @@ describe 'ExternalAccountsAmazonApi' do
   # @param external_account_id The ID of the external account to show an Amazon IAM credential for
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  external_account See Including Objects for more information.
-  # @return [ExternalAccountAmazonIAM]
+  # @return [ExternalAccountAmazonIam]
   describe 'show test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -68,7 +68,7 @@ describe 'ExternalAccountsAmazonApi' do
   # @option opts [String] :external_id External Identifier set on the role
   # @option opts [String] :name Name
   # @option opts [Integer] :team_id The ID of the team the external account belongs to
-  # @return [ExternalAccountAmazonIAM]
+  # @return [ExternalAccountAmazonIam]
   describe 'update test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

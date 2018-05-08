@@ -26,7 +26,7 @@ module ESP
     # @param name Name
     # @param team_id The ID of the team the external account belongs to
     # @param [Hash] opts the optional parameters
-    # @return [ExternalAccountAmazonIAM]
+    # @return [ExternalAccountAmazonIam]
     def create(arn, external_id, name, team_id, opts = {})
       data, _status_code, _headers = create_with_http_info(arn, external_id, name, team_id, opts)
       return data
@@ -39,7 +39,7 @@ module ESP
     # @param name Name
     # @param team_id The ID of the team the external account belongs to
     # @param [Hash] opts the optional parameters
-    # @return [Array<(ExternalAccountAmazonIAM, Fixnum, Hash)>] ExternalAccountAmazonIAM data, response status code and response headers
+    # @return [Array<(ExternalAccountAmazonIam, Fixnum, Hash)>] ExternalAccountAmazonIam data, response status code and response headers
     def create_with_http_info(arn, external_id, name, team_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalAccountsAmazonApi.create ..."
@@ -81,7 +81,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ExternalAccountAmazonIAM')
+        :return_type => 'ExternalAccountAmazonIam')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ExternalAccountsAmazonApi#create\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -93,7 +93,7 @@ module ESP
     # @param external_account_id The ID of the external account to show an Amazon IAM credential for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  external_account See Including Objects for more information.
-    # @return [ExternalAccountAmazonIAM]
+    # @return [ExternalAccountAmazonIam]
     def show(external_account_id, opts = {})
       data, _status_code, _headers = show_with_http_info(external_account_id, opts)
       return data
@@ -104,7 +104,7 @@ module ESP
     # @param external_account_id The ID of the external account to show an Amazon IAM credential for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  external_account See Including Objects for more information.
-    # @return [Array<(ExternalAccountAmazonIAM, Fixnum, Hash)>] ExternalAccountAmazonIAM data, response status code and response headers
+    # @return [Array<(ExternalAccountAmazonIam, Fixnum, Hash)>] ExternalAccountAmazonIam data, response status code and response headers
     def show_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalAccountsAmazonApi.show ..."
@@ -137,7 +137,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ExternalAccountAmazonIAM')
+        :return_type => 'ExternalAccountAmazonIam')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ExternalAccountsAmazonApi#show\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -152,7 +152,7 @@ module ESP
     # @option opts [String] :external_id External Identifier set on the role
     # @option opts [String] :name Name
     # @option opts [Integer] :team_id The ID of the team the external account belongs to
-    # @return [ExternalAccountAmazonIAM]
+    # @return [ExternalAccountAmazonIam]
     def update(external_account_id, opts = {})
       data, _status_code, _headers = update_with_http_info(external_account_id, opts)
       return data
@@ -166,7 +166,7 @@ module ESP
     # @option opts [String] :external_id External Identifier set on the role
     # @option opts [String] :name Name
     # @option opts [Integer] :team_id The ID of the team the external account belongs to
-    # @return [Array<(ExternalAccountAmazonIAM, Fixnum, Hash)>] ExternalAccountAmazonIAM data, response status code and response headers
+    # @return [Array<(ExternalAccountAmazonIam, Fixnum, Hash)>] ExternalAccountAmazonIam data, response status code and response headers
     def update_with_http_info(external_account_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalAccountsAmazonApi.update ..."
@@ -202,7 +202,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'ExternalAccountAmazonIAM')
+        :return_type => 'ExternalAccountAmazonIam')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ExternalAccountsAmazonApi#update\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

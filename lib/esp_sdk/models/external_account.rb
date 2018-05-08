@@ -88,7 +88,7 @@ module ESP
         :'suppressions' => :'Array<Suppression>',
         :'suppression_ids' => :'Array<Integer>',
         :'azure_group' => :'AzureGroup',
-        :'credentials' => :'ExternalAccountAmazonIAM'
+        :'credentials' => :'ExternalAccountAmazonIam'
       }
     end
 

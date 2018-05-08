@@ -13,7 +13,7 @@ require 'date'
 
 module ESP
   # A(n) APIKey object
-  class APIKey < BaseObject
+  class ApiKey < BaseObject
     # Unique ID
     attr_accessor :id
 

@@ -1,4 +1,4 @@
-# ESP::APIKey
+# ESP::ApiKey
 
 ## Properties
 Name | Type | Description | Notes

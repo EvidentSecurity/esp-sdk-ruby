@@ -13,7 +13,7 @@ require 'date'
 
 module ESP
   # A(n) ExternalAccountAmazonIAM object
-  class ExternalAccountAmazonIAM < BaseObject
+  class ExternalAccountAmazonIam < BaseObject
     # Unique ID
     attr_accessor :id
 
