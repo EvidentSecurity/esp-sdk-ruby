@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create**
-> APIKey create(opts)
+> ApiKey create(opts)
 
 Create a(n) API Key
 
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**APIKey**](APIKey.md)
+[**ApiKey**](ApiKey.md)
 
 ### Authorization
 
@@ -159,7 +159,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **show**
-> APIKey show(id, opts)
+> ApiKey show(id, opts)
 
 Show a single API Key
 
@@ -196,7 +196,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**APIKey**](APIKey.md)
+[**ApiKey**](ApiKey.md)
 
 ### Authorization
 
@@ -210,7 +210,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **update**
-> APIKey update(id, opts)
+> ApiKey update(id, opts)
 
 Update a(n) API Key
 
@@ -249,7 +249,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**APIKey**](APIKey.md)
+[**ApiKey**](ApiKey.md)
 
 ### Authorization
 

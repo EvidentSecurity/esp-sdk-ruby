@@ -1,4 +1,4 @@
-# ESP::ExternalAccountAmazonIAM
+# ESP::ExternalAccountAmazonIam
 
 ## Properties
 Name | Type | Description | Notes

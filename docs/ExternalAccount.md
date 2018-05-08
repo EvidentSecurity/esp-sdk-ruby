@@ -15,6 +15,6 @@ Name | Type | Description | Notes
 **suppressions** | [**Array&lt;Suppression&gt;**](Suppression.md) | Associated Suppressions | [optional] 
 **suppression_ids** | **Array&lt;Integer&gt;** | Associated Suppressions IDs | [optional] 
 **azure_group** | [**AzureGroup**](AzureGroup.md) | Associated Azure Group | [optional] 
-**credentials** | [**ExternalAccountAmazonIAM**](ExternalAccountAmazonIAM.md) | Associated Credentials | [optional] 
+**credentials** | [**ExternalAccountAmazonIam**](ExternalAccountAmazonIam.md) | Associated Credentials | [optional] 
 
 

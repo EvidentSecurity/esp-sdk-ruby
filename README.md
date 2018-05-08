@@ -604,8 +604,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [ESP::APIKey](docs/APIKey.md)
  - [ESP::Alert](docs/Alert.md)
+ - [ESP::ApiKey](docs/ApiKey.md)
  - [ESP::Attribution](docs/Attribution.md)
  - [ESP::AuditLog](docs/AuditLog.md)
  - [ESP::AuditLogFile](docs/AuditLogFile.md)
@@ -623,7 +623,7 @@ Class | Method | HTTP request | Description
  - [ESP::CustomSignatureResultAlert](docs/CustomSignatureResultAlert.md)
  - [ESP::ExportedReport](docs/ExportedReport.md)
  - [ESP::ExternalAccount](docs/ExternalAccount.md)
- - [ESP::ExternalAccountAmazonIAM](docs/ExternalAccountAmazonIAM.md)
+ - [ESP::ExternalAccountAmazonIam](docs/ExternalAccountAmazonIam.md)
  - [ESP::ExternalAccountAzure](docs/ExternalAccountAzure.md)
  - [ESP::ExternalAccountUserAttributionChannel](docs/ExternalAccountUserAttributionChannel.md)
  - [ESP::Integration](docs/Integration.md)

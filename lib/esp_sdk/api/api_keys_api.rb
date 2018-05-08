@@ -24,7 +24,7 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @option opts [String] :name The name of the API Key
-    # @return [APIKey]
+    # @return [ApiKey]
     def create(opts = {})
       data, _status_code, _headers = create_with_http_info(opts)
       return data
@@ -35,7 +35,7 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @option opts [String] :name The name of the API Key
-    # @return [Array<(APIKey, Fixnum, Hash)>] APIKey data, response status code and response headers
+    # @return [Array<(ApiKey, Fixnum, Hash)>] ApiKey data, response status code and response headers
     def create_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: APIKeysApi.create ..."
@@ -67,7 +67,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'APIKey')
+        :return_type => 'ApiKey')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: APIKeysApi#create\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -187,7 +187,7 @@ module ESP
     # @param id API Key ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
-    # @return [APIKey]
+    # @return [ApiKey]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
       return data
@@ -198,7 +198,7 @@ module ESP
     # @param id API Key ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
-    # @return [Array<(APIKey, Fixnum, Hash)>] APIKey data, response status code and response headers
+    # @return [Array<(ApiKey, Fixnum, Hash)>] ApiKey data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: APIKeysApi.show ..."
@@ -231,7 +231,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'APIKey')
+        :return_type => 'ApiKey')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: APIKeysApi#show\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -244,7 +244,7 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @option opts [String] :name The name of the API Key
-    # @return [APIKey]
+    # @return [ApiKey]
     def update(id, opts = {})
       data, _status_code, _headers = update_with_http_info(id, opts)
       return data
@@ -256,7 +256,7 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @option opts [String] :name The name of the API Key
-    # @return [Array<(APIKey, Fixnum, Hash)>] APIKey data, response status code and response headers
+    # @return [Array<(ApiKey, Fixnum, Hash)>] ApiKey data, response status code and response headers
     def update_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: APIKeysApi.update ..."
@@ -290,7 +290,7 @@ module ESP
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'APIKey')
+        :return_type => 'ApiKey')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: APIKeysApi#update\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

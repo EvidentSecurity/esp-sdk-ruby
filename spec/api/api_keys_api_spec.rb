@@ -37,7 +37,7 @@ describe 'APIKeysApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
   # @option opts [String] :name The name of the API Key
-  # @return [APIKey]
+  # @return [ApiKey]
   describe 'create test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -75,7 +75,7 @@ describe 'APIKeysApi' do
   # @param id API Key ID
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
-  # @return [APIKey]
+  # @return [ApiKey]
   describe 'show test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -89,7 +89,7 @@ describe 'APIKeysApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
   # @option opts [String] :name The name of the API Key
-  # @return [APIKey]
+  # @return [ApiKey]
   describe 'update test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

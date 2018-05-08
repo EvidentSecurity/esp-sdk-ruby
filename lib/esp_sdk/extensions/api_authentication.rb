@@ -1,4 +1,6 @@
 require 'base64'
+require 'time'
+require 'openssl'
 
 module ESP
   class ApiAuthentication
