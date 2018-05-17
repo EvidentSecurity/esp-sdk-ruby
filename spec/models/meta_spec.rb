@@ -27,7 +27,7 @@ describe 'Meta' do
   end
 
   describe 'test an instance of Meta' do
-    it 'should create an instact of Meta' do
+    it 'should create an instance of Meta' do
       expect(@instance).to be_instance_of(ESP::Meta)
     end
   end

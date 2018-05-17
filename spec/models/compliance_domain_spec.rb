@@ -27,7 +27,7 @@ describe 'ComplianceDomain' do
   end
 
   describe 'test an instance of ComplianceDomain' do
-    it 'should create an instact of ComplianceDomain' do
+    it 'should create an instance of ComplianceDomain' do
       expect(@instance).to be_instance_of(ESP::ComplianceDomain)
     end
   end

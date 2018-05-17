@@ -26,7 +26,7 @@ describe 'ReportsApi' do
   end
 
   describe 'test an instance of ReportsApi' do
-    it 'should create an instact of ReportsApi' do
+    it 'should create an instance of ReportsApi' do
       expect(@instance).to be_instance_of(ESP::ReportsApi)
     end
   end

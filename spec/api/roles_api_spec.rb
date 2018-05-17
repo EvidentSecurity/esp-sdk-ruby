@@ -26,7 +26,7 @@ describe 'RolesApi' do
   end
 
   describe 'test an instance of RolesApi' do
-    it 'should create an instact of RolesApi' do
+    it 'should create an instance of RolesApi' do
       expect(@instance).to be_instance_of(ESP::RolesApi)
     end
   end

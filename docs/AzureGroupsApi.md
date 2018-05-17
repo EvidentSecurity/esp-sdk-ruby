@@ -32,7 +32,7 @@ azure_group_id = 56 # Integer | The ID of the Azure group associated with this m
 external_account_id = 56 # Integer | The ID of the External Account associated with this memberhsip
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information.
 }
 
 begin
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **azure_group_id** | **Integer**| The ID of the Azure group associated with this memberhsip | 
  **external_account_id** | **Integer**| The ID of the External Account associated with this memberhsip | 
- **include** | **String**| Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information. | [optional] 
 
 ### Return type
 

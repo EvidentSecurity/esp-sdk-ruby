@@ -27,7 +27,7 @@ describe 'SubOrganization' do
   end
 
   describe 'test an instance of SubOrganization' do
-    it 'should create an instact of SubOrganization' do
+    it 'should create an instance of SubOrganization' do
       expect(@instance).to be_instance_of(ESP::SubOrganization)
     end
   end

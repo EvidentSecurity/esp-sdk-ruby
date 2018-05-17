@@ -26,7 +26,7 @@ describe 'AzureGroupsApi' do
   end
 
   describe 'test an instance of AzureGroupsApi' do
-    it 'should create an instact of AzureGroupsApi' do
+    it 'should create an instance of AzureGroupsApi' do
       expect(@instance).to be_instance_of(ESP::AzureGroupsApi)
     end
   end
@@ -37,7 +37,7 @@ describe 'AzureGroupsApi' do
   # @param azure_group_id The ID of the Azure group associated with this memberhsip
   # @param external_account_id The ID of the External Account associated with this memberhsip
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information.
   # @return [ExternalAccount]
   describe 'add_external_account test' do
     it "should work" do

@@ -182,7 +182,7 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to update the user attributions of
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information.
     # @option opts [String] :cloudtrail_name The name of the cloudetrail associated with the user attribution.
     # @return [ExternalAccount]
     def update(external_account_id, opts = {})
@@ -194,7 +194,7 @@ module ESP
     # 
     # @param external_account_id The ID of the external account to update the user attributions of
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information.
     # @option opts [String] :cloudtrail_name The name of the cloudetrail associated with the user attribution.
     # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
     def update_with_http_info(external_account_id, opts = {})

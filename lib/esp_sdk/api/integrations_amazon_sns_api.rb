@@ -27,7 +27,7 @@ module ESP
     # @param name Name of the integration
     # @param topic The SNS topic arn
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  integration See Including Objects for more information.
     # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
     # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
     # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
@@ -50,7 +50,7 @@ module ESP
     # @param name Name of the integration
     # @param topic The SNS topic arn
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  integration See Including Objects for more information.
     # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
     # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
     # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
@@ -124,7 +124,7 @@ module ESP
     # 
     # @param integration_id The ID of the integration
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  integration See Including Objects for more information.
     # @return [IntegrationAmazonSns]
     def show(integration_id, opts = {})
       data, _status_code, _headers = show_with_http_info(integration_id, opts)
@@ -135,7 +135,7 @@ module ESP
     # 
     # @param integration_id The ID of the integration
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  integration See Including Objects for more information.
     # @return [Array<(IntegrationAmazonSns, Fixnum, Hash)>] IntegrationAmazonSns data, response status code and response headers
     def show_with_http_info(integration_id, opts = {})
       if @api_client.config.debugging
@@ -180,7 +180,7 @@ module ESP
     # 
     # @param integration_id The ID of the integration
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  integration See Including Objects for more information.
     # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
     # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
     # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts
@@ -204,7 +204,7 @@ module ESP
     # 
     # @param integration_id The ID of the integration
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  region, integration See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  integration See Including Objects for more information.
     # @option opts [BOOLEAN] :all_high_risk Send all high risk alerts
     # @option opts [BOOLEAN] :all_low_risk Send all low risk alerts
     # @option opts [BOOLEAN] :all_medium_risk Send all medium risk alerts

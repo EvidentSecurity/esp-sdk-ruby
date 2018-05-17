@@ -34,7 +34,7 @@ name = "name_example" # String | Name of the integration
 topic = "topic_example" # String | The SNS topic arn
 
 opts = { 
-  include: "include_example", # String | Related objects that can be included in the response:  region, integration See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  integration See Including Objects for more information.
   all_high_risk: true, # BOOLEAN | Send all high risk alerts
   all_low_risk: true, # BOOLEAN | Send all low risk alerts
   all_medium_risk: true, # BOOLEAN | Send all medium risk alerts
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
  **external_id** | **String**| The external ID for the IAM role | 
  **name** | **String**| Name of the integration | 
  **topic** | **String**| The SNS topic arn | 
- **include** | **String**| Related objects that can be included in the response:  region, integration See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  integration See Including Objects for more information. | [optional] 
  **all_high_risk** | **BOOLEAN**| Send all high risk alerts | [optional] 
  **all_low_risk** | **BOOLEAN**| Send all low risk alerts | [optional] 
  **all_medium_risk** | **BOOLEAN**| Send all medium risk alerts | [optional] 
@@ -105,7 +105,7 @@ api_instance = ESP::IntegrationsAmazonSNSApi.new
 integration_id = 56 # Integer | The ID of the integration
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:  region, integration See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  integration See Including Objects for more information.
 }
 
 begin
@@ -122,7 +122,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **integration_id** | **Integer**| The ID of the integration | 
- **include** | **String**| Related objects that can be included in the response:  region, integration See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  integration See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -156,7 +156,7 @@ api_instance = ESP::IntegrationsAmazonSNSApi.new
 integration_id = 56 # Integer | The ID of the integration
 
 opts = { 
-  include: "include_example", # String | Related objects that can be included in the response:  region, integration See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  integration See Including Objects for more information.
   all_high_risk: true, # BOOLEAN | Send all high risk alerts
   all_low_risk: true, # BOOLEAN | Send all low risk alerts
   all_medium_risk: true, # BOOLEAN | Send all medium risk alerts
@@ -186,7 +186,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **integration_id** | **Integer**| The ID of the integration | 
- **include** | **String**| Related objects that can be included in the response:  region, integration See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  integration See Including Objects for more information. | [optional] 
  **all_high_risk** | **BOOLEAN**| Send all high risk alerts | [optional] 
  **all_low_risk** | **BOOLEAN**| Send all low risk alerts | [optional] 
  **all_medium_risk** | **BOOLEAN**| Send all medium risk alerts | [optional] 

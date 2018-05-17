@@ -27,7 +27,7 @@ describe 'Service' do
   end
 
   describe 'test an instance of Service' do
-    it 'should create an instact of Service' do
+    it 'should create an instance of Service' do
       expect(@instance).to be_instance_of(ESP::Service)
     end
   end

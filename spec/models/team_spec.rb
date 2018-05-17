@@ -27,7 +27,7 @@ describe 'Team' do
   end
 
   describe 'test an instance of Team' do
-    it 'should create an instact of Team' do
+    it 'should create an instance of Team' do
       expect(@instance).to be_instance_of(ESP::Team)
     end
   end

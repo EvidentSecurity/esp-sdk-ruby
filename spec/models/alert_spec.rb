@@ -27,7 +27,7 @@ describe 'Alert' do
   end
 
   describe 'test an instance of Alert' do
-    it 'should create an instact of Alert' do
+    it 'should create an instance of Alert' do
       expect(@instance).to be_instance_of(ESP::Alert)
     end
   end

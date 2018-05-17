@@ -128,7 +128,7 @@ module ESP
     # Get a list of Integrations
     # This will return a list of every type of Integration.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, service, external_accounts, signatures, custom_signatures See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, external_accounts, signatures, custom_signatures See Including Objects for more information.
     # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, organization_id, name, service_type] Matching Searchable Attributes: [name, service_type]   Searchable Associations: [teams, signatures, custom_signatures] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
@@ -140,7 +140,7 @@ module ESP
     # Get a list of Integrations
     # This will return a list of every type of Integration.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, service, external_accounts, signatures, custom_signatures See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, external_accounts, signatures, custom_signatures See Including Objects for more information.
     # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, organization_id, name, service_type] Matching Searchable Attributes: [name, service_type]   Searchable Associations: [teams, signatures, custom_signatures] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
@@ -187,7 +187,7 @@ module ESP
     # This will return any type of Integration.
     # @param id Integration ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, service, external_accounts, signatures, custom_signatures See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, external_accounts, signatures, custom_signatures See Including Objects for more information.
     # @return [Integration]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
@@ -198,7 +198,7 @@ module ESP
     # This will return any type of Integration.
     # @param id Integration ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, service, external_accounts, signatures, custom_signatures See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, creator, external_accounts, signatures, custom_signatures See Including Objects for more information.
     # @return [Array<(Integration, Fixnum, Hash)>] Integration data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging

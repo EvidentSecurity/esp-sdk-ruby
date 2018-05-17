@@ -27,7 +27,7 @@ describe 'ExportedReport' do
   end
 
   describe 'test an instance of ExportedReport' do
-    it 'should create an instact of ExportedReport' do
+    it 'should create an instance of ExportedReport' do
       expect(@instance).to be_instance_of(ESP::ExportedReport)
     end
   end
@@ -37,7 +37,13 @@ describe 'ExportedReport' do
     end
   end
 
-  describe 'test attribute "user_id"' do
+  describe 'test attribute "recipient_id"' do
+    it 'should work' do
+       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  describe 'test attribute "recipient_type"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -85,7 +91,7 @@ describe 'ExportedReport' do
     end
   end
 
-  describe 'test attribute "user"' do
+  describe 'test attribute "recipient"' do
     it 'should work' do
        # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

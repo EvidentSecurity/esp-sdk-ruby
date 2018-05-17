@@ -26,7 +26,7 @@ describe 'TagsApi' do
   end
 
   describe 'test an instance of TagsApi' do
-    it 'should create an instact of TagsApi' do
+    it 'should create an instance of TagsApi' do
       expect(@instance).to be_instance_of(ESP::TagsApi)
     end
   end

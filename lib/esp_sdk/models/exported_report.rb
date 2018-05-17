@@ -17,8 +17,11 @@ module ESP
     # Unique ID
     attr_accessor :id
 
-    # Associated User ID
-    attr_accessor :user_id
+    # Associated Recipient ID
+    attr_accessor :recipient_id
+
+    # Polymorphic recipient type. Valid values are User, ScheduledExportResult
+    attr_accessor :recipient_type
 
     # An array of report IDs to export alerts for
     attr_accessor :report_ids
@@ -41,15 +44,16 @@ module ESP
     # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
 
-    # Associated User
-    attr_accessor :user
+    # Associated Recipient
+    attr_accessor :recipient
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'user_id' => :'user_id',
+        :'recipient_id' => :'recipient_id',
+        :'recipient_type' => :'recipient_type',
         :'report_ids' => :'report_ids',
         :'format' => :'format',
         :'url' => :'url',
@@ -57,7 +61,7 @@ module ESP
         :'filter' => :'filter',
         :'created_at' => :'created_at',
         :'updated_at' => :'updated_at',
-        :'user' => :'user'
+        :'recipient' => :'recipient'
       }
     end
 
@@ -65,7 +69,8 @@ module ESP
     def self.swagger_types
       {
         :'id' => :'Integer',
-        :'user_id' => :'Integer',
+        :'recipient_id' => :'Integer',
+        :'recipient_type' => :'String',
         :'report_ids' => :'Array<Integer>',
         :'format' => :'String',
         :'url' => :'String',
@@ -73,7 +78,7 @@ module ESP
         :'filter' => :'Object',
         :'created_at' => :'DateTime',
         :'updated_at' => :'DateTime',
-        :'user' => :'User'
+        :'recipient' => :'User'
       }
     end
 
@@ -89,8 +94,12 @@ module ESP
         self.id = attributes[:'id']
       end
 
-      if attributes.has_key?(:'user_id')
-        self.user_id = attributes[:'user_id']
+      if attributes.has_key?(:'recipient_id')
+        self.recipient_id = attributes[:'recipient_id']
+      end
+
+      if attributes.has_key?(:'recipient_type')
+        self.recipient_type = attributes[:'recipient_type']
       end
 
       if attributes.has_key?(:'report_ids')
@@ -123,8 +132,8 @@ module ESP
         self.updated_at = attributes[:'updated_at']
       end
 
-      if attributes.has_key?(:'user')
-        self.user = attributes[:'user']
+      if attributes.has_key?(:'recipient')
+        self.recipient = attributes[:'recipient']
       end
 
     end
@@ -148,7 +157,8 @@ module ESP
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          user_id == o.user_id &&
+          recipient_id == o.recipient_id &&
+          recipient_type == o.recipient_type &&
           report_ids == o.report_ids &&
           format == o.format &&
           url == o.url &&
@@ -156,7 +166,7 @@ module ESP
           filter == o.filter &&
           created_at == o.created_at &&
           updated_at == o.updated_at &&
-          user == o.user
+          recipient == o.recipient
     end
 
     # @see the `==` method
@@ -168,7 +178,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, user_id, report_ids, format, url, file_name, filter, created_at, updated_at, user].hash
+      [id, recipient_id, recipient_type, report_ids, format, url, file_name, filter, created_at, updated_at, recipient].hash
     end
 
     # Builds the object from hash

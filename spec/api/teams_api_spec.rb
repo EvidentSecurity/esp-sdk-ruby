@@ -26,7 +26,7 @@ describe 'TeamsApi' do
   end
 
   describe 'test an instance of TeamsApi' do
-    it 'should create an instact of TeamsApi' do
+    it 'should create an instance of TeamsApi' do
       expect(@instance).to be_instance_of(ESP::TeamsApi)
     end
   end

@@ -26,7 +26,7 @@ describe 'StatRegionsApi' do
   end
 
   describe 'test an instance of StatRegionsApi' do
-    it 'should create an instact of StatRegionsApi' do
+    it 'should create an instance of StatRegionsApi' do
       expect(@instance).to be_instance_of(ESP::StatRegionsApi)
     end
   end

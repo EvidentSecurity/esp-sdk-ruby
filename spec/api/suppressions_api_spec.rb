@@ -26,7 +26,7 @@ describe 'SuppressionsApi' do
   end
 
   describe 'test an instance of SuppressionsApi' do
-    it 'should create an instact of SuppressionsApi' do
+    it 'should create an instance of SuppressionsApi' do
       expect(@instance).to be_instance_of(ESP::SuppressionsApi)
     end
   end
