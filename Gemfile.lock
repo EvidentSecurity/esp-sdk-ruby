@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    esp_sdk (1.0.0)
+    esp_sdk (1.0.0.rc1)
       json (~> 1.8, >= 1.8.3)
       typhoeus (~> 1.0, >= 1.0.1)
 
@@ -51,4 +51,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.15.3
+   1.16.1

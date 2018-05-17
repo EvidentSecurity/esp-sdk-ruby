@@ -26,7 +26,7 @@ describe 'SubOrganizationsApi' do
   end
 
   describe 'test an instance of SubOrganizationsApi' do
-    it 'should create an instact of SubOrganizationsApi' do
+    it 'should create an instance of SubOrganizationsApi' do
       expect(@instance).to be_instance_of(ESP::SubOrganizationsApi)
     end
   end

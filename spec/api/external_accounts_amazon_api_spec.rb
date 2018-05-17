@@ -26,7 +26,7 @@ describe 'ExternalAccountsAmazonApi' do
   end
 
   describe 'test an instance of ExternalAccountsAmazonApi' do
-    it 'should create an instact of ExternalAccountsAmazonApi' do
+    it 'should create an instance of ExternalAccountsAmazonApi' do
       expect(@instance).to be_instance_of(ESP::ExternalAccountsAmazonApi)
     end
   end

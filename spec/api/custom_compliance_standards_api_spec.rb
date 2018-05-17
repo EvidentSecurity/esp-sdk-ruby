@@ -26,7 +26,7 @@ describe 'CustomComplianceStandardsApi' do
   end
 
   describe 'test an instance of CustomComplianceStandardsApi' do
-    it 'should create an instact of CustomComplianceStandardsApi' do
+    it 'should create an instance of CustomComplianceStandardsApi' do
       expect(@instance).to be_instance_of(ESP::CustomComplianceStandardsApi)
     end
   end

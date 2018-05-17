@@ -26,7 +26,7 @@ describe 'AuditLogsApi' do
   end
 
   describe 'test an instance of AuditLogsApi' do
-    it 'should create an instact of AuditLogsApi' do
+    it 'should create an instance of AuditLogsApi' do
       expect(@instance).to be_instance_of(ESP::AuditLogsApi)
     end
   end

@@ -26,7 +26,7 @@ describe 'AttributionApi' do
   end
 
   describe 'test an instance of AttributionApi' do
-    it 'should create an instact of AttributionApi' do
+    it 'should create an instance of AttributionApi' do
       expect(@instance).to be_instance_of(ESP::AttributionApi)
     end
   end

@@ -27,7 +27,7 @@ describe 'AzureGroup' do
   end
 
   describe 'test an instance of AzureGroup' do
-    it 'should create an instact of AzureGroup' do
+    it 'should create an instance of AzureGroup' do
       expect(@instance).to be_instance_of(ESP::AzureGroup)
     end
   end

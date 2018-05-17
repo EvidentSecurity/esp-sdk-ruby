@@ -27,7 +27,7 @@ describe 'PaginatedCollection' do
   end
 
   describe 'test an instance of PaginatedCollection' do
-    it 'should create an instact of PaginatedCollection' do
+    it 'should create an instance of PaginatedCollection' do
       expect(@instance).to be_instance_of(ESP::PaginatedCollection)
     end
   end

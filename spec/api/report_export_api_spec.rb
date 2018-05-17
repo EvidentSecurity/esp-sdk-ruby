@@ -26,7 +26,7 @@ describe 'ReportExportApi' do
   end
 
   describe 'test an instance of ReportExportApi' do
-    it 'should create an instact of ReportExportApi' do
+    it 'should create an instance of ReportExportApi' do
       expect(@instance).to be_instance_of(ESP::ReportExportApi)
     end
   end
@@ -37,7 +37,6 @@ describe 'ReportExportApi' do
   # @param report_ids An array of report IDs to export alerts for
   # @param requested_format The file format of the export. Valid values are csv, json, pdf
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
   # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
   # @return [ExportedReport]
   describe 'request_file test' do
@@ -65,7 +64,6 @@ describe 'ReportExportApi' do
   # The URL provided is temporary and will expire shortly after the request. To download the exported file you will need to follow the URL provided.
   # @param id Exported Report ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
   # @return [ExportedReport]
   describe 'show_file_details test' do
     it "should work" do

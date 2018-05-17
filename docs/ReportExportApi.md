@@ -28,7 +28,6 @@ report_ids = [56] # Array<Integer> | An array of report IDs to export alerts for
 requested_format = "requested_format_example" # String | The file format of the export. Valid values are csv, json, pdf
 
 opts = { 
-  include: "include_example", # String | Related objects that can be included in the response:  user See Including Objects for more information.
   filter: {'key' => "filter_example"} # Hash<String, String> | Params used to filter the alerts that will be exported
 }
 
@@ -47,7 +46,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **report_ids** | [**Array&lt;Integer&gt;**](Integer.md)| An array of report IDs to export alerts for | 
  **requested_format** | **String**| The file format of the export. Valid values are csv, json, pdf | 
- **include** | **String**| Related objects that can be included in the response:  user See Including Objects for more information. | [optional] 
  **filter** | [**Hash&lt;String, String&gt;**](String.md)| Params used to filter the alerts that will be exported | [optional] 
 
 ### Return type
@@ -120,7 +118,7 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **show_file_details**
-> ExportedReport show_file_details(id, opts)
+> ExportedReport show_file_details(id)
 
 Show a single Exported Report
 
@@ -135,13 +133,10 @@ api_instance = ESP::ReportExportApi.new
 
 id = 56 # Integer | Exported Report ID
 
-opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:  user See Including Objects for more information.
-}
 
 begin
   #Show a single Exported Report
-  result = api_instance.show_file_details(id, opts)
+  result = api_instance.show_file_details(id)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling ReportExportApi->show_file_details: #{e}"
@@ -153,7 +148,6 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Exported Report ID | 
- **include** | **String**| Related objects that can be included in the response:  user See Including Objects for more information. | [optional] 
 
 ### Return type
 

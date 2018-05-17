@@ -168,7 +168,7 @@ api_instance = ESP::UserAttributionsApi.new
 external_account_id = 56 # Integer | The ID of the external account to update the user attributions of
 
 opts = { 
-  include: "include_example", # String | Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information.
   cloudtrail_name: "cloudtrail_name_example" # String | The name of the cloudetrail associated with the user attribution.
 }
 
@@ -186,7 +186,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account to update the user attributions of | 
- **include** | **String**| Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information. | [optional] 
  **cloudtrail_name** | **String**| The name of the cloudetrail associated with the user attribution. | [optional] 
 
 ### Return type

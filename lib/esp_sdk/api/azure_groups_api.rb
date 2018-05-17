@@ -24,7 +24,7 @@ module ESP
     # @param azure_group_id The ID of the Azure group associated with this memberhsip
     # @param external_account_id The ID of the External Account associated with this memberhsip
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information.
     # @return [ExternalAccount]
     def add_external_account(azure_group_id, external_account_id, opts = {})
       data, _status_code, _headers = add_external_account_with_http_info(azure_group_id, external_account_id, opts)
@@ -36,7 +36,7 @@ module ESP
     # @param azure_group_id The ID of the Azure group associated with this memberhsip
     # @param external_account_id The ID of the External Account associated with this memberhsip
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information.
     # @return [Array<(ExternalAccount, Fixnum, Hash)>] ExternalAccount data, response status code and response headers
     def add_external_account_with_http_info(azure_group_id, external_account_id, opts = {})
       if @api_client.config.debugging

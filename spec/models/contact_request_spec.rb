@@ -27,7 +27,7 @@ describe 'ContactRequest' do
   end
 
   describe 'test an instance of ContactRequest' do
-    it 'should create an instact of ContactRequest' do
+    it 'should create an instance of ContactRequest' do
       expect(@instance).to be_instance_of(ESP::ContactRequest)
     end
   end

@@ -27,7 +27,7 @@ describe 'StatRegion' do
   end
 
   describe 'test an instance of StatRegion' do
-    it 'should create an instact of StatRegion' do
+    it 'should create an instance of StatRegion' do
       expect(@instance).to be_instance_of(ESP::StatRegion)
     end
   end

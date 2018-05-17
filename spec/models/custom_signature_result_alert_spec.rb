@@ -27,7 +27,7 @@ describe 'CustomSignatureResultAlert' do
   end
 
   describe 'test an instance of CustomSignatureResultAlert' do
-    it 'should create an instact of CustomSignatureResultAlert' do
+    it 'should create an instance of CustomSignatureResultAlert' do
       expect(@instance).to be_instance_of(ESP::CustomSignatureResultAlert)
     end
   end

@@ -141,7 +141,7 @@ module ESP
     # 
     # @param report_id ID of the Report to Return Alerts For
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, signature, custom_signature, suppression, metadata, attribution, cloud_trail_events, tags, compliance_controls, custom_compliance_controls See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, signature, custom_signature, suppression, metadata, attribution, cloud_trail_events, tags, compliance_controls See Including Objects for more information.
     # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attribute: [id]  Limited Searchable Attributes: [signature_service_id_in, signature_risk_level_in, risk_level_in, risk_level_eq, resource_or_tag_cont, suppressed, not_suppressed, signature_name_cont, signature_identifier_cont, external_account_id_in, external_account_id_eq, external_account_team_id_in, external_account_team_id_eq, external_account_organization_id_in, external_account_organization_id_eq, region_id_in, region_id_eq, status_in, status_eq, attribution_present, cloud_trail_events_present, open_as_of, signature_id_in, signature_id_eq, external_account_provider_eq, compliance_control_id_eq, custom_compliance_control_id_eq]  
     # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
@@ -154,7 +154,7 @@ module ESP
     # 
     # @param report_id ID of the Report to Return Alerts For
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, signature, custom_signature, suppression, metadata, attribution, cloud_trail_events, tags, compliance_controls, custom_compliance_controls See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, signature, custom_signature, suppression, metadata, attribution, cloud_trail_events, tags, compliance_controls See Including Objects for more information.
     # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attribute: [id]  Limited Searchable Attributes: [signature_service_id_in, signature_risk_level_in, risk_level_in, risk_level_eq, resource_or_tag_cont, suppressed, not_suppressed, signature_name_cont, signature_identifier_cont, external_account_id_in, external_account_id_eq, external_account_team_id_in, external_account_team_id_eq, external_account_organization_id_in, external_account_organization_id_eq, region_id_in, region_id_eq, status_in, status_eq, attribution_present, cloud_trail_events_present, open_as_of, signature_id_in, signature_id_eq, external_account_provider_eq, compliance_control_id_eq, custom_compliance_control_id_eq]  
     # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
@@ -203,7 +203,7 @@ module ESP
     # 
     # @param id Alert ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, signature, custom_signature, suppression, metadata, attribution, cloud_trail_events, tags, compliance_controls, custom_compliance_controls See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, signature, custom_signature, suppression, metadata, attribution, cloud_trail_events, tags, compliance_controls See Including Objects for more information.
     # @return [Alert]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
@@ -214,7 +214,7 @@ module ESP
     # 
     # @param id Alert ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, signature, custom_signature, suppression, metadata, attribution, cloud_trail_events, tags, compliance_controls, custom_compliance_controls See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_account, region, signature, custom_signature, suppression, metadata, attribution, cloud_trail_events, tags, compliance_controls See Including Objects for more information.
     # @return [Array<(Alert, Fixnum, Hash)>] Alert data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging

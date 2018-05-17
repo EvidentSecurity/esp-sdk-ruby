@@ -27,7 +27,7 @@ describe 'ApiKey' do
   end
 
   describe 'test an instance of ApiKey' do
-    it 'should create an instact of ApiKey' do
+    it 'should create an instance of ApiKey' do
       expect(@instance).to be_instance_of(ESP::ApiKey)
     end
   end

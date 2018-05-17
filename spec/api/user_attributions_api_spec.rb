@@ -26,7 +26,7 @@ describe 'UserAttributionsApi' do
   end
 
   describe 'test an instance of UserAttributionsApi' do
-    it 'should create an instact of UserAttributionsApi' do
+    it 'should create an instance of UserAttributionsApi' do
       expect(@instance).to be_instance_of(ESP::UserAttributionsApi)
     end
   end
@@ -72,7 +72,7 @@ describe 'UserAttributionsApi' do
   # 
   # @param external_account_id The ID of the external account to update the user attributions of
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group, credentials See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information.
   # @option opts [String] :cloudtrail_name The name of the cloudetrail associated with the user attribution.
   # @return [ExternalAccount]
   describe 'update test' do

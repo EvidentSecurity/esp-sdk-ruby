@@ -27,7 +27,7 @@ describe 'Metadata' do
   end
 
   describe 'test an instance of Metadata' do
-    it 'should create an instact of Metadata' do
+    it 'should create an instance of Metadata' do
       expect(@instance).to be_instance_of(ESP::Metadata)
     end
   end

@@ -26,7 +26,7 @@ describe 'StatServicesApi' do
   end
 
   describe 'test an instance of StatServicesApi' do
-    it 'should create an instact of StatServicesApi' do
+    it 'should create an instance of StatServicesApi' do
       expect(@instance).to be_instance_of(ESP::StatServicesApi)
     end
   end

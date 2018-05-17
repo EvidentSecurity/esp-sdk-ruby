@@ -27,7 +27,7 @@ describe 'StatCustomSignature' do
   end
 
   describe 'test an instance of StatCustomSignature' do
-    it 'should create an instact of StatCustomSignature' do
+    it 'should create an instance of StatCustomSignature' do
       expect(@instance).to be_instance_of(ESP::StatCustomSignature)
     end
   end

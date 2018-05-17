@@ -27,7 +27,7 @@ describe 'ExternalAccountUserAttributionChannel' do
   end
 
   describe 'test an instance of ExternalAccountUserAttributionChannel' do
-    it 'should create an instact of ExternalAccountUserAttributionChannel' do
+    it 'should create an instance of ExternalAccountUserAttributionChannel' do
       expect(@instance).to be_instance_of(ESP::ExternalAccountUserAttributionChannel)
     end
   end

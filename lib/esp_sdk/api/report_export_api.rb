@@ -24,7 +24,6 @@ module ESP
     # @param report_ids An array of report IDs to export alerts for
     # @param requested_format The file format of the export. Valid values are csv, json, pdf
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
     # @return [ExportedReport]
     def request_file(report_ids, requested_format, opts = {})
@@ -37,7 +36,6 @@ module ESP
     # @param report_ids An array of report IDs to export alerts for
     # @param requested_format The file format of the export. Valid values are csv, json, pdf
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
     # @return [Array<(ExportedReport, Fixnum, Hash)>] ExportedReport data, response status code and response headers
     def request_file_with_http_info(report_ids, requested_format, opts = {})
@@ -57,7 +55,6 @@ module ESP
 
       # query parameters
       query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}
@@ -154,7 +151,6 @@ module ESP
     # The URL provided is temporary and will expire shortly after the request. To download the exported file you will need to follow the URL provided.
     # @param id Exported Report ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @return [ExportedReport]
     def show_file_details(id, opts = {})
       data, _status_code, _headers = show_file_details_with_http_info(id, opts)
@@ -165,7 +161,6 @@ module ESP
     # The URL provided is temporary and will expire shortly after the request. To download the exported file you will need to follow the URL provided.
     # @param id Exported Report ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  user See Including Objects for more information.
     # @return [Array<(ExportedReport, Fixnum, Hash)>] ExportedReport data, response status code and response headers
     def show_file_details_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -178,7 +173,6 @@ module ESP
 
       # query parameters
       query_params = {}
-      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
 
       # header parameters
       header_params = {}

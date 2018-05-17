@@ -91,7 +91,7 @@ module ESP
         :'custom_risk_level' => :'String',
         :'service' => :'Service',
         :'service_id' => :'Integer',
-        :'disabled_external_accounts' => :'ExternalAccount',
+        :'disabled_external_accounts' => :'Array<ExternalAccount>',
         :'suppressions' => :'Array<Suppression>',
         :'suppression_ids' => :'Array<Integer>'
       }
@@ -150,7 +150,9 @@ module ESP
       end
 
       if attributes.has_key?(:'disabled_external_accounts')
-        self.disabled_external_accounts = attributes[:'disabled_external_accounts']
+        if (value = attributes[:'disabled_external_accounts']).is_a?(Array)
+          self.disabled_external_accounts = value
+        end
       end
 
       if attributes.has_key?(:'suppressions')

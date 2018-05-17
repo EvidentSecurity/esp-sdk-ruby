@@ -27,7 +27,7 @@ describe 'ScanInterval' do
   end
 
   describe 'test an instance of ScanInterval' do
-    it 'should create an instact of ScanInterval' do
+    it 'should create an instance of ScanInterval' do
       expect(@instance).to be_instance_of(ESP::ScanInterval)
     end
   end

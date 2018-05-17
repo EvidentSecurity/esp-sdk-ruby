@@ -27,7 +27,7 @@ describe 'ExternalAccountAzure' do
   end
 
   describe 'test an instance of ExternalAccountAzure' do
-    it 'should create an instact of ExternalAccountAzure' do
+    it 'should create an instance of ExternalAccountAzure' do
       expect(@instance).to be_instance_of(ESP::ExternalAccountAzure)
     end
   end
