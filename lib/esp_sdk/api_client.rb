@@ -26,10 +26,14 @@ module ESP
     # @return [Hash]
     attr_accessor :default_headers
 
+    # The authentication class used to set the appropriate headers on the request
+    attr_reader :authenticator
+
     # Initializes the ApiClient
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
-    def initialize(config = Configuration.default)
+    def initialize(config = Configuration.default, authenticator = HmacAuthentication.new)
       @config = config
+      @authenticator = authenticator
       @user_agent = "Swagger-Codegen/#{VERSION}/ruby"
       @default_headers = {
         'Content-Type' => "application/vnd.api+json",
@@ -55,7 +59,7 @@ module ESP
       
       request = build_request(http_method, path, opts)
 
-      ApiAuthentication.sign_request(request, config.access_key_id, config.secret_access_key)
+      authenticator.sign_request(request)
       
       response = request.run
 

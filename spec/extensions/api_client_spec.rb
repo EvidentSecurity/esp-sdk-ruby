@@ -59,14 +59,13 @@ describe ESP::ApiClient do
     end
 
     it 'should set the Authorization headers' do
-      api_client = ESP::ApiClient.new
-
-      allow(ESP::ApiAuthentication).to receive(:sign_request)
+      authenticator = double('authenticator', sign_request: true)
+      api_client = ESP::ApiClient.new(ESP::Configuration.default, authenticator)
       stub_request(:put, %r{sub_organizations})
 
       ESP::SubOrganizationsApi.new(api_client).list
 
-      expect(ESP::ApiAuthentication).to have_received(:sign_request)
+      expect(authenticator).to have_received(:sign_request)
     end
 
     it 'should raise an ESP::ApiError if response is not success' do
