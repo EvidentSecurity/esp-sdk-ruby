@@ -21,7 +21,7 @@ module ESP
     extend Forwardable
     include Enumerable
 
-    def_delegators :data, :[], :length, :size
+    def_delegators :data, :[], :length, :size, :each
 
     # Internal variable used to call the ESP api.
     # @return [Hash]
@@ -33,13 +33,13 @@ module ESP
     attr_accessor :path, :original_params
 
     # Iterator to loop over the entire paginated collection in data.
-    def each(&block)
+    def each_page(&block)
       if block_given?
         data.each { |item| yield item }
       else
         data.each
       end
-      next_page.each(&block) if next_page?
+      next_page.each_page(&block) if next_page?
     end
 
     # Returns the first page of results.
