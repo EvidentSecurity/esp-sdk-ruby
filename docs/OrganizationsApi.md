@@ -184,6 +184,7 @@ id = 56 # Integer | Organization ID
 
 opts = { 
   include: "include_example", # String | Related objects that can be included in the response:  subscription, custom_signatures, external_accounts, sub_organizations, teams, users, compliance_standards, integrations See Including Objects for more information.
+  enable_new_signatures: true, # BOOLEAN | Whether new signatures should be enabled for all accounts on this organization
   name: "name_example", # String | Name of the organization
   require_mfa: true # BOOLEAN | Whether or not users for this organization are required to enable Multi Factor Authentication
 }
@@ -203,6 +204,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| Organization ID | 
  **include** | **String**| Related objects that can be included in the response:  subscription, custom_signatures, external_accounts, sub_organizations, teams, users, compliance_standards, integrations See Including Objects for more information. | [optional] 
+ **enable_new_signatures** | **BOOLEAN**| Whether new signatures should be enabled for all accounts on this organization | [optional] 
  **name** | **String**| Name of the organization | [optional] 
  **require_mfa** | **BOOLEAN**| Whether or not users for this organization are required to enable Multi Factor Authentication | [optional] 
 

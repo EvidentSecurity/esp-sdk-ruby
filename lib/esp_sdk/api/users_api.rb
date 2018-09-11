@@ -26,6 +26,7 @@ module ESP
     # @param last_name The last name of the user
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+    # @option opts [String] :access_level The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization_level, sub_organization_level, team_level
     # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :phone The phone number of the user
     # @option opts [Integer] :role_id The ID of the role of the user. Only a manager can set or modify the role id.
@@ -45,6 +46,7 @@ module ESP
     # @param last_name The last name of the user
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+    # @option opts [String] :access_level The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization_level, sub_organization_level, team_level
     # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :phone The phone number of the user
     # @option opts [Integer] :role_id The ID of the role of the user. Only a manager can set or modify the role id.
@@ -62,6 +64,9 @@ module ESP
       fail ArgumentError, "Missing the required parameter 'first_name' when calling UsersApi.create" if first_name.nil?
       # verify the required parameter 'last_name' is set
       fail ArgumentError, "Missing the required parameter 'last_name' when calling UsersApi.create" if last_name.nil?
+      if opts[:'access_level'] && !['organization_level', 'sub_organization_level', 'team_level'].include?(opts[:'access_level'])
+        fail ArgumentError, 'invalid value for "access_level", must be one of organization_level, sub_organization_level, team_level'
+      end
       # resource path
       local_var_path = "/api/v2/users.json_api".sub('{format}','json_api')
 
@@ -81,6 +86,7 @@ module ESP
       form_params["email"] = email
       form_params["first_name"] = first_name
       form_params["last_name"] = last_name
+      form_params["access_level"] = opts[:'access_level'] if !opts[:'access_level'].nil?
       form_params["disable_daily_emails"] = opts[:'disable_daily_emails'] if !opts[:'disable_daily_emails'].nil?
       form_params["phone"] = opts[:'phone'] if !opts[:'phone'].nil?
       form_params["role_id"] = opts[:'role_id'] if !opts[:'role_id'].nil?
@@ -279,6 +285,7 @@ module ESP
     # @param id User ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+    # @option opts [String] :access_level The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization_level, sub_organization_level, team_level
     # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :first_name The first name of the user
     # @option opts [String] :last_name The last name of the user
@@ -298,6 +305,7 @@ module ESP
     # @param id User ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+    # @option opts [String] :access_level The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization_level, sub_organization_level, team_level
     # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
     # @option opts [String] :first_name The first name of the user
     # @option opts [String] :last_name The last name of the user
@@ -313,6 +321,9 @@ module ESP
       end
       # verify the required parameter 'id' is set
       fail ArgumentError, "Missing the required parameter 'id' when calling UsersApi.update" if id.nil?
+      if opts[:'access_level'] && !['organization_level', 'sub_organization_level', 'team_level'].include?(opts[:'access_level'])
+        fail ArgumentError, 'invalid value for "access_level", must be one of organization_level, sub_organization_level, team_level'
+      end
       # resource path
       local_var_path = "/api/v2/users/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
 
@@ -329,6 +340,7 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["access_level"] = opts[:'access_level'] if !opts[:'access_level'].nil?
       form_params["disable_daily_emails"] = opts[:'disable_daily_emails'] if !opts[:'disable_daily_emails'].nil?
       form_params["first_name"] = opts[:'first_name'] if !opts[:'first_name'].nil?
       form_params["last_name"] = opts[:'last_name'] if !opts[:'last_name'].nil?

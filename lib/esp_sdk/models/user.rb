@@ -50,7 +50,7 @@ module ESP
     # The time the user account was locked
     attr_accessor :locked_at
 
-    # The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization, sub_organization, team
+    # The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization_level, sub_organization_level, team_level
     attr_accessor :access_level
 
     # Associated Organization

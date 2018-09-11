@@ -35,7 +35,7 @@ custom_compliance_control_id = 56 # Integer | The ID of the Custom Compliance Co
 custom_signature_id = 56 # Integer | The ID of the custom signature that belongs to this custom control
 
 opts = { 
-  include: "include_example" # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
+  include: "include_example" # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions, service See Including Objects for more information.
 }
 
 begin
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **custom_compliance_control_id** | **Integer**| The ID of the Custom Compliance Control this custom signature belongs to | 
  **custom_signature_id** | **Integer**| The ID of the custom signature that belongs to this custom control | 
- **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions, service See Including Objects for more information. | [optional] 
 
 ### Return type
 
@@ -253,7 +253,7 @@ api_instance = ESP::CustomComplianceControlsApi.new
 custom_compliance_control_id = 56 # Integer | The ID of the Custom Compliance Control this custom signature belongs to
 
 opts = { 
-  include: "include_example", # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
+  include: "include_example", # String | Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions, service See Including Objects for more information.
   page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
@@ -271,7 +271,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **custom_compliance_control_id** | **Integer**| The ID of the Custom Compliance Control this custom signature belongs to | 
- **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information. | [optional] 
+ **include** | **String**| Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions, service See Including Objects for more information. | [optional] 
  **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type

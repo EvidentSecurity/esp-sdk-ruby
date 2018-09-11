@@ -20,7 +20,7 @@ module ESP
     # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
-    # Status of the report. Valid values are queued, processing, partial, complete, failed
+    # Status of the report. Valid values are complete
     attr_accessor :status
 
     # ISO 8601 timestamp when the resource was updated

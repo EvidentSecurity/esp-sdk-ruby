@@ -17,6 +17,9 @@ module ESP
     # Unique ID
     attr_accessor :id
 
+    # Indicates if this signature is able to be copied or not
+    attr_accessor :copyable
+
     # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
@@ -34,6 +37,9 @@ module ESP
 
     # The risk-level of the problem identified by the signature. Valid values are low, medium, high
     attr_accessor :risk_level
+
+    # Indicates if this signature supports user attribution or not
+    attr_accessor :supports_user_attribution
 
     # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
@@ -61,12 +67,14 @@ module ESP
     def self.attribute_map
       {
         :'id' => :'id',
+        :'copyable' => :'copyable',
         :'created_at' => :'created_at',
         :'description' => :'description',
         :'identifier' => :'identifier',
         :'name' => :'name',
         :'resolution' => :'resolution',
         :'risk_level' => :'risk_level',
+        :'supports_user_attribution' => :'supports_user_attribution',
         :'updated_at' => :'updated_at',
         :'custom_risk_level' => :'custom_risk_level',
         :'service' => :'service',
@@ -81,12 +89,14 @@ module ESP
     def self.swagger_types
       {
         :'id' => :'Integer',
+        :'copyable' => :'BOOLEAN',
         :'created_at' => :'DateTime',
         :'description' => :'String',
         :'identifier' => :'String',
         :'name' => :'String',
         :'resolution' => :'String',
         :'risk_level' => :'String',
+        :'supports_user_attribution' => :'BOOLEAN',
         :'updated_at' => :'DateTime',
         :'custom_risk_level' => :'String',
         :'service' => :'Service',
@@ -107,6 +117,10 @@ module ESP
 
       if attributes.has_key?(:'id')
         self.id = attributes[:'id']
+      end
+
+      if attributes.has_key?(:'copyable')
+        self.copyable = attributes[:'copyable']
       end
 
       if attributes.has_key?(:'created_at')
@@ -131,6 +145,10 @@ module ESP
 
       if attributes.has_key?(:'risk_level')
         self.risk_level = attributes[:'risk_level']
+      end
+
+      if attributes.has_key?(:'supports_user_attribution')
+        self.supports_user_attribution = attributes[:'supports_user_attribution']
       end
 
       if attributes.has_key?(:'updated_at')
@@ -188,12 +206,14 @@ module ESP
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
+          copyable == o.copyable &&
           created_at == o.created_at &&
           description == o.description &&
           identifier == o.identifier &&
           name == o.name &&
           resolution == o.resolution &&
           risk_level == o.risk_level &&
+          supports_user_attribution == o.supports_user_attribution &&
           updated_at == o.updated_at &&
           custom_risk_level == o.custom_risk_level &&
           service == o.service &&
@@ -212,7 +232,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, description, identifier, name, resolution, risk_level, updated_at, custom_risk_level, service, service_id, disabled_external_accounts, suppressions, suppression_ids].hash
+      [id, copyable, created_at, description, identifier, name, resolution, risk_level, supports_user_attribution, updated_at, custom_risk_level, service, service_id, disabled_external_accounts, suppressions, suppression_ids].hash
     end
 
     # Builds the object from hash

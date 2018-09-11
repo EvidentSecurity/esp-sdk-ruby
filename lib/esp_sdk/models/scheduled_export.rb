@@ -17,29 +17,29 @@ module ESP
     # Unique ID
     attr_accessor :id
 
-    # Type of export to control frequency. Valid values are weekly, daily, monthly
-    attr_accessor :type
+    # A name that describes the export
+    attr_accessor :name
+
+    # Frequency of the export. Valid values are weekly, daily, monthly
+    attr_accessor :frequency
 
     # Status of the scheduled export. Valid values are active, unsubscribed, disabled
     attr_accessor :status
 
-    # Whether or not to send the file as an attachment. Valid values are true, false
-    attr_accessor :send_with_attachment
-
     # Params used to filter the alerts that will be exported
     attr_accessor :filter
-
-    # Whether or not require authentication before viewing the file. Valid values are true, false
-    attr_accessor :authenticated
 
     # Hour of the day to perform the export. Valid values are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
     attr_accessor :hour
 
-    # Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 0 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+    # Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 1 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
     attr_accessor :day
 
     # Time zone to use when calculating hour and day
     attr_accessor :time_zone
+
+    # Email addresses the export will be sent to
+    attr_accessor :recipients
 
     # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
@@ -47,14 +47,11 @@ module ESP
     # ISO 8601 timestamp when the resource was updated
     attr_accessor :updated_at
 
-    # Email address the export will be sent to if unauthenticated
-    attr_accessor :recipient
+    # Associated External Accounts
+    attr_accessor :external_accounts
 
-    # Associated External Account
-    attr_accessor :external_account
-
-    # Associated External Account ID
-    attr_accessor :external_account_id
+    # Associated External Accounts IDs
+    attr_accessor :external_account_ids
 
     # Associated Creator
     attr_accessor :creator
@@ -62,34 +59,25 @@ module ESP
     # Associated Creator ID
     attr_accessor :creator_id
 
-    # Associated User
-    attr_accessor :user
-
-    # Associated User ID
-    attr_accessor :user_id
-
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
-        :'type' => :'type',
+        :'name' => :'name',
+        :'frequency' => :'frequency',
         :'status' => :'status',
-        :'send_with_attachment' => :'send_with_attachment',
         :'filter' => :'filter',
-        :'authenticated' => :'authenticated',
         :'hour' => :'hour',
         :'day' => :'day',
         :'time_zone' => :'time_zone',
+        :'recipients' => :'recipients',
         :'created_at' => :'created_at',
         :'updated_at' => :'updated_at',
-        :'recipient' => :'recipient',
-        :'external_account' => :'external_account',
-        :'external_account_id' => :'external_account_id',
+        :'external_accounts' => :'external_accounts',
+        :'external_account_ids' => :'external_account_ids',
         :'creator' => :'creator',
-        :'creator_id' => :'creator_id',
-        :'user' => :'user',
-        :'user_id' => :'user_id'
+        :'creator_id' => :'creator_id'
       }
     end
 
@@ -97,23 +85,20 @@ module ESP
     def self.swagger_types
       {
         :'id' => :'Integer',
-        :'type' => :'String',
+        :'name' => :'String',
+        :'frequency' => :'String',
         :'status' => :'String',
-        :'send_with_attachment' => :'BOOLEAN',
         :'filter' => :'Object',
-        :'authenticated' => :'BOOLEAN',
         :'hour' => :'Integer',
         :'day' => :'String',
         :'time_zone' => :'String',
+        :'recipients' => :'Array<String>',
         :'created_at' => :'DateTime',
         :'updated_at' => :'DateTime',
-        :'recipient' => :'String',
-        :'external_account' => :'ExternalAccount',
-        :'external_account_id' => :'Integer',
+        :'external_accounts' => :'Array<ExternalAccount>',
+        :'external_account_ids' => :'Array<Integer>',
         :'creator' => :'User',
-        :'creator_id' => :'Integer',
-        :'user' => :'User',
-        :'user_id' => :'Integer'
+        :'creator_id' => :'Integer'
       }
     end
 
@@ -129,24 +114,20 @@ module ESP
         self.id = attributes[:'id']
       end
 
-      if attributes.has_key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.has_key?(:'name')
+        self.name = attributes[:'name']
+      end
+
+      if attributes.has_key?(:'frequency')
+        self.frequency = attributes[:'frequency']
       end
 
       if attributes.has_key?(:'status')
         self.status = attributes[:'status']
       end
 
-      if attributes.has_key?(:'send_with_attachment')
-        self.send_with_attachment = attributes[:'send_with_attachment']
-      end
-
       if attributes.has_key?(:'filter')
         self.filter = attributes[:'filter']
-      end
-
-      if attributes.has_key?(:'authenticated')
-        self.authenticated = attributes[:'authenticated']
       end
 
       if attributes.has_key?(:'hour')
@@ -161,6 +142,12 @@ module ESP
         self.time_zone = attributes[:'time_zone']
       end
 
+      if attributes.has_key?(:'recipients')
+        if (value = attributes[:'recipients']).is_a?(Array)
+          self.recipients = value
+        end
+      end
+
       if attributes.has_key?(:'created_at')
         self.created_at = attributes[:'created_at']
       end
@@ -169,16 +156,16 @@ module ESP
         self.updated_at = attributes[:'updated_at']
       end
 
-      if attributes.has_key?(:'recipient')
-        self.recipient = attributes[:'recipient']
+      if attributes.has_key?(:'external_accounts')
+        if (value = attributes[:'external_accounts']).is_a?(Array)
+          self.external_accounts = value
+        end
       end
 
-      if attributes.has_key?(:'external_account')
-        self.external_account = attributes[:'external_account']
-      end
-
-      if attributes.has_key?(:'external_account_id')
-        self.external_account_id = attributes[:'external_account_id']
+      if attributes.has_key?(:'external_account_ids')
+        if (value = attributes[:'external_account_ids']).is_a?(Array)
+          self.external_account_ids = value
+        end
       end
 
       if attributes.has_key?(:'creator')
@@ -187,14 +174,6 @@ module ESP
 
       if attributes.has_key?(:'creator_id')
         self.creator_id = attributes[:'creator_id']
-      end
-
-      if attributes.has_key?(:'user')
-        self.user = attributes[:'user']
-      end
-
-      if attributes.has_key?(:'user_id')
-        self.user_id = attributes[:'user_id']
       end
 
     end
@@ -218,23 +197,20 @@ module ESP
       return true if self.equal?(o)
       self.class == o.class &&
           id == o.id &&
-          type == o.type &&
+          name == o.name &&
+          frequency == o.frequency &&
           status == o.status &&
-          send_with_attachment == o.send_with_attachment &&
           filter == o.filter &&
-          authenticated == o.authenticated &&
           hour == o.hour &&
           day == o.day &&
           time_zone == o.time_zone &&
+          recipients == o.recipients &&
           created_at == o.created_at &&
           updated_at == o.updated_at &&
-          recipient == o.recipient &&
-          external_account == o.external_account &&
-          external_account_id == o.external_account_id &&
+          external_accounts == o.external_accounts &&
+          external_account_ids == o.external_account_ids &&
           creator == o.creator &&
-          creator_id == o.creator_id &&
-          user == o.user &&
-          user_id == o.user_id
+          creator_id == o.creator_id
     end
 
     # @see the `==` method
@@ -246,7 +222,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, type, status, send_with_attachment, filter, authenticated, hour, day, time_zone, created_at, updated_at, recipient, external_account, external_account_id, creator, creator_id, user, user_id].hash
+      [id, name, frequency, status, filter, hour, day, time_zone, recipients, created_at, updated_at, external_accounts, external_account_ids, creator, creator_id].hash
     end
 
     # Builds the object from hash

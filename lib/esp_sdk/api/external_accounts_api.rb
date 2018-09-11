@@ -138,35 +138,35 @@ module ESP
       return data, status_code, headers
     end
 
-    # Disable a signature for an external account
+    # Disable a set of signatures for an external account or a set of external accounts for a signature
     # 
-    # @param external_account_id The ID of the external account to disable a signature on
-    # @param signature_id The ID of the signature to disable
+    # @param external_account_ids The IDs of the external_account(s) to disable
+    # @param signature_ids The IDs of the signature(s) to disable
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
     # @return [Signature]
-    def add_disabled_signature(external_account_id, signature_id, opts = {})
-      data, _status_code, _headers = add_disabled_signature_with_http_info(external_account_id, signature_id, opts)
+    def add_disabled_signature(external_account_ids, signature_ids, opts = {})
+      data, _status_code, _headers = add_disabled_signature_with_http_info(external_account_ids, signature_ids, opts)
       return data
     end
 
-    # Disable a signature for an external account
+    # Disable a set of signatures for an external account or a set of external accounts for a signature
     # 
-    # @param external_account_id The ID of the external account to disable a signature on
-    # @param signature_id The ID of the signature to disable
+    # @param external_account_ids The IDs of the external_account(s) to disable
+    # @param signature_ids The IDs of the signature(s) to disable
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
     # @return [Array<(Signature, Fixnum, Hash)>] Signature data, response status code and response headers
-    def add_disabled_signature_with_http_info(external_account_id, signature_id, opts = {})
+    def add_disabled_signature_with_http_info(external_account_ids, signature_ids, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalAccountsApi.add_disabled_signature ..."
       end
-      # verify the required parameter 'external_account_id' is set
-      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ExternalAccountsApi.add_disabled_signature" if external_account_id.nil?
-      # verify the required parameter 'signature_id' is set
-      fail ArgumentError, "Missing the required parameter 'signature_id' when calling ExternalAccountsApi.add_disabled_signature" if signature_id.nil?
+      # verify the required parameter 'external_account_ids' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_ids' when calling ExternalAccountsApi.add_disabled_signature" if external_account_ids.nil?
+      # verify the required parameter 'signature_ids' is set
+      fail ArgumentError, "Missing the required parameter 'signature_ids' when calling ExternalAccountsApi.add_disabled_signature" if signature_ids.nil?
       # resource path
-      local_var_path = "/api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s)
+      local_var_path = "/api/v2/external_accounts/disabled_signatures.json_api".sub('{format}','json_api')
 
       # query parameters
       query_params = {}
@@ -181,7 +181,8 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["signature_id"] = signature_id
+      form_params["external_account_ids"] = @api_client.build_collection_param(external_account_ids, :multi)
+      form_params["signature_ids"] = @api_client.build_collection_param(signature_ids, :multi)
 
       # http body (model)
       post_body = nil
@@ -256,7 +257,7 @@ module ESP
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information.
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, azure_group, compliance_standards, disabled_signatures, integrations, scheduled_exports, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list(opts = {})
@@ -268,7 +269,7 @@ module ESP
     # 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information.
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, azure_group, compliance_standards, disabled_signatures, integrations, scheduled_exports, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_with_http_info(opts = {})
@@ -433,7 +434,7 @@ module ESP
     # @param external_account_id The ID of the external account to retrieve the disabled signatures for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [service_provider_eq, service_provider_in, service_name_in] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
     # @return [PaginatedCollection]
     def list_disabled_signatures(external_account_id, opts = {})
@@ -446,7 +447,7 @@ module ESP
     # @param external_account_id The ID of the external account to retrieve the disabled signatures for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
-    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [service_provider_eq, service_provider_in, service_name_in] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
     # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
     # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
     def list_disabled_signatures_with_http_info(external_account_id, opts = {})
@@ -604,33 +605,33 @@ module ESP
       return data, status_code, headers
     end
 
-    # Re-enable a signature for an external account
+    # Re-enable a set of signatures for an external account or a set of external accounts for a signature
     # 
-    # @param external_account_id The ID of the external account to enable a signature on
-    # @param signature_id The ID of the signature to enable
+    # @param external_account_ids The IDs of the external_account(s) to enable
+    # @param signature_ids The IDs of the signature(s) to enable
     # @param [Hash] opts the optional parameters
     # @return [Meta]
-    def remove_disabled_signature(external_account_id, signature_id, opts = {})
-      data, _status_code, _headers = remove_disabled_signature_with_http_info(external_account_id, signature_id, opts)
+    def remove_disabled_signature(external_account_ids, signature_ids, opts = {})
+      data, _status_code, _headers = remove_disabled_signature_with_http_info(external_account_ids, signature_ids, opts)
       return data
     end
 
-    # Re-enable a signature for an external account
+    # Re-enable a set of signatures for an external account or a set of external accounts for a signature
     # 
-    # @param external_account_id The ID of the external account to enable a signature on
-    # @param signature_id The ID of the signature to enable
+    # @param external_account_ids The IDs of the external_account(s) to enable
+    # @param signature_ids The IDs of the signature(s) to enable
     # @param [Hash] opts the optional parameters
     # @return [Array<(Meta, Fixnum, Hash)>] Meta data, response status code and response headers
-    def remove_disabled_signature_with_http_info(external_account_id, signature_id, opts = {})
+    def remove_disabled_signature_with_http_info(external_account_ids, signature_ids, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ExternalAccountsApi.remove_disabled_signature ..."
       end
-      # verify the required parameter 'external_account_id' is set
-      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ExternalAccountsApi.remove_disabled_signature" if external_account_id.nil?
-      # verify the required parameter 'signature_id' is set
-      fail ArgumentError, "Missing the required parameter 'signature_id' when calling ExternalAccountsApi.remove_disabled_signature" if signature_id.nil?
+      # verify the required parameter 'external_account_ids' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_ids' when calling ExternalAccountsApi.remove_disabled_signature" if external_account_ids.nil?
+      # verify the required parameter 'signature_ids' is set
+      fail ArgumentError, "Missing the required parameter 'signature_ids' when calling ExternalAccountsApi.remove_disabled_signature" if signature_ids.nil?
       # resource path
-      local_var_path = "/api/v2/external_accounts/{external_account_id}/disabled_signatures/{signature_id}.json_api".sub('{format}','json_api').sub('{' + 'external_account_id' + '}', external_account_id.to_s).sub('{' + 'signature_id' + '}', signature_id.to_s)
+      local_var_path = "/api/v2/external_accounts/disabled_signatures.json_api".sub('{format}','json_api')
 
       # query parameters
       query_params = {}
@@ -644,6 +645,8 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["external_account_ids"] = @api_client.build_collection_param(external_account_ids, :multi)
+      form_params["signature_ids"] = @api_client.build_collection_param(signature_ids, :multi)
 
       # http body (model)
       post_body = nil

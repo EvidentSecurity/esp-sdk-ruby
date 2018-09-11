@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.version     = ESP::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Evident.io"]
-  s.email       = ["support@evident.io"]
+  s.email       = ["evidentsupport@paloaltonetworks.com"]
   s.homepage    = "https://github.com/EvidentSecurity/esp-sdk-ruby"
   s.summary     = "Ruby SDK for interacting with the ESP API."
   s.description = "Ruby SDK for interacting with the ESP API."

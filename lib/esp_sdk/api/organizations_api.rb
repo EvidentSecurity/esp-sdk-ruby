@@ -197,6 +197,7 @@ module ESP
     # @param id Organization ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  subscription, custom_signatures, external_accounts, sub_organizations, teams, users, compliance_standards, integrations See Including Objects for more information.
+    # @option opts [BOOLEAN] :enable_new_signatures Whether new signatures should be enabled for all accounts on this organization
     # @option opts [String] :name Name of the organization
     # @option opts [BOOLEAN] :require_mfa Whether or not users for this organization are required to enable Multi Factor Authentication
     # @return [Organization]
@@ -210,6 +211,7 @@ module ESP
     # @param id Organization ID
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  subscription, custom_signatures, external_accounts, sub_organizations, teams, users, compliance_standards, integrations See Including Objects for more information.
+    # @option opts [BOOLEAN] :enable_new_signatures Whether new signatures should be enabled for all accounts on this organization
     # @option opts [String] :name Name of the organization
     # @option opts [BOOLEAN] :require_mfa Whether or not users for this organization are required to enable Multi Factor Authentication
     # @return [Array<(Organization, Fixnum, Hash)>] Organization data, response status code and response headers
@@ -235,6 +237,7 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["enable_new_signatures"] = opts[:'enable_new_signatures'] if !opts[:'enable_new_signatures'].nil?
       form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
       form_params["require_mfa"] = opts[:'require_mfa'] if !opts[:'require_mfa'].nil?
 

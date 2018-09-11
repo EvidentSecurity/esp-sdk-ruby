@@ -36,7 +36,7 @@ describe 'ScheduledExportsApi' do
   # 
   # @param scheduled_export_id The id of the scheduled export to be activated
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
   # @return [ScheduledExport]
   describe 'activate_export test' do
     it "should work" do
@@ -47,18 +47,16 @@ describe 'ScheduledExportsApi' do
   # unit tests for create
   # Create a(n) Scheduled Export
   # 
-  # @param authenticated Whether or not require authentication before viewing the file. Valid values are true, false
-  # @param external_account_id The id of the external account the report will be exported for
+  # @param external_account_ids The ids of the external accounts the report will be exported for
+  # @param frequency Frequency of the export. Valid values are weekly, daily, monthly
   # @param hour Hour of the day to perform the export. Valid values are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
   # @param time_zone Time zone to use when calculating hour and day
-  # @param type Type of export to control frequency. Valid values are weekly, daily, monthly
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
-  # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 0 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+  # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
+  # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 1 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
   # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
-  # @option opts [String] :recipient Email address the export will be sent to if unauthenticated
-  # @option opts [BOOLEAN] :send_with_attachment Whether or not to send the file as an attachment. Valid values are true, false
-  # @option opts [Integer] :user_id The id of the user the report will be emailed to when authenticated is selected
+  # @option opts [String] :name A name that describes the export
+  # @option opts [Array<String>] :recipients Email addresses the export will be sent to
   # @return [ScheduledExport]
   describe 'create test' do
     it "should work" do
@@ -83,9 +81,23 @@ describe 'ScheduledExportsApi' do
   # 
   # @param scheduled_export_id The id of the scheduled export to be disabled
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
   # @return [ScheduledExport]
   describe 'disable_export test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list
+  # Get a list of Scheduled Exports
+  # 
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
+  # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, hour, day, status, recipients, time_zone, name] Matching Searchable Attributes: [recipients, time_zone, name] Limited Searchable Attribute: [frequency_eq] Sortable Attributes: [updated_at, created_at, id, name] Searchable Associations: [creator, external_accounts] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
+  # @return [PaginatedCollection]
+  describe 'list test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -96,7 +108,7 @@ describe 'ScheduledExportsApi' do
   # 
   # @param id Scheduled Export ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
   # @return [ScheduledExport]
   describe 'show test' do
     it "should work" do
@@ -121,8 +133,9 @@ describe 'ScheduledExportsApi' do
   # Update a(n) Scheduled Export
   # 
   # @param uuid The uuid of the export to unsubscribe
+  # @param email The email to unsubscribe. Nested under: \&quot;data\&quot;: { \&quot;meta\&quot;: { \&quot;email\&quot;: ... } }
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
   # @return [ScheduledExport]
   describe 'unsubscribe_export test' do
     it "should work" do
@@ -135,11 +148,13 @@ describe 'ScheduledExportsApi' do
   # 
   # @param id Scheduled Export ID
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
-  # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 0 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+  # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
+  # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 1 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+  # @option opts [Array<Integer>] :external_account_ids The ids of the external accounts the report will be exported for
   # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
   # @option opts [Integer] :hour Hour of the day to perform the export. Valid values are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
-  # @option opts [BOOLEAN] :send_with_attachment Whether or not to send the file as an attachment. Valid values are true, false
+  # @option opts [String] :name A name that describes the export
+  # @option opts [Array<String>] :recipients Email addresses the export will be sent to
   # @option opts [String] :time_zone Time zone to use when calculating hour and day
   # @return [ScheduledExport]
   describe 'update test' do

@@ -33,6 +33,7 @@ last_name = "last_name_example" # String | The last name of the user
 
 opts = { 
   include: "include_example", # String | Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+  access_level: "access_level_example", # String | The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization_level, sub_organization_level, team_level
   disable_daily_emails: true, # BOOLEAN | Specifies whether the daily emails should be turned off or not
   phone: "phone_example", # String | The phone number of the user
   role_id: 56, # Integer | The ID of the role of the user. Only a manager can set or modify the role id.
@@ -58,6 +59,7 @@ Name | Type | Description  | Notes
  **first_name** | **String**| The first name of the user | 
  **last_name** | **String**| The last name of the user | 
  **include** | **String**| Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information. | [optional] 
+ **access_level** | **String**| The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization_level, sub_organization_level, team_level | [optional] 
  **disable_daily_emails** | **BOOLEAN**| Specifies whether the daily emails should be turned off or not | [optional] 
  **phone** | **String**| The phone number of the user | [optional] 
  **role_id** | **Integer**| The ID of the role of the user. Only a manager can set or modify the role id. | [optional] 
@@ -252,6 +254,7 @@ id = 56 # Integer | User ID
 
 opts = { 
   include: "include_example", # String | Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+  access_level: "access_level_example", # String | The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization_level, sub_organization_level, team_level
   disable_daily_emails: true, # BOOLEAN | Specifies whether the daily emails should be turned off or not
   first_name: "first_name_example", # String | The first name of the user
   last_name: "last_name_example", # String | The last name of the user
@@ -277,6 +280,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| User ID | 
  **include** | **String**| Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information. | [optional] 
+ **access_level** | **String**| The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization_level, sub_organization_level, team_level | [optional] 
  **disable_daily_emails** | **BOOLEAN**| Specifies whether the daily emails should be turned off or not | [optional] 
  **first_name** | **String**| The first name of the user | [optional] 
  **last_name** | **String**| The last name of the user | [optional] 

@@ -26,6 +26,9 @@ module ESP
     # The identifier to use for the custom signature. Common format is AWS:- such as AWS:IAM-001
     attr_accessor :identifier
 
+    # When enabled, automatically adds new accounts to this signature. This field can only be set by an organization level user.
+    attr_accessor :include_new_accounts
+
     # The name of the custom signature
     attr_accessor :name
 
@@ -62,6 +65,12 @@ module ESP
     # Associated Suppressions IDs
     attr_accessor :suppression_ids
 
+    # Associated Service
+    attr_accessor :service
+
+    # Associated Service ID
+    attr_accessor :service_id
+
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -70,6 +79,7 @@ module ESP
         :'created_at' => :'created_at',
         :'description' => :'description',
         :'identifier' => :'identifier',
+        :'include_new_accounts' => :'include_new_accounts',
         :'name' => :'name',
         :'resolution' => :'resolution',
         :'risk_level' => :'risk_level',
@@ -81,7 +91,9 @@ module ESP
         :'definitions' => :'definitions',
         :'definition_ids' => :'definition_ids',
         :'suppressions' => :'suppressions',
-        :'suppression_ids' => :'suppression_ids'
+        :'suppression_ids' => :'suppression_ids',
+        :'service' => :'service',
+        :'service_id' => :'service_id'
       }
     end
 
@@ -92,6 +104,7 @@ module ESP
         :'created_at' => :'DateTime',
         :'description' => :'String',
         :'identifier' => :'String',
+        :'include_new_accounts' => :'BOOLEAN',
         :'name' => :'String',
         :'resolution' => :'String',
         :'risk_level' => :'String',
@@ -103,7 +116,9 @@ module ESP
         :'definitions' => :'Array<CustomSignatureDefinition>',
         :'definition_ids' => :'Array<Integer>',
         :'suppressions' => :'Array<Suppression>',
-        :'suppression_ids' => :'Array<Integer>'
+        :'suppression_ids' => :'Array<Integer>',
+        :'service' => :'Service',
+        :'service_id' => :'Integer'
       }
     end
 
@@ -129,6 +144,10 @@ module ESP
 
       if attributes.has_key?(:'identifier')
         self.identifier = attributes[:'identifier']
+      end
+
+      if attributes.has_key?(:'include_new_accounts')
+        self.include_new_accounts = attributes[:'include_new_accounts']
       end
 
       if attributes.has_key?(:'name')
@@ -191,6 +210,14 @@ module ESP
         end
       end
 
+      if attributes.has_key?(:'service')
+        self.service = attributes[:'service']
+      end
+
+      if attributes.has_key?(:'service_id')
+        self.service_id = attributes[:'service_id']
+      end
+
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -215,6 +242,7 @@ module ESP
           created_at == o.created_at &&
           description == o.description &&
           identifier == o.identifier &&
+          include_new_accounts == o.include_new_accounts &&
           name == o.name &&
           resolution == o.resolution &&
           risk_level == o.risk_level &&
@@ -226,7 +254,9 @@ module ESP
           definitions == o.definitions &&
           definition_ids == o.definition_ids &&
           suppressions == o.suppressions &&
-          suppression_ids == o.suppression_ids
+          suppression_ids == o.suppression_ids &&
+          service == o.service &&
+          service_id == o.service_id
     end
 
     # @see the `==` method
@@ -238,7 +268,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, description, identifier, name, resolution, risk_level, updated_at, organization, organization_id, external_accounts, external_account_ids, definitions, definition_ids, suppressions, suppression_ids].hash
+      [id, created_at, description, identifier, include_new_accounts, name, resolution, risk_level, updated_at, organization, organization_id, external_accounts, external_account_ids, definitions, definition_ids, suppressions, suppression_ids, service, service_id].hash
     end
 
     # Builds the object from hash

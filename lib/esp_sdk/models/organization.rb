@@ -20,6 +20,9 @@ module ESP
     # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
+    # Whether new signatures should be enabled for all accounts on this organization
+    attr_accessor :enable_new_signatures
+
     # Name of the organization
     attr_accessor :name
 
@@ -83,6 +86,7 @@ module ESP
       {
         :'id' => :'id',
         :'created_at' => :'created_at',
+        :'enable_new_signatures' => :'enable_new_signatures',
         :'name' => :'name',
         :'require_mfa' => :'require_mfa',
         :'updated_at' => :'updated_at',
@@ -110,6 +114,7 @@ module ESP
       {
         :'id' => :'Integer',
         :'created_at' => :'DateTime',
+        :'enable_new_signatures' => :'BOOLEAN',
         :'name' => :'String',
         :'require_mfa' => :'BOOLEAN',
         :'updated_at' => :'DateTime',
@@ -146,6 +151,10 @@ module ESP
 
       if attributes.has_key?(:'created_at')
         self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.has_key?(:'enable_new_signatures')
+        self.enable_new_signatures = attributes[:'enable_new_signatures']
       end
 
       if attributes.has_key?(:'name')
@@ -274,6 +283,7 @@ module ESP
       self.class == o.class &&
           id == o.id &&
           created_at == o.created_at &&
+          enable_new_signatures == o.enable_new_signatures &&
           name == o.name &&
           require_mfa == o.require_mfa &&
           updated_at == o.updated_at &&
@@ -304,7 +314,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, name, require_mfa, updated_at, subscription, subscription_id, custom_signatures, custom_signature_ids, external_accounts, external_account_ids, sub_organizations, sub_organization_ids, teams, team_ids, users, user_ids, compliance_standards, compliance_standard_ids, integrations, integration_ids].hash
+      [id, created_at, enable_new_signatures, name, require_mfa, updated_at, subscription, subscription_id, custom_signatures, custom_signature_ids, external_accounts, external_account_ids, sub_organizations, sub_organization_ids, teams, team_ids, users, user_ids, compliance_standards, compliance_standard_ids, integrations, integration_ids].hash
     end
 
     # Builds the object from hash

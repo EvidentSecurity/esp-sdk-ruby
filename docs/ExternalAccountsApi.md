@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_compliance_standard**](ExternalAccountsApi.md#add_compliance_standard) | **POST** /api/v2/external_accounts/{external_account_id}/compliance_standards.json_api | Add a compliance standard to an external account
 [**add_custom_compliance_standard**](ExternalAccountsApi.md#add_custom_compliance_standard) | **POST** /api/v2/external_accounts/{external_account_id}/custom_compliance_standards.json_api | Add a custom compliance standard to an external account
-[**add_disabled_signature**](ExternalAccountsApi.md#add_disabled_signature) | **POST** /api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api | Disable a signature for an external account
+[**add_disabled_signature**](ExternalAccountsApi.md#add_disabled_signature) | **POST** /api/v2/external_accounts/disabled_signatures.json_api | Disable a set of signatures for an external account or a set of external accounts for a signature
 [**delete**](ExternalAccountsApi.md#delete) | **DELETE** /api/v2/external_accounts/{id}.json_api | Delete a(n) External Account
 [**list**](ExternalAccountsApi.md#list) | **PUT** /api/v2/external_accounts.json_api | Get a list of External Accounts
 [**list_compliance_standards**](ExternalAccountsApi.md#list_compliance_standards) | **GET** /api/v2/external_accounts/{external_account_id}/compliance_standards.json_api | Get a list of compliance standards for an external account
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 [**list_disabled_signatures**](ExternalAccountsApi.md#list_disabled_signatures) | **PUT** /api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api | Get a list all the disabled signatures for an external account
 [**remove_compliance_standard**](ExternalAccountsApi.md#remove_compliance_standard) | **DELETE** /api/v2/external_accounts/{external_account_id}/compliance_standards/{compliance_standard_id}.json_api | Remove a compliance standard from an external account
 [**remove_custom_compliance_standard**](ExternalAccountsApi.md#remove_custom_compliance_standard) | **DELETE** /api/v2/external_accounts/{external_account_id}/custom_compliance_standards/{custom_compliance_standard_id}.json_api | Remove a custom compliance standard from an external account
-[**remove_disabled_signature**](ExternalAccountsApi.md#remove_disabled_signature) | **DELETE** /api/v2/external_accounts/{external_account_id}/disabled_signatures/{signature_id}.json_api | Re-enable a signature for an external account
+[**remove_disabled_signature**](ExternalAccountsApi.md#remove_disabled_signature) | **DELETE** /api/v2/external_accounts/disabled_signatures.json_api | Re-enable a set of signatures for an external account or a set of external accounts for a signature
 [**show**](ExternalAccountsApi.md#show) | **GET** /api/v2/external_accounts/{id}.json_api | Show a single External Account
 
 
@@ -123,9 +123,9 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **add_disabled_signature**
-> Signature add_disabled_signature(external_account_id, signature_id, opts)
+> Signature add_disabled_signature(external_account_ids, signature_ids, opts)
 
-Disable a signature for an external account
+Disable a set of signatures for an external account or a set of external accounts for a signature
 
 
 
@@ -136,17 +136,17 @@ require 'esp_sdk'
 
 api_instance = ESP::ExternalAccountsApi.new
 
-external_account_id = 56 # Integer | The ID of the external account to disable a signature on
+external_account_ids = [56] # Array<Integer> | The IDs of the external_account(s) to disable
 
-signature_id = 56 # Integer | The ID of the signature to disable
+signature_ids = [56] # Array<Integer> | The IDs of the signature(s) to disable
 
 opts = { 
   include: "include_example" # String | Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
 }
 
 begin
-  #Disable a signature for an external account
-  result = api_instance.add_disabled_signature(external_account_id, signature_id, opts)
+  #Disable a set of signatures for an external account or a set of external accounts for a signature
+  result = api_instance.add_disabled_signature(external_account_ids, signature_ids, opts)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling ExternalAccountsApi->add_disabled_signature: #{e}"
@@ -157,8 +157,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **external_account_id** | **Integer**| The ID of the external account to disable a signature on | 
- **signature_id** | **Integer**| The ID of the signature to disable | 
+ **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| The IDs of the external_account(s) to disable | 
+ **signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| The IDs of the signature(s) to disable | 
  **include** | **String**| Related objects that can be included in the response:  service, suppressions See Including Objects for more information. | [optional] 
 
 ### Return type
@@ -239,7 +239,7 @@ api_instance = ESP::ExternalAccountsApi.new
 
 opts = { 
   include: "include_example", # String | Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information.
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures, suppressions] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, azure_group, compliance_standards, disabled_signatures, integrations, scheduled_exports, suppressions] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
   page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
@@ -257,7 +257,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **include** | **String**| Related objects that can be included in the response:  organization, sub_organization, team, scan_intervals, disabled_signatures, suppressions, azure_group See Including Objects for more information. | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, compliance_standards, azure_group, disabled_signatures, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, nickname, name] Matching Searchable Attributes: [nickname, name] Limited Searchable Attributes: [account_eq, arn_eq, provider_eq, subscription_id_eq] Sortable Attributes: [name, updated_at, created_at, id] Searchable Associations: [organization, sub_organization, team, azure_group, compliance_standards, disabled_signatures, integrations, scheduled_exports, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
  **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
@@ -399,7 +399,7 @@ external_account_id = 56 # Integer | The ID of the external account to retrieve 
 
 opts = { 
   include: "include_example", # String | Related objects that can be included in the response:  service, suppressions See Including Objects for more information.
-  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+  filter: {'key' => "filter_example"}, # Hash<String, String> | Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [service_provider_eq, service_provider_in, service_name_in] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association's list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
   page: "{:number=>1,+:size=>20}" # String | Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
 }
 
@@ -418,7 +418,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **external_account_id** | **Integer**| The ID of the external account to retrieve the disabled signatures for | 
  **include** | **String**| Related objects that can be included in the response:  service, suppressions See Including Objects for more information. | [optional] 
- **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attribute: [service_provider_eq] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
+ **filter** | [**Hash&lt;String, String&gt;**](String.md)| Filter Params for Searching.  Equality Searchable Attributes: [id, risk_level, service_id, disabled, supports_user_attribution, name, identifier, description, resolution] Matching Searchable Attributes: [name, identifier, description, resolution] Limited Searchable Attributes: [service_provider_eq, service_provider_in, service_name_in] Sortable Attributes: [name, identifier, updated_at, created_at, id] Searchable Associations: [signature_copy, disabled_external_accounts, integrations, suppressions] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information. | [optional] 
  **page** | **String**| Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. | [optional] [default to {:number&#x3D;&gt;1,+:size&#x3D;&gt;20}]
 
 ### Return type
@@ -537,9 +537,9 @@ See https://github.com/EvidentSecurity/esp-sdk-ruby#set-your-hmac-security-keys
 
 
 # **remove_disabled_signature**
-> Meta remove_disabled_signature(external_account_id, signature_id)
+> Meta remove_disabled_signature(external_account_ids, signature_ids)
 
-Re-enable a signature for an external account
+Re-enable a set of signatures for an external account or a set of external accounts for a signature
 
 
 
@@ -550,14 +550,14 @@ require 'esp_sdk'
 
 api_instance = ESP::ExternalAccountsApi.new
 
-external_account_id = 56 # Integer | The ID of the external account to enable a signature on
+external_account_ids = [56] # Array<Integer> | The IDs of the external_account(s) to enable
 
-signature_id = 56 # Integer | The ID of the signature to enable
+signature_ids = [56] # Array<Integer> | The IDs of the signature(s) to enable
 
 
 begin
-  #Re-enable a signature for an external account
-  result = api_instance.remove_disabled_signature(external_account_id, signature_id)
+  #Re-enable a set of signatures for an external account or a set of external accounts for a signature
+  result = api_instance.remove_disabled_signature(external_account_ids, signature_ids)
   p result
 rescue ESP::ApiError => e
   puts "Exception when calling ExternalAccountsApi->remove_disabled_signature: #{e}"
@@ -568,8 +568,8 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **external_account_id** | **Integer**| The ID of the external account to enable a signature on | 
- **signature_id** | **Integer**| The ID of the signature to enable | 
+ **external_account_ids** | [**Array&lt;Integer&gt;**](Integer.md)| The IDs of the external_account(s) to enable | 
+ **signature_ids** | [**Array&lt;Integer&gt;**](Integer.md)| The IDs of the signature(s) to enable | 
 
 ### Return type
 

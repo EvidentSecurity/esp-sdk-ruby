@@ -37,7 +37,7 @@ describe 'CustomComplianceControlsApi' do
   # @param custom_compliance_control_id The ID of the Custom Compliance Control this custom signature belongs to
   # @param custom_signature_id The ID of the custom signature that belongs to this custom control
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions, service See Including Objects for more information.
   # @return [CustomSignature]
   describe 'add_custom_signature test' do
     it "should work" do
@@ -95,7 +95,7 @@ describe 'CustomComplianceControlsApi' do
   # 
   # @param custom_compliance_control_id The ID of the Custom Compliance Control this custom signature belongs to
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions See Including Objects for more information.
+  # @option opts [String] :include Related objects that can be included in the response:  organization, teams, external_accounts, definitions, suppressions, service See Including Objects for more information.
   # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
   # @return [PaginatedCollection]
   describe 'list_custom_signatures test' do
