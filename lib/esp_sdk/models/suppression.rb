@@ -20,6 +20,9 @@ module ESP
     # ISO 8601 timestamp when the resource was created
     attr_accessor :created_at
 
+    # When enabled, automatically adds new accounts to this suppression. This field can only be set by an organization level user.
+    attr_accessor :include_new_accounts
+
     # The reason for the suppresion
     attr_accessor :reason
 
@@ -74,6 +77,7 @@ module ESP
       {
         :'id' => :'id',
         :'created_at' => :'created_at',
+        :'include_new_accounts' => :'include_new_accounts',
         :'reason' => :'reason',
         :'resource' => :'resource',
         :'status' => :'status',
@@ -98,6 +102,7 @@ module ESP
       {
         :'id' => :'Integer',
         :'created_at' => :'DateTime',
+        :'include_new_accounts' => :'BOOLEAN',
         :'reason' => :'String',
         :'resource' => :'String',
         :'status' => :'String',
@@ -131,6 +136,10 @@ module ESP
 
       if attributes.has_key?(:'created_at')
         self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.has_key?(:'include_new_accounts')
+        self.include_new_accounts = attributes[:'include_new_accounts']
       end
 
       if attributes.has_key?(:'reason')
@@ -235,6 +244,7 @@ module ESP
       self.class == o.class &&
           id == o.id &&
           created_at == o.created_at &&
+          include_new_accounts == o.include_new_accounts &&
           reason == o.reason &&
           resource == o.resource &&
           status == o.status &&
@@ -262,7 +272,7 @@ module ESP
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, created_at, reason, resource, status, updated_at, organization, organization_id, created_by, created_by_id, regions, region_ids, external_accounts, external_account_ids, signatures, signature_ids, custom_signatures, custom_signature_ids].hash
+      [id, created_at, include_new_accounts, reason, resource, status, updated_at, organization, organization_id, created_by, created_by_id, regions, region_ids, external_accounts, external_account_ids, signatures, signature_ids, custom_signatures, custom_signature_ids].hash
     end
 
     # Builds the object from hash

@@ -40,6 +40,7 @@ describe 'SuppressionsApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  organization, created_by, regions, external_accounts, signatures, custom_signatures See Including Objects for more information.
   # @option opts [Array<Integer>] :custom_signature_ids IDs of custom signatures to be suppressed
+  # @option opts [BOOLEAN] :include_new_accounts When enabled, automatically adds new accounts to this suppression. This field can only be set by an organization level user.
   # @option opts [String] :resource The resource string this suppression will suppress alerts for
   # @option opts [Array<Integer>] :signature_ids IDs of signatures to be suppressed
   # @return [Suppression]
@@ -52,6 +53,7 @@ describe 'SuppressionsApi' do
   # unit tests for create_from_alert
   # Creates a suppression from an alert
   # A successful call to this API creates a new suppression based on the supplied alert_id. The body of the request must contain a json api compliant hash of the suppression reason and an alert id.
+  # @param alert_id The ID for the alert you want to create a suppression for
   # @param reason The reason for creating the suppression
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  organization, created_by, regions, external_accounts, signatures, custom_signatures See Including Objects for more information.
@@ -97,6 +99,26 @@ describe 'SuppressionsApi' do
   # @option opts [String] :include Related objects that can be included in the response:  organization, created_by, regions, external_accounts, signatures, custom_signatures See Including Objects for more information.
   # @return [Suppression]
   describe 'show test' do
+    it "should work" do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for update
+  # Update a(n) Suppression
+  # 
+  # @param id Suppression ID
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :include Related objects that can be included in the response:  organization, created_by, regions, external_accounts, signatures, custom_signatures See Including Objects for more information.
+  # @option opts [Array<Integer>] :custom_signature_ids IDs of custom signatures to be suppressed
+  # @option opts [Array<Integer>] :external_account_ids IDs of external accounts to be suppressed
+  # @option opts [BOOLEAN] :include_new_accounts When enabled, automatically adds new accounts to this suppression. This field can only be set by an organization level user.
+  # @option opts [String] :reason The reason for the suppresion
+  # @option opts [Array<String>] :regions Codes of regions to be suppressed
+  # @option opts [String] :resource The resource string this suppression will suppress alerts for
+  # @option opts [Array<Integer>] :signature_ids IDs of signatures to be suppressed
+  # @return [Suppression]
+  describe 'update test' do
     it "should work" do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

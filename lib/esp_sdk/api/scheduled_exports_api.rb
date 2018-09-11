@@ -23,7 +23,7 @@ module ESP
     # 
     # @param scheduled_export_id The id of the scheduled export to be activated
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
     # @return [ScheduledExport]
     def activate_export(scheduled_export_id, opts = {})
       data, _status_code, _headers = activate_export_with_http_info(scheduled_export_id, opts)
@@ -34,7 +34,7 @@ module ESP
     # 
     # @param scheduled_export_id The id of the scheduled export to be activated
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
     # @return [Array<(ScheduledExport, Fixnum, Hash)>] ScheduledExport data, response status code and response headers
     def activate_export_with_http_info(scheduled_export_id, opts = {})
       if @api_client.config.debugging
@@ -77,57 +77,51 @@ module ESP
 
     # Create a(n) Scheduled Export
     # 
-    # @param authenticated Whether or not require authentication before viewing the file. Valid values are true, false
-    # @param external_account_id The id of the external account the report will be exported for
+    # @param external_account_ids The ids of the external accounts the report will be exported for
+    # @param frequency Frequency of the export. Valid values are weekly, daily, monthly
     # @param hour Hour of the day to perform the export. Valid values are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
     # @param time_zone Time zone to use when calculating hour and day
-    # @param type Type of export to control frequency. Valid values are weekly, daily, monthly
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
-    # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 0 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
+    # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 1 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
     # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
-    # @option opts [String] :recipient Email address the export will be sent to if unauthenticated
-    # @option opts [BOOLEAN] :send_with_attachment Whether or not to send the file as an attachment. Valid values are true, false
-    # @option opts [Integer] :user_id The id of the user the report will be emailed to when authenticated is selected
+    # @option opts [String] :name A name that describes the export
+    # @option opts [Array<String>] :recipients Email addresses the export will be sent to
     # @return [ScheduledExport]
-    def create(authenticated, external_account_id, hour, time_zone, type, opts = {})
-      data, _status_code, _headers = create_with_http_info(authenticated, external_account_id, hour, time_zone, type, opts)
+    def create(external_account_ids, frequency, hour, time_zone, opts = {})
+      data, _status_code, _headers = create_with_http_info(external_account_ids, frequency, hour, time_zone, opts)
       return data
     end
 
     # Create a(n) Scheduled Export
     # 
-    # @param authenticated Whether or not require authentication before viewing the file. Valid values are true, false
-    # @param external_account_id The id of the external account the report will be exported for
+    # @param external_account_ids The ids of the external accounts the report will be exported for
+    # @param frequency Frequency of the export. Valid values are weekly, daily, monthly
     # @param hour Hour of the day to perform the export. Valid values are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
     # @param time_zone Time zone to use when calculating hour and day
-    # @param type Type of export to control frequency. Valid values are weekly, daily, monthly
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
-    # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 0 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
+    # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 1 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
     # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
-    # @option opts [String] :recipient Email address the export will be sent to if unauthenticated
-    # @option opts [BOOLEAN] :send_with_attachment Whether or not to send the file as an attachment. Valid values are true, false
-    # @option opts [Integer] :user_id The id of the user the report will be emailed to when authenticated is selected
+    # @option opts [String] :name A name that describes the export
+    # @option opts [Array<String>] :recipients Email addresses the export will be sent to
     # @return [Array<(ScheduledExport, Fixnum, Hash)>] ScheduledExport data, response status code and response headers
-    def create_with_http_info(authenticated, external_account_id, hour, time_zone, type, opts = {})
+    def create_with_http_info(external_account_ids, frequency, hour, time_zone, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ScheduledExportsApi.create ..."
       end
-      # verify the required parameter 'authenticated' is set
-      fail ArgumentError, "Missing the required parameter 'authenticated' when calling ScheduledExportsApi.create" if authenticated.nil?
-      # verify the required parameter 'external_account_id' is set
-      fail ArgumentError, "Missing the required parameter 'external_account_id' when calling ScheduledExportsApi.create" if external_account_id.nil?
+      # verify the required parameter 'external_account_ids' is set
+      fail ArgumentError, "Missing the required parameter 'external_account_ids' when calling ScheduledExportsApi.create" if external_account_ids.nil?
+      # verify the required parameter 'frequency' is set
+      fail ArgumentError, "Missing the required parameter 'frequency' when calling ScheduledExportsApi.create" if frequency.nil?
+      # verify enum value
+      unless ['weekly', 'daily', 'monthly'].include?(frequency)
+        fail ArgumentError, "invalid value for 'frequency', must be one of weekly, daily, monthly"
+      end
       # verify the required parameter 'hour' is set
       fail ArgumentError, "Missing the required parameter 'hour' when calling ScheduledExportsApi.create" if hour.nil?
       # verify the required parameter 'time_zone' is set
       fail ArgumentError, "Missing the required parameter 'time_zone' when calling ScheduledExportsApi.create" if time_zone.nil?
-      # verify the required parameter 'type' is set
-      fail ArgumentError, "Missing the required parameter 'type' when calling ScheduledExportsApi.create" if type.nil?
-      # verify enum value
-      unless ['weekly', 'daily', 'monthly'].include?(type)
-        fail ArgumentError, "invalid value for 'type', must be one of weekly, daily, monthly"
-      end
       if opts[:'day'] && !['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'].include?(opts[:'day'])
         fail ArgumentError, 'invalid value for "day", must be one of sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31'
       end
@@ -147,16 +141,14 @@ module ESP
 
       # form parameters
       form_params = {}
-      form_params["authenticated"] = authenticated
-      form_params["external_account_id"] = external_account_id
+      form_params["external_account_ids"] = @api_client.build_collection_param(external_account_ids, :multi)
+      form_params["frequency"] = frequency
       form_params["hour"] = hour
       form_params["time_zone"] = time_zone
-      form_params["type"] = type
       form_params["day"] = opts[:'day'] if !opts[:'day'].nil?
       form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
-      form_params["recipient"] = opts[:'recipient'] if !opts[:'recipient'].nil?
-      form_params["send_with_attachment"] = opts[:'send_with_attachment'] if !opts[:'send_with_attachment'].nil?
-      form_params["user_id"] = opts[:'user_id'] if !opts[:'user_id'].nil?
+      form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
+      form_params["recipients"] = @api_client.build_collection_param(opts[:'recipients'], :multi) if !opts[:'recipients'].nil?
 
       # http body (model)
       post_body = nil
@@ -231,7 +223,7 @@ module ESP
     # 
     # @param scheduled_export_id The id of the scheduled export to be disabled
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
     # @return [ScheduledExport]
     def disable_export(scheduled_export_id, opts = {})
       data, _status_code, _headers = disable_export_with_http_info(scheduled_export_id, opts)
@@ -242,7 +234,7 @@ module ESP
     # 
     # @param scheduled_export_id The id of the scheduled export to be disabled
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
     # @return [Array<(ScheduledExport, Fixnum, Hash)>] ScheduledExport data, response status code and response headers
     def disable_export_with_http_info(scheduled_export_id, opts = {})
       if @api_client.config.debugging
@@ -283,11 +275,69 @@ module ESP
       return data, status_code, headers
     end
 
+    # Get a list of Scheduled Exports
+    # 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, hour, day, status, recipients, time_zone, name] Matching Searchable Attributes: [recipients, time_zone, name] Limited Searchable Attribute: [frequency_eq] Sortable Attributes: [updated_at, created_at, id, name] Searchable Associations: [creator, external_accounts] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page. (default to {:number=>1,+:size=>20})
+    # @return [PaginatedCollection]
+    def list(opts = {})
+      data, _status_code, _headers = list_with_http_info(opts)
+      return data
+    end
+
+    # Get a list of Scheduled Exports
+    # 
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
+    # @option opts [Hash<String, String>] :filter Filter Params for Searching.  Equality Searchable Attributes: [id, hour, day, status, recipients, time_zone, name] Matching Searchable Attributes: [recipients, time_zone, name] Limited Searchable Attribute: [frequency_eq] Sortable Attributes: [updated_at, created_at, id, name] Searchable Associations: [creator, external_accounts] See Searching Lists for more information. See the filter parameter of the association&#39;s list action to see what attributes are searchable on each association. See Conditions on Relationships in Searching Lists for more information.
+    # @option opts [String] :page Page Number and Page Size.  Number is the page number of the collection to return, size is the number of items to return per page.
+    # @return [Array<(PaginatedCollection, Fixnum, Hash)>] PaginatedCollection data, response status code and response headers
+    def list_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: ScheduledExportsApi.list ..."
+      end
+      # resource path
+      local_var_path = "/api/v2/scheduled_exports.json_api".sub('{format}','json_api')
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
+      form_params["page"] = opts[:'page'] if !opts[:'page'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'PaginatedCollection')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ScheduledExportsApi#list\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Show a single Scheduled Export
     # 
     # @param id Scheduled Export ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
     # @return [ScheduledExport]
     def show(id, opts = {})
       data, _status_code, _headers = show_with_http_info(id, opts)
@@ -298,7 +348,7 @@ module ESP
     # 
     # @param id Scheduled Export ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
     # @return [Array<(ScheduledExport, Fixnum, Hash)>] ScheduledExport data, response status code and response headers
     def show_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -398,26 +448,30 @@ module ESP
     # Update a(n) Scheduled Export
     # 
     # @param uuid The uuid of the export to unsubscribe
+    # @param email The email to unsubscribe. Nested under: \&quot;data\&quot;: { \&quot;meta\&quot;: { \&quot;email\&quot;: ... } }
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
     # @return [ScheduledExport]
-    def unsubscribe_export(uuid, opts = {})
-      data, _status_code, _headers = unsubscribe_export_with_http_info(uuid, opts)
+    def unsubscribe_export(uuid, email, opts = {})
+      data, _status_code, _headers = unsubscribe_export_with_http_info(uuid, email, opts)
       return data
     end
 
     # Update a(n) Scheduled Export
     # 
     # @param uuid The uuid of the export to unsubscribe
+    # @param email The email to unsubscribe. Nested under: \&quot;data\&quot;: { \&quot;meta\&quot;: { \&quot;email\&quot;: ... } }
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
     # @return [Array<(ScheduledExport, Fixnum, Hash)>] ScheduledExport data, response status code and response headers
-    def unsubscribe_export_with_http_info(uuid, opts = {})
+    def unsubscribe_export_with_http_info(uuid, email, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ScheduledExportsApi.unsubscribe_export ..."
       end
       # verify the required parameter 'uuid' is set
       fail ArgumentError, "Missing the required parameter 'uuid' when calling ScheduledExportsApi.unsubscribe_export" if uuid.nil?
+      # verify the required parameter 'email' is set
+      fail ArgumentError, "Missing the required parameter 'email' when calling ScheduledExportsApi.unsubscribe_export" if email.nil?
       # resource path
       local_var_path = "/api/v2/scheduled_exports/{uuid}/unsubscribe.json_api".sub('{format}','json_api').sub('{' + 'uuid' + '}', uuid.to_s)
 
@@ -434,6 +488,7 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["email"] = email
 
       # http body (model)
       post_body = nil
@@ -455,11 +510,13 @@ module ESP
     # 
     # @param id Scheduled Export ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
-    # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 0 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
+    # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 1 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+    # @option opts [Array<Integer>] :external_account_ids The ids of the external accounts the report will be exported for
     # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
     # @option opts [Integer] :hour Hour of the day to perform the export. Valid values are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
-    # @option opts [BOOLEAN] :send_with_attachment Whether or not to send the file as an attachment. Valid values are true, false
+    # @option opts [String] :name A name that describes the export
+    # @option opts [Array<String>] :recipients Email addresses the export will be sent to
     # @option opts [String] :time_zone Time zone to use when calculating hour and day
     # @return [ScheduledExport]
     def update(id, opts = {})
@@ -471,11 +528,13 @@ module ESP
     # 
     # @param id Scheduled Export ID
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :include Related objects that can be included in the response:  external_account, creator, user See Including Objects for more information.
-    # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 0 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+    # @option opts [String] :include Related objects that can be included in the response:  external_accounts, creator See Including Objects for more information.
+    # @option opts [String] :day Day of the week or day of the month to perform the export.  Allowed Values: Daily: nil - Weekly: sunday, monday, tuesday, wednesday, thursday, friday, or saturday - Monthly: 1 to 31. Valid values are sunday, monday, tuesday, wednesday, thursday, friday, saturday, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
+    # @option opts [Array<Integer>] :external_account_ids The ids of the external accounts the report will be exported for
     # @option opts [Hash<String, String>] :filter Params used to filter the alerts that will be exported
     # @option opts [Integer] :hour Hour of the day to perform the export. Valid values are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23
-    # @option opts [BOOLEAN] :send_with_attachment Whether or not to send the file as an attachment. Valid values are true, false
+    # @option opts [String] :name A name that describes the export
+    # @option opts [Array<String>] :recipients Email addresses the export will be sent to
     # @option opts [String] :time_zone Time zone to use when calculating hour and day
     # @return [Array<(ScheduledExport, Fixnum, Hash)>] ScheduledExport data, response status code and response headers
     def update_with_http_info(id, opts = {})
@@ -504,9 +563,11 @@ module ESP
       # form parameters
       form_params = {}
       form_params["day"] = opts[:'day'] if !opts[:'day'].nil?
+      form_params["external_account_ids"] = @api_client.build_collection_param(opts[:'external_account_ids'], :multi) if !opts[:'external_account_ids'].nil?
       form_params["filter"] = opts[:'filter'] if !opts[:'filter'].nil?
       form_params["hour"] = opts[:'hour'] if !opts[:'hour'].nil?
-      form_params["send_with_attachment"] = opts[:'send_with_attachment'] if !opts[:'send_with_attachment'].nil?
+      form_params["name"] = opts[:'name'] if !opts[:'name'].nil?
+      form_params["recipients"] = @api_client.build_collection_param(opts[:'recipients'], :multi) if !opts[:'recipients'].nil?
       form_params["time_zone"] = opts[:'time_zone'] if !opts[:'time_zone'].nil?
 
       # http body (model)

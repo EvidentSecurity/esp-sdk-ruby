@@ -39,6 +39,7 @@ describe 'UsersApi' do
   # @param last_name The last name of the user
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+  # @option opts [String] :access_level The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization_level, sub_organization_level, team_level
   # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
   # @option opts [String] :phone The phone number of the user
   # @option opts [Integer] :role_id The ID of the role of the user. Only a manager can set or modify the role id.
@@ -98,6 +99,7 @@ describe 'UsersApi' do
   # @param id User ID
   # @param [Hash] opts the optional parameters
   # @option opts [String] :include Related objects that can be included in the response:  organization, sub_organizations, teams, role See Including Objects for more information.
+  # @option opts [String] :access_level The level of access this user has. Team access has access to items belonging only to that team. Sub Organization access has access to items belonging only to all teams under that sub organization. Organization access has access to all sub organizations and teams under that organization. Valid values are organization_level, sub_organization_level, team_level
   # @option opts [BOOLEAN] :disable_daily_emails Specifies whether the daily emails should be turned off or not
   # @option opts [String] :first_name The first name of the user
   # @option opts [String] :last_name The last name of the user

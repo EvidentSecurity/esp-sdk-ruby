@@ -27,6 +27,7 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  organization, created_by, regions, external_accounts, signatures, custom_signatures See Including Objects for more information.
     # @option opts [Array<Integer>] :custom_signature_ids IDs of custom signatures to be suppressed
+    # @option opts [BOOLEAN] :include_new_accounts When enabled, automatically adds new accounts to this suppression. This field can only be set by an organization level user.
     # @option opts [String] :resource The resource string this suppression will suppress alerts for
     # @option opts [Array<Integer>] :signature_ids IDs of signatures to be suppressed
     # @return [Suppression]
@@ -43,6 +44,7 @@ module ESP
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  organization, created_by, regions, external_accounts, signatures, custom_signatures See Including Objects for more information.
     # @option opts [Array<Integer>] :custom_signature_ids IDs of custom signatures to be suppressed
+    # @option opts [BOOLEAN] :include_new_accounts When enabled, automatically adds new accounts to this suppression. This field can only be set by an organization level user.
     # @option opts [String] :resource The resource string this suppression will suppress alerts for
     # @option opts [Array<Integer>] :signature_ids IDs of signatures to be suppressed
     # @return [Array<(Suppression, Fixnum, Hash)>] Suppression data, response status code and response headers
@@ -76,6 +78,7 @@ module ESP
       form_params["reason"] = reason
       form_params["regions"] = @api_client.build_collection_param(regions, :multi)
       form_params["custom_signature_ids"] = @api_client.build_collection_param(opts[:'custom_signature_ids'], :multi) if !opts[:'custom_signature_ids'].nil?
+      form_params["include_new_accounts"] = opts[:'include_new_accounts'] if !opts[:'include_new_accounts'].nil?
       form_params["resource"] = opts[:'resource'] if !opts[:'resource'].nil?
       form_params["signature_ids"] = @api_client.build_collection_param(opts[:'signature_ids'], :multi) if !opts[:'signature_ids'].nil?
 
@@ -97,25 +100,29 @@ module ESP
 
     # Creates a suppression from an alert
     # A successful call to this API creates a new suppression based on the supplied alert_id. The body of the request must contain a json api compliant hash of the suppression reason and an alert id.
+    # @param alert_id The ID for the alert you want to create a suppression for
     # @param reason The reason for creating the suppression
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  organization, created_by, regions, external_accounts, signatures, custom_signatures See Including Objects for more information.
     # @return [Suppression]
-    def create_from_alert(reason, opts = {})
-      data, _status_code, _headers = create_from_alert_with_http_info(reason, opts)
+    def create_from_alert(alert_id, reason, opts = {})
+      data, _status_code, _headers = create_from_alert_with_http_info(alert_id, reason, opts)
       return data
     end
 
     # Creates a suppression from an alert
     # A successful call to this API creates a new suppression based on the supplied alert_id. The body of the request must contain a json api compliant hash of the suppression reason and an alert id.
+    # @param alert_id The ID for the alert you want to create a suppression for
     # @param reason The reason for creating the suppression
     # @param [Hash] opts the optional parameters
     # @option opts [String] :include Related objects that can be included in the response:  organization, created_by, regions, external_accounts, signatures, custom_signatures See Including Objects for more information.
     # @return [Array<(Suppression, Fixnum, Hash)>] Suppression data, response status code and response headers
-    def create_from_alert_with_http_info(reason, opts = {})
+    def create_from_alert_with_http_info(alert_id, reason, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: SuppressionsApi.create_from_alert ..."
       end
+      # verify the required parameter 'alert_id' is set
+      fail ArgumentError, "Missing the required parameter 'alert_id' when calling SuppressionsApi.create_from_alert" if alert_id.nil?
       # verify the required parameter 'reason' is set
       fail ArgumentError, "Missing the required parameter 'reason' when calling SuppressionsApi.create_from_alert" if reason.nil?
       # resource path
@@ -134,6 +141,7 @@ module ESP
 
       # form parameters
       form_params = {}
+      form_params["alert_id"] = alert_id
       form_params["reason"] = reason
 
       # http body (model)
@@ -318,6 +326,83 @@ module ESP
         :return_type => 'Suppression')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: SuppressionsApi#show\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Update a(n) Suppression
+    # 
+    # @param id Suppression ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  organization, created_by, regions, external_accounts, signatures, custom_signatures See Including Objects for more information.
+    # @option opts [Array<Integer>] :custom_signature_ids IDs of custom signatures to be suppressed
+    # @option opts [Array<Integer>] :external_account_ids IDs of external accounts to be suppressed
+    # @option opts [BOOLEAN] :include_new_accounts When enabled, automatically adds new accounts to this suppression. This field can only be set by an organization level user.
+    # @option opts [String] :reason The reason for the suppresion
+    # @option opts [Array<String>] :regions Codes of regions to be suppressed
+    # @option opts [String] :resource The resource string this suppression will suppress alerts for
+    # @option opts [Array<Integer>] :signature_ids IDs of signatures to be suppressed
+    # @return [Suppression]
+    def update(id, opts = {})
+      data, _status_code, _headers = update_with_http_info(id, opts)
+      return data
+    end
+
+    # Update a(n) Suppression
+    # 
+    # @param id Suppression ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :include Related objects that can be included in the response:  organization, created_by, regions, external_accounts, signatures, custom_signatures See Including Objects for more information.
+    # @option opts [Array<Integer>] :custom_signature_ids IDs of custom signatures to be suppressed
+    # @option opts [Array<Integer>] :external_account_ids IDs of external accounts to be suppressed
+    # @option opts [BOOLEAN] :include_new_accounts When enabled, automatically adds new accounts to this suppression. This field can only be set by an organization level user.
+    # @option opts [String] :reason The reason for the suppresion
+    # @option opts [Array<String>] :regions Codes of regions to be suppressed
+    # @option opts [String] :resource The resource string this suppression will suppress alerts for
+    # @option opts [Array<Integer>] :signature_ids IDs of signatures to be suppressed
+    # @return [Array<(Suppression, Fixnum, Hash)>] Suppression data, response status code and response headers
+    def update_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "Calling API: SuppressionsApi.update ..."
+      end
+      # verify the required parameter 'id' is set
+      fail ArgumentError, "Missing the required parameter 'id' when calling SuppressionsApi.update" if id.nil?
+      # resource path
+      local_var_path = "/api/v2/suppressions/{id}.json_api".sub('{format}','json_api').sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'include'] = opts[:'include'] if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = {}
+      form_params["custom_signature_ids"] = @api_client.build_collection_param(opts[:'custom_signature_ids'], :multi) if !opts[:'custom_signature_ids'].nil?
+      form_params["external_account_ids"] = @api_client.build_collection_param(opts[:'external_account_ids'], :multi) if !opts[:'external_account_ids'].nil?
+      form_params["include_new_accounts"] = opts[:'include_new_accounts'] if !opts[:'include_new_accounts'].nil?
+      form_params["reason"] = opts[:'reason'] if !opts[:'reason'].nil?
+      form_params["regions"] = @api_client.build_collection_param(opts[:'regions'], :multi) if !opts[:'regions'].nil?
+      form_params["resource"] = opts[:'resource'] if !opts[:'resource'].nil?
+      form_params["signature_ids"] = @api_client.build_collection_param(opts[:'signature_ids'], :multi) if !opts[:'signature_ids'].nil?
+
+      # http body (model)
+      post_body = nil
+      auth_names = []
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Suppression')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: SuppressionsApi#update\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

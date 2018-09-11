@@ -444,7 +444,6 @@ Class | Method | HTTP request | Description
 *ESP::ComplianceDomainsApi* | [**show**](docs/ComplianceDomainsApi.md#show) | **GET** /api/v2/compliance_domains/{id}.json_api | Show a single Compliance Domain
 *ESP::ComplianceStandardsApi* | [**list**](docs/ComplianceStandardsApi.md#list) | **PUT** /api/v2/compliance_standards.json_api | Get a list of Compliance Standards
 *ESP::ComplianceStandardsApi* | [**show**](docs/ComplianceStandardsApi.md#show) | **GET** /api/v2/compliance_standards/{id}.json_api | Show a single Compliance Standard
-*ESP::ContactRequestsApi* | [**create**](docs/ContactRequestsApi.md#create) | **POST** /api/v2/contact_requests.json_api | Create a(n) Contact Request
 *ESP::CustomComplianceControlsApi* | [**add_custom_signature**](docs/CustomComplianceControlsApi.md#add_custom_signature) | **POST** /api/v2/custom_compliance_controls/{custom_compliance_control_id}/custom_signatures.json_api | Add a Custom Signature to a Custom Compliance Control
 *ESP::CustomComplianceControlsApi* | [**add_signature**](docs/CustomComplianceControlsApi.md#add_signature) | **POST** /api/v2/custom_compliance_controls/{custom_compliance_control_id}/signatures.json_api | Add a Signature to a Custom Compliance Control
 *ESP::CustomComplianceControlsApi* | [**create**](docs/CustomComplianceControlsApi.md#create) | **POST** /api/v2/custom_compliance_controls.json_api | Create a(n) Custom Compliance Control
@@ -481,7 +480,7 @@ Class | Method | HTTP request | Description
 *ESP::CustomSignaturesApi* | [**update**](docs/CustomSignaturesApi.md#update) | **PATCH** /api/v2/custom_signatures/{id}.json_api | Update a(n) Custom Signature
 *ESP::ExternalAccountsApi* | [**add_compliance_standard**](docs/ExternalAccountsApi.md#add_compliance_standard) | **POST** /api/v2/external_accounts/{external_account_id}/compliance_standards.json_api | Add a compliance standard to an external account
 *ESP::ExternalAccountsApi* | [**add_custom_compliance_standard**](docs/ExternalAccountsApi.md#add_custom_compliance_standard) | **POST** /api/v2/external_accounts/{external_account_id}/custom_compliance_standards.json_api | Add a custom compliance standard to an external account
-*ESP::ExternalAccountsApi* | [**add_disabled_signature**](docs/ExternalAccountsApi.md#add_disabled_signature) | **POST** /api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api | Disable a signature for an external account
+*ESP::ExternalAccountsApi* | [**add_disabled_signature**](docs/ExternalAccountsApi.md#add_disabled_signature) | **POST** /api/v2/external_accounts/disabled_signatures.json_api | Disable a set of signatures for an external account or a set of external accounts for a signature
 *ESP::ExternalAccountsApi* | [**delete**](docs/ExternalAccountsApi.md#delete) | **DELETE** /api/v2/external_accounts/{id}.json_api | Delete a(n) External Account
 *ESP::ExternalAccountsApi* | [**list**](docs/ExternalAccountsApi.md#list) | **PUT** /api/v2/external_accounts.json_api | Get a list of External Accounts
 *ESP::ExternalAccountsApi* | [**list_compliance_standards**](docs/ExternalAccountsApi.md#list_compliance_standards) | **GET** /api/v2/external_accounts/{external_account_id}/compliance_standards.json_api | Get a list of compliance standards for an external account
@@ -489,7 +488,7 @@ Class | Method | HTTP request | Description
 *ESP::ExternalAccountsApi* | [**list_disabled_signatures**](docs/ExternalAccountsApi.md#list_disabled_signatures) | **PUT** /api/v2/external_accounts/{external_account_id}/disabled_signatures.json_api | Get a list all the disabled signatures for an external account
 *ESP::ExternalAccountsApi* | [**remove_compliance_standard**](docs/ExternalAccountsApi.md#remove_compliance_standard) | **DELETE** /api/v2/external_accounts/{external_account_id}/compliance_standards/{compliance_standard_id}.json_api | Remove a compliance standard from an external account
 *ESP::ExternalAccountsApi* | [**remove_custom_compliance_standard**](docs/ExternalAccountsApi.md#remove_custom_compliance_standard) | **DELETE** /api/v2/external_accounts/{external_account_id}/custom_compliance_standards/{custom_compliance_standard_id}.json_api | Remove a custom compliance standard from an external account
-*ESP::ExternalAccountsApi* | [**remove_disabled_signature**](docs/ExternalAccountsApi.md#remove_disabled_signature) | **DELETE** /api/v2/external_accounts/{external_account_id}/disabled_signatures/{signature_id}.json_api | Re-enable a signature for an external account
+*ESP::ExternalAccountsApi* | [**remove_disabled_signature**](docs/ExternalAccountsApi.md#remove_disabled_signature) | **DELETE** /api/v2/external_accounts/disabled_signatures.json_api | Re-enable a set of signatures for an external account or a set of external accounts for a signature
 *ESP::ExternalAccountsApi* | [**show**](docs/ExternalAccountsApi.md#show) | **GET** /api/v2/external_accounts/{id}.json_api | Show a single External Account
 *ESP::ExternalAccountsAmazonApi* | [**create**](docs/ExternalAccountsAmazonApi.md#create) | **POST** /api/v2/external_accounts/amazon.json_api | Create an Amazon External Account
 *ESP::ExternalAccountsAmazonApi* | [**show**](docs/ExternalAccountsAmazonApi.md#show) | **GET** /api/v2/external_accounts/{external_account_id}/amazon.json_api | Show an Amazon External Account
@@ -551,6 +550,7 @@ Class | Method | HTTP request | Description
 *ESP::ScheduledExportsApi* | [**create**](docs/ScheduledExportsApi.md#create) | **POST** /api/v2/scheduled_exports.json_api | Create a(n) Scheduled Export
 *ESP::ScheduledExportsApi* | [**delete**](docs/ScheduledExportsApi.md#delete) | **DELETE** /api/v2/scheduled_exports/{id}.json_api | Delete a(n) Scheduled Export
 *ESP::ScheduledExportsApi* | [**disable_export**](docs/ScheduledExportsApi.md#disable_export) | **PATCH** /api/v2/scheduled_exports/{scheduled_export_id}/disable.json_api | Update a(n) Scheduled Export
+*ESP::ScheduledExportsApi* | [**list**](docs/ScheduledExportsApi.md#list) | **PUT** /api/v2/scheduled_exports.json_api | Get a list of Scheduled Exports
 *ESP::ScheduledExportsApi* | [**show**](docs/ScheduledExportsApi.md#show) | **GET** /api/v2/scheduled_exports/{id}.json_api | Show a single Scheduled Export
 *ESP::ScheduledExportsApi* | [**show_file_details**](docs/ScheduledExportsApi.md#show_file_details) | **GET** /api/v2/reports/scheduled_export/files/{uuid}.json_api | Show a single Scheduled Export Result
 *ESP::ScheduledExportsApi* | [**unsubscribe_export**](docs/ScheduledExportsApi.md#unsubscribe_export) | **PATCH** /api/v2/scheduled_exports/{uuid}/unsubscribe.json_api | Update a(n) Scheduled Export
@@ -590,6 +590,7 @@ Class | Method | HTTP request | Description
 *ESP::SuppressionsApi* | [**deactivate**](docs/SuppressionsApi.md#deactivate) | **PATCH** /api/v2/suppressions/{id}/deactivate.json_api | Deactivate a suppression
 *ESP::SuppressionsApi* | [**list**](docs/SuppressionsApi.md#list) | **PUT** /api/v2/suppressions.json_api | Get a list of Suppressions
 *ESP::SuppressionsApi* | [**show**](docs/SuppressionsApi.md#show) | **GET** /api/v2/suppressions/{id}.json_api | Show a single Suppression
+*ESP::SuppressionsApi* | [**update**](docs/SuppressionsApi.md#update) | **PATCH** /api/v2/suppressions/{id}.json_api | Update a(n) Suppression
 *ESP::TagsApi* | [**list_for_alert**](docs/TagsApi.md#list_for_alert) | **GET** /api/v2/alerts/{alert_id}/tags.json_api | Get a list of Tags
 *ESP::TagsApi* | [**show**](docs/TagsApi.md#show) | **GET** /api/v2/tags/{id}.json_api | Show a single Tag
 *ESP::TeamsApi* | [**create**](docs/TeamsApi.md#create) | **POST** /api/v2/teams.json_api | Create a(n) Team
@@ -619,7 +620,6 @@ Class | Method | HTTP request | Description
  - [ESP::ComplianceControl](docs/ComplianceControl.md)
  - [ESP::ComplianceDomain](docs/ComplianceDomain.md)
  - [ESP::ComplianceStandard](docs/ComplianceStandard.md)
- - [ESP::ContactRequest](docs/ContactRequest.md)
  - [ESP::CustomComplianceControl](docs/CustomComplianceControl.md)
  - [ESP::CustomComplianceDomain](docs/CustomComplianceDomain.md)
  - [ESP::CustomComplianceStandard](docs/CustomComplianceStandard.md)
